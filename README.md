@@ -1,6 +1,6 @@
 # Grocery Store - Web Project
 
-Group:
+Group 17:
 
 - Arthur Trottmann Ramos - 14681052
 - Henrique Drago - 14675441
