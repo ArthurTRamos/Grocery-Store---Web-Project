@@ -22,13 +22,13 @@ There're some requirements for the system, such as:
 
 - Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   
-- Your functionality: Create a functionality that is specific to your application. It does not have to be something complicated. For instance, if you are selling cars, you may allow users to use an accelerator to hear how each car engine roars up and down.
+- Your functionality:
 
 - The system must provide accessibility requirements and provide good usability. The system must be responsive, meaning that it should complete assigned tasks within a reasonable time.
 
 ## Project Description
 
-This project 
+This project implements a web page (front-end and back-end) of a grocery store.
 
 ## Comments About the Code
 
