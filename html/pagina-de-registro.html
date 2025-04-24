@@ -4,49 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Store</title>
-    <link rel="stylesheet" href="Grocery-Store---Web-Project/css/pagina-de-registro.css">
+    <link rel="stylesheet" href="../css/pagina-de-registro.css">
 </head>
 
 <body>
     <header class="header">
-        <a href="#" class="logo">Logo</a>
+        <a href="#" class="logo">Logo/Nome</a>
         <nav>
             <ul class="menu">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Login or Register</a></li>
-                <li><a href="#">My Cart</a></li>
+                <li><a href="#">Pesquisar Produtos</a></li>
+                <li><a href="#">Login or Cadastro</a></li>
+                <li><a href="#">Meu Carrinho</a></li>
             </ul>
         </nav>
     </header>
 
-    <form id="admin-form">
-        <fieldset>
-            <legend> Dados do Administrador </legend>
+    <main class="content-wrap">
+    <div class="forms-container">
 
-            Nome Completo: <br><input type="text" id="admin-name" required><br>
-            ID: <br><input type="number" id="admin-id" required><br> <!-- Não é criado automatico? -->
-            Telefone: <br><input type="tel" id="admin-tel" required><br>
-            Email: <br><input type="email" id="admin-email" required><br>
-        </fieldset>
-    </form>
+        <form id="admin-form">
+            <fieldset>
+                <legend> Dados do Administrador </legend>
 
-    <button id="submit-admin">Adicionar Administrador</button>
+                Nome Completo: <br><input type="text" id="admin-name" required><br>
+                Telefone: <br><input type="tel" id="admin-tel" required><br>
+                Email: <br><input type="email" id="admin-email" required><br>
+            </fieldset>
 
-    <form id="product-form">
-        <fieldset>
-            <legend> Dados do Produto </legend>
+            <button id="submit-admin">Adicionar Administrador</button>
 
-            Nome: <br><input type="text" id="product-name" required><br>
-            ID: <br><input type="number" id="product-id" required><br> <!-- Não é criado automatico? -->
-            Imagem: <br><input type="image" id="product-image" required><br> <!-- Só uma? -->
-            Descrição: <br><input type="text" id="product-desc" required><br>
-            Preço: <br><input type="number" id="product-price" required><br>
-            Quantidade em Estoque: <br><input type="number" id="product-stock-amount" required><br>
-            Quantidade Vendida: <br><input type="number" id="product-stock-amount" required><br> <!-- Precisa no cadastro? -->
+        </form>
 
-        </fieldset>
-    </form>
+        <form id="product-form">
+            <fieldset>
+                <legend> Dados do Produto </legend>
 
-    <button id="submit-product">Adicionar Produto</button>
+                Nome: <br><input type="text" id="product-name" required><br>
+                Imagem: <br><input type="file" id="product-image" accept="image/*" multiple required><br>
+                Descrição: <br><input type="text" id="product-desc" required><br>
+                Preço: <br><input type="number" id="product-price" required><br>
+                Quantidade em Estoque: <br><input type="number" id="product-stock-amount" required><br>
+                Quantidade Vendida: <br><input type="number" id="product-stock-amount" required><br> <!-- Precisa no cadastro? -->
+
+            </fieldset>
+
+            <button id="submit-product">Adicionar Produto</button>
+
+        </form>
+
+    </div>
+
+    <footer>
+        <ul class="footer-menu">
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Redes Sociais</a></li>
+        </ul>
+
+        <p>&copy; 2025. All Rights Reserved.</p>
+
+    </footer>
+    </main>
 </body>
