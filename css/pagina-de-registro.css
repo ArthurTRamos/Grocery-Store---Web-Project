@@ -1,4 +1,4 @@
-/* Body Basic Styling */
+/* Body Styling */
 body {
     font-family: sans-serif;
     line-height: 1.5;
@@ -14,7 +14,7 @@ body {
     color: #fff; 
     padding: 1rem 20px; 
     display: flex; /* Flexbox layout */
-    justify-content: space-between; /* Space out logo and nav */
+    justify-content: space-between; /* Space out logo and other links */
     align-items: center; /* Vertically align items */
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .menu li {
-    margin-left: 20px; /* Space between menu items */
+    margin-left: 20px; /* Espaço entre itens do menu */
 }
 
 .menu a {
@@ -89,23 +89,19 @@ input[type="tel"],
 input[type="email"],
 input[type="number"],
 input[type="file"] { 
-    width: 95%; /* Make input fill container, accounting for padding+border */
+    width: 95%; 
     padding: 10px;
-    margin-bottom: 15px; /* Space below each input */
-    border: 1px solid #ccc; /* Light grey border */
+    margin-bottom: 15px; /* Espaço embaixo de cada input */
+    border: 1px solid #ccc;
     border-radius: 4px; /*  Bordas redondas */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box; /* weight/height inclui margin/padding */
 }
 
-input[type="file"] {
-    padding: 10px 0;
-}
-
-/* --- Footer Styling --- */
+/* Footer Styling */
 footer {
     background-color: #111;
     color: #fff;
-    text-align: center; /* Center text */
+    text-align: center; /* Centraliza o texto (copyright) */
     padding: 20px 0;
     position: fixed;
     bottom: 0;
@@ -115,13 +111,13 @@ footer {
 .footer-menu {
     list-style: none; /* Remove bullet points */
     padding: 0;
-    margin: 0 0 10px 0; /* Add space below menu */
+    margin: 0 0 10px 0; 
     display: flex; /* Arrange items horizontally, flexbox */
-    justify-content: center; /* Center menu items */
+    justify-content: center; /* Centraliza itens do menu */
 }
 
 .footer-menu li {
-    margin: 0 10px; /* Space between menu items */
+    margin: 0 10px; /* Espaço entre itens do menu */
 }
 
 .footer-menu a {
