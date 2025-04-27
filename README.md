@@ -46,7 +46,7 @@ The navigation diagram is shown below:
 The mock-ups are:
 - Landing Page:
 
-- Sign up/in Page:
+- Sign up/in Page: SignIn.png and SignUp.png
 
 - CRUD Page:
 
