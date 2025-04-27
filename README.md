@@ -50,7 +50,7 @@ The mock-ups are:
 
 - Add an ADM and a Product: pagina-de-registro.html/css
 
-- CRUD Page: CRUD.jpeg
+- [CRUD Page](images/CRUD.jpeg)
 
 - User Page: Profile.png
 
