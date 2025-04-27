@@ -35,6 +35,10 @@ This project implements a web page (front-end and back-end) of a grocery store. 
 - Edit items
 - Generate a recipe for items
 
+The navegation diagram is
+
+![Navegation](images/navigation.jpeg)
+
 ## Comments About the Code
 
 ## Test Plan
