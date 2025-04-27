@@ -44,19 +44,21 @@ The navigation diagram is shown below:
 ![Navegation](images/navigation.jpeg)
 
 The mock-ups are:
-- Landing Page:
+- Landing Page: pagina-inicial.html/css
 
 - Sign up/in Page: SignIn.png and SignUp.png
 
-- CRUD Page:
+- Add an ADM and a Product: pagina-de-registro.html/css
 
-- User Page:
+- CRUD Page: CRUD.jpeg
 
-- Cart Page:
+- User Page: Profile.png
 
-- Section Page:
+- Cart Page: Cart.png
 
-- Product Page:
+- Section Page: Section.jpeg
+
+- Product Page: product.html/css
 
 Regarding the information we will store on the server, we will need to save both clients' and administrators' personal information, such as name, ID, address, phone number, and email. Additionally, we will store product information, including name, price, number of items sold, items in stock, image, and brand. 
 
