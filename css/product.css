@@ -19,7 +19,7 @@ body {
 }
 
 .logo {
-    color: #8FBC8F;
+    color: #006400;
     text-decoration: none; /* Remove underline */
     font-size: 2rem; 
     font-weight: normal;
@@ -108,8 +108,8 @@ button {
     width: 100%;
     margin-top: 20px; /* Separa o botão dos fields */
     padding: 10px 20px;
-    background-color: #76EE76;
-    color: black;
+    background-color: #006400;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer; /* Muda o mouse quando passar por cima */
@@ -126,7 +126,7 @@ button {
 
 /* Footer Styling */
 footer {
-    background-color: #F5F5F5;
+    background-color: #2c3e50;
     text-align: center; /* Centraliza o texto (copyright) */
     padding: 20px 0;
     position: fixed;
@@ -147,7 +147,7 @@ footer {
 }
 
 .footer-menu a {
-    color: #424242; 
+    color: #ffffff; 
     text-decoration: none; /* Remove underline */
 }
 
@@ -158,5 +158,5 @@ footer {
 footer p {
     margin: 0; 
     font-size: 0.9rem;
-    color: #424242;
+    color: #ffffff;
 }

@@ -24,7 +24,7 @@ header {
 }
 
 .logo h1 {
-    color: #2ecc71;
+    color: #006400;
     font-size: 1.8rem;
 }
 
@@ -42,7 +42,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #2ecc71;
+    color: #006400;
 }
 
 .hero {
@@ -74,7 +74,7 @@ nav ul li a:hover {
 .cta-button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #2ecc71;
+    background-color: #006400;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -84,7 +84,7 @@ nav ul li a:hover {
 }
 
 .cta-button:hover {
-    background-color: #27ae60;
+    background-color: #006400;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -148,7 +148,7 @@ nav ul li a:hover {
 
 .price {
     font-size: 1.25rem;
-    color: #2ecc71;
+    color: #006400;
     font-weight: bold;
 }
 
@@ -172,7 +172,7 @@ nav ul li a:hover {
 
 .features li:before {
     content: "✓";
-    color: #2ecc71;
+    color: #006400;
     position: absolute;
     left: 0;
 }
@@ -223,7 +223,7 @@ nav ul li a:hover {
 
 .offer-price {
     font-size: 1.5rem;
-    color: #2ecc71;
+    color: #006400;
     font-weight: bold;
     margin: 0.5rem 0;
 }
@@ -248,7 +248,7 @@ footer {
 }
 
 .footer-section h3 {
-    color: #2ecc71;
+    color: #ffffff;
     margin-bottom: 1rem;
 }
 
