@@ -50,8 +50,8 @@ body {
     padding: 5px 10px; 
 }
 
-.menu a:hover {
-    color: #76EE76; /* Make links gray on hover */
+.menu_site li a:hover {
+    color: #006400;
 }
 
 
@@ -114,6 +114,10 @@ button {
     border-radius: 5px;
     cursor: pointer; /* Muda o mouse quando passar por cima */
     font-size: 1rem;
+}
+
+button:hover {
+    background-color: #64dc64; /* Cor do botão no hover */
 }
 
 
