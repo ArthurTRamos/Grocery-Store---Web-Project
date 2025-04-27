@@ -52,13 +52,13 @@ The mock-ups are:
 
 - [CRUD Page](images/CRUD.jpeg)
 
-- User Page: Profile.png
+- [User Page](images/Profile.png)
 
-- Cart Page: Cart.png
+- [Cart Page](images/Cart.png)
 
-- Section Page: Section.jpeg
+- [Section Page](images/Section.jpeg)
 
-- Product Page: product.html/css
+- [Product Page](images/product.html/css)
 
 Regarding the information we will store on the server, we will need to save both clients' and administrators' personal information, such as name, ID, address, phone number, and email. Additionally, we will store product information, including name, price, number of items sold, items in stock, image, and brand. 
 
