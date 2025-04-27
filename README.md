@@ -28,16 +28,37 @@ There're some requirements for the system, such as:
 
 ## Project Description
 
-This project implements a web page (front-end and back-end) of a grocery store. The site has the following funcionalities:
-- Add an item and its quantity in the cart
-- Buy items
-- Create an account as a customer or an adm
+This project implements a web page (front-end and back-end) for a grocery store. The site has the following functionalities:
+
+- Add an item and its quantity to the cart
+
+- Purchase items
+
+- Create an account as a customer or an admin
+
 - Edit items
-- Generate a recipe for items
 
-The navegation diagram is
+- Generate a recipe based on items in the cart
 
+The navigation diagram is shown below:
 ![Navegation](images/navigation.jpeg)
+
+The mock-ups are:
+- Landing Page:
+
+- Sign up/in Page:
+
+- CRUD Page:
+
+- User Page:
+
+- Cart Page:
+
+- Section Page:
+
+- Product Page:
+
+Regarding the information we will store on the server, we will need to save both clients' and administrators' personal information, such as name, ID, address, phone number, and email. Additionally, we will store product information, including name, price, number of items sold, items in stock, image, and brand. 
 
 ## Comments About the Code
 
