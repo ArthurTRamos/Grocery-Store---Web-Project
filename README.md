@@ -22,13 +22,18 @@ There're some requirements for the system, such as:
 
 - Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   
-- Your functionality:
+- Your functionality: For each food item, thGe site will pair it with another item in the cart and generate a recipe.
 
 - The system must provide accessibility requirements and provide good usability. The system must be responsive, meaning that it should complete assigned tasks within a reasonable time.
 
 ## Project Description
 
-This project implements a web page (front-end and back-end) of a grocery store.
+This project implements a web page (front-end and back-end) of a grocery store. The site has the following funcionalities:
+- Add an item and its quantity in the cart
+- Buy items
+- Create an account as a customer or an adm
+- Edit items
+- Generate a recipe for items
 
 ## Comments About the Code
 
