@@ -22,7 +22,7 @@ There're some requirements for the system, such as:
 
 - Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   
-- Your functionality: For each food item, thGe site will pair it with another item in the cart and generate a recipe.
+- Your functionality: For each food item, the site will pair it with another item in the cart and generate a recipe.
 
 - The system must provide accessibility requirements and provide good usability. The system must be responsive, meaning that it should complete assigned tasks within a reasonable time.
 
