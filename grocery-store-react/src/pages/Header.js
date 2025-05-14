@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css"
 
-function App() {
+function Header() {
   return (
     <div>
       <header class="header">
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default Header;
