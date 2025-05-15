@@ -41,7 +41,7 @@ This project implements a web page (front-end and back-end) for a grocery store.
 - Generate a recipe based on items in the cart
 
 The navigation diagram is shown below:
-![Navegation](images/navigation.jpeg)
+![Navigation](images/navigation.jpeg)
 
 The mock-ups are:
 - [Sign up](images/SignIn.png)
