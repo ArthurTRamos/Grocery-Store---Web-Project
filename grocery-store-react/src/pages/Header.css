@@ -22,9 +22,18 @@ header {
   z-index: 1000;
 }
 
-.logo h1 {
+.logo-name-header {
   color: #006400;
   font-size: 1.8rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-name-header img {
+  height: 100px;
+  width: auto;
 }
 
 nav ul {
@@ -38,6 +47,7 @@ nav ul li a {
   color: #333;
   transition: color 0.3s ease;
   font-weight: 500;
+  font-size: 1.2rem;
 }
 
 nav ul li a:hover {

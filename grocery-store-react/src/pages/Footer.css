@@ -13,6 +13,10 @@ footer {
     text-align: center;
 }
 
+.footer-section {
+    text-align: left;
+}
+
 .footer-section h3 {
     color: #ffffff;
     margin-bottom: 1rem;

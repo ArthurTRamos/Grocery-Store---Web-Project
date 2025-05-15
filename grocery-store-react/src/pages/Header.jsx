@@ -1,25 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Header.css"
+import "./Header.css";
 
-function Header() {
+import logo from "../images/logo.png"
+
+function Header({ user, cartItemNumber }) {
+  let userHeader = user.logged ? (
+    <li>
+      <Link to="/user">Bem Vindo, {user.name}</Link>
+    </li>
+  ) : (
+    <li>
+      <Link to="/login">Entrar / Cadastro</Link>
+    </li>
+  );
+
+  let admin =
+    user.logged && user.admin ? (
+      <li>
+        <Link to="/manage">Gerenciar</Link>
+      </li>
+    ) : null;
+
   return (
     <div>
       <header class="header">
-        <Link to="/" className="logo">
-          Logo | Nome
+        <Link to="/" className="logo-name-header">
+          <img className="logo-header" src={logo} alt="Logo" />
+          <h1>Mercado Verde</h1>
         </Link>
         <nav>
           <ul class="menu">
+            {admin}
             <li>
-              <Link to="/">Pesquisar Produtos</Link>
+              <Link to="/section">Seções</Link>
             </li>
             <li>
-              <Link to="/carrinho">Meu Carrinho</Link>
+              <Link to="/search">Busca</Link>
             </li>
             <li>
-              <Link to="/registro">Entrar / Cadastro</Link>
+              <Link to="/cart">Meu Carrinho ({cartItemNumber})</Link>
             </li>
+            {userHeader}
           </ul>
         </nav>
       </header>
