@@ -16,10 +16,22 @@ function App() {
     itemNumber: 0,
   });
 
+  // Obs: Eu n sei se a gente vai fazer assim, isso é só teste
   const [user, setUser] = useState({
     logged: true,
     admin: true,
-    name: "João Silva",
+    name: "Joãozinho da Silva Sauro",
+    cel: 999429927,
+    email: "sla@hotmail.com",
+    adress: {
+      streetName: "Rua Exemplo",
+      streetNumber: "123",
+      apartmentNumber: "Apt 101",
+      city: "São Carlos",
+      state: "SP",
+      postalCode: "13560-001",
+      country: "Brazil",
+    },
   });
 
   return (
@@ -30,9 +42,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
-          <Route index element={<UserProfile />} />
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="payment-methods" element={<PaymentMethods />} />
+          <Route index element={<UserProfile user={user} />} />
+          <Route path="profile" element={<UserProfile user={user} />} />
+          <Route
+            path="payment-methods"
+            element={<PaymentMethods user={user} />}
+          />
         </Route>
       </Routes>
 
