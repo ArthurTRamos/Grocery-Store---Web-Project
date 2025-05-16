@@ -40,9 +40,6 @@ This project implements a web page (front-end and back-end) for a grocery store.
 
 - Generate a recipe based on items in the cart
 
-The navigation diagram is shown below:
-![Navigation](images/navigation.jpeg)
-
 ```mermaid
 flowchart LR
   subgraph AdminPages
@@ -54,14 +51,14 @@ flowchart LR
   end
 
   subgraph LogIn/Register
-    LogIn --> Register
+    LogIn <--> Register
   end
 
   subgraph General
     Cart
     Sections --> IndividProductUser
     UserPage --> Profile & PaymentRegister
-    Profile --> PaymentRegister
+    Profile <--> PaymentRegister
     SearchProdUser --> |search for a product| IndividProductUser
   end
 
