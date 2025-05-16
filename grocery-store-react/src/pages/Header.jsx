@@ -24,13 +24,13 @@ function Header({ userData, cartItemNumber }) {
 
   return (
     <div>
-      <header class="header">
+      <header className="header">
         <Link to="/" className="logo-name-header">
           <img className="logo-header" src={logo} alt="Logo" />
           <h1>Mercado Verde</h1>
         </Link>
         <nav>
-          <ul class="menu">
+          <ul className="header-menu">
             {admin}
             <li>
               <Link to="/section">Seções</Link>

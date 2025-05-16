@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-import "./LabeledEditableContainer.css"
+import "./LabeledEditableContainer.css";
+
+import { TbEdit } from "react-icons/tb";
+import { TbEditOff } from "react-icons/tb";
+import { MdOutlineSave } from "react-icons/md";
 
 function LabeledEditableContainer({
   displayName,
@@ -8,7 +12,7 @@ function LabeledEditableContainer({
   handleSave,
   initialValue,
 }) {
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const [inputData, setInputData] = useState("");
 
   const handleInputChange = (e) => {
@@ -23,6 +27,7 @@ function LabeledEditableContainer({
   const handleSaveClick = (e) => {
     handleSave(field, inputData);
     initialValue = inputData;
+    setIsEditing(false);
   };
 
   const handleCancelClick = (e) => {
@@ -39,8 +44,10 @@ function LabeledEditableContainer({
   };
 
   return (
-    <div>
-      <div className="labeled-editable-container-display-name">{displayName}</div>
+    <div className="labeled-editable-container">
+      <div className="labeled-editable-container-display-name">
+        {displayName}
+      </div>
       <div className="labeled-editable-container-main">
         {isEditing ? (
           <div className="labeled-editable-container-input-group">
@@ -52,17 +59,19 @@ function LabeledEditableContainer({
               autoFocus
             />
             <button onClick={handleSaveClick} className="save-button">
-              Save
+              <MdOutlineSave />
             </button>
             <button onClick={handleCancelClick} className="cancel-button">
-              Cancel
+              <TbEditOff />
             </button>
           </div>
         ) : (
-            <div className="labeled-editable-container-display-group">
-            <span className="labeled-editable-container-display-value">{initialValue}</span>
+          <div className="labeled-editable-container-display-group">
+            <span className="labeled-editable-container-display-value">
+              {initialValue}
+            </span>
             <button onClick={handleEditClick} className="edit-button">
-              Edit
+              <TbEdit />
             </button>
           </div>
         )}
