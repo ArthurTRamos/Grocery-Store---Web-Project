@@ -17,7 +17,7 @@ function App() {
   });
 
   // Obs: Eu n sei se a gente vai fazer assim, isso é só teste
-  const [user, setUser] = useState({
+  const [userData, setUserData] = useState({
     logged: true,
     admin: true,
     name: "Joãozinho da Silva Sauro",
@@ -36,17 +36,17 @@ function App() {
 
   return (
     <div className="App">
-      <Header user={user} cartItemNumber={cart.itemNumber} />
+      <Header userData={userData} cartItemNumber={cart.itemNumber} />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
-          <Route index element={<UserProfile user={user} />} />
-          <Route path="profile" element={<UserProfile user={user} />} />
-          <Route
+          <Route index element={<UserProfile userData={userData} setUserData={setUserData} />} />
+          <Route path="profile" element={<UserProfile userData={userData} setUserData={setUserData} />} />
+          <Route 
             path="payment-methods"
-            element={<PaymentMethods user={user} />}
+            element={<PaymentMethods userData={userData} />}
           />
         </Route>
       </Routes>

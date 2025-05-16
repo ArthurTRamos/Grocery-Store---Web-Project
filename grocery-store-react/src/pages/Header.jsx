@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-import logo from "../images/logo.png"
+import logo from "../images/logo.png";
 
-function Header({ user, cartItemNumber }) {
-  let userHeader = user.logged ? (
+function Header({ userData, cartItemNumber }) {
+  let userHeader = userData.logged ? (
     <li>
-      <Link to="/user">Bem Vindo, {user.name}</Link>
+      <Link to="/user">Bem Vindo, {userData.name}</Link>
     </li>
   ) : (
     <li>
@@ -16,7 +16,7 @@ function Header({ user, cartItemNumber }) {
   );
 
   let admin =
-    user.logged && user.admin ? (
+    userData.logged && userData.admin ? (
       <li>
         <Link to="/manage">Gerenciar</Link>
       </li>

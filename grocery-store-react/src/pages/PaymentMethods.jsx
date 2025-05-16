@@ -2,7 +2,7 @@ import React from "react";
 
 import "./PaymentMethods.css";
 
-function PaymentMethods({user}) {
+function PaymentMethods({userData}) {
   return <div>payment methods</div>;
 }
 
