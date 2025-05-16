@@ -43,6 +43,41 @@ This project implements a web page (front-end and back-end) for a grocery store.
 The navigation diagram is shown below:
 ![Navigation](images/navigation.jpeg)
 
+```mermaid
+flowchart LR
+  subgraph AdminPages
+    Manage --> Users/Admins & NewProduct & NewUser
+    Users/Admins <--> NewProduct & NewUser & SearchProdADM
+    NewProduct <--> NewUser & SearchProdADM
+    NewUser <--> SearchProdADM
+    SearchProdADM --> IndividProdADM
+  end
+
+  subgraph LogIn/Register
+    LogIn --> Register
+  end
+
+  subgraph General
+    Cart
+    Sections --> IndividProductUser
+    UserPage --> Profile & PaymentRegister
+    Profile --> PaymentRegister
+    SearchProdUser --> |search for a product| IndividProductUser
+  end
+
+  Home --> |If logged in as Admin| Manage
+  Manage --> Home
+  Home <--> Sections
+  Home <--> IndividProductUser
+  Home <--> SearchProdUser
+  Home <--> Cart
+  Home <--> |if logged in| UserPage
+  Home <--> |if not logged in| LogIn
+  
+```
+
+
+
 The mock-ups are:
 - [Sign up](images/SignIn.png)
  
