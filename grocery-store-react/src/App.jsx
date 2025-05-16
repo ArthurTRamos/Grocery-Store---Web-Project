@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
+import UserPage from "./pages/UserPage";
+import UserProfile from "./pages/UserProfile";
+import PaymentMethods from "./pages/PaymentMethods";
+
 import "./App.css";
 
 function App() {
@@ -24,9 +29,11 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
-
-        {/* Template pra criar mais rotas */}
-        {/* <Route path="/" element={< />}/>  */}
+        <Route path="/user" element={<UserPage />}>
+          <Route index element={<UserProfile />} />
+          <Route path="profile" element={<UserProfile />} />
+          <Route path="payment-methods" element={<PaymentMethods />} />
+        </Route>
       </Routes>
 
       <Footer />
