@@ -30,6 +30,16 @@ function UserPage() {
                 Métodos de Pagamento
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/user/coupons"
+                className={({ isActive }) =>
+                  isActive ? "active-sidebar-link" : ""
+                }
+              >
+                Cupons
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

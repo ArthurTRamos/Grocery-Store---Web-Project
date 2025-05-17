@@ -15,6 +15,7 @@ import UserPage from "./pages/UserPage";
 import UserProfile from "./pages/UserProfile";
 import PaymentMethods from "./pages/PaymentMethods";
 import CartPage from "./pages/CartPage";
+import UserCoupons from "./pages/UserCoupons";
 
 import honeyImg from "./images/mel.jpg";
 
@@ -90,7 +91,7 @@ function App() {
       type: "percent",
     },
     {
-      couponNumber: "FREESHIP",
+      couponNumber: "TENOFF",
       discount: 10,
       type: "money",
     },
@@ -98,6 +99,11 @@ function App() {
       couponNumber: "GIGA12",
       discount: 12,
       type: "percent",
+    },
+    {
+      couponNumber: "FREEFIVE",
+      discount: 5,
+      type: "money",
     },
   ]);
 
@@ -142,8 +148,8 @@ function App() {
         used: false,
       },
       {
-        couponNumber: "FREESHIP",
-        used: false,
+        couponNumber: "TENOFF",
+        used: true,
       },
     ],
   });
@@ -175,6 +181,16 @@ function App() {
             path="payment-methods"
             element={
               <PaymentMethods userData={userData} setUserData={setUserData} />
+            }
+          />
+          <Route
+            path="coupons"
+            element={
+              <UserCoupons
+                userData={userData}
+                setUserData={setUserData}
+                coupons={coupons}
+              />
             }
           />
         </Route>
