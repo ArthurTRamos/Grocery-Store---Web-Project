@@ -24,7 +24,7 @@ const CreateUser = () => {
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="tipo">Tipo de Usuário</label>
-                                <select id="tipo" name="tipo_User" required>
+                                <select className="select_sek" id="tipo" name="tipo_User" required>
                                     <option value="">Selecione...</option>
                                     <option value="cliente">Cliente</option>
                                     <option value="admin">Administrador</option>
