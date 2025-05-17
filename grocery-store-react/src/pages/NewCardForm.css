@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.new-card-form-container {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-card-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.new-card-form-header p {
+  font-size: 1.2rem;
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 100%;
+}
+
+.form-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s ease;
+  padding: 6px;
+  height: 30px;
+  width: auto;
+}
+
+.form-actions button:hover {
+  color: #006400;
+}
+
+.new-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.new-card-form-content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.new-card-form-left,
+.new-card-form-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.new-card-form-left {
+  flex: 2;
+  min-width: 0;
+}
+
+.new-card-form-right {
+  flex: 1;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin-bottom: 20px; /* Add space for error message */
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #555;
+  font-weight: bold;
+  padding: 0 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.form-group input {
+  font-size: 1.2rem;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #006400;
+}
+

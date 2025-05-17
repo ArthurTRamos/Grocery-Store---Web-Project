@@ -32,6 +32,22 @@ function App() {
       postalCode: "13560-001",
       country: "Brazil",
     },
+    paymentMethods: [
+      {
+        id: 1,
+        cardNumber: "1234 5678 9012 3456",
+        cardHolderName: "Joãozinho da Silva Sauro",
+        expirationDate: "12/25",
+        cvv: "123",
+      },
+      {
+        id: 2,
+        cardNumber: "9876 5432 1098 7654",
+        cardHolderName: "Joãozinho da Silva Sauro",
+        expirationDate: "11/24",
+        cvv: "456",
+      },
+    ],
   });
 
   return (
@@ -46,7 +62,7 @@ function App() {
           <Route path="profile" element={<UserProfile userData={userData} setUserData={setUserData} />} />
           <Route 
             path="payment-methods"
-            element={<PaymentMethods userData={userData} />}
+            element={<PaymentMethods userData={userData} setUserData={setUserData} />}
           />
         </Route>
       </Routes>
