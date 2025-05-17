@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import CardSelection from "./CardSelection";
 import CartItem from "./CartItem";
 
 import "./CartPage.css";
 
-function CartPage({ cartData, paymentMethods, productData, setCartData, setProductData }) {
+function CartPage({
+  cartData,
+  paymentMethods,
+  productData,
+  setCartData,
+  setProductData,
+}) {
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
+  const [selectedCard, setSelectedCard] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const calculateSubtotalDiscount = () => {
@@ -31,6 +41,16 @@ function CartPage({ cartData, paymentMethods, productData, setCartData, setProdu
   }, [cartData, productData]);
 
   const handleFinish = () => {
+    if (!selectedCard) {
+      alert("Por favor, selecione um cartão antes de finalizar a compra!");
+      return;
+    }
+
+    if (!total) {
+      alert("Por favor, adicione ao menos um item antes de finalizar a compra!");
+      return;
+    }
+
     const updatedProductData = productData.map((product) => {
       const cartItem = cartData.find((item) => item.id === product.id);
       if (cartItem) {
@@ -40,12 +60,15 @@ function CartPage({ cartData, paymentMethods, productData, setCartData, setProdu
         };
       }
       return product;
-    }
-    );
+    });
+
     setProductData(updatedProductData);
     setCartData([]);
     alert("Compra finalizada com sucesso!");
-  }
+    
+    // Redirect to home page after purchase
+    navigate("/");
+  };
 
   return (
     <div className="cart-page-container">
@@ -103,9 +126,17 @@ function CartPage({ cartData, paymentMethods, productData, setCartData, setProdu
             <p>R$ {total.toFixed(2)}</p>
           </div>
         </div>
-        <CardSelection paymentMethods={paymentMethods} />
+        <CardSelection
+          paymentMethods={paymentMethods}
+          onCardSelect={setSelectedCard}
+        />
         <div className="cart-page-button">
-          <button onClick={handleFinish}>Finalizar Compra</button>
+          <button
+            onClick={handleFinish}
+            className={!selectedCard ? "disabled" : ""}
+          >
+            Finalizar Compra
+          </button>
         </div>
       </div>
     </div>

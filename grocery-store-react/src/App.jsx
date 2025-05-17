@@ -15,6 +15,8 @@ import honeyImg from "./images/mel.jpg";
 import "./App.css";
 
 function App() {
+  // Carrinho de compras
+  // Eu imagino que a versão final vai ser algo desse estilo mesmo
   const [cartData, setCartData] = useState([
     {
       id: 14,
@@ -34,6 +36,11 @@ function App() {
     },
   ]);
 
+  // Produtos
+  // Versão de teste, não tenho certeza como vamos lidar com os produtos
+  // O ideal seria fazer uma requisição para pegar os dados dos produtos
+  // e depois fazer uma requisição para atualizar os dados dos produtos
+  // mas como não temos backend ainda, vai assim mesmo pra teste
   const [productData, setProductData] = useState([
     {
       id: 14,
@@ -65,9 +72,12 @@ function App() {
     },
   ]);
 
-  // Obs: Eu n sei se a gente vai fazer assim, isso é só teste
+  // Usuário
+  // Versão de teste, não tenho certeza como vamos lidar com os dados do usuário
+  // O ideal seria fazer uma requisição para pegar os dados do usuário
+  // e depois fazer uma requisição para atualizar os dados do usuário
+  // mas como não temos backend ainda, vai assim mesmo pra teste
   const [userData, setUserData] = useState({
-    logged: true,
     admin: true,
     name: "Joãozinho da Silva Sauro",
     cel: 999429927,

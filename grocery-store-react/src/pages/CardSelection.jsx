@@ -2,11 +2,15 @@ import React from "react";
 
 import "./CardSelection.css";
 
-function CardSelection({ paymentMethods }) {
+function CardSelection({ paymentMethods, onCardSelect }) {
   return (
     <div className="card-selection-container">
       <h3>Selecione o método de pagamento</h3>
-      <select className="card-dropdown">
+      <select
+        className="card-dropdown"
+        onChange={(e) => onCardSelect(e.target.value)}
+        required
+      >
         <option value="">Selecione um cartão</option>
         {paymentMethods.map((cardData) => (
           <option key={cardData.id} value={cardData.cardNumber}>

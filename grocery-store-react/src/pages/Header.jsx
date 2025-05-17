@@ -5,7 +5,7 @@ import "./Header.css";
 import logo from "../images/logo.png";
 
 function Header({ userData, cartItemNumber }) {
-  let userHeader = userData.logged ? (
+  let userHeader = userData && userData.name ? (
     <li>
       <Link to="/user">Bem Vindo, {userData.name}</Link>
     </li>
@@ -16,7 +16,7 @@ function Header({ userData, cartItemNumber }) {
   );
 
   let admin =
-    userData.logged && userData.admin ? (
+    userData && userData.admin ? (
       <li>
         <Link to="/manage">Gerenciar</Link>
       </li>
