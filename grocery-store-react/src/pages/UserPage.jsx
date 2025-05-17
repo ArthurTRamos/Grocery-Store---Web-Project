@@ -17,7 +17,7 @@ function UserPage() {
                   isActive ? "active-sidebar-link" : ""
                 }
               >
-                Profile
+                Perfil
               </NavLink>
             </li>
             <li>
@@ -27,7 +27,7 @@ function UserPage() {
                   isActive ? "active-sidebar-link" : ""
                 }
               >
-                Payment Methods
+                Métodos de Pagamento
               </NavLink>
             </li>
           </ul>

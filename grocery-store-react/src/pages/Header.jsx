@@ -39,7 +39,7 @@ function Header({ userData, cartItemNumber }) {
               <Link to="/search">Busca</Link>
             </li>
             <li>
-              <Link to="/cart">Meu Carrinho ({cartItemNumber})</Link>
+              <Link to="/cart">Meu Carrinho {cartItemNumber > 0 ? "(" + cartItemNumber + ")" : ""}</Link>
             </li>
             {userHeader}
           </ul>

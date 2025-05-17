@@ -8,13 +8,62 @@ import Footer from "./pages/Footer";
 import UserPage from "./pages/UserPage";
 import UserProfile from "./pages/UserProfile";
 import PaymentMethods from "./pages/PaymentMethods";
+import CartPage from "./pages/CartPage";
+
+import honeyImg from "./images/mel.jpg";
 
 import "./App.css";
 
 function App() {
-  const [cart, setCart] = useState({
-    itemNumber: 0,
-  });
+  const [cartData, setCartData] = useState([
+    {
+      id: 14,
+      amount: 2,
+    },
+    {
+      id: 22,
+      amount: 1,
+    },
+    {
+      id: 38,
+      amount: 3,
+    },
+    {
+      id: 57,
+      amount: 1,
+    },
+  ]);
+
+  const [productData, setProductData] = useState([
+    {
+      id: 14,
+      name: "Produto 1",
+      price: 10.0,
+      stock: 2,
+      image: honeyImg,
+    },
+    {
+      id: 22,
+      name: "Produto 2",
+      price: 20.0,
+      stock: 5,
+      image: honeyImg,
+    },
+    {
+      id: 38,
+      name: "Produto 3",
+      price: 15.0,
+      stock: 3,
+      image: honeyImg,
+    },
+    {
+      id: 57,
+      name: "Produto 4",
+      price: 19.99,
+      stock: 3,
+      image: honeyImg,
+    },
+  ]);
 
   // Obs: Eu n sei se a gente vai fazer assim, isso é só teste
   const [userData, setUserData] = useState({
@@ -52,19 +101,43 @@ function App() {
 
   return (
     <div className="App">
-      <Header userData={userData} cartItemNumber={cart.itemNumber} />
+      <Header userData={userData} cartItemNumber={cartData.length} />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
-          <Route index element={<UserProfile userData={userData} setUserData={setUserData} />} />
-          <Route path="profile" element={<UserProfile userData={userData} setUserData={setUserData} />} />
-          <Route 
+          <Route
+            index
+            element={
+              <UserProfile userData={userData} setUserData={setUserData} />
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <UserProfile userData={userData} setUserData={setUserData} />
+            }
+          />
+          <Route
             path="payment-methods"
-            element={<PaymentMethods userData={userData} setUserData={setUserData} />}
+            element={
+              <PaymentMethods userData={userData} setUserData={setUserData} />
+            }
           />
         </Route>
+        <Route
+          path="/cart"
+          element={
+            <CartPage
+              cartData={cartData}
+              paymentMethods={userData.paymentMethods}
+              productData={productData}
+              setCartData={setCartData}
+              setProductData={setProductData}
+            />
+          }
+        />
       </Routes>
 
       <Footer />
