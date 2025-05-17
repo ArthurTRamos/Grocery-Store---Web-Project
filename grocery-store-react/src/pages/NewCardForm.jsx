@@ -34,7 +34,9 @@ function NewCardForm({ onSave, onCancel }) {
 
   // Handle input changes
   const handleInputData = (e) => {
+    // Take the name and value from the event target
     const { name, value } = e.target;
+    // Format the value based on the input name
     const formattedValue = formatters[name] ? formatters[name](value) : value;
 
     setInputInfo((prev) => ({
@@ -53,7 +55,7 @@ function NewCardForm({ onSave, onCancel }) {
     <div className="new-card-form-container">
       <div className="new-card-form-header">
         <p>Adicionar Novo Cartão</p>
-        <div className="form-actions">
+        <div className="new-card-form-actions">
           <button type="submit" form="new-card-form">
             <MdOutlineSave />
           </button>
@@ -65,7 +67,7 @@ function NewCardForm({ onSave, onCancel }) {
       <form id="new-card-form" onSubmit={handleSave} className="new-card-form">
         <div className="new-card-form-content">
           <div className="new-card-form-left">
-            <div className="form-group">
+            <div className="new-card-form-group">
               <label htmlFor="cardHolderName">Nome do Titular</label>
               <input
                 id="cardHolderName"
@@ -76,7 +78,7 @@ function NewCardForm({ onSave, onCancel }) {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className="new-card-form-group">
               <label htmlFor="cardNumber">Número do Cartão</label>
               <input
                 id="cardNumber"
@@ -89,8 +91,8 @@ function NewCardForm({ onSave, onCancel }) {
             </div>
           </div>
           <div className="new-card-form-right">
-            <div className="form-group">
-              <label htmlFor="expirationDate">Data de Validade</label>
+            <div className="new-card-form-group">
+              <label htmlFor="expirationDate">Validade</label>
               <input
                 id="expirationDate"
                 name="expirationDate"
@@ -101,7 +103,7 @@ function NewCardForm({ onSave, onCancel }) {
                 required
               />
             </div>
-            <div className="form-group">
+            <div className="new-card-form-group">
               <label htmlFor="cvv">CVV</label>
               <input
                 id="cvv"

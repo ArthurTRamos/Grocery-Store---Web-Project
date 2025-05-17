@@ -26,14 +26,24 @@ function PaymentMethods({ userData, setUserData }) {
     setIsAddingCard(false); // Hide the form and show the button again
   };
 
+  // Handler for removing a card
+  const handleCardRemoval = (cardNumber) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      paymentMethods: prevData.paymentMethods.filter(
+        (card) => card.cardNumber !== cardNumber
+      ),
+    }));
+  };
+
   return (
     <div className="payment-methods-container">
       <div className="payment-methods-header">
         <h1>Meus Cartões</h1>
       </div>
       <div className="payment-methods-exhibition-container">
-        {userData.paymentMethods.map((cardData, index) => (
-          <PaymentCardInfo key={cardData.id} cardData={cardData} />
+        {userData.paymentMethods.map((cardData) => (
+          <PaymentCardInfo key={cardData.cardNumber} cardData={cardData} removeCard={handleCardRemoval} />
         ))}
         {isAddingCard ? (
           // If isAddingCard is true, show the NewCardForm

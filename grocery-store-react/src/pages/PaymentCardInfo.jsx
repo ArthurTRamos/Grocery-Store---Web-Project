@@ -2,7 +2,9 @@ import React from "react";
 
 import "./PaymentCardInfo.css";
 
-function PaymentCardInfo({ cardData }) {
+import { FaRegTrashAlt } from "react-icons/fa";
+
+function PaymentCardInfo({ cardData, removeCard }) {
   return (
     <div className="payment-card-info-container">
       <div className="payment-card-info-content">
@@ -18,13 +20,18 @@ function PaymentCardInfo({ cardData }) {
         </div>
         <div className="payment-card-info-small">
           <div className="payment-card-info-group">
-            <h3>Data de Validade</h3>
+            <h3>Validade</h3>
             <p>{cardData.expirationDate}</p>
           </div>
           <div className="payment-card-info-group">
             <h3>CVV</h3>
             <p>{cardData.cvv}</p>
           </div>
+        </div>
+        <div className="payment-card-info-delete">
+          <button onClick={() => removeCard(cardData.cardNumber)}>
+            <FaRegTrashAlt />
+          </button>
         </div>
       </div>
     </div>

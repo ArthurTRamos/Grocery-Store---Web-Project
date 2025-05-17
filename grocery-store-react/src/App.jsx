@@ -128,14 +128,12 @@ function App() {
     },
     paymentMethods: [
       {
-        id: 1,
         cardNumber: "1234 5678 9012 3456",
         cardHolderName: "Joãozinho da Silva Sauro",
         expirationDate: "12/25",
         cvv: "123",
       },
       {
-        id: 2,
         cardNumber: "9876 5432 1098 7654",
         cardHolderName: "Joãozinho da Silva Sauro",
         expirationDate: "11/24",
