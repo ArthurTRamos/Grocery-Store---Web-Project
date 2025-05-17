@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import CardSelection from "./CardSelection";
 import CartItem from "./CartItem";
+import CouponSelection from "./CouponSelection";
 
 import "./CartPage.css";
 
 function CartPage({
   cartData,
   paymentMethods,
+  userCoupons,
+  coupons,
   productData,
   setCartData,
   setProductData,
@@ -17,28 +20,48 @@ function CartPage({
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [selectedCard, setSelectedCard] = useState("");
+  const [selectedCoupon, setSelectedCoupon] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const calculateSubtotalDiscount = () => {
-      let tempSubtotal = 0;
+      // Calculate subtotal
+      let subtotalValue = 0;
       cartData.forEach((cartItem) => {
         const product = productData.find(
           (product) => product.id === cartItem.id
         );
         if (product) {
-          tempSubtotal += product.price * cartItem.amount;
+          subtotalValue += product.price * cartItem.amount;
         }
       });
-      setSubtotal(tempSubtotal);
-      let tempDiscount = -tempSubtotal * 0.05;
-      setDiscount(tempDiscount);
-      setTotal(tempSubtotal + tempDiscount);
+      setSubtotal(subtotalValue);
+
+      // Calculate discount
+      let discountValue = 0;
+      const selectedCouponUserData = userCoupons.find(
+        (coupon) => coupon.couponNumber === selectedCoupon
+      );
+
+      if (selectedCouponUserData && !selectedCouponUserData.used) {
+        const couponData = coupons.find(
+          (coupon) => coupon.couponNumber === selectedCoupon
+        );
+        if (couponData) {
+          discountValue =
+            couponData.type === "money"
+              ? -Math.min(couponData.discount, subtotalValue)
+              : (-subtotalValue * couponData.discount) / 100;
+        }
+      }
+
+      setDiscount(discountValue);
+      setTotal(Math.max(subtotalValue + discountValue, 0));
     };
 
     calculateSubtotalDiscount();
-  }, [cartData, productData]);
+  }, [cartData, coupons, productData, selectedCoupon, userCoupons]);
 
   const handleFinish = () => {
     if (!selectedCard) {
@@ -47,7 +70,9 @@ function CartPage({
     }
 
     if (!total) {
-      alert("Por favor, adicione ao menos um item antes de finalizar a compra!");
+      alert(
+        "Por favor, adicione ao menos um item antes de finalizar a compra!"
+      );
       return;
     }
 
@@ -65,7 +90,18 @@ function CartPage({
     setProductData(updatedProductData);
     setCartData([]);
     alert("Compra finalizada com sucesso!");
-    
+
+    const selectedCouponUserData = userCoupons.find(
+      (coupon) => coupon.couponNumber === selectedCoupon
+    );
+
+    if (selectedCouponUserData) {
+      selectedCouponUserData.used = true;
+    }
+
+    setSelectedCoupon("");
+    setSelectedCard("");
+
     // Redirect to home page after purchase
     navigate("/");
   };
@@ -129,6 +165,10 @@ function CartPage({
         <CardSelection
           paymentMethods={paymentMethods}
           onCardSelect={setSelectedCard}
+        />
+        <CouponSelection
+          coupons={userCoupons}
+          onCouponSelect={setSelectedCoupon}
         />
         <div className="cart-page-button">
           <button

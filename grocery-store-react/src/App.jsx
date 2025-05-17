@@ -45,7 +45,7 @@ function App() {
     {
       id: 14,
       name: "Produto 1",
-      price: 10.0,
+      price: 5.0,
       stock: 2,
       image: honeyImg,
     },
@@ -69,6 +69,29 @@ function App() {
       price: 19.99,
       stock: 3,
       image: honeyImg,
+    },
+  ]);
+
+  // Cupoms
+  // Versão de teste, não tenho certeza como vamos lidar com os cupons
+  // O ideal seria fazer uma requisição para pegar os dados dos cupons
+  // e depois fazer uma requisição para atualizar os dados dos cupons
+  // mas como não temos backend ainda, vai assim mesmo pra teste
+  const [coupons, setCoupons] = useState([
+    {
+      couponNumber: "NEWUSER",
+      discount: 10,
+      type: "percent",
+    },
+    {
+      couponNumber: "FREESHIP",
+      discount: 10,
+      type: "money",
+    },
+    {
+      couponNumber: "GIGA12",
+      discount: 12,
+      type: "percent",
     },
   ]);
 
@@ -107,6 +130,16 @@ function App() {
         cvv: "456",
       },
     ],
+    coupons: [
+      {
+        couponNumber: "NEWUSER",
+        used: false,
+      },
+      {
+        couponNumber: "FREESHIP",
+        used: false,
+      },
+    ],
   });
 
   return (
@@ -142,6 +175,8 @@ function App() {
             <CartPage
               cartData={cartData}
               paymentMethods={userData.paymentMethods}
+              userCoupons={userData.coupons}
+              coupons={coupons}
               productData={productData}
               setCartData={setCartData}
               setProductData={setProductData}
