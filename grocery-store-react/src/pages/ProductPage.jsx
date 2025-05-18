@@ -69,7 +69,7 @@ function ProductPage({typeAccount}) {
               <h3>Quantidade Vendida: 111111</h3>
             </div>
 
-            <button type="button" class="carrinho">
+            <button type="button" class="add-to-cart">
               Adicionar ao Carrinho
             </button>
           </div>

@@ -1,11 +1,8 @@
-body {
+.product {
   font-family: sans-serif;
   line-height: 1.5;
   margin: 0;
   color: #424242;
-}
-
-.product {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +40,7 @@ body {
   width: 80%;
 }
 
-.product button {
+.add-to-cart {
   display: block;
   width: 100%;
   margin-top: 20px; /* Separa o botão dos fields */
@@ -56,7 +53,7 @@ body {
   font-size: 1rem;
 }
 
-.product button:hover {
+.add-to-cart:hover {
   background-color: #64dc64; /* Cor do botão no hover */
 }
 
