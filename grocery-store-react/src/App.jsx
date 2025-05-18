@@ -7,7 +7,6 @@ import HomeAdmin from "./pages/admin/HomeAdmin";
 import CreateUser from "./pages/admin/CreateUser";
 import CreateProduct from "./pages/admin/CreateProduct";
 
-
 import ProductPage from "./pages/ProductPage";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
@@ -159,8 +158,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/manage" element={<HomeAdmin />} />
-          <Route path="/createUser" element={<CreateUser />} />
-          <Route path="/createProduct" element={<CreateProduct />} />
+        <Route path="/createUser" element={<CreateUser />} />
+        <Route path="/createProduct" element={<CreateProduct />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
           <Route

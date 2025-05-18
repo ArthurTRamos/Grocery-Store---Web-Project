@@ -33,6 +33,9 @@ function Header({ userData, cartItemNumber }) {
           <ul className="header-menu">
             {admin}
             <li>
+              <Link to="/recipe">Receitas</Link>
+            </li>
+            <li>
               <Link to="/section">Seções</Link>
             </li>
             <li>
