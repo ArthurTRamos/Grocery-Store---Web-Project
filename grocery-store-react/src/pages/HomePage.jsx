@@ -1,7 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 function HomePage() {
+  const [offers, setOffers] = useState([{
+    discount: "-15",
+    image: "https://static.paodeacucar.com/img/uploads/1/278/24591278.jpg",
+    name: "Café 3 Corações 500g",
+    originalPrice: "36,99",
+    offerPrice: "31,44",
+    description: "Café Torrado e Moído a Vácuo 3 Corações Pacote 500g",
+  }, {
+    discount: "-17",
+    image: "https://static.paodeacucar.com/img/uploads/1/636/24623636.jpg",
+    name: "Coca-Cola Zero 2l",
+    originalPrice: "12,79",
+    offerPrice: "10,49",
+    description: "Refrigerante sem Açúcar Coca-Cola Zero Garrafa 2l",
+  }])
+
   return (
     <div>
       <main>
@@ -28,8 +45,10 @@ function HomePage() {
 
         <section id="produtos" class="products">
           <h2>Nossos Produtos em Destaque</h2>
+
           <div class="product-grid">
-            <div class="product-card">
+          <Link to="/section" className="product-section">
+            <div className="product-card">
               <img
                 src="https://cdn.samaisvarejo.com.br/portal/principal/arquivos/imagens/20220513_hortifruti_materia.jpg"
                 alt="Frutas e Legumes Frescos"
@@ -44,6 +63,9 @@ function HomePage() {
                 <li>Direto do produtor</li>
               </ul>
             </div>
+            </Link>
+
+            <Link to="/section" className="product-section">
             <div class="product-card">
               <img
                 src="https://www.assai.com.br/sites/default/files/whatsapp_image_2021-10-21_at_12.27.38_0_0.jpg"
@@ -59,6 +81,9 @@ function HomePage() {
                 <li>Variedade de Aves e suínos</li>
               </ul>
             </div>
+            </Link>
+
+            <Link to="/section" className="product-section">
             <div class="product-card">
               <img
                 src="https://i.pinimg.com/originals/c7/34/53/c73453745ad3c70f737b0dc9bbc1dfa7.jpg"
@@ -74,9 +99,12 @@ function HomePage() {
                 <li>Produção própria com ingredientes frescos</li>
               </ul>
             </div>
+            </Link>
+
+            <Link to="/section" className="product-section">
             <div class="product-card">
               <img
-                src="https://media.istockphoto.com/id/1157106624/pt/foto/all-your-necessities-stored-in-one-place.jpg?s=612x612&w=0&k=20&c=QADz-fF7X_vN3fh4CabC8Xsw0zGVNQret6gZJozlw2o="
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO6MqnvZxF2iFZdKn8olG2mWD7d5R0zhgLZA&s"
                 alt="Produtos em geral"
               ></img>
               <h3>Produtos em Geral</h3>
@@ -87,38 +115,32 @@ function HomePage() {
                 <li>Grande variedade de produtos importados e nacionais</li>
               </ul>
             </div>
+            </Link>
           </div>
         </section>
 
         <section id="ofertas" class="offers">
           <h2>Ofertas da Semana</h2>
           <div class="offers-grid">
-            <div class="offer-card">
-              <div class="discount-tag">-15%</div>
-              <img
-                src="https://static.paodeacucar.com/img/uploads/1/278/24591278.jpg"
-                alt="Oferta Especial"
-              ></img>
-              <h3>Café 3 Corações 500g</h3>
-              <p class="original-price">R$ 36,99</p>
-              <p class="offer-price">R$ 31,44</p>
-              <p class="offer-description">
-                Café Torrado e Moído a Vácuo 3 Corações Pacote 500g
-              </p>
-            </div>
-            <div class="offer-card">
-              <div class="discount-tag">-17%</div>
-              <img
-                src="https://static.paodeacucar.com/img/uploads/1/636/24623636.jpg"
-                alt="Oferta Especial"
-              ></img>
-              <h3>Coca-Cola Zero 2l</h3>
-              <p class="original-price">R$ 12,79</p>
-              <p class="offer-price">R$ 10,49</p>
-              <p class="offer-description">
-                Refrigerante sem Açúcar Coca-Cola Zero Garrafa 2l
-              </p>
-            </div>
+
+            {offers.map(offer => (
+              <Link to="/product" state={{productData: offer}} className="product-link">
+                <div class="offer-card">
+                  <div class="discount-tag">{offer.discount}%</div>
+                  <img
+                    src={offer.image}
+                    alt="Oferta Especial"
+                  ></img>
+                  <h3>{offer.name}</h3>
+                  <p class="original-price">R$ {offer.originalPrice}</p>
+                  <p class="offer-price">R$ {offer.offerPrice}</p>
+                  <p class="offer-description">
+                    {offer.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+            
           </div>
         </section>
       </main>

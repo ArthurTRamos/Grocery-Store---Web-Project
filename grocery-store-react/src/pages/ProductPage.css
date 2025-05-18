@@ -2,15 +2,11 @@ body {
   font-family: sans-serif;
   line-height: 1.5;
   margin: 0;
-  /* background-color: rgb(85, 86, 119); */
   color: #424242;
 }
 
-/* Main page*/
-
 .product {
   display: flex;
-  /* background-color: rgb(111, 109, 233); */
   align-items: center;
   justify-content: center;
   padding-bottom: 100px;
@@ -20,7 +16,6 @@ body {
   margin-left: 5%;
   flex-basis: 50%;
   align-items: center;
-  /* background-color: rgb(243, 243, 31); */
 }
 
 .product_description {
@@ -32,8 +27,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   min-width: 40%;
-
-  /* background-color: rgb(230, 30, 63); */
 }
 
 .product_description p {
@@ -65,4 +58,12 @@ body {
 
 .product button:hover {
   background-color: #64dc64; /* Cor do botão no hover */
+}
+
+.quantity-sold {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px; /* Separa o botão dos fields */
+
 }

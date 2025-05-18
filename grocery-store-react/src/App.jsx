@@ -15,6 +15,8 @@ import UserProfile from "./pages/UserProfile";
 import PaymentMethods from "./pages/PaymentMethods";
 import CartPage from "./pages/CartPage";
 import UserCoupons from "./pages/UserCoupons";
+import LoginRegister from "./pages/LoginRegister";
+import RecipePage from "./pages/RecipePage";
 
 import honeyImg from "./images/mel.jpg";
 
@@ -205,6 +207,8 @@ function App() {
             />
           }
         />
+        <Route path="/login" element={<LoginRegister />} />
+        <Route path="/recipe" element={<RecipePage />} />
       </Routes>
 
       <Footer />

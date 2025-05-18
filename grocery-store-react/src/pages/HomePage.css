@@ -85,6 +85,14 @@ body {
   max-width: 1400px;
 }
 
+.product-section {
+  text-decoration: none;
+}
+
+.product-link {
+  text-decoration: none;
+}
+
 .product-card {
   background: white;
   border-radius: 15px;
@@ -94,6 +102,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 100%;
 }
 
 .product-card:hover {
