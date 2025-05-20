@@ -113,7 +113,7 @@ function App() {
   // O ideal seria fazer uma requisição para pegar os dados do usuário
   // e depois fazer uma requisição para atualizar os dados do usuário
   // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState([{
     admin: true,
     name: "Joãozinho da Silva Sauro",
     cel: 999429927,
@@ -151,7 +151,19 @@ function App() {
         used: true,
       },
     ],
-  });
+  }]);
+
+  const [loggedUser, setLoggedUser] = useState("")
+
+  const handleRegisterUser = (newUser) => {
+    const updatedUserData = [...userData, newUser];
+
+    setUserData(updatedUserData);
+  }
+
+  const handleLoggedUser = (loggedUser) => {
+    setUserData(loggedUser.email);
+  }
 
   return (
     <div className="App">
@@ -207,7 +219,7 @@ function App() {
             />
           }
         />
-        <Route path="/login" element={<LoginRegister />} />
+        <Route path="/login" element={<LoginRegister users={userData} handleRegisterUser={handleRegisterUser} handleLoggedUser={handleLoggedUser}/>} />
         <Route path="/recipe" element={<RecipePage />} />
       </Routes>
 

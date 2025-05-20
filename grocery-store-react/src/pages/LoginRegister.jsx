@@ -7,9 +7,49 @@ import Button from "../utility_elements/botao"
 
 import logo from "../images/logo.png"
 
-function LoginRegister({users}) {
+function LoginRegister({users, handleRegisterUser, handleLoggedUser}) {
     const navigate = useNavigate();
     const [tabIndex, setTabIndex] = useState(0);
+
+    const handleRegister = () => {
+        const nome = document.getElementById("nome-completo").value;
+        const email = document.getElementById("email-cadastro").value;
+        const senha = document.getElementById("senha-cadastro").value;
+        const confirmarSenha = document.getElementById("confirmar-senha").value;
+
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem");
+            return;
+        }
+
+        const newUser = {
+            name: nome,
+            email: email,
+            password: senha,
+            address: {
+                street: document.getElementById("rua").value,
+                number: document.getElementById("numero").value,
+                complement: document.getElementById("complemento").value,
+                city: document.getElementById("cidade").value,
+                state: document.getElementById("estado").value,
+                country: document.getElementById("pais").value,
+                zipCode: document.getElementById("cep").value
+            },
+            paymentMethods: [],
+            coupons: []
+        };
+
+        handleRegisterUser(newUser);
+    }
+
+    const handleLogin = () => {
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+
+        users.filter()
+
+        const newLoggedUser = users.filter((user) => user.email === email && user.password === password);
+    }
 
     return (
         <div className="auth-container">
@@ -37,7 +77,7 @@ function LoginRegister({users}) {
                         <input id="email" type="email" placeholder="seu@email.com" required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">password</label>
+                        <label htmlFor="password">Senha</label>
                         <input id="password" type="password" required />
                     </div>
                     <div className="form-actions">
@@ -166,17 +206,6 @@ function LoginRegister({users}) {
                         <button type="submit" className="btn-primary">
                         Cadastrar
                         </button>
-                    </div>
-                    <div className="form-terms">
-                        Ao se cadastrar, você concorda com nossos{" "}
-                        <a href="/termos" className="link">
-                        Termos de Uso
-                        </a>{" "}
-                        e{" "}
-                        <a href="/privacidade" className="link">
-                        Política de Privacidade
-                        </a>
-                        .
                     </div>
                     </form>
                 </TabPanel>

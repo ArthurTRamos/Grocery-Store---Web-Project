@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProductPage.css";
-import honeyImg from "../images/mel.jpg";
 import LabeledEditableContainer from "./LabeledEditableContainer";
 import { useLocation } from "react-router-dom";
 
@@ -13,6 +12,8 @@ function ProductPage({typeAccount}) {
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
+
+    offer[field] = newValue;
   }
 
   return (
@@ -33,40 +34,70 @@ function ProductPage({typeAccount}) {
               )}
             </div>
             <div>
-              <img src={honeyImg} alt="Imagem do Produto"></img>
+              <img src={offer.image} alt="Imagem do Produto"></img>
             </div>
           </div>
           <br></br>
           <div className="product_description">
+            <h2>{offer.name}</h2>
+            <h3>Marca: Flor de Laranjeira</h3>
+            
             {isAdmin ? (
                 <LabeledEditableContainer
-                  displayName={"Nome do Produto"}
-                  field={"productName"}
+                  displayName={"Descrição do Produto"}
+                  field={"descriptionName"}
                   handleSave={handleSave}
-                  initialValue={offer.name}
+                  initialValue={offer.description}
                 />
               ) : (
-                <h2>{offer.name}</h2>
+                <div>
+                  <h3>Descrição do produto</h3>
+
+                  <p>
+                    {" "}
+                    O mel da abelha é um alimento natural produzido pelas abelhas a
+                    partir do néctar das flores. É um produto doce e nutritivo,
+                    utilizado na culinária e conhecido por seus benefícios à saúde. O
+                    processo de produção do mel envolve a coleta do néctar, a
+                    transformação por enzimas digestivas das abelhas e o armazenamento
+                    em favos de mel.
+                  </p>
+                </div>
               )}
-            <h3>Marca: Flor de Laranjeira</h3>
 
-            <h3>Descrição do produto</h3>
-
-            <p>
-              {" "}
-              O mel da abelha é um alimento natural produzido pelas abelhas a
-              partir do néctar das flores. É um produto doce e nutritivo,
-              utilizado na culinária e conhecido por seus benefícios à saúde. O
-              processo de produção do mel envolve a coleta do néctar, a
-              transformação por enzimas digestivas das abelhas e o armazenamento
-              em favos de mel.
-            </p>
-
-            <h3>Preço: R$19,90</h3>
+            {isAdmin ? (
+              <LabeledEditableContainer
+                displayName={"Preço do Produto"}
+                field={"productPrice"}
+                handleSave={handleSave}
+                initialValue={offer.price}
+              />
+            ) : (
+              <h3>Preço: R$ {offer.price}</h3>
+            )}
 
             <div className="quantity-sold">
-              <h3>Quantidade em Estoque: 11111</h3>
-              <h3>Quantidade Vendida: 111111</h3>
+              {isAdmin ? (
+                <LabeledEditableContainer
+                  displayName={"Quantidade em Estoque"}
+                  field={"quantityInStock"}
+                  handleSave={handleSave}
+                  initialValue={11111}
+                />
+              ) : (
+                <h3>Quantidade em Estoque: 11111</h3>
+              )}
+
+              {isAdmin ? (
+                <LabeledEditableContainer
+                  displayName={"Quantidade Vendida"}
+                  field={"quantitySold"}
+                  handleSave={handleSave}
+                  initialValue={11111}
+                />
+              ) : (
+                <h3>Quantidade Vendida: 111111</h3>
+              )}
             </div>
 
             <button type="button" class="add-to-cart">
