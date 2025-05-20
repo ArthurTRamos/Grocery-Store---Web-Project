@@ -7,7 +7,6 @@ import "./StateSelection.css"; // Import the CSS file for styling
 function StateSelection() {
   return (
     <div className="state-select-container">
-      <label htmlFor="estado">Estado</label>
       <select id="estado">
         <option value="">Selecione</option>
         <option value="AC">Acre</option>
