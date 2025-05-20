@@ -13,7 +13,7 @@ const SideBar = () => {
         <nav>
           <Link to="/createUser">Criar Usuário</Link>
           <Link to="/createProduct">Criar Produto</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/manageUsers">Gerenciar Usuários</Link>
           <Link to="/profile">Profile</Link>
         </nav>
       </div>

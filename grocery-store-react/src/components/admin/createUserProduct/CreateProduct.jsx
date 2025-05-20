@@ -1,8 +1,8 @@
 import React from "react";
-import SideBar from "./SideBar";
-import Botao from "../utility_elements/botao";
+import SideBar from "..//SideBar";
+import Botao from "../../utility_elements/botao";
 import "./CreateProduct.css";
-import Input_image from "../utility_elements/input_image";
+import InputImage from "../../utility_elements/input_image";
 
 const CreateProduct = () => {
   return (
@@ -111,7 +111,7 @@ const CreateProduct = () => {
 
             <div class="form-row">
               <div class="form-group">
-                <Input_image />
+                <InputImage />
               </div>
             </div>
           </div>
