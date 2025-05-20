@@ -130,15 +130,11 @@ function LoginRegister({ users }) {
                     <input id="cidade" type="text" placeholder="São Paulo" />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="estado">Estado</label>
-
                     <StateSelection />
                   </div>
                 </div>
 
                 <div className="form-row">
-                  <label htmlFor="pais">País</label>
-
                   <CountrySelection />
                   <div className="form-group">
                     <label htmlFor="cep">CEP</label>

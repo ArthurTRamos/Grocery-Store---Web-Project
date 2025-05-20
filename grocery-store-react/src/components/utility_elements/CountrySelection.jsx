@@ -5,6 +5,7 @@ import "./CountrySelection.css"; // Import the CSS file for styling
 function CountrySelection() {
   return (
     <div className="form-group">
+      <label htmlFor="pais">País</label>
       <select id="pais" defaultValue="Brasil">
         <option value="Brasil">Brasil</option>
         <option value="Argentina">Argentina</option>

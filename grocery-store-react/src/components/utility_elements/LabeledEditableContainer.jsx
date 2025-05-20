@@ -11,8 +11,7 @@ function LabeledEditableContainer({
   field,
   handleSave,
   initialValue,
-  secret=false,
-  select=false
+  secret=false
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [inputData, setInputData] = useState("");
@@ -69,9 +68,9 @@ function LabeledEditableContainer({
           </div>
         ) : (
           <div className="labeled-editable-container-display-group">
-            {select ? select : (<span className="labeled-editable-container-display-value">
+            <span className="labeled-editable-container-display-value">
               {secret ? "*******" : initialValue}
-            </span>)}
+            </span>
             <button onClick={handleEditClick} className="edit-button">
               <TbEdit />
             </button>
