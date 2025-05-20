@@ -12,16 +12,18 @@ function CouponSelection({ onCouponSelect, coupons }) {
         required
       >
         <option value="">Selecione um cupom</option>
-        {coupons.map((couponData) =>
-          couponData.used ? null : (
-            <option
-              key={couponData.couponNumber}
-              value={couponData.couponNumber}
-            >
-              <p>{couponData.couponNumber}</p>
-            </option>
-          )
-        )}
+        {coupons
+          ? coupons.map((couponData) =>
+              couponData.used ? null : (
+                <option
+                  key={couponData.couponNumber}
+                  value={couponData.couponNumber}
+                >
+                  <p>{couponData.couponNumber}</p>
+                </option>
+              )
+            )
+          : null}
       </select>
     </div>
   );

@@ -7,7 +7,7 @@ import AdmHomeAdmin from "./components/admin/HomeAdmin";
 import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
 import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
 import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
-import AdmLayout from "./components/admin/adm_layout"
+import AdmLayout from "./components/admin/adm_layout";
 
 import ProductPage from "./components/ProductPage";
 import Header from "./components/Header";
@@ -28,7 +28,6 @@ import localUsersData from "./data/users.json";
 
 function App() {
   // Carrinho de compras
-  // Eu imagino que a versão final vai ser algo desse estilo mesmo
   const [cartData, setCartData] = useState([
     {
       id: 14,
@@ -52,7 +51,7 @@ function App() {
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
 
-  // Fetch coupons data when the component mounts
+  // Fetch data when the component mounts
   useEffect(() => {
     const fetchLocalCoupons = async () => {
       try {
@@ -92,75 +91,27 @@ function App() {
     fetchLocalUsers();
   }, []); // Empty dependency array means this runs once on component mount
 
-  // Usuário
-  // Versão de teste, não tenho certeza como vamos lidar com os dados do usuário
-  // O ideal seria fazer uma requisição para pegar os dados do usuário
-  // e depois fazer uma requisição para atualizar os dados do usuário
-  // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [userData, setUserData] = useState([{
-    admin: true,
-    id: 1,
-    name: "Joãozinho da Silva Sauro",
-    cel: 999429927,
-    email: "sla@hotmail.com",
-    password: "123456#",
-    // birthDate: "2000-01-01",
-    // cpf: "123.456.789-00",
-    // rg: "12.345.678-9",
-    adress: {
-      streetName: "Rua Exemplo",
-      streetNumber: "123",
-      apartmentNumber: "Apt 101",
-      city: "São Carlos",
-      state: "SP",
-      postalCode: "13560-001",
-      country: "Brazil",
-    },
-    paymentMethods: [
-      {
-        cardNumber: "1234 5678 9012 3456",
-        cardHolderName: "Joãozinho da Silva Sauro",
-        expirationDate: "12/25",
-        cvv: "123",
-      },
-      {
-        cardNumber: "9876 5432 1098 7654",
-        cardHolderName: "Joãozinho da Silva Sauro",
-        expirationDate: "11/24",
-        cvv: "456",
-      },
-    ],
-    coupons: [
-      {
-        couponNumber: "NEWUSER",
-        used: false,
-      },
-      {
-        couponNumber: "TENOFF",
-        used: true,
-      },
-    ],
-  }]);
-
-  const [loggedUser, setLoggedUser] = useState("")
+  const [loggedUser, setLoggedUser] = useState(
+    ""
+  );
 
   const handleRegisterUser = (newUser) => {
-    const updatedUserData = [...userData, newUser];
+    const updatedUserData = [...loggedUser, newUser];
 
-    setUserData(updatedUserData);
-  }
+    setLoggedUser(updatedUserData);
+  };
 
   const handleLoggedUser = (loggedUser) => {
-    setUserData(loggedUser.email);
-  }
+    setLoggedUser(loggedUser.email);
+  };
 
   return (
     <div className="App">
-      <Header userData={userData} cartItemNumber={cartData.length} />
+      <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/manage" element={< AdmLayout/>}>
+        <Route path="/manage" element={<AdmLayout />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser />} />
           <Route path="createProduct" element={<AdmCreateProduct />} />
@@ -174,27 +125,36 @@ function App() {
           <Route
             index
             element={
-              <UserProfile userData={userData} setUserData={setUserData} />
+              <UserProfile
+                loggedUser={loggedUser}
+                setLoggedUser={setLoggedUser}
+              />
             }
           />
           <Route
             path="profile"
             element={
-              <UserProfile userData={userData} setUserData={setUserData} />
+              <UserProfile
+                loggedUser={loggedUser}
+                setLoggedUser={setLoggedUser}
+              />
             }
           />
           <Route
             path="payment-methods"
             element={
-              <PaymentMethods userData={userData} setUserData={setUserData} />
+              <PaymentMethods
+                loggedUser={loggedUser}
+                setLoggedUser={setLoggedUser}
+              />
             }
           />
           <Route
             path="coupons"
             element={
               <UserCoupons
-                userData={userData}
-                setUserData={setUserData}
+                loggedUser={loggedUser}
+                setLoggedUser={setLoggedUser}
                 coupons={coupons}
               />
             }
@@ -205,8 +165,8 @@ function App() {
           element={
             <CartPage
               cartData={cartData}
-              paymentMethods={userData.paymentMethods}
-              userCoupons={userData.coupons}
+              paymentMethods={loggedUser.paymentMethods}
+              userCoupons={loggedUser.coupons}
               coupons={coupons}
               productData={productData}
               setCartData={setCartData}
@@ -214,8 +174,18 @@ function App() {
             />
           }
         />
-        <Route path="/login" element={<LoginRegister users={userData} handleRegisterUser={handleRegisterUser} handleLoggedUser={handleLoggedUser}/>} />
+        <Route
+          path="/auth"
+          element={
+            <LoginRegister
+              users={loggedUser}
+              handleRegisterUser={handleRegisterUser}
+              handleLoggedUser={handleLoggedUser}
+            />
+          }
+        />
         <Route path="/recipe" element={<RecipePage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
 
       <Footer />

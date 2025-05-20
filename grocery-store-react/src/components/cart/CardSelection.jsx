@@ -12,11 +12,13 @@ function CardSelection({ paymentMethods, onCardSelect, cardError }) {
         required
       >
         <option value="">Selecione um cartão</option>
-        {paymentMethods.map((cardData) => (
-          <option key={cardData.id} value={cardData.cardNumber}>
-            **** **** **** {cardData.cardNumber.slice(-4)}
-          </option>
-        ))}
+        {paymentMethods
+          ? paymentMethods.map((cardData) => (
+              <option key={cardData.id} value={cardData.cardNumber}>
+                **** **** **** {cardData.cardNumber.slice(-4)}
+              </option>
+            ))
+          : null}
       </select>
       {cardError && <p className="card-error">{cardError}</p>}
     </div>

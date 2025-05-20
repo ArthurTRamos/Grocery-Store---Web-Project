@@ -4,14 +4,14 @@ import "./UserCoupons.css";
 
 import CouponInfo from "./CouponInfo";
 
-function UserCoupons({ userData, setUserData, coupons }) {
+function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
   // State to manage the new coupon number
   const [newCouponNumber, setNewCouponNumber] = useState("");
 
   // Handler for when the NewCoupon is added
   const handleNewCouponAdd = () => {
     // Check if the coupon number is already in the user's coupons
-    const couponExists = userData.coupons.find(
+    const couponExists = loggedUser.coupons.find(
       (coupon) => coupon.couponNumber === newCouponNumber
     );
     if (couponExists) {
@@ -30,7 +30,7 @@ function UserCoupons({ userData, setUserData, coupons }) {
 
     // Add the new coupon to the user's coupons
     // and set it as unused
-    setUserData((prevData) => ({
+    setLoggedUser((prevData) => ({
       ...prevData,
       coupons: [
         ...prevData.coupons,
@@ -73,7 +73,7 @@ function UserCoupons({ userData, setUserData, coupons }) {
       <div className="user-coupons-list">
         <h2>Cupons Disponíveis</h2>
         <div className="non-used-coupons-exhibition-container">
-          {userData.coupons.map((userCoupon, index) => {
+          {loggedUser.coupons.map((userCoupon, index) => {
             const couponData = coupons.find(
               (coupon) => coupon.couponNumber === userCoupon.couponNumber
             );
@@ -88,7 +88,7 @@ function UserCoupons({ userData, setUserData, coupons }) {
         </div>
         <h2>Cupons Usados</h2>
         <div className="used-coupons-exhibition-container">
-          {userData.coupons.map((userCoupon, index) => {
+          {loggedUser.coupons.map((userCoupon, index) => {
             const couponData = coupons.find(
               (coupon) => coupon.couponNumber === userCoupon.couponNumber
             );

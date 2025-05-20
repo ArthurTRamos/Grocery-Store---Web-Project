@@ -5,7 +5,7 @@ import "./PaymentMethods.css";
 import PaymentCardInfo from "./PaymentCardInfo";
 import NewCardForm from "./NewCardForm"; // Import your new form component
 
-function PaymentMethods({ userData, setUserData }) {
+function PaymentMethods({ loggedUser, setLoggedUser }) {
   const [isAddingCard, setIsAddingCard] = useState(false);
 
   const handleAddCardButtonClick = () => {
@@ -14,7 +14,7 @@ function PaymentMethods({ userData, setUserData }) {
 
   // Handler for when the NewCardForm is saved
   const handleNewCardSave = (newCardData) => {
-    setUserData((prevData) => ({
+    setLoggedUser((prevData) => ({
       ...prevData,
       paymentMethods: [...prevData.paymentMethods, newCardData],
     }));
@@ -28,7 +28,7 @@ function PaymentMethods({ userData, setUserData }) {
 
   // Handler for removing a card
   const handleCardRemoval = (cardNumber) => {
-    setUserData((prevData) => ({
+    setLoggedUser((prevData) => ({
       ...prevData,
       paymentMethods: prevData.paymentMethods.filter(
         (card) => card.cardNumber !== cardNumber
@@ -42,8 +42,12 @@ function PaymentMethods({ userData, setUserData }) {
         <h1>Meus Cartões</h1>
       </div>
       <div className="payment-methods-exhibition-container">
-        {userData.paymentMethods.map((cardData) => (
-          <PaymentCardInfo key={cardData.cardNumber} cardData={cardData} removeCard={handleCardRemoval} />
+        {loggedUser.paymentMethods.map((cardData) => (
+          <PaymentCardInfo
+            key={cardData.cardNumber}
+            cardData={cardData}
+            removeCard={handleCardRemoval}
+          />
         ))}
         {isAddingCard ? (
           // If isAddingCard is true, show the NewCardForm

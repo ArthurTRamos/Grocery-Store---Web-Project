@@ -5,11 +5,11 @@ import honeyImg from "../../assets/mel.jpg";
 
 import "./UserProfile.css";
 
-function UserProfile({ userData, setUserData }) {
+function UserProfile({ loggedUser, setLoggedUser }) {
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    setUserData((prevData) => {
+    setLoggedUser((prevData) => {
       // Check if the field is one of the address fields
       if (prevData.adress.hasOwnProperty(field)) {
         // If it's an address field, create a NEW adress object
@@ -18,7 +18,7 @@ function UserProfile({ userData, setUserData }) {
           [field]: newValue,
         };
 
-        // Create new userData object with the updated adress object
+        // Create new loggedUser object with the updated adress object
         return {
           ...prevData,
           adress: updatedAdress,
@@ -39,8 +39,8 @@ function UserProfile({ userData, setUserData }) {
         <div className="user-profile-intro-header">
           <img src={honeyImg} alt="Imagem" />
           <div className="user-profile-intro-header-text">
-            <h3>Seja Bem Vindo, {userData.name}</h3>
-            <p>ID: {userData.id}</p>
+            <h3>Seja Bem Vindo, {loggedUser.name}</h3>
+            <p>ID: {loggedUser.id}</p>
           </div>
         </div>
         <div className="user-profile-intro-description">
@@ -48,25 +48,25 @@ function UserProfile({ userData, setUserData }) {
             displayName={"Nome Completo"}
             field={"name"}
             handleSave={handleSave}
-            initialValue={userData.name}
+            initialValue={loggedUser.name}
           />
           <LabeledEditableContainer
             displayName={"Telefone"}
             field={"cel"}
             handleSave={handleSave}
-            initialValue={userData.cel}
+            initialValue={loggedUser.cel}
           />
           <LabeledEditableContainer
             displayName={"Email"}
             field={"email"}
             handleSave={handleSave}
-            initialValue={userData.email}
+            initialValue={loggedUser.email}
           />
           <LabeledEditableContainer
             displayName={"Senha"}
             field={"password"}
             handleSave={handleSave}
-            initialValue={userData.password}
+            initialValue={loggedUser.password}
             secret={true}
           />
         </div>
@@ -78,46 +78,46 @@ function UserProfile({ userData, setUserData }) {
             displayName={"Rua"}
             field={"streetName"}
             handleSave={handleSave}
-            initialValue={userData.adress.streetName}
+            initialValue={loggedUser.adress.streetName}
           />
           <LabeledEditableContainer
             displayName={"Número"}
             field={"streetNumber"}
             handleSave={handleSave}
-            initialValue={userData.adress.streetNumber}
+            initialValue={loggedUser.adress.streetNumber}
           />
         </div>
         <LabeledEditableContainer
           displayName={"Complemento"}
           field={"apartmentNumber"}
           handleSave={handleSave}
-          initialValue={userData.adress.apartmentNumber}
+          initialValue={loggedUser.adress.apartmentNumber}
         />
         <div className="adress-city-state-country">
           <LabeledEditableContainer
             displayName={"Cidade"}
             field={"city"}
             handleSave={handleSave}
-            initialValue={userData.adress.city}
+            initialValue={loggedUser.adress.city}
           />
           <LabeledEditableContainer
             displayName={"Estado"}
             field={"state"}
             handleSave={handleSave}
-            initialValue={userData.adress.state}
+            initialValue={loggedUser.adress.state}
           />
           <LabeledEditableContainer
             displayName={"País"}
             field={"country"}
             handleSave={handleSave}
-            initialValue={userData.adress.country}
+            initialValue={loggedUser.adress.country}
           />
         </div>
         <LabeledEditableContainer
           displayName={"CEP"}
           field={"postalCode"}
           handleSave={handleSave}
-          initialValue={userData.adress.postalCode}
+          initialValue={loggedUser.adress.postalCode}
         />
       </div>
     </div>

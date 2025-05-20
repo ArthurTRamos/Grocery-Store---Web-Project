@@ -43,19 +43,21 @@ function CartPage({
 
       // Calculate discount
       let discountValue = 0;
-      const selectedCouponUserData = userCoupons.find(
-        (coupon) => coupon.couponNumber === selectedCoupon
-      );
-
-      if (selectedCouponUserData && !selectedCouponUserData.used) {
-        const couponData = coupons.find(
+      if (userCoupons) {
+        const selectedCouponUserData = userCoupons.find(
           (coupon) => coupon.couponNumber === selectedCoupon
         );
-        if (couponData) {
-          discountValue =
-            couponData.type === "money"
-              ? -Math.min(couponData.discount, subtotalValue)
-              : (-subtotalValue * couponData.discount) / 100;
+
+        if (selectedCouponUserData && !selectedCouponUserData.used) {
+          const couponData = coupons.find(
+            (coupon) => coupon.couponNumber === selectedCoupon
+          );
+          if (couponData) {
+            discountValue =
+              couponData.type === "money"
+                ? -Math.min(couponData.discount, subtotalValue)
+                : (-subtotalValue * couponData.discount) / 100;
+          }
         }
       }
 
@@ -75,9 +77,11 @@ function CartPage({
       return;
     }
     setEmptyCartError(""); // Clear error when items are present
-    
+
     if (!selectedCard) {
-      setCardError("Por favor, selecione um cartão antes de finalizar a compra!");
+      setCardError(
+        "Por favor, selecione um cartão antes de finalizar a compra!"
+      );
       return;
     }
     setCardError(""); // Clear error when card is selected
@@ -111,6 +115,10 @@ function CartPage({
     // Redirect to home page after purchase
     navigate("/");
   };
+
+  const handleRedirect = () => {
+    navigate("/auth");
+  }
 
   return (
     <div className="cart-page-container">
@@ -168,28 +176,43 @@ function CartPage({
             <p>R$ {total.toFixed(2)}</p>
           </div>
         </div>
-        <CardSelection
-          paymentMethods={paymentMethods}
-          onCardSelect={(card) => {
-            setSelectedCard(card);
-            setCardError(""); // Clear error when card is selected
-          }}
-          cardError={cardError}
-        />
-        
-        <CouponSelection
-          coupons={userCoupons}
-          onCouponSelect={setSelectedCoupon}
-        />
-        <div className="cart-page-button">
+        {paymentMethods ? (
+          <CardSelection
+            paymentMethods={paymentMethods}
+            onCardSelect={(card) => {
+              setSelectedCard(card);
+              setCardError(""); // Clear error when card is selected
+            }}
+            cardError={cardError}
+          />
+        ) : null}
+
+        {userCoupons ? (
+          <CouponSelection
+            coupons={userCoupons}
+            onCouponSelect={setSelectedCoupon}
+          />
+        ) : null}
+        {userCoupons && paymentMethods ? (
+          <div className="cart-page-button">
+            <button
+              onClick={handleFinish}
+            >
+              Finalizar Compra
+            </button>
+            {emptyCartError && (
+              <p className="empty-cart-error">{emptyCartError}</p>
+            )}
+          </div>
+        ) : (
+          <div className="cart-page-button"> 
           <button
-            onClick={handleFinish}
-            className={!selectedCard ? "disabled" : ""}
-          >
-            Finalizar Compra
-          </button>
-          {emptyCartError && <p className="empty-cart-error">{emptyCartError}</p>}
-        </div>
+              onClick={handleRedirect}
+            >
+              Entre ou Cadastre-se para Finalizar a Compra
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

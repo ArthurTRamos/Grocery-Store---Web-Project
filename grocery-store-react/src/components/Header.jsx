@@ -4,19 +4,20 @@ import "./Header.css";
 
 import logo from "../assets/logo.png";
 
-function Header({ userData, cartItemNumber }) {
-  let userHeader = userData && userData.name ? (
-    <li>
-      <Link to="/user">Bem Vindo, {userData.name}</Link>
-    </li>
-  ) : (
-    <li>
-      <Link to="/login">Entrar / Cadastro</Link>
-    </li>
-  );
+function Header({ loggedUser, cartItemNumber }) {
+  let userHeader =
+    loggedUser ? (
+      <li>
+        <Link to="/user">Bem Vindo, {loggedUser.name}</Link>
+      </li>
+    ) : (
+      <li>
+        <Link to="/auth">Entrar / Cadastro</Link>
+      </li>
+    );
 
   let admin =
-    userData && userData.admin ? (
+    loggedUser && loggedUser.admin ? (
       <li>
         <Link to="/manage">Gerenciar</Link>
       </li>
@@ -42,7 +43,10 @@ function Header({ userData, cartItemNumber }) {
               <Link to="/search">Busca</Link>
             </li>
             <li>
-              <Link to="/cart">Meu Carrinho {cartItemNumber > 0 ? "(" + cartItemNumber + ")" : ""}</Link>
+              <Link to="/cart">
+                Meu Carrinho{" "}
+                {cartItemNumber > 0 ? "(" + cartItemNumber + ")" : ""}
+              </Link>
             </li>
             {userHeader}
           </ul>
