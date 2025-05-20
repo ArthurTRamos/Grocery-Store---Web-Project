@@ -2,7 +2,6 @@ import React from "react";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
 import honeyImg from "../../assets/mel.jpg";
-import StateSelection from "../utility_elements/StateSelection";
 
 import "./UserProfile.css";
 
@@ -106,7 +105,6 @@ function UserProfile({ userData, setUserData }) {
             field={"state"}
             handleSave={handleSave}
             initialValue={userData.adress.state}
-            select={<StateSelection/>}
           />
           <LabeledEditableContainer
             displayName={"País"}
