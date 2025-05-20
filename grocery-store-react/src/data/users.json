@@ -87,7 +87,7 @@
   },
   {
     "admin": false,
-    "id": 3,
+    "id": 0,
     "password": "admin",
     "name": "Administrador",
     "cel": 999999999,
