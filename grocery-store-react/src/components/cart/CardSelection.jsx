@@ -2,7 +2,7 @@ import React from "react";
 
 import "./CardSelection.css";
 
-function CardSelection({ paymentMethods, onCardSelect }) {
+function CardSelection({ paymentMethods, onCardSelect, cardError }) {
   return (
     <div className="card-selection-container">
       <h3>Selecione o método de pagamento</h3>
@@ -18,6 +18,7 @@ function CardSelection({ paymentMethods, onCardSelect }) {
           </option>
         ))}
       </select>
+      {cardError && <p className="card-error">{cardError}</p>}
     </div>
   );
 }
