@@ -1,7 +1,7 @@
 import React from "react";
 import "./CreateUser.css";
-import SideBar from "./SideBar";
-import Botao from "../utility_elements/botao";
+import SideBar from "../SideBar";
+import Botao from "../../utility_elements/botao";
 
 const CreateUser = () => {
   return (
