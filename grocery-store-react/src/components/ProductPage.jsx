@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProductPage.css";
-import honeyImg from "../images/mel.jpg";
-import LabeledEditableContainer from "./LabeledEditableContainer";
+import honeyImg from "../assets/mel.jpg";
+import LabeledEditableContainer from "./utility_elements/LabeledEditableContainer";
 import { useLocation } from "react-router-dom";
 
 function ProductPage({typeAccount}) {
