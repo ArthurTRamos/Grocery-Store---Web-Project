@@ -1,24 +1,26 @@
 import React from 'react';
 import ManageUserComponent from './component/ManageUserComponent';
+import "./ManageUsers.css";
 
 const ManageUsers = ({users}) => {
 
 
     return(
         <>
-            <div>
+            <div className='manageUsers-container'>
                 <div>
                     <h1>Centro de gerência dos Usuários</h1>
                 </div>
 
-                <div>
-                    <table>
+                <div className='div-table-container'>
+                    <table className='table-container'>
                         <thead>
                             <tr>
                             <th>Tipo</th>
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Telefone</th>
+                            <th></th>{/* buttons */}
                             </tr>
                         </thead>
 
