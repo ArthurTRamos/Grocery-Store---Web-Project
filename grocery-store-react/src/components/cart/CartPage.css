@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.card-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 3px;
+  margin-bottom: -8px;
+}
+
 .cart-page-container {
   display: flex;
   gap: 20px;

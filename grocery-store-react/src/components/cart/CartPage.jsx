@@ -21,6 +21,9 @@ function CartPage({
   const [total, setTotal] = useState(0);
   const [selectedCard, setSelectedCard] = useState("");
   const [selectedCoupon, setSelectedCoupon] = useState("");
+  //Errors
+  const [cardError, setCardError] = useState("");
+  const [emptyCartError, setEmptyCartError] = useState("");
 
   const navigate = useNavigate();
 
@@ -61,20 +64,23 @@ function CartPage({
     };
 
     calculateSubtotalDiscount();
+    setEmptyCartError("");
   }, [cartData, coupons, productData, selectedCoupon, userCoupons]);
 
   const handleFinish = () => {
-    if (!selectedCard) {
-      alert("Por favor, selecione um cartão antes de finalizar a compra!");
-      return;
-    }
-
     if (!total) {
-      alert(
+      setEmptyCartError(
         "Por favor, adicione ao menos um item antes de finalizar a compra!"
       );
       return;
     }
+    setEmptyCartError(""); // Clear error when items are present
+    
+    if (!selectedCard) {
+      setCardError("Por favor, selecione um cartão antes de finalizar a compra!");
+      return;
+    }
+    setCardError(""); // Clear error when card is selected
 
     const updatedProductData = productData.map((product) => {
       const cartItem = cartData.find((item) => item.id === product.id);
@@ -164,8 +170,13 @@ function CartPage({
         </div>
         <CardSelection
           paymentMethods={paymentMethods}
-          onCardSelect={setSelectedCard}
+          onCardSelect={(card) => {
+            setSelectedCard(card);
+            setCardError(""); // Clear error when card is selected
+          }}
+          cardError={cardError}
         />
+        
         <CouponSelection
           coupons={userCoupons}
           onCouponSelect={setSelectedCoupon}
@@ -177,6 +188,7 @@ function CartPage({
           >
             Finalizar Compra
           </button>
+          {emptyCartError && <p className="empty-cart-error">{emptyCartError}</p>}
         </div>
       </div>
     </div>

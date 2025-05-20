@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./components/HomePage";
 
-import HomeAdmin from "./pages/admin/HomeAdmin";
-import CreateUser from "./pages/admin/CreateUser";
-import CreateProduct from "./pages/admin/CreateProduct";
+import AdmHomeAdmin from "./components/admin/HomeAdmin";
+import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
+import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
+import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
+import AdmLayout from "./components/admin/adm_layout"
 
-import ProductPage from "./pages/ProductPage";
-import Header from "./pages/Header";
-import Footer from "./pages/Footer";
-import UserPage from "./pages/UserPage";
-import UserProfile from "./pages/UserProfile";
-import PaymentMethods from "./pages/PaymentMethods";
-import CartPage from "./pages/CartPage";
-import UserCoupons from "./pages/UserCoupons";
-import LoginRegister from "./pages/LoginRegister";
-import RecipePage from "./pages/RecipePage";
-
-import honeyImg from "./images/mel.jpg";
+import ProductPage from "./components/ProductPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import UserPage from "./components/user/UserPage";
+import UserProfile from "./components/user/UserProfile";
+import PaymentMethods from "./components/user/PaymentMethods";
+import CartPage from "./components/cart/CartPage";
+import UserCoupons from "./components/user/UserCoupons";
+import LoginRegister from "./components/LoginRegister";
+import RecipePage from "./components/RecipePage";
 
 import "./App.css";
+
+import localCouponsData from "./data/coupons.json";
+import localProductsData from "./data/products.json";
+import localUsersData from "./data/users.json";
 
 function App() {
   // Carrinho de compras
@@ -44,69 +48,49 @@ function App() {
     },
   ]);
 
-  // Produtos
-  // Versão de teste, não tenho certeza como vamos lidar com os produtos
-  // O ideal seria fazer uma requisição para pegar os dados dos produtos
-  // e depois fazer uma requisição para atualizar os dados dos produtos
-  // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [productData, setProductData] = useState([
-    {
-      id: 14,
-      name: "Produto 1",
-      price: 5.0,
-      stock: 2,
-      image: honeyImg,
-    },
-    {
-      id: 22,
-      name: "Produto 2",
-      price: 20.0,
-      stock: 5,
-      image: honeyImg,
-    },
-    {
-      id: 38,
-      name: "Produto 3",
-      price: 15.0,
-      stock: 3,
-      image: honeyImg,
-    },
-    {
-      id: 57,
-      name: "Produto 4",
-      price: 19.99,
-      stock: 3,
-      image: honeyImg,
-    },
-  ]);
+  const [productData, setProductData] = useState([]);
+  const [coupons, setCoupons] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  // Cupoms
-  // Versão de teste, não tenho certeza como vamos lidar com os cupons
-  // O ideal seria fazer uma requisição para pegar os dados dos cupons
-  // e depois fazer uma requisição para atualizar os dados dos cupons
-  // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [coupons, setCoupons] = useState([
-    {
-      couponNumber: "NEWUSER",
-      discount: 10,
-      type: "percent",
-    },
-    {
-      couponNumber: "TENOFF",
-      discount: 10,
-      type: "money",
-    },
-    {
-      couponNumber: "GIGA12",
-      discount: 12,
-      type: "percent",
-    },
-    {
-      couponNumber: "FREEFIVE",
-      discount: 5,
-      type: "money",
-    },
-  ]);
+  // Fetch coupons data when the component mounts
+  useEffect(() => {
+    const fetchLocalCoupons = async () => {
+      try {
+        const data = await Promise.resolve(localCouponsData);
+        setCoupons(data);
+      } catch (error) {
+        console.error("Failed to load local coupons data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setCoupons([]);
+      }
+    };
+
+    const fetchLocalProducts = async () => {
+      try {
+        const data = await Promise.resolve(localProductsData);
+        setProductData(data);
+      } catch (error) {
+        console.error("Failed to load local products data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setProductData([]);
+      }
+    };
+
+    const fetchLocalUsers = async () => {
+      try {
+        const data = await Promise.resolve(localUsersData);
+        setUsers(data);
+      } catch (error) {
+        console.error("Failed to load local users data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setUsers([]);
+      }
+    };
+
+    fetchLocalProducts();
+    fetchLocalCoupons();
+    fetchLocalUsers();
+  }, []); // Empty dependency array means this runs once on component mount
 
   // Usuário
   // Versão de teste, não tenho certeza como vamos lidar com os dados do usuário
@@ -115,9 +99,14 @@ function App() {
   // mas como não temos backend ainda, vai assim mesmo pra teste
   const [userData, setUserData] = useState([{
     admin: true,
+    id: 1,
     name: "Joãozinho da Silva Sauro",
     cel: 999429927,
     email: "sla@hotmail.com",
+    password: "123456#",
+    // birthDate: "2000-01-01",
+    // cpf: "123.456.789-00",
+    // rg: "12.345.678-9",
     adress: {
       streetName: "Rua Exemplo",
       streetNumber: "123",
@@ -171,9 +160,15 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/manage" element={<HomeAdmin />} />
-        <Route path="/createUser" element={<CreateUser />} />
-        <Route path="/createProduct" element={<CreateProduct />} />
+        <Route path="/manage" element={< AdmLayout/>}>
+          <Route index element={<AdmHomeAdmin />} />
+          <Route path="createUser" element={<AdmCreateUser />} />
+          <Route path="createProduct" element={<AdmCreateProduct />} />
+          <Route
+            path="manageUsers"
+            element={<AdmManageUsers users={users} />}
+          />
+        </Route>
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
           <Route

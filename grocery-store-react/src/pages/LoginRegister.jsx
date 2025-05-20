@@ -46,9 +46,9 @@ function LoginRegister({users, handleRegisterUser, handleLoggedUser}) {
         let email = document.getElementById("email");
         let password = document.getElementById("password");
 
-        users.filter()
-
         const newLoggedUser = users.filter((user) => user.email === email && user.password === password);
+
+        handleLoggedUser(newLoggedUser[0]);
     }
 
     return (

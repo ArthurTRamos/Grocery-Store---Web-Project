@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-import logo from "../images/logo.png";
+import logo from "../assets/logo.png";
 
 function Header({ userData, cartItemNumber }) {
   let userHeader = userData && userData.name ? (
