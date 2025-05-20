@@ -79,6 +79,7 @@ function App() {
       try {
         const data = await Promise.resolve(localUsersData);
         setUsers(data);
+        setLoggedUser(data[0]);
       } catch (error) {
         console.error("Failed to load local users data:", error);
         // Set a default empty array or handle error state if loading fails
@@ -89,11 +90,11 @@ function App() {
     fetchLocalProducts();
     fetchLocalCoupons();
     fetchLocalUsers();
-  }, []); // Empty dependency array means this runs once on component mount
 
-  const [loggedUser, setLoggedUser] = useState(
-    ""
-  );
+     // Set the first user as logged in for demonstration
+  }, [users]); // Empty dependency array means this runs once on component mount
+
+  const [loggedUser, setLoggedUser] = useState("");
 
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...loggedUser, newUser];
