@@ -116,9 +116,14 @@ function App() {
   // mas como não temos backend ainda, vai assim mesmo pra teste
   const [userData, setUserData] = useState({
     admin: true,
+    id: 1,
     name: "Joãozinho da Silva Sauro",
     cel: 999429927,
     email: "sla@hotmail.com",
+    password: "123456#",
+    // birthDate: "2000-01-01",
+    // cpf: "123.456.789-00",
+    // rg: "12.345.678-9",
     adress: {
       streetName: "Rua Exemplo",
       streetNumber: "123",

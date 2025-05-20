@@ -39,10 +39,22 @@ body {
   border: 3px solid #006400; /* Optional: a border matching your theme color */
 }
 
+.user-profile-intro-header-text {
+  display: flex; /* Use flexbox to align image and text horizontally */
+  align-items:baseline; /* Vertically align items in the center */
+  gap: 10px;
+}
+
 /* Styling for the welcome text */
-.user-profile-intro-header h3 {
+.user-profile-intro-header-text h3 {
   font-size: 2rem;
   color: #333;
+  font-weight: bold;
+}
+
+.user-profile-intro-header-text p {
+  font-size: 1rem;
+  color: #555;
   font-weight: bold;
 }
 
@@ -59,7 +71,7 @@ body {
   padding-bottom: 0;
 }
 
-.user-intro > .labeled-editable-container:last-child {
+.user-profile-intro-description > .labeled-editable-container:last-child {
   margin-bottom: 0;
   border-bottom: none; /* Remove border for the very last item */
   padding-bottom: 0;
