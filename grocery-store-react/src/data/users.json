@@ -103,5 +103,275 @@
     },
     "paymentMethods": [],
     "coupons": []
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
+  },
+  {
+    "admin": true,
+    "id": 1,
+    "password": "123456#",
+    "name": "Joãozinho da Silva Sauro",
+    "cel": 999429927,
+    "email": "sla@hotmail.com",
+    "adress": {
+      "streetName": "Rua Exemplo",
+      "streetNumber": "123",
+      "apartmentNumber": "Apt 101",
+      "city": "São Carlos",
+      "state": "SP",
+      "postalCode": "13560-001",
+      "country": "Brazil"
+    },
+    "paymentMethods": [
+      {
+        "cardNumber": "1234 5678 9012 3456",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "12/25",
+        "cvv": "123"
+      },
+      {
+        "cardNumber": "9876 5432 1098 7654",
+        "cardHolderName": "Joãozinho da Silva Sauro",
+        "expirationDate": "11/24",
+        "cvv": "456"
+      }
+    ],
+    "coupons": [
+      {
+        "couponNumber": "NEWUSER",
+        "used": false
+      },
+      {
+        "couponNumber": "TENOFF",
+        "used": false
+      },
+      {
+        "couponNumber": "FREEFIVE",
+        "used": true
+      }
+    ]
   }
 ]
