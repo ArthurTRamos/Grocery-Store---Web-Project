@@ -202,7 +202,7 @@ function App() {
             />
           }
         />
-        <Route path="/login" element={<LoginRegister />} />
+        <Route path="/auth" element={<LoginRegister />} />
         <Route path="/recipe" element={<RecipePage />} />
       </Routes>
 
