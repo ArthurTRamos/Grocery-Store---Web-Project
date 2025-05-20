@@ -1,0 +1,32 @@
+[
+  {
+    "couponNumber": "NEWUSER",
+    "discount": 10,
+    "type": "percent"
+  },
+  {
+    "couponNumber": "TENOFF",
+    "discount": 10,
+    "type": "money"
+  },
+  {
+    "couponNumber": "GIGA12",
+    "discount": 12,
+    "type": "percent"
+  },
+  {
+    "couponNumber": "FREEFIVE",
+    "discount": 5,
+    "type": "money"
+  },
+  {
+    "couponNumber": "SUMMER20",
+    "discount": 20,
+    "type": "percent"
+  },
+  {
+    "couponNumber": "SAVE15",
+    "discount": 15,
+    "type": "money"
+  }
+]

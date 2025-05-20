@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
@@ -20,9 +20,11 @@ import UserCoupons from "./components/user/UserCoupons";
 import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
 
-import honeyImg from "./images/mel.jpg";
-
 import "./App.css";
+
+import localCouponsData from "./data/coupons.json";
+import localProductsData from "./data/products.json";
+import localUsersData from "./data/users.json";
 
 function App() {
   // Carrinho de compras
@@ -46,69 +48,49 @@ function App() {
     },
   ]);
 
-  // Produtos
-  // Versão de teste, não tenho certeza como vamos lidar com os produtos
-  // O ideal seria fazer uma requisição para pegar os dados dos produtos
-  // e depois fazer uma requisição para atualizar os dados dos produtos
-  // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [productData, setProductData] = useState([
-    {
-      id: 14,
-      name: "Produto 1",
-      price: 5.0,
-      stock: 2,
-      image: honeyImg,
-    },
-    {
-      id: 22,
-      name: "Produto 2",
-      price: 20.0,
-      stock: 5,
-      image: honeyImg,
-    },
-    {
-      id: 38,
-      name: "Produto 3",
-      price: 15.0,
-      stock: 3,
-      image: honeyImg,
-    },
-    {
-      id: 57,
-      name: "Produto 4",
-      price: 19.99,
-      stock: 3,
-      image: honeyImg,
-    },
-  ]);
+  const [productData, setProductData] = useState([]);
+  const [coupons, setCoupons] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  // Cupoms
-  // Versão de teste, não tenho certeza como vamos lidar com os cupons
-  // O ideal seria fazer uma requisição para pegar os dados dos cupons
-  // e depois fazer uma requisição para atualizar os dados dos cupons
-  // mas como não temos backend ainda, vai assim mesmo pra teste
-  const [coupons, setCoupons] = useState([
-    {
-      couponNumber: "NEWUSER",
-      discount: 10,
-      type: "percent",
-    },
-    {
-      couponNumber: "TENOFF",
-      discount: 10,
-      type: "money",
-    },
-    {
-      couponNumber: "GIGA12",
-      discount: 12,
-      type: "percent",
-    },
-    {
-      couponNumber: "FREEFIVE",
-      discount: 5,
-      type: "money",
-    },
-  ]);
+  // Fetch coupons data when the component mounts
+  useEffect(() => {
+    const fetchLocalCoupons = async () => {
+      try {
+        const data = await Promise.resolve(localCouponsData);
+        setCoupons(data);
+      } catch (error) {
+        console.error("Failed to load local coupons data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setCoupons([]);
+      }
+    };
+
+    const fetchLocalProducts = async () => {
+      try {
+        const data = await Promise.resolve(localProductsData);
+        setProductData(data);
+      } catch (error) {
+        console.error("Failed to load local products data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setProductData([]);
+      }
+    };
+
+    const fetchLocalUsers = async () => {
+      try {
+        const data = await Promise.resolve(localUsersData);
+        setUsers(data);
+      } catch (error) {
+        console.error("Failed to load local users data:", error);
+        // Set a default empty array or handle error state if loading fails
+        setUsers([]);
+      }
+    };
+
+    fetchLocalProducts();
+    fetchLocalCoupons();
+    fetchLocalUsers();
+  }, []); // Empty dependency array means this runs once on component mount
 
   // Usuário
   // Versão de teste, não tenho certeza como vamos lidar com os dados do usuário
@@ -160,88 +142,6 @@ function App() {
     ],
   });
 
-  const [usersVectorData, setUsersVectorData] = useState([
-    {
-      admin: true,
-      name: "Joãozinho da Silva Sauro",
-      cel: 999429927,
-      email: "sla@hotmail.com",
-      adress: {
-        streetName: "Rua Exemplo",
-        streetNumber: "123",
-        apartmentNumber: "Apt 101",
-        city: "São Carlos",
-        state: "SP",
-        postalCode: "13560-001",
-        country: "Brazil",
-      },
-      paymentMethods: [
-        {
-          cardNumber: "1234 5678 9012 3456",
-          cardHolderName: "Joãozinho da Silva Sauro",
-          expirationDate: "12/25",
-          cvv: "123",
-        },
-        {
-          cardNumber: "9876 5432 1098 7654",
-          cardHolderName: "Joãozinho da Silva Sauro",
-          expirationDate: "11/24",
-          cvv: "456",
-        },
-      ],
-      coupons: [
-        {
-          couponNumber: "NEWUSER",
-          used: false,
-        },
-        {
-          couponNumber: "TENOFF",
-          used: true,
-        },
-      ],
-    },
-
-    {
-      admin: false,
-      name: "German Ezequiel Cano",
-      cel: 999421111,
-      email: "fluminense@hotmail.com",
-      adress: {
-        streetName: "Rua Tricolor",
-        streetNumber: "1902",
-        apartmentNumber: "Apt 2023",
-        city: "Rio de Janeiro",
-        state: "RJ",
-        postalCode: "20543-029",
-        country: "Brazil",
-      },
-      paymentMethods: [
-        {
-          cardNumber: "1234 5678 1111 1111",
-          cardHolderName: "German Ezequiel Cano",
-          expirationDate: "12/25",
-          cvv: "123",
-        },
-        {
-          cardNumber: "9876 5432 1111 1111",
-          cardHolderName: "German Ezequiel Cano",
-          expirationDate: "11/24",
-          cvv: "456",
-        },
-      ],
-      coupons: [
-        {
-          couponNumber: "NEWUSER",
-          used: false,
-        },
-        {
-          couponNumber: "TENOFF",
-          used: true,
-        },
-      ],
-    },
-  ]);
-
   return (
     <div className="App">
       <Header userData={userData} cartItemNumber={cartData.length} />
@@ -254,7 +154,7 @@ function App() {
           <Route path="createProduct" element={<AdmCreateProduct />} />
           <Route
             path="manageUsers"
-            element={<AdmManageUsers users={usersVectorData} />}
+            element={<AdmManageUsers users={users} />}
           />
         </Route>
         <Route path="/product" element={<ProductPage />} />

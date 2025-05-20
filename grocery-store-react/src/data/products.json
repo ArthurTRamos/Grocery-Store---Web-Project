@@ -1,0 +1,65 @@
+[
+  {
+    "id": 14,
+    "name": "Mel Orgânico 500g",
+    "price": 12.5,
+    "stock": 50,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Mel orgânico puro e cru de flores silvestres. Perfeito para chá, torradas ou como um adoçante natural."
+  },
+  {
+    "id": 22,
+    "name": "Pão Artesanal",
+    "price": 8.75,
+    "stock": 15,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Pão de fermentação natural recém-assado com uma crosta crocante e interior macio."
+  },
+  {
+    "id": 38,
+    "name": "Caixa de Chás Sortidos",
+    "price": 25.0,
+    "stock": 30,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Uma seleção de 20 saquinhos de chá premium, incluindo infusões verdes, pretas e de ervas."
+  },
+  {
+    "id": 57,
+    "name": "Geleia Caseira de Morango",
+    "price": 9.99,
+    "stock": 25,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Geleia doce e picante feita com morangos frescos e de origem local."
+  },
+  {
+    "id": 68,
+    "name": "Azeite de Pimenta Picante",
+    "price": 15.0,
+    "stock": 40,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
+  },
+  {
+    "id": 73,
+    "name": "Grãos de Café Gourmet 250g",
+    "price": 18.25,
+    "stock": 35,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
+  },
+  {
+    "id": 81,
+    "name": "Tábua de Corte de Madeira de Oliveira",
+    "price": 45.0,
+    "stock": 10,
+    "sold": 0,
+    "image": "./mel.jpg",
+    "description": "Bela e durável tábua de corte feita de madeira de oliveira natural. Cada peça é única."
+  }
+]
