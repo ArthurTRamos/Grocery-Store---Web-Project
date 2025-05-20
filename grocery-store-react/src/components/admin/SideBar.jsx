@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './SideBar.css'; // Importa o CSS
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import "./SideBar.css"; // Importa o CSS
 
 const SideBar = () => {
   return (
@@ -11,10 +11,17 @@ const SideBar = () => {
       {/* Menu lateral */}
       <div className="sidebar-menu">
         <nav>
-          <Link to="/createUser">Criar Usuário</Link>
-          <Link to="/createProduct">Criar Produto</Link>
-          <Link to="/manageUsers">Gerenciar Usuários</Link>
-          <Link to="/profile">Profile</Link>
+          <NavLink
+            to="/manage/createUser"
+            className={({ isActive }) =>
+              isActive ? "active-sidebar-link" : ""
+            }
+          >
+            Criar Usuário
+          </NavLink>
+          <Link to="/manage/createProduct">Criar Produto</Link>
+          <Link to="/manage/manageUsers">Gerenciar Usuários</Link>
+          <Link to="/manage/profile">Profile</Link>
         </nav>
       </div>
     </div>
