@@ -104,6 +104,16 @@ Regarding the information we will store on the server, we will need to save both
 
 ## Build Procedures
 
+To use this project, follow the instructions below:
+
+- Clone the repository.
+
+- Go to grocery-store-react by "cd grocery-store-react".
+
+- Give "npm i".
+
+- Give "npm start".
+
 ## Problems
 
 ## Comments
