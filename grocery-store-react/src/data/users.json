@@ -108,28 +108,28 @@
     "admin": false,
     "id": 4,
     "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
+    "name": "Yuri Alberto",
+    "cel": 999422222,
+    "email": "corinthians@gmail.com",
     "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
+      "streetName": "Rua Neo Química",
+      "streetNumber": "1222",
+      "apartmentNumber": "Apt 1",
+      "city": "São Paulo",
       "state": "SP",
-      "postalCode": "13560-001",
+      "postalCode": "13201-001",
       "country": "Brazil"
     },
     "paymentMethods": [
       {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
+        "cardNumber": "1234 5678 2343 3456",
+        "cardHolderName": "Yuri Alberto",
         "expirationDate": "12/25",
         "cvv": "123"
       },
       {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
+        "cardNumber": "9876 1112 1098 7654",
+        "cardHolderName": "Yuri Alberto",
         "expirationDate": "11/24",
         "cvv": "456"
       }
@@ -152,225 +152,139 @@
   {
     "admin": false,
     "id": 5,
-    "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
+    "password": "abc123@",
+    "name": "Ana Beatriz Costa",
+    "cel": 998887777,
+    "email": "ana.costa@gmail.com",
     "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
+      "streetName": "Avenida Central",
+      "streetNumber": "456",
+      "apartmentNumber": "Apt 302",
+      "city": "Campinas",
       "state": "SP",
-      "postalCode": "13560-001",
+      "postalCode": "13050-000",
       "country": "Brazil"
     },
     "paymentMethods": [
       {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "12/25",
-        "cvv": "123"
-      },
-      {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "11/24",
-        "cvv": "456"
+        "cardNumber": "4321 8765 2109 6543",
+        "cardHolderName": "Ana Beatriz Costa",
+        "expirationDate": "07/27",
+        "cvv": "789"
       }
     ],
     "coupons": [
       {
-        "couponNumber": "NEWUSER",
+        "couponNumber": "GIGA12",
         "used": false
-      },
-      {
-        "couponNumber": "TENOFF",
-        "used": false
-      },
-      {
-        "couponNumber": "FREEFIVE",
-        "used": true
       }
     ]
-  },
+  }
+  ,
   {
-    "admin": false,
+    "admin": true,
     "id": 6,
-    "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
+    "password": "Admin#2024",
+    "name": "Carlos Eduardo Lima",
+    "cel": 21997776666,
+    "email": "c.lima@empresa.com",
     "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
-      "state": "SP",
-      "postalCode": "13560-001",
+      "streetName": "Rua das Palmeiras",
+      "streetNumber": "789",
+      "apartmentNumber": "Casa",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "postalCode": "21000-000",
       "country": "Brazil"
     },
     "paymentMethods": [
       {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "12/25",
-        "cvv": "123"
-      },
-      {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "11/24",
-        "cvv": "456"
+        "cardNumber": "1111 2222 2222 4444",
+        "cardHolderName": "Carlos Eduardo Lima",
+        "expirationDate": "10/26",
+        "cvv": "321"
       }
     ],
     "coupons": [
       {
-        "couponNumber": "NEWUSER",
+        "couponNumber": "GIGA12",
         "used": false
-      },
-      {
-        "couponNumber": "TENOFF",
-        "used": false
-      },
-      {
-        "couponNumber": "FREEFIVE",
-        "used": true
       }
     ]
-  },
+  }
+  ,
   {
     "admin": false,
     "id": 7,
-    "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
+    "password": "senhaSegura1!",
+    "name": "Mariana Silva Rocha",
+    "cel": 31996665555,
+    "email": "mariana.rocha@yahoo.com",
     "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
-      "state": "SP",
-      "postalCode": "13560-001",
+      "streetName": "Travessa do Sol",
+      "streetNumber": "10",
+      "apartmentNumber": "Apt 201",
+      "city": "Belo Horizonte",
+      "state": "MG",
+      "postalCode": "31000-000",
       "country": "Brazil"
     },
     "paymentMethods": [
       {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "12/25",
-        "cvv": "123"
+        "cardNumber": "4444 6666 7777 8888",
+        "cardHolderName": "Mariana Silva Rocha",
+        "expirationDate": "03/26",
+        "cvv": "987"
       },
       {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "11/24",
-        "cvv": "456"
+        "cardNumber": "3333 0000 1111 2222",
+        "cardHolderName": "Mariana Silva Rocha",
+        "expirationDate": "08/24",
+        "cvv": "654"
       }
     ],
     "coupons": [
       {
-        "couponNumber": "NEWUSER",
-        "used": false
-      },
-      {
-        "couponNumber": "TENOFF",
-        "used": false
-      },
-      {
-        "couponNumber": "FREEFIVE",
+        "couponNumber": "GIGA12",
         "used": true
       }
     ]
-  },
+  }
+  ,
   {
     "admin": true,
     "id": 8,
-    "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
+    "password": "gabigol",
+    "name": "Gabigol",
+    "cel": 992329927,
+    "email": "cruzeiro@hotmail.com",
     "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
-      "state": "SP",
-      "postalCode": "13560-001",
+      "streetName": "Rua Mineirão",
+      "streetNumber": "2023",
+      "apartmentNumber": "Apt 1",
+      "city": "Belo Horizonte",
+      "state": "MG",
+      "postalCode": "43560-001",
       "country": "Brazil"
     },
     "paymentMethods": [
       {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
+        "cardNumber": "2222 5678 9012 3456",
+        "cardHolderName": "Gabigol",
         "expirationDate": "12/25",
         "cvv": "123"
       },
       {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
+        "cardNumber": "1111 5432 1098 7654",
+        "cardHolderName": "Gabigol",
         "expirationDate": "11/24",
         "cvv": "456"
       }
     ],
     "coupons": [
       {
-        "couponNumber": "NEWUSER",
+        "couponNumber": "GIGA12",
         "used": false
-      },
-      {
-        "couponNumber": "TENOFF",
-        "used": false
-      },
-      {
-        "couponNumber": "FREEFIVE",
-        "used": true
-      }
-    ]
-  },
-  {
-    "admin": true,
-    "id": 9,
-    "password": "123456#",
-    "name": "Joãozinho da Silva Sauro",
-    "cel": 999429927,
-    "email": "sla@hotmail.com",
-    "adress": {
-      "streetName": "Rua Exemplo",
-      "streetNumber": "123",
-      "apartmentNumber": "Apt 101",
-      "city": "São Carlos",
-      "state": "SP",
-      "postalCode": "13560-001",
-      "country": "Brazil"
-    },
-    "paymentMethods": [
-      {
-        "cardNumber": "1234 5678 9012 3456",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "12/25",
-        "cvv": "123"
-      },
-      {
-        "cardNumber": "9876 5432 1098 7654",
-        "cardHolderName": "Joãozinho da Silva Sauro",
-        "expirationDate": "11/24",
-        "cvv": "456"
-      }
-    ],
-    "coupons": [
-      {
-        "couponNumber": "NEWUSER",
-        "used": false
-      },
-      {
-        "couponNumber": "TENOFF",
-        "used": false
-      },
-      {
-        "couponNumber": "FREEFIVE",
-        "used": true
       }
     ]
   }
