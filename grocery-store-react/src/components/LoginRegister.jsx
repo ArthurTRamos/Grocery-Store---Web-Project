@@ -5,7 +5,7 @@ import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import "./LoginRegister.css";
 import Button from "./utility_elements/botao";
 
-import logo from "../images/logo.png";
+import logo from "../assets/logo.png";
 
 function LoginRegister({ users }) {
   const navigate = useNavigate();

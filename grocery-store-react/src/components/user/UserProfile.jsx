@@ -1,7 +1,7 @@
 import React from "react";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
-import honeyImg from "../../images/mel.jpg";
+import honeyImg from "../../assets/mel.jpg";
 
 import "./UserProfile.css";
 

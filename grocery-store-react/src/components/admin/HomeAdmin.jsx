@@ -1,5 +1,5 @@
 import React from 'react';
-import honeyImg from "../../images/adminImage.webp";
+import honeyImg from "../../assets/adminImage.webp";
 import './HomeAdmin.css'; // Importa o CSS
 import SideBar from "./SideBar";
 import { Outlet } from 'react-router-dom';
