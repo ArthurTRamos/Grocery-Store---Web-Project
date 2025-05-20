@@ -38,9 +38,12 @@ function UserProfile({ userData, setUserData }) {
       <div className="user-intro">
         <div className="user-profile-intro-header">
           <img src={honeyImg} alt="Imagem" />
-          <h3>Seja Bem Vindo, {userData.name}</h3>
+          <div className="user-profile-intro-header-text">
+            <h3>Seja Bem Vindo, {userData.name}</h3>
+            <p>ID: {userData.id}</p>
+          </div>
         </div>
-        <div>
+        <div className="user-profile-intro-description">
           <LabeledEditableContainer
             displayName={"Nome Completo"}
             field={"name"}
@@ -58,6 +61,13 @@ function UserProfile({ userData, setUserData }) {
             field={"email"}
             handleSave={handleSave}
             initialValue={userData.email}
+          />
+          <LabeledEditableContainer
+            displayName={"Senha"}
+            field={"password"}
+            handleSave={handleSave}
+            initialValue={userData.password}
+            secret={true}
           />
         </div>
       </div>
