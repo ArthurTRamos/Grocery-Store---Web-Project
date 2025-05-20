@@ -1,7 +1,7 @@
 import React from "react";
 
-import LabeledEditableContainer from "./LabeledEditableContainer";
-import honeyImg from "../images/mel.jpg";
+import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
+import honeyImg from "../../images/mel.jpg";
 
 import "./UserProfile.css";
 
@@ -9,21 +9,20 @@ function UserProfile({ userData, setUserData }) {
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    setUserData(prevData => {
+    setUserData((prevData) => {
       // Check if the field is one of the address fields
       if (prevData.adress.hasOwnProperty(field)) {
         // If it's an address field, create a NEW adress object
         const updatedAdress = {
-          ...prevData.adress, 
+          ...prevData.adress,
           [field]: newValue,
         };
 
         // Create new userData object with the updated adress object
         return {
-          ...prevData, 
-          adress: updatedAdress, 
+          ...prevData,
+          adress: updatedAdress,
         };
-
       } else {
         // If it's not an address field, update normally
         return {
@@ -85,24 +84,24 @@ function UserProfile({ userData, setUserData }) {
           initialValue={userData.adress.apartmentNumber}
         />
         <div className="adress-city-state-country">
-        <LabeledEditableContainer
-          displayName={"Cidade"}
-          field={"city"}
-          handleSave={handleSave}
-          initialValue={userData.adress.city}
-        />
-        <LabeledEditableContainer
-          displayName={"Estado"}
-          field={"state"}
-          handleSave={handleSave}
-          initialValue={userData.adress.state}
-        />
-        <LabeledEditableContainer
-          displayName={"País"}
-          field={"country"}
-          handleSave={handleSave}
-          initialValue={userData.adress.country}
-        />
+          <LabeledEditableContainer
+            displayName={"Cidade"}
+            field={"city"}
+            handleSave={handleSave}
+            initialValue={userData.adress.city}
+          />
+          <LabeledEditableContainer
+            displayName={"Estado"}
+            field={"state"}
+            handleSave={handleSave}
+            initialValue={userData.adress.state}
+          />
+          <LabeledEditableContainer
+            displayName={"País"}
+            field={"country"}
+            handleSave={handleSave}
+            initialValue={userData.adress.country}
+          />
         </div>
         <LabeledEditableContainer
           displayName={"CEP"}

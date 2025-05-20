@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./UserCoupons.css";
 
-import CouponInfo from "./CouponInfo";
+import CouponInfo from ".//CouponInfo";
 
 function UserCoupons({ userData, setUserData, coupons }) {
   // State to manage the new coupon number

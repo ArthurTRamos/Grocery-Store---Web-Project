@@ -1,10 +1,10 @@
 import React from "react";
 import "./ProductPage.css";
 import honeyImg from "../images/mel.jpg";
-import LabeledEditableContainer from "./LabeledEditableContainer";
+import LabeledEditableContainer from "./utility_elements/LabeledEditableContainer";
 import { useLocation } from "react-router-dom";
 
-function ProductPage({typeAccount}) {
+function ProductPage({ typeAccount }) {
   let isAdmin = typeAccount === "admin";
   isAdmin = true;
 
@@ -13,7 +13,7 @@ function ProductPage({typeAccount}) {
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
-  }
+  };
 
   return (
     <div>
@@ -39,15 +39,15 @@ function ProductPage({typeAccount}) {
           <br></br>
           <div className="product_description">
             {isAdmin ? (
-                <LabeledEditableContainer
-                  displayName={"Nome do Produto"}
-                  field={"productName"}
-                  handleSave={handleSave}
-                  initialValue={offer.name}
-                />
-              ) : (
-                <h2>{offer.name}</h2>
-              )}
+              <LabeledEditableContainer
+                displayName={"Nome do Produto"}
+                field={"productName"}
+                handleSave={handleSave}
+                initialValue={offer.name}
+              />
+            ) : (
+              <h2>{offer.name}</h2>
+            )}
             <h3>Marca: Flor de Laranjeira</h3>
 
             <h3>Descrição do produto</h3>

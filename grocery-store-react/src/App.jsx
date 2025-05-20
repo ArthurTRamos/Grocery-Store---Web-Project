@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./components/HomePage";
 
-import HomeAdmin from "./pages/admin/HomeAdmin";
-import CreateUser from "./pages/admin/CreateUser";
-import CreateProduct from "./pages/admin/CreateProduct";
+import HomeAdmin from "./components/admin/HomeAdmin";
+import CreateUser from "./components/admin/CreateUser";
+import CreateProduct from "./components/admin/CreateProduct";
 
-import ProductPage from "./pages/ProductPage";
-import Header from "./pages/Header";
-import Footer from "./pages/Footer";
-import UserPage from "./pages/UserPage";
-import UserProfile from "./pages/UserProfile";
-import PaymentMethods from "./pages/PaymentMethods";
-import CartPage from "./pages/CartPage";
-import UserCoupons from "./pages/UserCoupons";
-import LoginRegister from "./pages/LoginRegister";
-import RecipePage from "./pages/RecipePage";
+import ProductPage from "./components/ProductPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import UserPage from "./components/user/UserPage";
+import UserProfile from "./components/user/UserProfile";
+import PaymentMethods from "./components/user/PaymentMethods";
+import CartPage from "./components/cart/CartPage";
+import UserCoupons from "./components/user/UserCoupons";
+import LoginRegister from "./components/LoginRegister";
+import RecipePage from "./components/RecipePage";
 
 import honeyImg from "./images/mel.jpg";
 
