@@ -142,88 +142,6 @@ function App() {
     ],
   });
 
-  const [usersVectorData, setUsersVectorData] = useState([
-    {
-      admin: true,
-      name: "Joãozinho da Silva Sauro",
-      cel: 999429927,
-      email: "sla@hotmail.com",
-      adress: {
-        streetName: "Rua Exemplo",
-        streetNumber: "123",
-        apartmentNumber: "Apt 101",
-        city: "São Carlos",
-        state: "SP",
-        postalCode: "13560-001",
-        country: "Brazil",
-      },
-      paymentMethods: [
-        {
-          cardNumber: "1234 5678 9012 3456",
-          cardHolderName: "Joãozinho da Silva Sauro",
-          expirationDate: "12/25",
-          cvv: "123",
-        },
-        {
-          cardNumber: "9876 5432 1098 7654",
-          cardHolderName: "Joãozinho da Silva Sauro",
-          expirationDate: "11/24",
-          cvv: "456",
-        },
-      ],
-      coupons: [
-        {
-          couponNumber: "NEWUSER",
-          used: false,
-        },
-        {
-          couponNumber: "TENOFF",
-          used: true,
-        },
-      ],
-    },
-
-    {
-      admin: false,
-      name: "German Ezequiel Cano",
-      cel: 999421111,
-      email: "fluminense@hotmail.com",
-      adress: {
-        streetName: "Rua Tricolor",
-        streetNumber: "1902",
-        apartmentNumber: "Apt 2023",
-        city: "Rio de Janeiro",
-        state: "RJ",
-        postalCode: "20543-029",
-        country: "Brazil",
-      },
-      paymentMethods: [
-        {
-          cardNumber: "1234 5678 1111 1111",
-          cardHolderName: "German Ezequiel Cano",
-          expirationDate: "12/25",
-          cvv: "123",
-        },
-        {
-          cardNumber: "9876 5432 1111 1111",
-          cardHolderName: "German Ezequiel Cano",
-          expirationDate: "11/24",
-          cvv: "456",
-        },
-      ],
-      coupons: [
-        {
-          couponNumber: "NEWUSER",
-          used: false,
-        },
-        {
-          couponNumber: "TENOFF",
-          used: true,
-        },
-      ],
-    },
-  ]);
-
   return (
     <div className="App">
       <Header userData={userData} cartItemNumber={cartData.length} />
@@ -236,7 +154,7 @@ function App() {
           <Route path="createProduct" element={<AdmCreateProduct />} />
           <Route
             path="manageUsers"
-            element={<AdmManageUsers users={usersVectorData} />}
+            element={<AdmManageUsers users={users} />}
           />
         </Route>
         <Route path="/product" element={<ProductPage />} />
