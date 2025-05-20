@@ -1,14 +1,10 @@
 import React from 'react';
 import honeyImg from "../../images/adminImage.webp";
 import './HomeAdmin.css'; // Importa o CSS
-import SideBar from "./SideBar";
-import { Outlet } from 'react-router-dom';
 
 const HomeAdmin = () => {
   return (
     <div className="admin-container">
-      <SideBar/>
-      <Outlet/>
         <div className="admin-text">
             <h1>Página do Administrador</h1>
             <p>

@@ -7,6 +7,7 @@ import AdmHomeAdmin from "./components/admin/HomeAdmin";
 import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
 import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
 import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
+import AdmLayout from "./components/admin/adm_layout"
 
 import ProductPage from "./components/ProductPage";
 import Header from "./components/Header";
@@ -247,7 +248,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/manage" element={<AdmHomeAdmin />}>
+        <Route path="/manage" element={< AdmLayout/>}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser />} />
           <Route path="createProduct" element={<AdmCreateProduct />} />
