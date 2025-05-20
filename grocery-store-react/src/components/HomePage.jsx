@@ -9,6 +9,7 @@ function HomePage() {
     name: "Café 3 Corações 500g",
     originalPrice: "36,99",
     offerPrice: "31,44",
+    price: "R$ 31,44",
     description: "Café Torrado e Moído a Vácuo 3 Corações Pacote 500g",
   }, {
     discount: "-17",
@@ -16,6 +17,7 @@ function HomePage() {
     name: "Coca-Cola Zero 2l",
     originalPrice: "12,79",
     offerPrice: "10,49",
+    price: "R$ 10,49",
     description: "Refrigerante sem Açúcar Coca-Cola Zero Garrafa 2l",
   }])
 
