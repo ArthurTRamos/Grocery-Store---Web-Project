@@ -1,12 +1,10 @@
 import React from "react";
 import "./CreateUser.css";
-import SideBar from "../SideBar";
 import Botao from "../../utility_elements/botao";
 
 const CreateUser = () => {
   return (
     <>
-      <SideBar />
       <div class="container">
         <form id="userForm">
           <div class="form-header">

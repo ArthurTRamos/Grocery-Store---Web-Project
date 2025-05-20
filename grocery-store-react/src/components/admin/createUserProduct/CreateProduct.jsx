@@ -1,5 +1,4 @@
 import React from "react";
-import SideBar from "..//SideBar";
 import Botao from "../../utility_elements/botao";
 import "./CreateProduct.css";
 import InputImage from "../../utility_elements/input_image";
@@ -7,7 +6,6 @@ import InputImage from "../../utility_elements/input_image";
 const CreateProduct = () => {
   return (
     <>
-      <SideBar />
       <div class="container">
         <form id="userForm">
           <div class="form-header">
