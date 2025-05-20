@@ -12,7 +12,7 @@ const ManageUserComponent = ({user}) => {
             <tbody>
 
                 <td>
-                <div>{user.admin}</div>
+                <div>{user.admin ? "Administrador" : "Cliente"}</div>
                 </td>
                 
                 <td>
