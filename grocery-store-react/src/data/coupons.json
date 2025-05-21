@@ -25,8 +25,23 @@
     "type": "percent"
   },
   {
-    "couponNumber": "SAVE15",
-    "discount": 15,
+    "couponNumber": "SONATA30",
+    "discount": 30,
     "type": "money"
+  },
+  {
+    "couponNumber": "RIFF20",
+    "discount": 20,
+    "type": "money"
+  },
+  {
+    "couponNumber": "ROOTS10",
+    "discount": 10,
+    "type": "percent"
+  },
+  {
+    "couponNumber": "BLUES15",
+    "discount": 15,
+    "type": "percent"
   }
 ]
