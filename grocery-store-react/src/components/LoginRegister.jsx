@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import { v4 as uuidv4 } from 'uuid';
 
 import "./LoginRegister.css";
 import Button from "./utility_elements/botao";
@@ -12,28 +13,36 @@ import CountrySelection from "./utility_elements/CountrySelection";
 function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+
   const [inputInfoLogin, setInputInfoLogin] = useState({
     email: "",
     password: ""
   });
+
   const [inputInfoRegister, setInputInfoRegister] = useState({
-    nome: "",
+    admin:false,
+    adress:{
+      apartmentNumber: "",
+      city: "",
+      country: "",
+      postalCode: "",
+      state: "",
+      streetName: "",
+      streetNumber: "",
+    },
+    cel: "",
+    coupons: [],
     email: "",
-    senha: "",
-    confirmarSenha: "",
-    rua: "",
-    numero: "",
-    complemento: "",
-    cidade: "",
-    estado: "",
-    pais: "",
-    cep: ""
+    id: -1,
+    name: "",
+    password: "",
+    paymentMethods: []
   });
 
   const handleInputDataLogin = (e) => {
-    // Take the name and value from the event target
     const { name, value } = e.target;
-    // Format the value based on the input name
 
     setInputInfoLogin((prev) => ({
       ...prev,
@@ -42,26 +51,63 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   };
 
   const handleInputDataRegister = (e) => {
-    // Take the name and value from the event target
     const { name, value } = e.target;
-    // Format the value based on the input name
+
+    if(name === "apartmentNumber" || name === "city" || name === "country" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
+      setInputInfoRegister((prev) => ({
+        ...prev,
+        adress: {
+          ...prev.adress,
+          [name]: value,
+        },
+      }));
+    } else {
+      setInputInfoRegister((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleStateChange = (newState) => {
+    setSelectedState(newState);
 
     setInputInfoRegister((prev) => ({
       ...prev,
-      [name]: value,
+      adress: {
+        ...prev.adress,
+        ["state"]: newState,
+      }
+    }));
+  };
+
+  const handleCountryChange = (newCountry) => {
+    setSelectedCountry(newCountry);
+
+    setInputInfoRegister((prev) => ({
+      ...prev,
+      adress: {
+        ...prev.adress,
+        ["country"]: newCountry,
+      }
     }));
   }
 
   const handleSaveLogin = (e) => {
     e.preventDefault();
 
+    console.log({ inputInfoLogin });
+    console.log({ users });
+
     const user = users.find((user) =>
       user["email"] === inputInfoLogin.email &&
       user["password"] === inputInfoLogin.password
     );
 
+    console.log({ user });
+
     if(user) {
-      onSaveLogin(inputInfoLogin);
+      onSaveLogin(user);
       navigate("/");
     }
     else {
@@ -71,11 +117,17 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
 
   const handleSaveRegister = (e) => {
     e.preventDefault();
-    onSaveRegister(inputInfoRegister);
-  };
 
-  console.log("Props recebidos:", { users });
-  console.log("Tipo de users:", typeof users, Array.isArray(users) ? "é array" : "não é array");
+    inputInfoRegister.id = uuidv4();
+
+    console.log("Usuário a ser cadastrado: register.jsx");
+    console.log({inputInfoRegister});
+    //const updatedUserData = [...users, inputInfoRegister];
+    onSaveRegister(inputInfoRegister);
+
+    console.log("Novos usuários em register.jsx");
+    console.log({users});
+  };
 
   return (
     <div className="auth-container">
@@ -128,18 +180,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                 <button
                   type="submit"
                   className="btn-primary"
-                  /*onClick={() => {
-                    let user = users.find(
-                      (user) =>
-                        user.email === document.getElementById("email").value &&
-                        user.password === document.getElementById("senha").value
-                    );
-                    if (user) {
-                      navigate("/");
-                    } else {
-                      alert("Usuário ou senha inválidos");
-                    }
-                  }}*/
                   onClick={handleSaveLogin}
                 >
                   Entrar
@@ -154,7 +194,13 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                 <h3>Informações Pessoais</h3>
                 <div className="form-group">
                   <label htmlFor="name">Nome Completo</label>
-                  <input id="nome-completo" type="text" />
+                  <input 
+                  id="nome-completo" 
+                  type="text"
+                  name="name"
+                  value={inputInfoRegister.name}
+                  onChange={handleInputDataRegister}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email-cadastro">E-mail</label>
@@ -162,16 +208,31 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     id="email-cadastro"
                     type="email"
                     placeholder="seu@email.com"
+                    name="email"
+                    value={inputInfoRegister.email}
+                    onChange={handleInputDataRegister}
                   />
                 </div>
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="senha-cadastro">Senha</label>
-                    <input id="senha-cadastro" type="password" />
+                    <input 
+                    id="senha-cadastro" 
+                    type="password" 
+                    name="password"
+                    value={inputInfoRegister.password}
+                    onChange={handleInputDataRegister}
+                    />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="confirmar-senha">Confirmar Senha</label>
-                    <input id="confirmar-senha" type="password" />
+                    <label htmlFor="confirmar-senha">Número do Celular</label>
+                    <input
+                      id="confirmar-senha" 
+                      type="password"
+                      name="cel"
+                      value={inputInfoRegister.cel}
+                      onChange={handleInputDataRegister}
+                    />
                   </div>
                 </div>
               </div>
@@ -180,13 +241,27 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                 <h3>Endereço</h3>
                 <div className="form-group">
                   <label htmlFor="rua">Rua</label>
-                  <input id="rua" type="text" placeholder="Av. Brasil" />
+                  <input 
+                  id="rua"
+                  type="text" 
+                  placeholder="Av. Brasil" 
+                  name="streetName"
+                  value={inputInfoRegister.adress.streetName}
+                  onChange={handleInputDataRegister}
+                   />
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="numero">Número</label>
-                    <input id="numero" type="text" placeholder="123" />
+                    <input 
+                    id="numero" 
+                    type="text" 
+                    placeholder="123"
+                    name="streetNumber"
+                    value={inputInfoRegister.adress.streetNumber}
+                    onChange={handleInputDataRegister}
+                    />
                   </div>
                   <div className="form-group">
                     <label htmlFor="complemento">Complemento</label>
@@ -194,6 +269,9 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                       id="complemento"
                       type="text"
                       placeholder="Apto 101, Bloco B"
+                      name="apartmentNumber"
+                      value={inputInfoRegister.adress.apartmentNumber}
+                      onChange={handleInputDataRegister}
                     />
                   </div>
                 </div>
@@ -201,37 +279,50 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="cidade">Cidade</label>
-                    <input id="cidade" type="text" placeholder="São Paulo" />
+                    <input 
+                      id="cidade" 
+                      type="text" 
+                      placeholder="São Paulo"
+                      name="city"
+                      value={inputInfoRegister.adress.city}
+                      onChange={handleInputDataRegister}
+                    />
                   </div>
                   <div className="form-group">
-                    <StateSelection />
+                    <StateSelection 
+                    value={selectedState} 
+                    onChange={handleStateChange}
+                    />
                   </div>
                 </div>
 
                 <div className="form-row">
-                  <CountrySelection />
+                  <CountrySelection 
+                  value={selectedCountry} 
+                  onChange={handleCountryChange}
+                  />
                   <div className="form-group">
                     <label htmlFor="cep">CEP</label>
-                    <input id="cep" type="text" placeholder="00000-000" />
+                    <input 
+                    id="cep" 
+                    type="text" 
+                    placeholder="00000-000" 
+                    name="postalCode"
+                    value={inputInfoRegister.adress.postalCode}
+                    onChange={handleInputDataRegister}
+                    />
                   </div>
                 </div>
               </div>
 
               <div className="form-actions">
-                <button type="submit" className="btn-primary">
+                <button 
+                  type="submit" 
+                  className="btn-primary"
+                  onClick={handleSaveRegister}
+                  >
                   Cadastrar
                 </button>
-              </div>
-              <div className="form-terms">
-                Ao se cadastrar, você concorda com nossos{" "}
-                <a href="/termos" className="link">
-                  Termos de Uso
-                </a>{" "}
-                e{" "}
-                <a href="/privacidade" className="link">
-                  Política de Privacidade
-                </a>
-                .
               </div>
             </form>
           </TabPanel>

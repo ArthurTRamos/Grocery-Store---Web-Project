@@ -2,11 +2,22 @@ import React from "react";
 
 import "./CountrySelection.css"; // Import the CSS file for styling
 
-function CountrySelection() {
+function CountrySelection({value, onChange}) {
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <div className="form-group">
       <label htmlFor="pais">País</label>
-      <select id="pais" defaultValue="Brasil">
+      <select 
+        id="pais" 
+        defaultValue="Brasil"
+        value={value}
+        onChange={onChange}
+        >
         <option value="Brasil">Brasil</option>
         <option value="Argentina">Argentina</option>
         <option value="Chile">Chile</option>

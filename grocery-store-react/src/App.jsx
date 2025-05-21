@@ -51,7 +51,7 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
-
+  
   // Fetch data when the component mounts
   useEffect(() => {
     const fetchLocalCoupons = async () => {
@@ -60,7 +60,6 @@ function App() {
         setCoupons(data);
       } catch (error) {
         console.error("Failed to load local coupons data:", error);
-        // Set a default empty array or handle error state if loading fails
         setCoupons([]);
       }
     };
@@ -91,22 +90,27 @@ function App() {
     fetchLocalCoupons();
     fetchLocalUsers();
 
-     // Set the first user as logged in for demonstration
-  }, [users]); // Empty dependency array means this runs once on component mount
+  }, []);
 
   const [loggedUser, setLoggedUser] = useState("");
 
   const handleRegisterUser = (newUser) => {
-    const updatedUserData = [...loggedUser, newUser];
+    const updatedUserData = [...users, newUser];
 
-    setLoggedUser(updatedUserData);
+    console.log("Novo user no app.jsx");
+    console.log({updatedUserData});
+
+    setUsers(updatedUserData);
+
+    console.log("Adicionando user no app.jsx")
+    console.log({users});
   };
 
   const handleLoggedUser = (loggedUser) => {
     setLoggedUser(loggedUser.email);
   };
 
-  console.log({users});
+  console.log({loggedUser});
 
   return (
     <div className="App">
@@ -183,7 +187,7 @@ function App() {
           element={
             <LoginRegister
               users={users}
-              handleRegisterUser={setUsers}
+              onSaveRegister={handleRegisterUser}
               onSaveLogin={setLoggedUser}
             />
           }
