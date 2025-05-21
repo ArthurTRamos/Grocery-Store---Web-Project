@@ -9,9 +9,73 @@ import logo from "../assets/logo.png";
 import StateSelection from "./utility_elements/StateSelection";
 import CountrySelection from "./utility_elements/CountrySelection";
 
-function LoginRegister({ users }) {
+function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(0);
+  const [inputInfoLogin, setInputInfoLogin] = useState({
+    email: "",
+    password: ""
+  });
+  const [inputInfoRegister, setInputInfoRegister] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+    confirmarSenha: "",
+    rua: "",
+    numero: "",
+    complemento: "",
+    cidade: "",
+    estado: "",
+    pais: "",
+    cep: ""
+  });
+
+  const handleInputDataLogin = (e) => {
+    // Take the name and value from the event target
+    const { name, value } = e.target;
+    // Format the value based on the input name
+
+    setInputInfoLogin((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleInputDataRegister = (e) => {
+    // Take the name and value from the event target
+    const { name, value } = e.target;
+    // Format the value based on the input name
+
+    setInputInfoRegister((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const handleSaveLogin = (e) => {
+    e.preventDefault();
+
+    const user = users.find((user) =>
+      user["email"] === inputInfoLogin.email &&
+      user["password"] === inputInfoLogin.password
+    );
+
+    if(user) {
+      onSaveLogin(inputInfoLogin);
+      navigate("/");
+    }
+    else {
+      alert("Usuário ou senha inválidos");
+    }
+  };
+
+  const handleSaveRegister = (e) => {
+    e.preventDefault();
+    onSaveRegister(inputInfoRegister);
+  };
+
+  console.log("Props recebidos:", { users });
+  console.log("Tipo de users:", typeof users, Array.isArray(users) ? "é array" : "não é array");
 
   return (
     <div className="auth-container">
@@ -43,19 +107,28 @@ function LoginRegister({ users }) {
                 <input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="seu@email.com"
+                  value={inputInfoLogin.email}
+                  onChange={handleInputDataLogin}
                   required
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="password">password</label>
-                <input id="password" type="password" required />
+                <input 
+                id="password" 
+                type="password"
+                name="password"
+                value={inputInfoLogin.password}
+                onChange={handleInputDataLogin}
+                required />
               </div>
               <div className="form-actions">
                 <button
                   type="submit"
                   className="btn-primary"
-                  onClick={() => {
+                  /*onClick={() => {
                     let user = users.find(
                       (user) =>
                         user.email === document.getElementById("email").value &&
@@ -66,7 +139,8 @@ function LoginRegister({ users }) {
                     } else {
                       alert("Usuário ou senha inválidos");
                     }
-                  }}
+                  }}*/
+                  onClick={handleSaveLogin}
                 >
                   Entrar
                 </button>

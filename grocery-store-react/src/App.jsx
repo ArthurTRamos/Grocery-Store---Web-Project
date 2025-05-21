@@ -79,7 +79,6 @@ function App() {
       try {
         const data = await Promise.resolve(localUsersData);
         setUsers(data);
-        setLoggedUser(data[0]);
       } catch (error) {
         console.error("Failed to load local users data:", error);
         // Set a default empty array or handle error state if loading fails
@@ -105,6 +104,8 @@ function App() {
   const handleLoggedUser = (loggedUser) => {
     setLoggedUser(loggedUser.email);
   };
+
+  console.log({users});
 
   return (
     <div className="App">
@@ -179,9 +180,9 @@ function App() {
           path="/auth"
           element={
             <LoginRegister
-              users={loggedUser}
-              handleRegisterUser={handleRegisterUser}
-              handleLoggedUser={handleLoggedUser}
+              users={users}
+              handleRegisterUser={setUsers}
+              onSaveLogin={setLoggedUser}
             />
           }
         />
