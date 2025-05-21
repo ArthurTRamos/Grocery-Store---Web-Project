@@ -19,6 +19,7 @@ import CartPage from "./components/cart/CartPage";
 import UserCoupons from "./components/user/UserCoupons";
 import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
+import UserSearch from "./components/search/Search";
 
 import "./App.css";
 
@@ -122,6 +123,7 @@ function App() {
             element={<AdmManageUsers users={users} />}
           />
         </Route>
+        <Route path="/search" element={<UserSearch productsData={productData}/>}/>
         <Route path="/product" element={<ProductPage />} />
         <Route path="/user" element={<UserPage />}>
           <Route
