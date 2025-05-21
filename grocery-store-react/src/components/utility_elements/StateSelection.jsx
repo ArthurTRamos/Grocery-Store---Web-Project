@@ -4,11 +4,21 @@ import "./StateSelection.css"; // Import the CSS file for styling
 // This component renders a select dropdown for Brazilian states
 // It includes a label and a list of states as options
 
-function StateSelection() {
+function StateSelection({ value, onChange }) {
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <div className="state-select-container">
       <label htmlFor="estado">Estado</label>
-      <select id="estado">
+      <select 
+        id="estado"
+        velue={value}
+        onChange={handleChange}
+        >
         <option value="">Selecione</option>
         <option value="AC">Acre</option>
         <option value="AL">Alagoas</option>
