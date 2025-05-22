@@ -26,6 +26,7 @@ import "./App.css";
 import localCouponsData from "./data/coupons.json";
 import localProductsData from "./data/products.json";
 import localUsersData from "./data/users.json";
+import localOffers from "./data/offers.json";
 
 function App() {
   // Carrinho de compras
@@ -51,8 +52,9 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [loggedUser, setLoggedUser] = useState("");
   
-  // Fetch data when the component mounts
   useEffect(() => {
     const fetchLocalCoupons = async () => {
       try {
@@ -86,13 +88,32 @@ function App() {
       }
     };
 
+    const fetchLocalOffers = async () => {
+      try {
+        const data = await Promise.resolve(localOffers);
+        setOffers(data);
+      } catch (error) {
+        console.error("Failed to load local coupons data:", error);
+        setOffers([]);
+      }
+    };
+
     fetchLocalProducts();
     fetchLocalCoupons();
     fetchLocalUsers();
+    fetchLocalOffers();
 
   }, []);
 
-  const [loggedUser, setLoggedUser] = useState("");
+  const handleOfferChange =  (newOffer) => {
+    const indexToChange = offers.findIndex((offer) => offer.id === newOffer.id);
+
+    setOffers((prevOffers) => {
+      const updatedOffers = [...prevOffers];
+      updatedOffers[indexToChange] = newOffer;
+      return updatedOffers;
+    });
+  }
 
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...users, newUser];
@@ -115,7 +136,7 @@ function App() {
       <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage offers={offers} handleOfferChange={handleOfferChange} />} />
         <Route path="/manage" element={<AdmLayout />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser />} />
@@ -126,7 +147,7 @@ function App() {
           />
         </Route>
         <Route path="/search" element={<UserSearch productsData={productData}/>}/>
-        <Route path="/product" element={<ProductPage loggedUser={loggedUser}/>} />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange}/>} />
         <Route path="/user" element={<UserPage />}>
           <Route
             index

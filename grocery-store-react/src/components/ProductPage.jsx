@@ -4,10 +4,9 @@ import LabeledEditableContainer from "./utility_elements/LabeledEditableContaine
 import { useLocation } from "react-router-dom";
 import InputImage from "./utility_elements/input_image";
 
-function ProductPage({loggedUser}) {
+function ProductPage({loggedUser, handleOfferChange}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
-  const {handleChange} = location.state?.handleOfferChange;
 
   let typeAccount;
   if(loggedUser === undefined) {
@@ -19,13 +18,16 @@ function ProductPage({loggedUser}) {
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    setProduct((prevProduct) => ({
-      ...prevProduct,
+    // Criar o produto atualizado
+    const updatedProduct = {
+      ...product,
       [field]: newValue,
-    }));
+    };
 
-    handleChange(0, product);
-  }
+    setProduct(updatedProduct);
+
+    handleOfferChange(updatedProduct);
+  };
   
   return (
     <div>
@@ -36,7 +38,7 @@ function ProductPage({loggedUser}) {
               {typeAccount ? (
                 <LabeledEditableContainer
                   displayName={"Nome do Produto"}
-                  field={"productName"}
+                  field={"name"}
                   handleSave={handleSave}
                   initialValue={product.name}
                 />
@@ -61,32 +63,67 @@ function ProductPage({loggedUser}) {
             {typeAccount ? (
                 <LabeledEditableContainer
                   displayName={"Nome do Produto"}
-                  field={"productName"}
+                  field={"name"}
                   handleSave={handleSave}
                   initialValue={product.name}
                 />
               ) : (
                 <h2>{product.name}</h2>
               )}
-            <h3>Marca: Flor de Laranjeira</h3>
 
             <h3>Descrição do produto</h3>
 
-            <p>
-              {" "}
-              O mel da abelha é um alimento natural produzido pelas abelhas a
-              partir do néctar das flores. É um produto doce e nutritivo,
-              utilizado na culinária e conhecido por seus benefícios à saúde. O
-              processo de produção do mel envolve a coleta do néctar, a
-              transformação por enzimas digestivas das abelhas e o armazenamento
-              em favos de mel.
-            </p>
-
-            <h3>Preço: R$19,90</h3>
+            <div>
+              {typeAccount ? (
+                <LabeledEditableContainer
+                displayName={"Descrição do Produto"}
+                field={"description"}
+                handleSave={handleSave}
+                initialValue={product.description}
+                />
+              ) : (
+                <p>{product.description}</p>
+              )}
+            </div>
+            
+            <div>
+              {typeAccount ? (
+                <LabeledEditableContainer
+                  displayName={"Preço do Produto"}
+                  field={"price"}
+                  handleSave={handleSave}
+                  initialValue={product.price}
+                />
+              ) : (
+                <h3>Preço: R${product.price}</h3>
+              )}
+            </div>
 
             <div className="quantity-sold">
-              <h3>Quantidade em Estoque: 11111</h3>
-              <h3>Quantidade Vendida: 111111</h3>
+              <div>
+                {typeAccount ? (
+                  <LabeledEditableContainer
+                    displayName={"Quantidade Vendida"}
+                    field={"sold"}
+                    handleSave={handleSave}
+                    initialValue={product.sold}
+                  />
+                ) : (
+                  <h3>Quantidade Vendida: {product.sold}</h3>
+                )}
+              </div>
+              <div>
+                {typeAccount ? (
+                  <LabeledEditableContainer
+                    displayName={"Quantidade em Estoque"}
+                    field={"stock"}
+                    handleSave={handleSave}
+                    initialValue={product.stock}
+                  />
+                ) : (
+                  <h3>Quantidade em Estoque: {product.stock}</h3>
+                )}
+              </div>
             </div>
 
             <button type="button" class="add-to-cart">

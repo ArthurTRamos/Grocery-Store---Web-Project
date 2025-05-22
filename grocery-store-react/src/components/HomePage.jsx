@@ -4,32 +4,7 @@ import { Link } from "react-router-dom";
 
 import localOffers from "../data/offers.json";
 
-function HomePage() {
-  const [offers, setOffers] = useState([]);
-  
-  useEffect(() => {
-    const fetchLocalOffers = async () => {
-      try {
-        const data = await Promise.resolve(localOffers);
-        setOffers(data);
-      } catch (error) {
-        console.error("Failed to load local coupons data:", error);
-        setOffers([]);
-      }
-    };
-
-    fetchLocalOffers();
-
-  }, [offers]);
-
-  const handleOfferChange = (index, newOffer) => {
-    setOffers(prevOffers => {
-      const updatedOffers = [...prevOffers];
-      updatedOffers[index] = newOffer;
-      return updatedOffers;
-    });
-  }
-
+function HomePage({offers, handleOfferChange}) {  
   return (
     <div>
       <main>
@@ -131,19 +106,17 @@ function HomePage() {
         </section>
 
         <section id="ofertas" class="offers">
-          <h2>Ofertas da Semana</h2>
+          <h2>Produtos em Destaque</h2>
           <div class="offers-grid">
 
             {offers.map(offer => (
-              <Link to="/product" state={{productData: offer, handleOfferChange: handleOfferChange}} className="product-link">
+              <Link to="/product" state={{productData: offer}} className="product-link">
                 <div class="offer-card">
-                  <div class="discount-tag">{offer.discount}%</div>
                   <img
                     src={offer.image}
-                    alt="Oferta Especial"
+                    alt="Produto em Destaque"
                   ></img>
                   <h3>{offer.name}</h3>
-                  <p class="original-price">R$ {offer.originalPrice}</p>
                   <p class="offer-price">R$ {offer.offerPrice}</p>
                   <p class="offer-description">
                     {offer.description}
