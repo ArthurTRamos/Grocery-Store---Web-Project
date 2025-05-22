@@ -20,12 +20,14 @@ import UserCoupons from "./components/user/UserCoupons";
 import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
 import UserSearch from "./components/search/Search";
+import Logout from "./components/user/Logout";
 
 import "./App.css";
 
 import localCouponsData from "./data/coupons.json";
 import localProductsData from "./data/products.json";
 import localUsersData from "./data/users.json";
+import localOffers from "./data/offers.json";
 
 function App() {
   // Carrinho de compras
@@ -51,8 +53,9 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
+  const [offers, setOffers] = useState([]);
+  const [loggedUser, setLoggedUser] = useState("");
   
-  // Fetch data when the component mounts
   useEffect(() => {
     const fetchLocalCoupons = async () => {
       try {
@@ -86,38 +89,55 @@ function App() {
       }
     };
 
+    const fetchLocalOffers = async () => {
+      try {
+        const data = await Promise.resolve(localOffers);
+        setOffers(data);
+      } catch (error) {
+        console.error("Failed to load local coupons data:", error);
+        setOffers([]);
+      }
+    };
+
     fetchLocalProducts();
     fetchLocalCoupons();
     fetchLocalUsers();
+    fetchLocalOffers();
 
   }, []);
 
-  const [loggedUser, setLoggedUser] = useState("");
+  const handleOfferChange =  (newOffer) => {
+    const indexToChange = offers.findIndex((offer) => offer.id === newOffer.id);
+
+    setOffers((prevOffers) => {
+      const updatedOffers = [...prevOffers];
+      updatedOffers[indexToChange] = newOffer;
+      return updatedOffers;
+    });
+  }
 
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...users, newUser];
 
     console.log("Novo user no app.jsx");
-    console.log({updatedUserData});
+    console.log({ updatedUserData });
 
     setUsers(updatedUserData);
 
-    console.log("Adicionando user no app.jsx")
-    console.log({users});
+    console.log("Adicionando user no app.jsx");
+    console.log({ users });
   };
 
   const handleLoggedUser = (loggedUser) => {
     setLoggedUser(loggedUser.email);
   };
 
-  console.log({loggedUser});
-
   return (
     <div className="App">
       <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage offers={offers} handleOfferChange={handleOfferChange} />} />
         <Route path="/manage" element={<AdmLayout />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
@@ -127,24 +147,30 @@ function App() {
             element={<AdmManageUsers users={users} />}
           />
         </Route>
-        <Route path="/search" element={<UserSearch productsData={productData}/>}/>
-        <Route path="/product" element={<ProductPage />} />
-        <Route path="/user" element={<UserPage />}>
+        <Route
+          path="/search"
+          element={<UserSearch productsData={productData} />}
+        />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange}/>} />
+        <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route
             index
             element={
               <UserProfile
                 loggedUser={loggedUser}
                 setLoggedUser={setLoggedUser}
+                setUsers={setUsers}
               />
             }
           />
           <Route
+            index
             path="profile"
             element={
               <UserProfile
                 loggedUser={loggedUser}
                 setLoggedUser={setLoggedUser}
+                setUsers={setUsers}
               />
             }
           />
@@ -192,7 +218,12 @@ function App() {
             />
           }
         />
+        <Route
+          path="/logout"
+          element={<Logout setLoggedUser={setLoggedUser} />}
+        />
         <Route path="/recipe" element={<RecipePage />} />
+
         <Route path="*" element={<HomePage />} />
       </Routes>
 

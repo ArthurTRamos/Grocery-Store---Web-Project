@@ -1,26 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
-function HomePage() {
-  const [offers, setOffers] = useState([{
-    discount: "-15",
-    image: "https://static.paodeacucar.com/img/uploads/1/278/24591278.jpg",
-    name: "Café 3 Corações 500g",
-    originalPrice: "36,99",
-    offerPrice: "31,44",
-    price: "R$ 31,44",
-    description: "Café Torrado e Moído a Vácuo 3 Corações Pacote 500g",
-  }, {
-    discount: "-17",
-    image: "https://static.paodeacucar.com/img/uploads/1/636/24623636.jpg",
-    name: "Coca-Cola Zero 2l",
-    originalPrice: "12,79",
-    offerPrice: "10,49",
-    price: "R$ 10,49",
-    description: "Refrigerante sem Açúcar Coca-Cola Zero Garrafa 2l",
-  }])
+import localOffers from "../data/offers.json";
 
+function HomePage({offers, handleOfferChange}) {  
   return (
     <div>
       <main>
@@ -122,19 +106,17 @@ function HomePage() {
         </section>
 
         <section id="ofertas" class="offers">
-          <h2>Ofertas da Semana</h2>
+          <h2>Produtos em Destaque</h2>
           <div class="offers-grid">
 
             {offers.map(offer => (
               <Link to="/product" state={{productData: offer}} className="product-link">
                 <div class="offer-card">
-                  <div class="discount-tag">{offer.discount}%</div>
                   <img
                     src={offer.image}
-                    alt="Oferta Especial"
+                    alt="Produto em Destaque"
                   ></img>
                   <h3>{offer.name}</h3>
-                  <p class="original-price">R$ {offer.originalPrice}</p>
                   <p class="offer-price">R$ {offer.offerPrice}</p>
                   <p class="offer-description">
                     {offer.description}
