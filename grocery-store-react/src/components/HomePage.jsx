@@ -1,25 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
+import localOffers from "../data/offers.json";
+
 function HomePage() {
-  const [offers, setOffers] = useState([{
-    discount: "-15",
-    image: "https://static.paodeacucar.com/img/uploads/1/278/24591278.jpg",
-    name: "Café 3 Corações 500g",
-    originalPrice: "36,99",
-    offerPrice: "31,44",
-    price: "R$ 31,44",
-    description: "Café Torrado e Moído a Vácuo 3 Corações Pacote 500g",
-  }, {
-    discount: "-17",
-    image: "https://static.paodeacucar.com/img/uploads/1/636/24623636.jpg",
-    name: "Coca-Cola Zero 2l",
-    originalPrice: "12,79",
-    offerPrice: "10,49",
-    price: "R$ 10,49",
-    description: "Refrigerante sem Açúcar Coca-Cola Zero Garrafa 2l",
-  }])
+  const [offers, setOffers] = useState([]);
+  
+  useEffect(() => {
+    const fetchLocalOffers = async () => {
+      try {
+        const data = await Promise.resolve(localOffers);
+        setOffers(data);
+      } catch (error) {
+        console.error("Failed to load local coupons data:", error);
+        setOffers([]);
+      }
+    };
+
+    fetchLocalOffers();
+
+  }, [offers]);
+
+  const handleOfferChange = (index, newOffer) => {
+    setOffers(prevOffers => {
+      const updatedOffers = [...prevOffers];
+      updatedOffers[index] = newOffer;
+      return updatedOffers;
+    });
+  }
 
   return (
     <div>
@@ -126,7 +135,7 @@ function HomePage() {
           <div class="offers-grid">
 
             {offers.map(offer => (
-              <Link to="/product" state={{productData: offer}} className="product-link">
+              <Link to="/product" state={{productData: offer, handleOfferChange: handleOfferChange}} className="product-link">
                 <div class="offer-card">
                   <div class="discount-tag">{offer.discount}%</div>
                   <img

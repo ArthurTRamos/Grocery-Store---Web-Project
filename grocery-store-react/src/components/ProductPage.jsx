@@ -1,52 +1,72 @@
-import React from "react";
+import React, {useState} from "react";
 import "./ProductPage.css";
-import honeyImg from "../assets/mel.jpg";
 import LabeledEditableContainer from "./utility_elements/LabeledEditableContainer";
 import { useLocation } from "react-router-dom";
+import InputImage from "./utility_elements/input_image";
 
-function ProductPage({typeAccount}) {
-  let isAdmin = typeAccount === "admin";
-  isAdmin = true;
-
+function ProductPage({loggedUser}) {
   const location = useLocation();
-  const offer = location.state?.productData;
+  const [product, setProduct] = useState(location.state?.productData);
+  const {handleChange} = location.state?.handleOfferChange;
+
+  let typeAccount;
+  if(loggedUser === undefined) {
+    typeAccount = false;
+  } else {
+    typeAccount = loggedUser.admin;
+  }
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
-  }
 
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [field]: newValue,
+    }));
+
+    handleChange(0, product);
+  }
+  
   return (
     <div>
       <main className="content-wrap">
         <div className="product">
           <div className="product_image">
             <div>
-              {isAdmin ? (
+              {typeAccount ? (
                 <LabeledEditableContainer
                   displayName={"Nome do Produto"}
                   field={"productName"}
                   handleSave={handleSave}
-                  initialValue={offer.name}
+                  initialValue={product.name}
                 />
               ) : (
-                <h2>{offer.name}</h2>
+                <h2>{product.name}</h2>
               )}
             </div>
             <div>
-              <img src={honeyImg} alt="Imagem do Produto"></img>
+              <img src={product.image} alt="Imagem do Produto"></img>
+            </div>
+
+            <div>
+              {typeAccount ? (
+                <InputImage/>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
           <br></br>
           <div className="product_description">
-            {isAdmin ? (
+            {typeAccount ? (
                 <LabeledEditableContainer
                   displayName={"Nome do Produto"}
                   field={"productName"}
                   handleSave={handleSave}
-                  initialValue={offer.name}
+                  initialValue={product.name}
                 />
               ) : (
-                <h2>{offer.name}</h2>
+                <h2>{product.name}</h2>
               )}
             <h3>Marca: Flor de Laranjeira</h3>
 

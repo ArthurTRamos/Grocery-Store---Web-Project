@@ -110,8 +110,6 @@ function App() {
     setLoggedUser(loggedUser.email);
   };
 
-  console.log({loggedUser});
-
   return (
     <div className="App">
       <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
@@ -128,7 +126,7 @@ function App() {
           />
         </Route>
         <Route path="/search" element={<UserSearch productsData={productData}/>}/>
-        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser}/>} />
         <Route path="/user" element={<UserPage />}>
           <Route
             index
