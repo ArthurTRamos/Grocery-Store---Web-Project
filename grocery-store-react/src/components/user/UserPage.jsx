@@ -1,9 +1,12 @@
 import React from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Navigate } from "react-router-dom";
 
 import "./UserPage.css";
 
-function UserPage() {
+function UserPage( { loggedUser }) {
+  if(!loggedUser) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="user-page-container">
       <div className="user-page-sidebar">

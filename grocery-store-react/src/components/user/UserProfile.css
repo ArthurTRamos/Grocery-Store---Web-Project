@@ -24,9 +24,9 @@ body {
 .user-profile-intro-header {
   display: flex; /* Use flexbox to align image and text horizontally */
   align-items: center; /* Vertically align items in the center */
-  margin-bottom: 30px; /* Space below the header before the editable fields */
-  padding-bottom: 20px; /* Padding at the bottom of the header section */
-  border-bottom: 1px solid #eee; /* Separator line below the header */
+  margin-bottom: 0; /* Space below the header before the editable fields */
+  padding-bottom: 0; /* Padding at the bottom of the header section */
+  border-bottom: none; /* Separator line below the header */
 }
 
 /* Styling for the user image/avatar */
@@ -41,7 +41,7 @@ body {
 
 .user-profile-intro-header-text {
   display: flex; /* Use flexbox to align image and text horizontally */
-  align-items:baseline; /* Vertically align items in the center */
+  align-items: baseline; /* Vertically align items in the center */
   gap: 10px;
 }
 
@@ -179,5 +179,47 @@ body {
   .adress-city-state-country .labeled-editable-container {
     flex-basis: auto !important; /* Reset flex-basis */
     width: 100%; /* Take full width when stacked */
+  }
+}
+
+.div-intro-header-logout-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.logout-button-container button {
+  background: none;
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  padding: 12px 40px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button-container button:hover {
+  background: #dc3545;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .div-intro-header-logout-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logout-button-container {
+    width: 100%;
+  }
+
+  .logout-button-container button {
+    width: 100%;
   }
 }

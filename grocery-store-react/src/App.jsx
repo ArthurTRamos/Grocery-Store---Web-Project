@@ -20,6 +20,7 @@ import UserCoupons from "./components/user/UserCoupons";
 import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
 import UserSearch from "./components/search/Search";
+import Logout from "./components/user/Logout";
 
 import "./App.css";
 
@@ -51,7 +52,7 @@ function App() {
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
-  
+
   // Fetch data when the component mounts
   useEffect(() => {
     const fetchLocalCoupons = async () => {
@@ -89,7 +90,6 @@ function App() {
     fetchLocalProducts();
     fetchLocalCoupons();
     fetchLocalUsers();
-
   }, []);
 
   const [loggedUser, setLoggedUser] = useState("");
@@ -98,19 +98,19 @@ function App() {
     const updatedUserData = [...users, newUser];
 
     console.log("Novo user no app.jsx");
-    console.log({updatedUserData});
+    console.log({ updatedUserData });
 
     setUsers(updatedUserData);
 
-    console.log("Adicionando user no app.jsx")
-    console.log({users});
+    console.log("Adicionando user no app.jsx");
+    console.log({ users });
   };
 
   const handleLoggedUser = (loggedUser) => {
     setLoggedUser(loggedUser.email);
   };
 
-  console.log({loggedUser});
+  console.log({ loggedUser });
 
   return (
     <div className="App">
@@ -127,24 +127,30 @@ function App() {
             element={<AdmManageUsers users={users} />}
           />
         </Route>
-        <Route path="/search" element={<UserSearch productsData={productData}/>}/>
+        <Route
+          path="/search"
+          element={<UserSearch productsData={productData} />}
+        />
         <Route path="/product" element={<ProductPage />} />
-        <Route path="/user" element={<UserPage />}>
+        <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route
             index
             element={
               <UserProfile
                 loggedUser={loggedUser}
                 setLoggedUser={setLoggedUser}
+                setUsers={setUsers}
               />
             }
           />
           <Route
+            index
             path="profile"
             element={
               <UserProfile
                 loggedUser={loggedUser}
                 setLoggedUser={setLoggedUser}
+                setUsers={setUsers}
               />
             }
           />
@@ -192,7 +198,12 @@ function App() {
             />
           }
         />
+        <Route
+          path="/logout"
+          element={<Logout setLoggedUser={setLoggedUser} />}
+        />
         <Route path="/recipe" element={<RecipePage />} />
+
         <Route path="*" element={<HomePage />} />
       </Routes>
 

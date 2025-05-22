@@ -1,46 +1,68 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
 import honeyImg from "../../assets/mel.jpg";
 
 import "./UserProfile.css";
 
-function UserProfile({ loggedUser, setLoggedUser }) {
+function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
+  const navigate = useNavigate();
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    setLoggedUser((prevData) => {
-      // Check if the field is one of the address fields
-      if (prevData.adress.hasOwnProperty(field)) {
-        // If it's an address field, create a NEW adress object
+    setLoggedUser((prevLoggedUser) => {
+      let updatedUser;
+
+      // Check if the field is one of the address fields and if 'adress' property exists
+      if (
+        prevLoggedUser.adress &&
+        prevLoggedUser.adress.hasOwnProperty(field)
+      ) {
+        // If it's an address field, create a NEW address object
         const updatedAdress = {
-          ...prevData.adress,
+          ...prevLoggedUser.adress,
           [field]: newValue,
         };
 
-        // Create new loggedUser object with the updated adress object
-        return {
-          ...prevData,
+        // Create a new loggedUser object with the updated address object
+        updatedUser = {
+          ...prevLoggedUser,
           adress: updatedAdress,
         };
       } else {
         // If it's not an address field, update normally
-        return {
-          ...prevData,
+        updatedUser = {
+          ...prevLoggedUser,
           [field]: newValue,
         };
       }
+
+      setUsers((prevUsers) => {
+        return prevUsers.map((user) =>
+          // Find the corresponding user by ID and replace it with the 'updatedUser'
+          user.id === updatedUser.id ? updatedUser : user
+        );
+      });
+
+      // Return the 'updatedUser' for the 'loggedUser' state to be updated
+      return updatedUser;
     });
   };
 
   return (
     <div>
       <div className="user-intro">
-        <div className="user-profile-intro-header">
-          <img src={honeyImg} alt="Imagem" />
-          <div className="user-profile-intro-header-text">
-            <h3>Seja Bem Vindo, {loggedUser.name}</h3>
-            <p>ID: {loggedUser.id}</p>
+        <div className="div-intro-header-logout-container">
+          <div className="user-profile-intro-header">
+            <img src={honeyImg} alt="Imagem" />
+            <div className="user-profile-intro-header-text">
+              <h3>Seja Bem Vindo, {loggedUser.name}</h3>
+              <p>ID: {loggedUser.id}</p>
+            </div>
+          </div>
+          <div className="logout-button-container">
+            <button onClick={() => navigate("/logout")}>Sair</button>
           </div>
         </div>
         <div className="user-profile-intro-description">
