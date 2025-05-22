@@ -1,6 +1,7 @@
 [
   {
     "id": 14,
+    "type": "doces",
     "name": "Mel Orgânico 500g",
     "price": 12.50,
     "stock": 50,
@@ -10,6 +11,7 @@
   },
   {
     "id": 22,
+    "type": "padaria",
     "name": "Pão Artesanal",
     "price": 8.75,
     "stock": 15,
@@ -19,6 +21,7 @@
   },
   {
     "id": 38,
+    "type": "outros",
     "name": "Caixa de Chás Sortidos",
     "price": 25.00,
     "stock": 30,
@@ -28,38 +31,232 @@
   },
   {
     "id": 57,
+    "type": "doces",
     "name": "Geleia Caseira de Morango",
     "price": 9.99,
     "stock": 25,
     "sold": 0,
-    "image": "./mel.jpg",
+    "image": "./geleiaMorango.jpg",
     "description": "Geleia doce e picante feita com morangos frescos e de origem local."
   },
   {
-    "id": 68,
-    "name": "Azeite de Pimenta Picante",
-    "price": 15.00,
-    "stock": 40,
-    "sold": 0,
-    "image": "./azeite_Pimenta.jpg",
-    "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
-  },
-  {
-    "id": 73,
-    "name": "Grãos de Café Gourmet 250g",
-    "price": 18.25,
-    "stock": 35,
-    "sold": 0,
-    "image": "./mel.jpg",
-    "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
-  },
-  {
-    "id": 81,
+    "id": 64,
+    "type": "",
     "name": "Tábua de Corte de Madeira de Oliveira",
     "price": 45.00,
     "stock": 10,
     "sold": 0,
-    "image": "./mel.jpg",
+    "image": "./tabuaCorte.jpg",
     "description": "Bela e durável tábua de corte feita de madeira de oliveira natural. Cada peça é única."
+  },
+  {
+    "id": 68,
+    "type": "alimentos",
+    "name": "Azeite de Pimenta Picante",
+    "price": 15.00,
+    "stock": 40,
+    "sold": 0,
+    "image": "./azeitePimenta.jpg",
+    "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
+  },
+  {
+    "id": 73,
+    "type": "",
+    "name": "Grãos de Café Gourmet 250g",
+    "price": 18.25,
+    "stock": 35,
+    "sold": 0,
+    "image": "./cafeGourmet.jpg",
+    "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
+  },
+  {
+    "id": 74,
+    "type": "padaria",
+    "name": "Pão Integral Fatiado 500g",
+    "price": 7.50,
+    "stock": 20,
+    "sold": 5,
+    "image": "./mel.jpg",
+    "description": "Pão integral macio e fresquinho, ideal para uma alimentação saudável."
+  },
+  {
+    "id": 75,
+    "type": "hortifrutis",
+    "name": "Maçã Fuji 1kg",
+    "price": 6.30,
+    "stock": 50,
+    "sold": 18,
+    "image": "./mel.jpg",
+    "description": "Maçãs Fuji selecionadas, doces e crocantes."
+  },
+  {
+    "id": 76,
+    "type": "laticinios",
+    "name": "Queijo Minas Frescal 400g",
+    "price": 14.90,
+    "stock": 25,
+    "sold": 12,
+    "image": "./mel.jpg",
+    "description": "Queijo minas frescal, leve e saboroso, ideal para o café da manhã."
+  },
+  {
+    "id": 77,
+    "type": "congelados",
+    "name": "Pizza Congelada Calabresa 460g",
+    "price": 19.80,
+    "stock": 40,
+    "sold": 22,
+    "image": "./mel.jpg",
+    "description": "Pizza de calabresa com queijo e molho de tomate, pronta para o forno."
+  },
+  {
+    "id": 78,
+    "type": "doces",
+    "name": "Bolo de Chocolate com Recheio 350g",
+    "price": 11.00,
+    "stock": 15,
+    "sold": 7,
+    "image": "./mel.jpg",
+    "description": "Bolo úmido de chocolate com recheio cremoso. Perfeito para sobremesas."
+  },
+  {
+    "id": 79,
+    "type": "bebidas",
+    "name": "Suco Natural de Laranja 1L",
+    "price": 9.90,
+    "stock": 30,
+    "sold": 10,
+    "image": "./mel.jpg",
+    "description": "Suco 100% natural de laranja, sem adição de açúcar ou conservantes."
+  },
+  {
+    "id": 80,
+    "type": "alimentos",
+    "name": "Arroz Integral 1kg",
+    "price": 7.20,
+    "stock": 45,
+    "sold": 20,
+    "image": "./mel.jpg",
+    "description": "Arroz integral rico em fibras e ideal para dietas saudáveis."
+  },
+  {
+    "id": 81,
+    "type": "doces",
+    "name": "Brigadeiro Gourmet 100g",
+    "price": 5.50,
+    "stock": 60,
+    "sold": 30,
+    "image": "./mel.jpg",
+    "description": "Brigadeiro feito com chocolate belga e leite condensado premium."
+  },
+  {
+    "id": 82,
+    "type": "outros",
+    "name": "Saco de Carvão Vegetal 2kg",
+    "price": 15.00,
+    "stock": 20,
+    "sold": 8,
+    "image": "./mel.jpg",
+    "description": "Carvão vegetal de alta qualidade para churrasco."
+  },
+  {
+    "id": 83,
+    "type": "congelados",
+    "name": "Hambúrguer de Picanha Congelado 2x150g",
+    "price": 17.90,
+    "stock": 25,
+    "sold": 11,
+    "image": "./mel.jpg",
+    "description": "Hambúrguer artesanal de picanha, pronto para grelhar."
+  },
+  {
+    "id": 84,
+    "type": "laticinios",
+    "name": "Iogurte Natural Integral 170g",
+    "price": 3.80,
+    "stock": 80,
+    "sold": 34,
+    "image": "./mel.jpg",
+    "description": "Iogurte natural cremoso, sem adição de açúcares."
+  },
+  {
+    "id": 85,
+    "type": "alimentos",
+    "name": "Feijão Carioca 1kg",
+    "price": 6.80,
+    "stock": 60,
+    "sold": 25,
+    "image": "./mel.jpg",
+    "description": "Feijão carioca selecionado, ideal para o dia a dia brasileiro."
+  },
+  {
+    "id": 86,
+    "type": "padaria",
+    "name": "Croissant de Presunto e Queijo",
+    "price": 5.20,
+    "stock": 40,
+    "sold": 15,
+    "image": "./mel.jpg",
+    "description": "Croissant crocante recheado com presunto e queijo mussarela."
+  },
+  {
+    "id": 87,
+    "type": "hortifrutis",
+    "name": "Banana Prata 1kg",
+    "price": 4.90,
+    "stock": 100,
+    "sold": 60,
+    "image": "./mel.jpg",
+    "description": "Banana prata fresca e madura, ótima para lanches e vitaminas."
+  },
+  {
+    "id": 88,
+    "type": "bebidas",
+    "name": "Chá Verde com Limão 1L",
+    "price": 6.50,
+    "stock": 35,
+    "sold": 12,
+    "image": "./mel.jpg",
+    "description": "Chá verde gelado com toque de limão, refrescante e saudável."
+  },
+  {
+    "id": 89,
+    "type": "doces",
+    "name": "Paçoca Rolha 10 Unidades",
+    "price": 4.00,
+    "stock": 70,
+    "sold": 33,
+    "image": "./mel.jpg",
+    "description": "Tradicional doce de amendoim em formato de rolha, direto da roça."
+  },
+  {
+    "id": 90,
+    "type": "laticinios",
+    "name": "Manteiga com Sal 200g",
+    "price": 9.70,
+    "stock": 30,
+    "sold": 10,
+    "image": "./mel.jpg",
+    "description": "Manteiga cremosa com sal, perfeita para passar no pão."
+  },
+  {
+    "id": 91,
+    "type": "congelados",
+    "name": "Lasanha Bolonhesa Congelada 600g",
+    "price": 14.90,
+    "stock": 20,
+    "sold": 9,
+    "image": "./mel.jpg",
+    "description": "Lasanha de carne com molho bolonhesa, prática e saborosa."
+  },
+  {
+    "id": 92,
+    "type": "outros",
+    "name": "Filtro de Papel para Café 103",
+    "price": 3.50,
+    "stock": 100,
+    "sold": 45,
+    "image": "./filtroCafe.jpg",
+    "description": "Filtro de papel para coar café, tamanho 103, pacote com 30 unidades."
   }
 ]

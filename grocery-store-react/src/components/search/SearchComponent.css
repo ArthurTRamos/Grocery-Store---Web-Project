@@ -73,14 +73,6 @@
     border-radius: 8px;
     border: 1px solid #c8e6c9;
   }
-  
-  /* Container dos botões de carrinho */
-  .insert_remove_in_cart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.5rem;
-  }
 
   
   /* Estilo para quando a imagem não carrega */

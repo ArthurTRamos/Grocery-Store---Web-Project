@@ -21,6 +21,7 @@ import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
 import UserSearch from "./components/search/Search";
 import Logout from "./components/user/Logout";
+import Sections from "./components/sections/Sections";
 
 import "./App.css";
 
@@ -143,6 +144,7 @@ function App() {
             element={<AdmManageUsers users={users} />}
           />
         </Route>
+        <Route path="/section" element={<Sections products={productData}/>}/>
         <Route
           path="/search"
           element={<UserSearch productsData={productData} />}
