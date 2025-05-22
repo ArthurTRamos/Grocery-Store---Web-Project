@@ -127,11 +127,7 @@ function App() {
     console.log("Adicionando user no app.jsx");
     console.log({ users });
   };
-
-  const handleLoggedUser = (loggedUser) => {
-    setLoggedUser(loggedUser.email);
-  };
-
+  
   return (
     <div className="App">
       <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
