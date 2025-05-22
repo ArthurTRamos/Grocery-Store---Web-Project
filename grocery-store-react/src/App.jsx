@@ -147,7 +147,7 @@ function App() {
           path="/search"
           element={<UserSearch productsData={productData} />}
         />
-        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange}/>} />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange} setCartData={setCartData}/>} />
         <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route
             index

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./input_image.css";
 
-const Input_image = () => {
+const Input_image = ({handleSave, field, initialValue}) => {
 
     const[imagem, setImagem] = useState(null)
     const[previewImage, setPreviewImage] = useState(null)
@@ -10,8 +10,10 @@ const Input_image = () => {
         const file = e.target.files[0];
     
         if (file) {
-          setImagem(file);
-          setPreviewImage(URL.createObjectURL(file)); // cria uma URL para mostrar a imagem
+            setImagem(file);
+
+            handleSave(field, URL.createObjectURL(file)); // chama a função de salvar com o arquivo
+            setPreviewImage(URL.createObjectURL(file)); // cria uma URL para mostrar a imagem
         }
       };
 
