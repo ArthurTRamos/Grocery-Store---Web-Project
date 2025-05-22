@@ -16,6 +16,7 @@ const ManageUsers = ({users}) => {
                     <table className='table-container'>
                         <thead>
                             <tr>
+                            <th>ID</th>
                             <th>Tipo</th>
                             <th>Nome</th>
                             <th>Email</th>

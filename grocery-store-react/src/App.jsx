@@ -120,7 +120,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/manage" element={<AdmLayout />}>
           <Route index element={<AdmHomeAdmin />} />
-          <Route path="createUser" element={<AdmCreateUser />} />
+          <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
           <Route path="createProduct" element={<AdmCreateProduct />} />
           <Route
             path="manageUsers"

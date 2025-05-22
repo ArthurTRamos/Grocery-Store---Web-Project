@@ -16,7 +16,7 @@ function StateSelection({ value, onChange }) {
       <label htmlFor="estado">Estado</label>
       <select 
         id="estado"
-        velue={value}
+        value={value}
         onChange={handleChange}
         >
         <option value="AC">Acre</option>

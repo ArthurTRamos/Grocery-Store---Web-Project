@@ -1,8 +1,115 @@
 import React from "react";
-import "./CreateUser.css";
-import Botao from "../../utility_elements/botao";
+import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
-const CreateUser = () => {
+import "./CreateUser.css";
+import StateSelection from "../../utility_elements/StateSelection";
+import CountrySelection from "../../utility_elements/CountrySelection";
+
+const CreateUser = ({users, setUsers}) => {
+
+  const [inputUser, setInputUser] = useState(
+
+    {
+      admin:false,
+      id: -1,
+      password: "",
+      name: "",
+      cel: "",
+      email: "",
+      adress:{
+        apartmentNumber: "",
+        city: "",
+        country: "",
+        postalCode: "",
+        state: "",
+        streetName: "",
+        streetNumber: "",
+      },
+      paymentMethods: [],
+      coupons: []
+    }
+  )
+
+  const handleInputData = (e) => {
+    const { name, value } = e.target;
+
+    if(name === "apartmentNumber" || name === "city" || name === "country" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
+      setInputUser((prev) => ({
+        ...prev,
+        adress: {
+          ...prev.adress,
+          [name]: value,
+        },
+      }));
+    } else {
+      setInputUser((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleStateChange = (newState) => {
+
+    setInputUser((prev) => ({
+      ...prev,
+      adress: {
+        ...prev.adress,
+        state: newState,
+      }
+    }));
+  };
+
+  const handleCountryChange = (newCountry) => {
+
+    setInputUser((prev) => ({
+      ...prev,
+      adress: {
+        ...prev.adress,
+        country: newCountry,
+      }
+    }));
+  }
+
+  const handleTypeChange = (e) => {
+
+    const { name, value } = e.target;
+
+    console.log(name, value);
+
+    let bool_variable = false;
+
+    if(value === "admin") {
+      bool_variable = true;
+    }
+
+    setInputUser((prev) => ({
+      ...prev,
+      admin: bool_variable
+    }))
+  }
+
+  const handleUserCreation = (e) => {
+
+    e.preventDefault();
+    
+    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode) {
+      alert("Preencha todos os campos");
+      return;
+    }
+
+    inputUser.id = uuidv4();
+
+    const updateUserData = [...users, inputUser];
+    setUsers(updateUserData);
+
+    alert("Adicionou Usuário");
+    console.log({inputUser});
+
+  }
+
+
   return (
     <>
       <div class="container">
@@ -24,7 +131,8 @@ const CreateUser = () => {
                 <select
                   className="select_sek"
                   id="tipo"
-                  name="tipo_User"
+                  name="admin"
+                  onChange={handleTypeChange}
                   required
                 >
                   <option value="">Selecione...</option>
@@ -40,8 +148,10 @@ const CreateUser = () => {
                 <input
                   type="text"
                   id="nome"
-                  name="nome"
                   placeholder="Digite seu nome completo"
+                  name="name"
+                  value={inputUser.name}
+                  onChange={handleInputData}
                   required
                 />
               </div>
@@ -51,8 +161,10 @@ const CreateUser = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
                   placeholder="Digite seu e-mail"
+                  name="email"
+                  value={inputUser.email}
+                  onChange={handleInputData}
                   required
                 />
               </div>
@@ -64,8 +176,10 @@ const CreateUser = () => {
                 <input
                   type="tel"
                   id="telefone"
-                  name="telefone"
                   placeholder="(00) 00000-0000"
+                  name="cel"
+                  value={inputUser.cel}
+                  onChange={handleInputData}
                   required
                 />
               </div>
@@ -75,8 +189,10 @@ const CreateUser = () => {
                 <input
                   type="password"
                   id="senha"
-                  name="senha"
                   placeholder="Crie uma senha segura"
+                  name="password"
+                  value={inputUser.password}
+                  onChange={handleInputData}
                   required
                 />
               </div>
@@ -92,6 +208,9 @@ const CreateUser = () => {
                     type="text"
                     id="rua"
                     placeholder="Digite o nome da sua rua"
+                    name="streetName"
+                    value={inputUser.adress.streetName}
+                    onChange={handleInputData}
                   />
                 </div>
 
@@ -101,6 +220,9 @@ const CreateUser = () => {
                     type="text"
                     id="numero_rua"
                     placeholder="Digite o número da rua"
+                    name="streetNumber"
+                    value={inputUser.adress.streetNumber}
+                    onChange={handleInputData}
                   />
                 </div>
               </div>
@@ -112,6 +234,9 @@ const CreateUser = () => {
                     type="text"
                     id="complemento"
                     placeholder="Ex: Nome do edifício, Bloco, Apto"
+                    name="apartmentNumber"
+                    value={inputUser.adress.apartmentNumber}
+                    onChange={handleInputData}
                   />
                 </div>
 
@@ -125,27 +250,24 @@ const CreateUser = () => {
                     type="text"
                     id="cidade"
                     placeholder="Digite a sua cidade"
+                    name="city"
+                    value={inputUser.adress.city}
+                    onChange={handleInputData}
                     required
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="estado"> Estado</label>
-                  <input
-                    type="text"
-                    id="estado"
-                    placeholder="Digite o seu estado"
-                    required
+                  <StateSelection 
+                    value={inputUser.adress.state} 
+                    onChange={handleStateChange}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="pais">País</label>
-                  <input
-                    type="text"
-                    id="pais"
-                    placeholder="Digite o seu país"
-                    required
+                <CountrySelection 
+                  // value={selectedCountry} 
+                  onChange={handleCountryChange}
                   />
                 </div>
 
@@ -159,6 +281,9 @@ const CreateUser = () => {
                     type="text"
                     id="cep"
                     placeholder="Digite o cep"
+                    name="postalCode"
+                    value={inputUser.adress.postalCode}
+                    onChange={handleInputData}
                     required
                   />
                 </div>
@@ -166,7 +291,12 @@ const CreateUser = () => {
             </div>
           </div>
 
-          <Botao texto="Criar Usuário" />
+          <div className="btn-container">
+                <button type="submit" className="btn" onClick={handleUserCreation}>
+                    <span>Criar usuário</span>
+                </button>
+          </div>
+
         </form>
       </div>
     </>

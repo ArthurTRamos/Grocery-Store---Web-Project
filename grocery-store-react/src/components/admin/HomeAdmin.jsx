@@ -1,5 +1,5 @@
 import React from 'react';
-import honeyImg from "../../assets/adminImage.webp";
+import AdmImg from "../../assets/adminImage.webp";
 import './HomeAdmin.css'; // Importa o CSS
 
 const HomeAdmin = () => {
@@ -14,7 +14,7 @@ const HomeAdmin = () => {
         </div>
 
         <div className="admin-image">
-            <img src={honeyImg} alt="Foto ilustrativa da área de administrador" />
+            <img src={AdmImg} alt="Foto ilustrativa da área de administrador" />
         </div>
     </div>
   );

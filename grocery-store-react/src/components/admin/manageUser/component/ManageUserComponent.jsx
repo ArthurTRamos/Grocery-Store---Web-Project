@@ -10,6 +10,9 @@ const ManageUserComponent = ({user}) => {
     return (
         <>
             <tbody>
+            <td>
+                <div>{user.id}</div>
+                </td>
 
                 <td>
                 <div>{user.admin ? "Administrador" : "Cliente"}</div>
