@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import SearchComponent from '../search/SearchComponent';
 import "./Sections.css"
+import { Link } from "react-router-dom";
 
 const Sections = ({products}) => {
 
@@ -9,13 +10,16 @@ const Sections = ({products}) => {
 
     const sections = [
         {id: "todos", name: "Todos os produtos"},
+        {id: "alimentos", name: "Alimentos Básicos"},
         {id: "padaria", name: "Padaria"},
-        {id: "hortifruti", name: "Hortifruti"},
+        {id: "hortifrutis", name: "Hortifruti"},
         {id: "bebidas", name: "Bebidas"},
-        {id: "doce", name: "Doces"},
-        {id: "fri_lat", name: "Frios e Laticínios"},
+        {id: "doces", name: "Doces"},
+        {id: "laticinios", name: "Frios e Laticínios"},
         {id: "congelados", name: "Congelados"},
+        {id: "outros", name: "Outros"},
     ]
+    // todos,alimentos,padaria,hortifrutis,bebidas,doces,laticinios,congelados,outros
 
     const filtered_products = activeSection === "todos"
     ? products 
@@ -37,6 +41,8 @@ const Sections = ({products}) => {
                     {
                         filtered_products.length > 0 ? (
                             filtered_products.map(item => (
+                                // <Link to="/product">
+                                // </Link>
                                 <SearchComponent product={item}/>
                             ))
                         ):(
