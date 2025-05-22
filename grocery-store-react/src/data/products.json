@@ -32,7 +32,7 @@
     "price": 9.99,
     "stock": 25,
     "sold": 0,
-    "image": "./mel.jpg",
+    "image": "./geleiaMorango.jpg",
     "description": "Geleia doce e picante feita com morangos frescos e de origem local."
   },
   {
@@ -41,7 +41,7 @@
     "price": 15.00,
     "stock": 40,
     "sold": 0,
-    "image": "./azeite_Pimenta.jpg",
+    "image": "./azeitePimenta.jpg",
     "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
   },
   {
@@ -50,7 +50,7 @@
     "price": 18.25,
     "stock": 35,
     "sold": 0,
-    "image": "./mel.jpg",
+    "image": "./cafeGourmet.jpg",
     "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
   },
   {
@@ -59,7 +59,7 @@
     "price": 45.00,
     "stock": 10,
     "sold": 0,
-    "image": "./mel.jpg",
+    "image": "./tabuaCorte.jpg",
     "description": "Bela e durável tábua de corte feita de madeira de oliveira natural. Cada peça é única."
   }
 ]
