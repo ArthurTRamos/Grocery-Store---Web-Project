@@ -19,7 +19,7 @@ const Input_image = () => {
 
         <>
             <label htmlFor="imagem">Escolha uma imagem:</label>
-            <input 
+            <input
                 className='input_imagem_sek'
                 type="file"
                 id="imagem"
