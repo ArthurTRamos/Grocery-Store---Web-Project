@@ -19,7 +19,6 @@ function StateSelection({ value, onChange }) {
         velue={value}
         onChange={handleChange}
         >
-        <option value="">Selecione</option>
         <option value="AC">Acre</option>
         <option value="AL">Alagoas</option>
         <option value="AP">Amapá</option>

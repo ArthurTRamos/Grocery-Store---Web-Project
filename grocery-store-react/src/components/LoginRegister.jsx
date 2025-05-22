@@ -4,7 +4,6 @@ import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { v4 as uuidv4 } from 'uuid';
 
 import "./LoginRegister.css";
-import Button from "./utility_elements/botao";
 
 import logo from "../assets/logo.png";
 import StateSelection from "./utility_elements/StateSelection";
@@ -76,7 +75,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       ...prev,
       adress: {
         ...prev.adress,
-        ["state"]: newState,
+        state: newState,
       }
     }));
   };
@@ -88,7 +87,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       ...prev,
       adress: {
         ...prev.adress,
-        ["country"]: newCountry,
+        country: newCountry,
       }
     }));
   }
@@ -96,8 +95,10 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const handleSaveLogin = (e) => {
     e.preventDefault();
 
-    console.log({ inputInfoLogin });
-    console.log({ users });
+    if(!inputInfoLogin.email || !inputInfoLogin.password) {
+      alert("Preencha todos os campos");
+      return;
+    }
 
     const user = users.find((user) =>
       user["email"] === inputInfoLogin.email &&
@@ -118,15 +119,16 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const handleSaveRegister = (e) => {
     e.preventDefault();
 
+    if(!inputInfoRegister.name || !inputInfoRegister.email || !inputInfoRegister.password || !inputInfoRegister.cel || !inputInfoRegister.adress.streetName || !inputInfoRegister.adress.streetNumber || !inputInfoRegister.adress.city || !inputInfoRegister.adress.postalCode) {
+      alert("Preencha todos os campos");
+      return;
+    }
+
     inputInfoRegister.id = uuidv4();
 
-    console.log("Usuário a ser cadastrado: register.jsx");
-    console.log({inputInfoRegister});
-    //const updatedUserData = [...users, inputInfoRegister];
     onSaveRegister(inputInfoRegister);
-
-    console.log("Novos usuários em register.jsx");
-    console.log({users});
+    onSaveLogin(inputInfoRegister);
+    navigate("/");
   };
 
   return (
@@ -200,6 +202,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                   name="name"
                   value={inputInfoRegister.name}
                   onChange={handleInputDataRegister}
+                  required
                   />
                 </div>
                 <div className="form-group">
@@ -211,6 +214,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     name="email"
                     value={inputInfoRegister.email}
                     onChange={handleInputDataRegister}
+                    required
                   />
                 </div>
                 <div className="form-row">
@@ -222,16 +226,18 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     name="password"
                     value={inputInfoRegister.password}
                     onChange={handleInputDataRegister}
+                    required
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="confirmar-senha">Número do Celular</label>
                     <input
                       id="confirmar-senha" 
-                      type="password"
+                      type="text"
                       name="cel"
                       value={inputInfoRegister.cel}
                       onChange={handleInputDataRegister}
+                      required
                     />
                   </div>
                 </div>
@@ -248,6 +254,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                   name="streetName"
                   value={inputInfoRegister.adress.streetName}
                   onChange={handleInputDataRegister}
+                  required
                    />
                 </div>
 
@@ -261,6 +268,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     name="streetNumber"
                     value={inputInfoRegister.adress.streetNumber}
                     onChange={handleInputDataRegister}
+                    required
                     />
                   </div>
                   <div className="form-group">
@@ -272,6 +280,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                       name="apartmentNumber"
                       value={inputInfoRegister.adress.apartmentNumber}
                       onChange={handleInputDataRegister}
+                      required
                     />
                   </div>
                 </div>
@@ -286,6 +295,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                       name="city"
                       value={inputInfoRegister.adress.city}
                       onChange={handleInputDataRegister}
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -304,12 +314,13 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                   <div className="form-group">
                     <label htmlFor="cep">CEP</label>
                     <input 
-                    id="cep" 
+                    id="cep"
                     type="text" 
                     placeholder="00000-000" 
                     name="postalCode"
                     value={inputInfoRegister.adress.postalCode}
                     onChange={handleInputDataRegister}
+                    required
                     />
                   </div>
                 </div>
