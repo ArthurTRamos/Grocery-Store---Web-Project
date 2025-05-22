@@ -14,7 +14,7 @@ const SearchComponent = ({product}) => {
                     <img src={product.image} alt={product.name} />
                 </div>
                 <div className="productInfo">
-                    <p>{product.price}</p>
+                    <p>R${product.price}</p>
                     <div className="insert_remove_in_cart">
                         <ChangeQtdCart/>
                     </div>

@@ -8,13 +8,13 @@ const ChangeQtdCart = () => {
         <>
             <div className="change-container">
                 <button>
-                    +
+                    -
                 </button>
                 <div className="qtd-items">
                     4
                 </div>
                 <button>
-                    -
+                    +
                 </button>
             </div>
         </>
