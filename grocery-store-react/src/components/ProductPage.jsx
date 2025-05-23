@@ -4,7 +4,7 @@ import LabeledEditableContainer from "./utility_elements/LabeledEditableContaine
 import { useLocation } from "react-router-dom";
 import InputImage from "./utility_elements/input_image";
 
-function ProductPage({loggedUser, handleOfferChange}) {
+function ProductPage({loggedUser, handleOfferChange, setCartData}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
 
@@ -52,7 +52,11 @@ function ProductPage({loggedUser, handleOfferChange}) {
 
             <div>
               {typeAccount ? (
-                <InputImage/>
+                <InputImage
+                  handleSave={handleSave}
+                  field={"image"}
+                  initialValue={product.image}
+                />
               ) : (
                 <div></div>
               )}
@@ -126,7 +130,20 @@ function ProductPage({loggedUser, handleOfferChange}) {
               </div>
             </div>
 
-            <button type="button" class="add-to-cart">
+            <button 
+              type="button" 
+              class="add-to-cart"
+              onClick={() => {
+                setCartData((prevCartData) => [
+                  ...prevCartData,
+                  {
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                  },
+                ]);
+              }}
+              >
               Adicionar ao Carrinho
             </button>
           </div>

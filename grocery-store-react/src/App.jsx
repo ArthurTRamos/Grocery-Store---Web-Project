@@ -149,7 +149,7 @@ function App() {
           path="/search"
           element={<UserSearch productsData={productData} />}
         />
-        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange}/>} />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser} handleOfferChange={handleOfferChange} setCartData={setCartData}/>} />
         <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route
             index
@@ -220,7 +220,10 @@ function App() {
           path="/logout"
           element={<Logout setLoggedUser={setLoggedUser} />}
         />
-        <Route path="/recipe" element={<RecipePage />} />
+        <Route 
+          path="/recipe" 
+          element={<RecipePage />} 
+        />
 
         <Route path="*" element={<HomePage />} />
       </Routes>
