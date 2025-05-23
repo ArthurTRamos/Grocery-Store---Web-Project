@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 import "./input_image.css";
 
 const Input_image = ({handleSave, field, initialValue}) => {
@@ -26,9 +26,8 @@ const Input_image = ({handleSave, field, initialValue}) => {
                 type="file"
                 id="imagem"
                 accept="image/*"
-                value={value}
                 name='image'
-                onChange={onChangeImage}
+                onChange={handleImagemChange}
             />
         </>
     )
