@@ -220,7 +220,10 @@ function App() {
           path="/logout"
           element={<Logout setLoggedUser={setLoggedUser} />}
         />
-        <Route path="/recipe" element={<RecipePage />} />
+        <Route 
+          path="/recipe" 
+          element={<RecipePage />} 
+        />
 
         <Route path="*" element={<HomePage />} />
       </Routes>
