@@ -1,7 +1,7 @@
 [
   {
     "id": 14,
-    "type": "doces",
+    "category": "doces",
     "name": "Mel Orgânico 500g",
     "price": 12.50,
     "stock": 50,
@@ -11,7 +11,7 @@
   },
   {
     "id": 22,
-    "type": "padaria",
+    "category": "padaria",
     "name": "Pão Artesanal",
     "price": 8.75,
     "stock": 15,
@@ -21,7 +21,7 @@
   },
   {
     "id": 38,
-    "type": "outros",
+    "category": "outros",
     "name": "Caixa de Chás Sortidos",
     "price": 25.00,
     "stock": 30,
@@ -31,7 +31,7 @@
   },
   {
     "id": 57,
-    "type": "doces",
+    "category": "doces",
     "name": "Geleia Caseira de Morango",
     "price": 9.99,
     "stock": 25,
@@ -41,7 +41,7 @@
   },
   {
     "id": 64,
-    "type": "",
+    "category": "",
     "name": "Tábua de Corte de Madeira de Oliveira",
     "price": 45.00,
     "stock": 10,
@@ -51,7 +51,7 @@
   },
   {
     "id": 68,
-    "type": "alimentos",
+    "category": "alimentos",
     "name": "Azeite de Pimenta Picante",
     "price": 15.00,
     "stock": 40,
@@ -61,7 +61,7 @@
   },
   {
     "id": 73,
-    "type": "",
+    "category": "",
     "name": "Grãos de Café Gourmet 250g",
     "price": 18.25,
     "stock": 35,
@@ -71,7 +71,7 @@
   },
   {
     "id": 74,
-    "type": "padaria",
+    "category": "padaria",
     "name": "Pão Integral Fatiado 500g",
     "price": 7.50,
     "stock": 20,
@@ -81,7 +81,7 @@
   },
   {
     "id": 75,
-    "type": "hortifrutis",
+    "category": "hortifrutis",
     "name": "Maçã Fuji 1kg",
     "price": 6.30,
     "stock": 50,
@@ -91,7 +91,7 @@
   },
   {
     "id": 76,
-    "type": "laticinios",
+    "category": "laticinios",
     "name": "Queijo Minas Frescal 400g",
     "price": 14.90,
     "stock": 25,
@@ -101,7 +101,7 @@
   },
   {
     "id": 77,
-    "type": "congelados",
+    "category": "congelados",
     "name": "Pizza Congelada Calabresa 460g",
     "price": 19.80,
     "stock": 40,
@@ -111,7 +111,7 @@
   },
   {
     "id": 78,
-    "type": "doces",
+    "category": "doces",
     "name": "Bolo de Chocolate com Recheio 350g",
     "price": 11.00,
     "stock": 15,
@@ -121,7 +121,7 @@
   },
   {
     "id": 79,
-    "type": "bebidas",
+    "category": "bebidas",
     "name": "Suco Natural de Laranja 1L",
     "price": 9.90,
     "stock": 30,
@@ -131,7 +131,7 @@
   },
   {
     "id": 80,
-    "type": "alimentos",
+    "category": "alimentos",
     "name": "Arroz Integral 1kg",
     "price": 7.20,
     "stock": 45,
@@ -141,7 +141,7 @@
   },
   {
     "id": 81,
-    "type": "doces",
+    "category": "doces",
     "name": "Brigadeiro Gourmet 100g",
     "price": 5.50,
     "stock": 60,
@@ -151,7 +151,7 @@
   },
   {
     "id": 82,
-    "type": "outros",
+    "category": "outros",
     "name": "Saco de Carvão Vegetal 2kg",
     "price": 15.00,
     "stock": 20,
@@ -161,7 +161,7 @@
   },
   {
     "id": 83,
-    "type": "congelados",
+    "category": "congelados",
     "name": "Hambúrguer de Picanha Congelado 2x150g",
     "price": 17.90,
     "stock": 25,
@@ -171,7 +171,7 @@
   },
   {
     "id": 84,
-    "type": "laticinios",
+    "category": "laticinios",
     "name": "Iogurte Natural Integral 170g",
     "price": 3.80,
     "stock": 80,
@@ -181,7 +181,7 @@
   },
   {
     "id": 85,
-    "type": "alimentos",
+    "category": "alimentos",
     "name": "Feijão Carioca 1kg",
     "price": 6.80,
     "stock": 60,
@@ -191,7 +191,7 @@
   },
   {
     "id": 86,
-    "type": "padaria",
+    "category": "padaria",
     "name": "Croissant de Presunto e Queijo",
     "price": 5.20,
     "stock": 40,
@@ -201,7 +201,7 @@
   },
   {
     "id": 87,
-    "type": "hortifrutis",
+    "category": "hortifrutis",
     "name": "Banana Prata 1kg",
     "price": 4.90,
     "stock": 100,
@@ -211,7 +211,7 @@
   },
   {
     "id": 88,
-    "type": "bebidas",
+    "category": "bebidas",
     "name": "Chá Verde com Limão 1L",
     "price": 6.50,
     "stock": 35,
@@ -221,7 +221,7 @@
   },
   {
     "id": 89,
-    "type": "doces",
+    "category": "doces",
     "name": "Paçoca Rolha 10 Unidades",
     "price": 4.00,
     "stock": 70,
@@ -231,7 +231,7 @@
   },
   {
     "id": 90,
-    "type": "laticinios",
+    "category": "laticinios",
     "name": "Manteiga com Sal 200g",
     "price": 9.70,
     "stock": 30,
@@ -241,7 +241,7 @@
   },
   {
     "id": 91,
-    "type": "congelados",
+    "category": "congelados",
     "name": "Lasanha Bolonhesa Congelada 600g",
     "price": 14.90,
     "stock": 20,
@@ -251,7 +251,7 @@
   },
   {
     "id": 92,
-    "type": "outros",
+    "category": "outros",
     "name": "Filtro de Papel para Café 103",
     "price": 3.50,
     "stock": 100,

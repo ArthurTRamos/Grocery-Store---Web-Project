@@ -1,9 +1,50 @@
-import React from "react";
-import Botao from "../../utility_elements/botao";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import "./CreateProduct.css";
 import InputImage from "../../utility_elements/input_image";
+import CategorySelection from "../../utility_elements/CategorySelection";
 
-const CreateProduct = () => {
+
+const CreateProduct = ({products, setProducts}) => {
+
+  const[inputProductData, setInputProductData] = useState(
+    {
+      id: -1,
+      category: "",
+      name: "",
+      price: 0,
+      stock: 0,
+      sold: 0,
+      image: "",
+      description: ""
+    }
+  );
+  
+  const handleInputDataChange = (e) => {
+  
+    const {name, value} = e.target;
+
+    setInputProductData((prev) => ({
+      ...prev,
+      [name]: value,
+
+    }));
+  }
+
+  const handleProductCreation = (e) => {
+
+    e.preventDefault();
+    inputProductData.id = uuidv4();
+
+    const updateProductData = [...products, inputProductData];
+    setProducts(updateProductData);
+
+    alert("Adicionou Usuário");
+    console.log({inputProductData});
+
+  }
+
+
   return (
     <>
       <div class="container">
@@ -17,23 +58,7 @@ const CreateProduct = () => {
             <h3>Dados do Produto</h3>
 
             <div class="form-row">
-              <div class="form-group">
-                <label htmlFor="categoria_produto">Categoria do Produto</label>
-                <select
-                  className="select_sek"
-                  id="categoria_produto"
-                  name="categoria_produto"
-                  required
-                >
-                  <option value="">Selecione...</option>
-                  <option value="fruta">Frutas</option>
-                  <option value="verdura">Verduras</option>
-                  <option value="cereal">Cereais</option>
-                  <option value="padaria">Padaria</option>
-                  <option value="n_perecivel">Não perecíveis</option>
-                  <option value="outro">Outros</option>
-                </select>
-              </div>
+              <CategorySelection value={inputProductData.category} onChangeCategory={handleInputDataChange}/>
             </div>
 
             <div class="form-row">
@@ -43,8 +68,10 @@ const CreateProduct = () => {
                   type="text"
                   className="input_sek"
                   id="nome_produto"
-                  name="nome_produto"
+                  name="name"
                   placeholder="Digite o nome do produto"
+                  value={inputProductData.name}
+                  onChange={handleInputDataChange}
                   required
                 />
               </div>
@@ -55,10 +82,12 @@ const CreateProduct = () => {
                   type="number"
                   className="input_sek"
                   id="preco"
-                  name="preco"
+                  name="price"
                   min="0"
                   step="0.01"
                   placeholder="Digite o preço do produto"
+                  value={inputProductData.price}
+                  onChange={handleInputDataChange}
                   required
                 />
               </div>
@@ -71,10 +100,12 @@ const CreateProduct = () => {
                   type="number"
                   className="input_sek"
                   id="qtd_estoque"
-                  name="qtd_estoque"
+                  name="stock"
                   min="0"
                   step="1"
                   placeholder="Digite a quantidade em estoque"
+                  value={inputProductData.stock}
+                  onChange={handleInputDataChange}
                   required
                 />
               </div>
@@ -85,10 +116,12 @@ const CreateProduct = () => {
                   type="number"
                   className="input_sek"
                   id="qtd_vendida"
-                  name="qtd_vendida"
+                  name="sold"
                   min="0"
                   step="1"
                   placeholder="Digite a quantidade vendida"
+                  value={inputProductData.sold}
+                  onChange={handleInputDataChange}
                   required
                 />
               </div>
@@ -98,23 +131,29 @@ const CreateProduct = () => {
               <div class="form-group">
                 <label htmlFor="descricao">Descrição do produto</label>
                 <textarea
-                  name="descricao"
+                  name="description"
                   className="textarea_sek"
                   id="descricao"
                   rows="4"
                   placeholder="Descreva o produto, suas características e benefícios..."
+                  value={inputProductData.description}
+                  onChange={handleInputDataChange}
                 ></textarea>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <InputImage />
+                <InputImage value={inputProductData.image} onChangeImage={handleInputDataChange}/>
               </div>
             </div>
           </div>
 
-          <Botao texto="Criar Usuário" />
+          <div className="btn-container">
+              <button type="submit" className="btn" onClick={handleProductCreation}>
+                  <span>Criar Produto</span>
+              </button>
+          </div>
         </form>
       </div>
     </>
