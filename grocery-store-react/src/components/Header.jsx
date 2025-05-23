@@ -37,7 +37,7 @@ function Header({ loggedUser, cartItemNumber }) {
               <Link to="/recipe">Receitas</Link>
             </li>
             <li>
-              <Link to="/section">Seções</Link>
+              <Link to="/section" state={{sectionData: "todos"}}>Seções</Link>
             </li>
             <li>
               <Link to="/search">Busca</Link>
