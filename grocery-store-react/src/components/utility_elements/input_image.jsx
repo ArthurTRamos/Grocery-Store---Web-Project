@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+
 import "./input_image.css";
 
 const Input_image = ({handleSave, field, initialValue}) => {
@@ -26,19 +26,10 @@ const Input_image = ({handleSave, field, initialValue}) => {
                 type="file"
                 id="imagem"
                 accept="image/*"
-                onChange={handleImagemChange}
+                value={value}
+                name='image'
+                onChange={onChangeImage}
             />
-
-            {previewImage && (
-                <div style={{ marginTop: '10px' }}>
-                <p>Pré-visualização:</p>
-                <img
-                    src={previewImage}
-                    alt="Prévia"
-                    style={{ maxWidth: '500px', borderRadius: '8px' }}
-                />
-                </div>
-            )}
         </>
     )
 }

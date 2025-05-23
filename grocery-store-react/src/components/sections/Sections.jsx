@@ -23,7 +23,7 @@ const Sections = ({products}) => {
 
     const filtered_products = activeSection === "todos"
     ? products 
-    : products.filter(product => product.type === activeSection);
+    : products.filter(product => product.category === activeSection);
 
     return (
         <>
