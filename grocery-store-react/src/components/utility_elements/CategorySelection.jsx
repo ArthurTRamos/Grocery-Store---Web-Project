@@ -7,7 +7,7 @@ const CategorySelection = ({value, onChangeCategory}) => {
 
         <>
             <div className="category-container">
-                <label htmlFor="categoria"></label>
+                <label htmlFor="categoria">Categoria</label>
                 <select name="category" id="categoria" value={value} onChange={onChangeCategory} className='select_sek_category' required>
                     <option value="">Selecione...</option>
                     <option value="alimentos">Alimentos</option>

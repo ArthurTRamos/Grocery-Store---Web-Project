@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./input_image.css";
 
-const Input_image = ({handleSave, field, initialValue}) => {
+const Input_image = ({handleSave, field}) => {
 
     const[imagem, setImagem] = useState(null)
     const[previewImage, setPreviewImage] = useState(null)

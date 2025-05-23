@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import "./CreateProduct.css";
-import InputImage from "../../utility_elements/input_image";
+import SekInputImage from "../../utility_elements/SekInputImage";
 import CategorySelection from "../../utility_elements/CategorySelection";
 
 
@@ -13,7 +13,7 @@ const CreateProduct = ({products, setProducts}) => {
       category: "",
       name: "",
       price: 0,
-      stock: 0,
+      stock: 0, 
       sold: 0,
       image: "",
       description: ""
@@ -31,15 +31,31 @@ const CreateProduct = ({products, setProducts}) => {
     }));
   }
 
+  const handleInputImage = (field, url) => {
+
+    setInputProductData((prev) => ({
+      ...prev,
+      [field]: url,
+
+    }));
+  }
+
   const handleProductCreation = (e) => {
 
     e.preventDefault();
     inputProductData.id = uuidv4();
 
-    const updateProductData = [...products, inputProductData];
+    const newProduct = {
+      ...inputProductData,
+      price: Number(inputProductData.price) || 0,
+      stock: Number(inputProductData.stock) || 0,
+      sold: Number(inputProductData.sold) || 0,
+    };
+
+    const updateProductData = [...products, newProduct];
     setProducts(updateProductData);
 
-    alert("Adicionou Usuário");
+    alert("Adicionou Produto");
     console.log({inputProductData});
 
   }
@@ -144,7 +160,7 @@ const CreateProduct = ({products, setProducts}) => {
 
             <div class="form-row">
               <div class="form-group">
-                <InputImage value={inputProductData.image} onChangeImage={handleInputDataChange}/>
+                <SekInputImage onChangeInputImage ={handleInputImage}/>
               </div>
             </div>
           </div>
