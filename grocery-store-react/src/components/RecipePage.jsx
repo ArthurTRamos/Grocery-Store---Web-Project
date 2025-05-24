@@ -3,12 +3,15 @@ import { ChefHat } from "lucide-react"
 import "./RecipePage.css"
 import RecipeDisplay from "./RecipeDisplay"
 
+import localAPIKey from  "../data/key.json"
+
 function RecipePage({products}) {
   const [occasion, setOccasion] = useState("")
   const [recipe, setRecipe] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [productsNameQuantity, setProductsNameQuantity] = useState("")
+  const [apiKey, setApiKey] = useState("")
 
   const options = ["Almoço de Domingo", "Jantar Romântico", "Aniversário", "Comida Rápida", "Lanche da Tarde"]
 
@@ -19,6 +22,15 @@ function RecipePage({products}) {
     })
     setProductsNameQuantity(productsNameQuantity)
   }, [products])
+
+  useEffect(() => {
+    const getKeyAPI = async () => {
+      const data = await Promise.resolve(localAPIKey)
+      setApiKey(data[0]["key"])
+    }
+
+    getKeyAPI()
+  }, [])
 
 
   const parseRecipeFromText = (text) => {
@@ -77,10 +89,11 @@ function RecipePage({products}) {
     setRecipe(null)
 
     try {
+      console.log(apiKey)
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          Authorization: `Bearer `,
+          Authorization: `Bearer ` + apiKey,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -104,9 +117,12 @@ function RecipePage({products}) {
             [passo 2]
             [etc...]
 
-            Não insera mais nada após a última instrução de preparo
+            Não insera mais nada após a última instrução de preparação.
             
-            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *) (somente coloque texto tradicional).`,
+            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *) (somente coloque texto tradicional).
+            
+            Gere sempre receitas diferentes das já geradas
+            `,
             },
           ],
         }),
