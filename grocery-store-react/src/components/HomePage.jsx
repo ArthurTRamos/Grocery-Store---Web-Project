@@ -33,7 +33,7 @@ function HomePage({offers, handleOfferChange}) {
           <h2>Nossos Produtos em Destaque</h2>
 
           <div class="product-grid">
-          <Link to="/section" className="product-section">
+          <Link to="/section" state={{sectionData: "hortifrutis"}} className="product-section">
             <div className="product-card">
               <img
                 src="https://cdn.samaisvarejo.com.br/portal/principal/arquivos/imagens/20220513_hortifruti_materia.jpg"
@@ -51,7 +51,7 @@ function HomePage({offers, handleOfferChange}) {
             </div>
             </Link>
 
-            <Link to="/section" className="product-section">
+            <Link to="/section" state={{sectionData: "congelados"}} className="product-section">
             <div class="product-card">
               <img
                 src="https://www.assai.com.br/sites/default/files/whatsapp_image_2021-10-21_at_12.27.38_0_0.jpg"
@@ -69,7 +69,7 @@ function HomePage({offers, handleOfferChange}) {
             </div>
             </Link>
 
-            <Link to="/section" className="product-section">
+            <Link to="/section" state={{sectionData: "padaria"}} className="product-section">
             <div class="product-card">
               <img
                 src="https://i.pinimg.com/originals/c7/34/53/c73453745ad3c70f737b0dc9bbc1dfa7.jpg"
@@ -87,7 +87,7 @@ function HomePage({offers, handleOfferChange}) {
             </div>
             </Link>
 
-            <Link to="/section" className="product-section">
+            <Link to="/section" state={{sectionData: "todos"}} className="product-section">
             <div class="product-card">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO6MqnvZxF2iFZdKn8olG2mWD7d5R0zhgLZA&s"

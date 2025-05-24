@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import SearchComponent from '../search/SearchComponent';
-import "./Sections.css"
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import "./Sections.css";
 
 const Sections = ({products}) => {
 
-    const [activeSection, setActiveSection] = useState("todos");
+    const location = useLocation();
+    const [activeSection, setActiveSection] = useState(location.state?.sectionData);
 
     const sections = [
         {id: "todos", name: "Todos os produtos"},
@@ -41,8 +42,6 @@ const Sections = ({products}) => {
                     {
                         filtered_products.length > 0 ? (
                             filtered_products.map(item => (
-                                // <Link to="/product">
-                                // </Link>
                                 <SearchComponent product={item}/>
                             ))
                         ):(
