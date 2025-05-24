@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
+import localOffers from "../data/offers.json";
+
 function HomePage({offers, handleOfferChange}) {  
   return (
     <div>
@@ -110,11 +112,13 @@ function HomePage({offers, handleOfferChange}) {
             {offers.map(offer => (
               <Link to="/product" state={{productData: offer}} className="product-link">
                 <div class="offer-card">
+                  <div class="discount-tag">{offer.discount}%</div>
                   <img
                     src={offer.image}
                     alt="Produto em Destaque"
                   ></img>
                   <h3>{offer.name}</h3>
+                  <p class="original-price">R$ {offer.originalPrice}</p>
                   <p class="offer-price">R$ {offer.offerPrice}</p>
                   <p class="offer-description">
                     {offer.description}
