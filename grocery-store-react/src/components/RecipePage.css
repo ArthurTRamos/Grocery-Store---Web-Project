@@ -15,9 +15,11 @@
   }
   
   /* Header */
-  .header {
+  .headerRecipe {
     text-align: center;
     margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
   }
   
   .main-title {
@@ -108,9 +110,9 @@
   }
   
   .occasion-button.selected {
-    border-color: #f97316;
+    border-color: #006400;
     background-color: #fef3e2;
-    color: #c2410c;
+    color: #006400;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
   }
@@ -137,7 +139,7 @@
   /* Generate Button */
   .generate-button {
     width: 100%;
-    background-color: #f97316;
+    background-color: #006400;
     color: white;
     font-weight: 600;
     padding: 0.875rem 1rem;

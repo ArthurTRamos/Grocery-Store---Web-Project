@@ -1,0 +1,294 @@
+/* Container principal da receita */
+.displayRecipe-box {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .displayRecipe-box:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Título da receita */
+  .titleRecipe {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 3px solid #f97316;
+    padding-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  
+  /* Descrição da receita */
+  .descriptionRecipe {
+    color: #6b7280;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-style: italic;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #f97316;
+  }
+  
+  /* Container dos ingredientes */
+  .ingredientesRecipe-div {
+    margin-bottom: 2.5rem;
+    background-color: #fef3e2;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #fed7aa;
+  }
+  
+  /* Título da seção de ingredientes */
+  .ingredientsTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .ingredientsTitle::before {
+    content: "🥘";
+    font-size: 1.25rem;
+  }
+  
+  /* Lista de ingredientes */
+  .ingredientesRecipe-div ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .ingredientesRecipe-div ul li {
+    background-color: white;
+    margin-bottom: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #f97316;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .ingredientesRecipe-div ul li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ingredientesRecipe-div ul li::before {
+    content: "•";
+    color: #f97316;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: absolute;
+    left: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Container das instruções */
+  .instructionsRecipe {
+    background-color: #f0f9ff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #bae6fd;
+  }
+  
+  /* Título da seção de instruções */
+  .instructionsTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0c4a6e;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .instructionsTitle::before {
+    content: "👨‍🍳";
+    font-size: 1.25rem;
+  }
+  
+  /* Lista de instruções */
+  .instructionsRecipe ol {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    counter-reset: step-counter;
+  }
+  
+  .instructionsRecipe ol li {
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 1.25rem 1rem 1.25rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+    counter-increment: step-counter;
+    line-height: 1.6;
+    color: #374151;
+    transition: all 0.2s ease;
+  }
+  
+  .instructionsRecipe ol li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .instructionsRecipe ol li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .displayRecipe-box {
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+  
+    .titleRecipe {
+      font-size: 1.875rem;
+    }
+  
+    .descriptionRecipe {
+      font-size: 1rem;
+      padding: 0.75rem;
+    }
+  
+    .ingredientesRecipe-div,
+    .instructionsRecipe {
+      padding: 1rem;
+    }
+  
+    .ingredientsTitle,
+    .instructionsTitle {
+      font-size: 1.25rem;
+    }
+  
+    .ingredientesRecipe-div ul li,
+    .instructionsRecipe ol li {
+      padding: 0.75rem;
+    }
+  
+    .instructionsRecipe ol li {
+      padding-left: 2.5rem;
+    }
+  
+    .instructionsRecipe ol li::before {
+      width: 1.5rem;
+      height: 1.5rem;
+      left: 0.5rem;
+      font-size: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .displayRecipe-box {
+      padding: 1rem;
+    }
+  
+    .titleRecipe {
+      font-size: 1.5rem;
+    }
+  
+    .ingredientesRecipe-div ul li:hover,
+    .instructionsRecipe ol li:hover {
+      transform: none;
+    }
+  }
+  
+  /* Animações */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .displayRecipe-box {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .ingredientesRecipe-div ul li {
+    animation: fadeInUp 0.4s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  .instructionsRecipe ol li {
+    animation: fadeInUp 0.4s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  /* Delay progressivo para as animações */
+  .ingredientesRecipe-div ul li:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .ingredientesRecipe-div ul li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .ingredientesRecipe-div ul li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .ingredientesRecipe-div ul li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .ingredientesRecipe-div ul li:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  
+  .instructionsRecipe ol li:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .instructionsRecipe ol li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .instructionsRecipe ol li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .instructionsRecipe ol li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .instructionsRecipe ol li:nth-child(5) {
+    animation-delay: 0.5s;
+  }  

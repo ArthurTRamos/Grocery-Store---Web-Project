@@ -4,7 +4,7 @@ import LabeledEditableContainer from "./utility_elements/LabeledEditableContaine
 import { useLocation } from "react-router-dom";
 import InputImage from "./utility_elements/input_image";
 
-function ProductPage({loggedUser, handleOfferChange, setCartData}) {
+function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
 
@@ -24,9 +24,14 @@ function ProductPage({loggedUser, handleOfferChange, setCartData}) {
       [field]: newValue,
     };
 
-    setProduct(updatedProduct);
+    const updatedProductsData = productsData.map((prod) => {
+      if (prod.id === product.id) {
+        return updatedProduct;
+      }
+    });
 
-    handleOfferChange(updatedProduct);
+    setProduct(updatedProduct);
+    setProductData(updatedProductsData);
   };
   
   return (
