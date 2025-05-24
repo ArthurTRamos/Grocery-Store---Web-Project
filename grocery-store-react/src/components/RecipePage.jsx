@@ -80,7 +80,7 @@ function RecipePage({products}) {
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          Authorization: `Bearer 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`,
+          Authorization: `Bearer `,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
