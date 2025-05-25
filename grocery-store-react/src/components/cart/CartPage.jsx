@@ -92,6 +92,7 @@ function CartPage({
         return {
           ...product,
           stock: product.stock - cartItem.amount,
+          sold: product.sold + cartItem.amount,
         };
       }
       return product;

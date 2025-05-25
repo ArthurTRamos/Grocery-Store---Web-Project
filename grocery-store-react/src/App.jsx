@@ -31,24 +31,7 @@ import localUsersData from "./data/users.json";
 
 function App() {
   // Carrinho de compras
-  const [cartData, setCartData] = useState([
-    {
-      id: 14,
-      amount: 2,
-    },
-    {
-      id: 22,
-      amount: 1,
-    },
-    {
-      id: 38,
-      amount: 3,
-    },
-    {
-      id: 57,
-      amount: 1,
-    },
-  ]);
+  const [cartData, setCartData] = useState([]);
 
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
@@ -94,16 +77,6 @@ function App() {
 
   }, []);
 
-  /*const handleOfferChange =  (newOffer) => {
-    const indexToChange = offers.findIndex((offer) => offer.id === newOffer.id);
-
-    setOffers((prevOffers) => {
-      const updatedOffers = [...prevOffers];
-      updatedOffers[indexToChange] = newOffer;
-      return updatedOffers;
-    });
-  }*/
-
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...users, newUser];
 
@@ -136,7 +109,7 @@ function App() {
           path="/search"
           element={<UserSearch productsData={productData} />}
         />
-        <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData}/>} />
+        <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />
         <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route
             index

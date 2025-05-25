@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./ProductPage.css";
 import LabeledEditableContainer from "./utility_elements/LabeledEditableContainer";
 import { useLocation } from "react-router-dom";
 import InputImage from "./utility_elements/input_image";
 
-function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
+function ProductPage({loggedUser, productsData, setProductData, setCartData, cartData}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
+  const [allowBuyProduct, setAllowBuyProduct] = useState(true)
 
   let typeAccount;
   if(loggedUser === undefined) {
@@ -15,8 +16,30 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
     typeAccount = loggedUser.admin;
   }
 
+  useEffect(() => {
+    const initialCondition = () => {
+      const itemFound = cartData.findIndex((item) => item.id === product.id)
+  
+      if((itemFound !== -1 && product.stock === cartData[itemFound].amount) || (product.stock === 0))
+        setAllowBuyProduct(true)
+      else
+        setAllowBuyProduct(false)
+    }
+
+    initialCondition()
+
+  }, [])
+
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
+
+    if(field === "price" || field === "stock") {
+      newValue = parseFloat(newValue);
+      if (isNaN(newValue)) {
+        alert("Por favor, insira um número válido.");
+        return;
+      }
+    }
 
     // Criar o produto atualizado
     const updatedProduct = {
@@ -27,12 +50,45 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
     const updatedProductsData = productsData.map((prod) => {
       if (prod.id === product.id) {
         return updatedProduct;
+      } else {
+        return prod;
       }
     });
+
+    console.log(updatedProductsData)
 
     setProduct(updatedProduct);
     setProductData(updatedProductsData);
   };
+
+  const handleBuyProduct = () => {
+    const itemFound = cartData.findIndex((item) => item.id === product.id)
+    
+    if(itemFound !== -1) {
+      if(product.stock !== cartData[itemFound].amount) {
+        if(product.stock === cartData[itemFound].amount + 1)
+          setAllowBuyProduct(true)
+        cartData[itemFound].amount++
+        setCartData(cartData)
+      }
+      else
+        setAllowBuyProduct(true)
+
+      console.log(allowBuyProduct)
+      console.log(product.stock)
+    }
+    
+    else {
+      setCartData((prevCartData) => [
+        ...prevCartData,
+        {
+          id: product.id,
+          amount: 1,
+        },
+      ]);
+    }
+
+  }
   
   return (
     <div>
@@ -110,16 +166,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
 
             <div className="quantity-sold">
               <div>
-                {typeAccount ? (
-                  <LabeledEditableContainer
-                    displayName={"Quantidade Vendida"}
-                    field={"sold"}
-                    handleSave={handleSave}
-                    initialValue={product.sold}
-                  />
-                ) : (
-                  <h3>Quantidade Vendida: {product.sold}</h3>
-                )}
+                <h3>Quantidade Vendida: {product.sold}</h3>
               </div>
               <div>
                 {typeAccount ? (
@@ -134,20 +181,12 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData}) {
                 )}
               </div>
             </div>
-
+            
             <button 
               type="button" 
-              class="add-to-cart"
-              onClick={() => {
-                setCartData((prevCartData) => [
-                  ...prevCartData,
-                  {
-                    name: product.name,
-                    price: product.price,
-                    quantity: 1,
-                  },
-                ]);
-              }}
+              className={(product.stock > 0 && !allowBuyProduct) ? "add-to-cart-allow" : "add-to-cart-deny"}
+              onClick={handleBuyProduct}
+              disabled={allowBuyProduct}
               >
               Adicionar ao Carrinho
             </button>

@@ -233,7 +233,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     <label htmlFor="confirmar-senha">Número do Celular</label>
                     <input
                       id="confirmar-senha" 
-                      type="text"
+                      type="tel"
                       name="cel"
                       value={inputInfoRegister.cel}
                       onChange={handleInputDataRegister}

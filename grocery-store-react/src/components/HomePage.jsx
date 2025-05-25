@@ -2,6 +2,12 @@ import React, {useState, useEffect} from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
+import HomeImage from "../data/homeImage.jpeg";
+import FruitImage from "../data/fruitImage.jpg";
+import MeatImage from "../data/meatImage.jpg";
+import BakeryImage from "../data/breadImage.jpg";
+import GeneralImage from "../data/generalImage.jpeg";
+
 function HomePage({productData}) {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [twoRandomProducts, setTwoRandomProducts] = useState([]);
@@ -44,7 +50,7 @@ function HomePage({productData}) {
           </div>
           <div className="hero-image">
             <img
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800"
+              src={HomeImage}
               alt="Produtos do mercado"
             ></img>
           </div>
@@ -57,7 +63,7 @@ function HomePage({productData}) {
           <Link to="/section" state={{sectionData: "hortifrutis"}} className="product-section">
             <div className="product-card">
               <img
-                src="https://cdn.samaisvarejo.com.br/portal/principal/arquivos/imagens/20220513_hortifruti_materia.jpg"
+                src={FruitImage}
                 alt="Frutas e Legumes Frescos"
               ></img>
               <h3>Frutas e Legumes Frescos</h3>
@@ -75,7 +81,7 @@ function HomePage({productData}) {
             <Link to="/section" state={{sectionData: "congelados"}} className="product-section">
             <div className="product-card">
               <img
-                src="https://www.assai.com.br/sites/default/files/whatsapp_image_2021-10-21_at_12.27.38_0_0.jpg"
+                src={MeatImage}
                 alt="Açougue"
               ></img>
               <h3>Carnes de Qualidade</h3>
@@ -93,7 +99,7 @@ function HomePage({productData}) {
             <Link to="/section" state={{sectionData: "padaria"}} className="product-section">
             <div className="product-card">
               <img
-                src="https://i.pinimg.com/originals/c7/34/53/c73453745ad3c70f737b0dc9bbc1dfa7.jpg"
+                src={BakeryImage}
                 alt="Padaria"
               ></img>
               <h3>Padaria Artesanal</h3>
@@ -111,7 +117,7 @@ function HomePage({productData}) {
             <Link to="/section" state={{sectionData: "todos"}} className="product-section">
             <div className="product-card">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO6MqnvZxF2iFZdKn8olG2mWD7d5R0zhgLZA&s"
+                src={GeneralImage}
                 alt="Produtos em geral"
               ></img>
               <h3>Produtos em Geral</h3>
@@ -137,7 +143,7 @@ function HomePage({productData}) {
                     alt="Produto em Destaque"
                   ></img>
                   <h3>{product.name}</h3>
-                  <p className="offer-price">R$ {product.price}</p>
+                  <p className="offer-price">R$ {product.price.toFixed(2)}</p>
                   <p className="offer-description">
                     {product.description}
                   </p>
