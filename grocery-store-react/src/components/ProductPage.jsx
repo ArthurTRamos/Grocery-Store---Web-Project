@@ -157,10 +157,10 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
                   displayName={"Preço do Produto"}
                   field={"price"}
                   handleSave={handleSave}
-                  initialValue={product.price}
+                  initialValue={product.price.toFixed(2)}
                 />
               ) : (
-                <h3>Preço: R${product.price}</h3>
+                <h3>Preço: R${product.price.toFixed(2)}</h3>
               )}
             </div>
 

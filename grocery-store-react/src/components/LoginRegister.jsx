@@ -127,6 +127,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     inputInfoRegister.id = uuidv4();
 
     onSaveRegister(inputInfoRegister);
+
+    alert("Usuário Cadastrado com sucesso!");
     onSaveLogin(inputInfoRegister);
     navigate("/");
   };
