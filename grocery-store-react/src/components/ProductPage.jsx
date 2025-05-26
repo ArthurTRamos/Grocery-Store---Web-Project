@@ -28,7 +28,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
 
     initialCondition()
 
-  }, [])
+  }, [], [product])
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);

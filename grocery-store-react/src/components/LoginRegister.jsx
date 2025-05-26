@@ -108,6 +108,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     console.log({ user });
 
     if(user) {
+      console.log("logando legal")
+      console.log(user)
       onSaveLogin(user);
       navigate("/");
     }
@@ -129,6 +131,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     onSaveRegister(inputInfoRegister);
 
     alert("Usuário Cadastrado com sucesso!");
+    console.log("cadastrando e logando")
+    console.log(inputInfoRegister);
     onSaveLogin(inputInfoRegister);
     navigate("/");
   };

@@ -1,10 +1,14 @@
+// Página de Geração e Visualização de Receitas
+
 import {useState, useEffect } from "react"
 import { ChefHat } from "lucide-react"
+
 import "./RecipePage.css"
 import RecipeDisplay from "./RecipeDisplay"
 
 import localAPIKey from  "../data/key.json"
 
+// Gera uma receita com base na ocasião selecionada e nos produtos disponíveis
 function RecipePage({products}) {
   const [occasion, setOccasion] = useState("")
   const [recipe, setRecipe] = useState(null)
@@ -23,6 +27,7 @@ function RecipePage({products}) {
     setProductsNameQuantity(productsNameQuantity)
   }, [products])
 
+  // Obtém a chave da API localmente
   useEffect(() => {
     const getKeyAPI = async () => {
       const data = await Promise.resolve(localAPIKey)
@@ -32,7 +37,7 @@ function RecipePage({products}) {
     getKeyAPI()
   }, [])
 
-
+  // Função para parsear o texto da receita
   const parseRecipeFromText = (text) => {
     try {
       const titleMatch = text.match(/(?:título|title|receita):\s*(.+?)(?:\n|$)/i)
@@ -101,8 +106,8 @@ function RecipePage({products}) {
           messages: [
             {
               role: "user",
-              content: `Crie uma receita detalhada para ${occasion}. Considere os seguintes ingredientes disponíveis: 
-              ${productsNameQuantity}. Gere uma única receita
+              content: `Crie uma única receita detalhada para ${occasion}. Considere os seguintes ingredientes disponíveis e suas quantidades: 
+              ${productsNameQuantity}.
             
             Formato da resposta:
             Título: [nome da receita]
@@ -117,11 +122,9 @@ function RecipePage({products}) {
             [passo 2]
             [etc...]
 
-            Não insera mais nada após a última instrução de preparação.
+            Não insira nada após a última instrução de preparação. No título da receita, dê um nome criativo e que se relacione com os alimentos a serem utilizados
             
-            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *) (somente coloque texto tradicional).
-            
-            Gere sempre receitas diferentes das já geradas
+            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *)            
             `,
             },
           ],

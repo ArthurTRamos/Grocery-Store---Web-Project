@@ -3,7 +3,8 @@ import { Outlet, NavLink, Navigate } from "react-router-dom";
 
 import "./UserPage.css";
 
-function UserPage( { loggedUser }) {
+function UserPage({ loggedUser }) {
+  console.log(loggedUser)
   if(!loggedUser) {
     return <Navigate to="/" />;
   }

@@ -24,6 +24,7 @@ function CartPage({
   //Errors
   const [cardError, setCardError] = useState("");
   const [emptyCartError, setEmptyCartError] = useState("");
+  const [avaliableBuy, setAvaliableBuy] = useState(true);
 
   const navigate = useNavigate();
 
@@ -65,7 +66,21 @@ function CartPage({
       setTotal(Math.max(subtotalValue + discountValue, 0));
     };
 
+    const checkStockAvailability = () => {
+      let isAvailable = true;
+      cartData.forEach((cartItem) => {
+        const product = productData.find(
+          (product) => product.id === cartItem.id
+        );
+        if (product && product.stock < cartItem.amount) {
+          isAvailable = false;
+        }
+      });
+      setAvaliableBuy(isAvailable);
+    }
+
     calculateSubtotalDiscount();
+    checkStockAvailability();
     setEmptyCartError("");
   }, [cartData, coupons, productData, selectedCoupon, userCoupons]);
 
@@ -85,6 +100,11 @@ function CartPage({
       return;
     }
     setCardError(""); // Clear error when card is selected
+
+    if(!avaliableBuy) {
+      setEmptyCartError("Alguns produtos não possuem estoque suficiente!");
+      return;
+    }
 
     const updatedProductData = productData.map((product) => {
       const cartItem = cartData.find((item) => item.id === product.id);

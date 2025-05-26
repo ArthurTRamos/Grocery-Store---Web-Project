@@ -77,6 +77,18 @@ function App() {
 
   }, []);
 
+  useEffect(() => {
+    const orderProductsByName = () => {
+      productData.sort((a, b) => {
+        if(a.name < b.name) return -1;
+        if(a.name > b.name) return 1;
+        return 0; 
+      })
+    }
+
+    orderProductsByName()
+}, [productData])
+
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...users, newUser];
 
