@@ -73,7 +73,7 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
       <div className="user-coupons-list">
         <h2>Cupons Disponíveis</h2>
         <div className="non-used-coupons-exhibition-container">
-          {loggedUser.coupons.map((userCoupon, index) => {
+          {loggedUser.coupons.map((userCoupon) => {
             const couponData = coupons.find(
               (coupon) => coupon.couponNumber === userCoupon.couponNumber
             );
@@ -88,7 +88,7 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
         </div>
         <h2>Cupons Usados</h2>
         <div className="used-coupons-exhibition-container">
-          {loggedUser.coupons.map((userCoupon, index) => {
+          {loggedUser.coupons.map((userCoupon) => {
             const couponData = coupons.find(
               (coupon) => coupon.couponNumber === userCoupon.couponNumber
             );

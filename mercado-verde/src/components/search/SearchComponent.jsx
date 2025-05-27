@@ -1,5 +1,4 @@
 import React from 'react';
-import ChangeQtdCart from './ChangeQtdCart';
 import "./SearchComponent.css";
 import { Link } from "react-router-dom";
 

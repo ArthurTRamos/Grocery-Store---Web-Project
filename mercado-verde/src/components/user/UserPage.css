@@ -4,11 +4,6 @@
   box-sizing: border-box; /* Added box-sizing for easier padding/width calculations */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-}
-
 /*
 Container for the entire page (sidebar + main content)
 This is the flex container that lays out its direct children horizontally
@@ -24,6 +19,7 @@ This is the flex container that lays out its direct children horizontally
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
+  width: 100%;
 }
 
 /*
@@ -50,6 +46,7 @@ This is a flex item within .user-page-container
   padding: 2rem; /* Add padding inside the main content area */
   background-color: #fff;
   min-height: 100%; /* Ensure minimum height matches parent */
+  width: 100%;
 }
 
 /*
