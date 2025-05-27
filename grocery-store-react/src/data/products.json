@@ -258,5 +258,335 @@
     "sold": 45,
     "image": "./filtroCafe.jpg",
     "description": "Filtro de papel para coar café, tamanho 103, pacote com 30 unidades."
+  },
+  {
+    "id": 93,
+    "category": "laticinios",
+    "name": "Caixa de Leite Integral 1L",
+    "price": 5.80,
+    "stock": 150,
+    "sold": 25,
+    "image": "./mel.png",
+    "description": "Leite UHT integral de longa duração, fonte de cálcio e vitaminas."
+  },
+  {
+    "id": 94,
+    "category": "alimentos",
+    "name": "Dúzia de Ovos Brancos Grandes",
+    "price": 9.50,
+    "stock": 80,
+    "sold": 15,
+    "image": "./mel.png",
+    "description": "Ovos brancos frescos, tipo grande, ideais para suas receitas."
+  },
+  {
+    "id": 95,
+    "category": "alimentos",
+    "name": "Farinha de Trigo Tipo 1 1kg",
+    "price": 4.99,
+    "stock": 100,
+    "sold": 30,
+    "image": "./mel.png",
+    "description": "Farinha de trigo enriquecida com ferro e ácido fólico, perfeita para pães e bolos."
+  },
+  {
+    "id": 96,
+    "category": "alimentos",
+    "name": "Açúcar Refinado 1kg",
+    "price": 3.75,
+    "stock": 200,
+    "sold": 40,
+    "image": "./mel.png",
+    "description": "Açúcar refinado de alta pureza, ideal para adoçar suas bebidas e receitas."
+  },
+  {
+    "id": 97,
+    "category": "alimentos",
+    "name": "Óleo de Soja 900ml",
+    "price": 7.20,
+    "stock": 120,
+    "sold": 22,
+    "image": "./mel.png",
+    "description": "Óleo de soja refinado, ideal para cozinhar e fritar seus alimentos."
+  },
+  {
+    "id": 98,
+    "category": "alimentos",
+    "name": "Sal Refinado Iodado 1kg",
+    "price": 2.50,
+    "stock": 180,
+    "sold": 35,
+    "image": "./mel.png",
+    "description": "Sal refinado iodado, essencial para temperar suas refeições diárias."
+  },
+  {
+    "id": 99,
+    "category": "alimentos",
+    "name": "Macarrão Espaguete com Ovos 500g",
+    "price": 4.20,
+    "stock": 90,
+    "sold": 18,
+    "image": "./mel.png",
+    "description": "Massa de sêmola com ovos, tipo espaguete, soltinha e saborosa."
+  },
+  {
+    "id": 100,
+    "category": "alimentos",
+    "name": "Molho de Tomate Tradicional 340g",
+    "price": 3.10,
+    "stock": 110,
+    "sold": 28,
+    "image": "./mel.png",
+    "description": "Molho de tomate peneirado tradicional, pronto para usar em suas receitas."
+  },
+  {
+    "id": 101,
+    "category": "alimentos",
+    "name": "Café Torrado e Moído Tradicional 500g",
+    "price": 13.90,
+    "stock": 70,
+    "sold": 12,
+    "image": "./mel.png",
+    "description": "Café torrado e moído de sabor intenso e aroma marcante."
+  },
+  {
+    "id": 102,
+    "category": "alimentos",
+    "name": "Orégano Pacote 10g",
+    "price": 2.80,
+    "stock": 90,
+    "sold": 15,
+    "image": "./mel.png",
+    "description": "Orégano seco de alta qualidade, ideal para pizzas, molhos e temperos em geral."
+  },
+  {
+    "id": 103,
+    "category": "doces",
+    "name": "Barra de Chocolate Meio Amargo 90g (Culinário)",
+    "price": 7.50,
+    "stock": 60,
+    "sold": 10,
+    "image": "./mel.png",
+    "description": "Chocolate meio amargo com 50% cacau, perfeito para sobremesas, ganaches e coberturas."
+  },
+  {
+    "id": 104,
+    "category": "laticinios",
+    "name": "Creme de Leite UHT Leve 200g",
+    "price": 4.30,
+    "stock": 100,
+    "sold": 22,
+    "image": "./mel.png",
+    "description": "Creme de leite UHT com 17% de gordura, ideal para receitas doces e salgadas, mais leveza e sabor."
+  },
+  {
+    "id": 105,
+    "category": "doces",
+    "name": "Leite Condensado Semidesnatado 395g",
+    "price": 6.20,
+    "stock": 120,
+    "sold": 30,
+    "image": "./mel.png",
+    "description": "Leite condensado semidesnatado, consistência cremosa, essencial para brigadeiros, pudins e outras delícias."
+  },
+  {
+    "id": 106,
+    "category": "alimentos",
+    "name": "Fermento em Pó Químico 100g",
+    "price": 3.90,
+    "stock": 75,
+    "sold": 18,
+    "image": "./mel.png",
+    "description": "Fermento químico em pó para bolos e massas, garante crescimento e leveza."
+  },
+  {
+    "id": 107,
+    "category": "doces",
+    "name": "Essência de Baunilha 30ml",
+    "price": 5.10,
+    "stock": 50,
+    "sold": 8,
+    "image": "./mel.png",
+    "description": "Aroma artificial de baunilha, perfeito para adicionar um toque especial em bolos, tortas e cremes."
+  },
+  {
+    "id": 108,
+    "category": "laticinios",
+    "name": "Queijo Parmesão Ralado Pacote 50g",
+    "price": 6.80,
+    "stock": 80,
+    "sold": 25,
+    "image": "./mel.png",
+    "description": "Queijo parmesão ralado de sabor intenso, ideal para finalizar massas e gratinados."
+  },
+  {
+    "id": 109,
+    "category": "alimentos",
+    "name": "Milho Verde em Conserva Drenado Lata 200g",
+    "price": 3.50,
+    "stock": 95,
+    "sold": 19,
+    "image": "./mel.png",
+    "description": "Grãos de milho verde em conserva, cozidos no vapor e prontos para consumo."
+  },
+  {
+    "id": 110,
+    "category": "alimentos",
+    "name": "Páprica Doce em Pó 50g",
+    "price": 4.50,
+    "stock": 70,
+    "sold": 12,
+    "image": "./mel.png",
+    "description": "Páprica doce em pó, ideal para dar cor e sabor suave a pratos diversos."
+  },
+  {
+    "id": 111,
+    "category": "alimentos",
+    "name": "Palmito Pupunha em Conserva Tolete 300g (drenado)",
+    "price": 12.90,
+    "stock": 40,
+    "sold": 8,
+    "image": "./mel.png",
+    "description": "Palmito pupunha em toletes, macio e saboroso, pronto para saladas e recheios."
+  },
+  {
+    "id": 112,
+    "category": "alimentos",
+    "name": "Presunto Cozido Fatiado 200g",
+    "price": 9.80,
+    "stock": 50,
+    "sold": 15,
+    "image": "./mel.png",
+    "description": "Presunto cozido de primeira qualidade, fatiado fininho, perfeito para lanches e tábuas de frios."
+  },
+  {
+    "id": 113,
+    "category": "alimentos",
+    "name": "Linguiça Calabresa Defumada Peça ~300g",
+    "price": 11.50,
+    "stock": 45,
+    "sold": 10,
+    "image": "./mel.png",
+    "description": "Linguiça calabresa defumada, ideal para feijoadas, pizzas e petiscos saborosos."
+  },
+  {
+    "id": 114,
+    "category": "laticinios",
+    "name": "Queijo Mussarela Fatiado Peça 500g",
+    "price": 18.75,
+    "stock": 60,
+    "sold": 20,
+    "image": "./mel.png",
+    "description": "Queijo mussarela de alta qualidade, fatiado, ótimo para sanduíches, pizzas e gratinados."
+  },
+  {
+    "id": 115,
+    "category": "doces",
+    "name": "Chocolate em Pó Solúvel 32% Cacau 200g",
+    "price": 8.20,
+    "stock": 70,
+    "sold": 18,
+    "image": "./mel.png",
+    "description": "Chocolate em pó com 32% de cacau, ideal para bebidas quentes, bolos e sobremesas."
+  },
+  {
+    "id": 116,
+    "category": "laticinios",
+    "name": "Leite em Pó Integral Instantâneo Lata 400g",
+    "price": 15.90,
+    "stock": 80,
+    "sold": 25,
+    "image": "./mel.png",
+    "description": "Leite em pó integral instantâneo, enriquecido com vitaminas, para preparo rápido e nutritivo."
+  },
+  {
+    "id": 117,
+    "category": "laticinios",
+    "name": "Manteiga Extra sem Sal Pote 200g",
+    "price": 10.50,
+    "stock": 35,
+    "sold": 9,
+    "image": "./mel.png",
+    "description": "Manteiga extra cremosa sem sal, perfeita para quem busca o puro sabor da manteiga."
+  },
+  {
+    "id": 118,
+    "category": "laticinios",
+    "name": "Margarina Cremosa com Sal Pote 500g",
+    "price": 7.80,
+    "stock": 90,
+    "sold": 30,
+    "image": "./mel.png",
+    "description": "Margarina cremosa com sal, ideal para passar no pão e usar em receitas culinárias."
+  },
+  {
+    "id": 119,
+    "category": "laticinios",
+    "name": "Requeijão Cremoso Tradicional Copo 200g",
+    "price": 6.90,
+    "stock": 75,
+    "sold": 22,
+    "image": "./mel.png",
+    "description": "Requeijão cremoso tradicional, perfeito para pães, torradas e lanches."
+  },
+  {
+    "id": 120,
+    "category": "alimentos",
+    "name": "Maionese Tradicional Pote 500g",
+    "price": 8.50,
+    "stock": 100,
+    "sold": 28,
+    "image": "./mel.png",
+    "description": "Maionese tradicional cremosa e saborosa, ideal para sanduíches, saladas e molhos."
+  },
+  {
+    "id": 121,
+    "category": "alimentos",
+    "name": "Ketchup Tradicional Frasco 380g",
+    "price": 6.70,
+    "stock": 110,
+    "sold": 32,
+    "image": "./mel.png",
+    "description": "Ketchup tradicional feito com tomates selecionados, perfeito para lanches e petiscos."
+  },
+  {
+    "id": 122,
+    "category": "alimentos",
+    "name": "Óleo de Girassol Refinado 900ml",
+    "price": 9.30,
+    "stock": 65,
+    "sold": 14,
+    "image": "./mel.png",
+    "description": "Óleo de girassol refinado, leve e saudável para preparar suas refeições."
+  },
+  {
+    "id": 123,
+    "category": "alimentos",
+    "name": "Azeite de Oliva Extra Virgem Clássico 500ml",
+    "price": 28.50,
+    "stock": 50,
+    "sold": 11,
+    "image": "./mel.png",
+    "description": "Azeite de oliva extra virgem de acidez baixa, sabor frutado, ideal para saladas e finalizações."
+  },
+  {
+    "id": 124,
+    "category": "alimentos",
+    "name": "Vinagre de Álcool Branco 750ml",
+    "price": 3.20,
+    "stock": 130,
+    "sold": 35,
+    "image": "./mel.png",
+    "description": "Vinagre de álcool claro, ideal para temperar saladas, conservas e limpeza."
+  },
+  {
+    "id": 125,
+    "category": "alimentos",
+    "name": "Vinagre de Vinho Tinto Encorpado 500ml",
+    "price": 5.80,
+    "stock": 60,
+    "sold": 9,
+    "image": "./mel.png",
+    "description": "Vinagre de vinho tinto de sabor marcante, perfeito para molhos e marinadas."
   }
 ]
