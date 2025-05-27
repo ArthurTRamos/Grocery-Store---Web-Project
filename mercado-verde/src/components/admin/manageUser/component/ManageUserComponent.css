@@ -1,0 +1,40 @@
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-button svg {
+    width: 18px;
+    height: 18px;
+    color: #333;
+  }
+  
+  /* Efeito ao passar o mouse */
+  .icon-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Estilos específicos para ações */
+  .icon-button.edit {
+    color: #007bff;
+  }
+  
+  .icon-button.edit:hover {
+    background-color: #cce5ff;
+  }
+  
+  .icon-button.delete {
+    color: #dc3545;
+  }
+  
+  .icon-button.delete:hover {
+    background-color: #f8d7da;
+  }
+  

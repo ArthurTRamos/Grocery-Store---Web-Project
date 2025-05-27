@@ -8,6 +8,7 @@ import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
 import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
 import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
 import AdmLayout from "./components/admin/adm_layout";
+import AdmEditProfile from "./components/admin/manageUser/EditProfile";
 
 import ProductPage from "./components/ProductPage";
 import Header from "./components/Header";
@@ -112,8 +113,9 @@ function App() {
           <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
           <Route
             path="manageUsers"
-            element={<AdmManageUsers users={users} />}
+            element={<AdmManageUsers users={users} setUsers={setUsers} />}
           />
+          <Route path="manageUsers/edit" element={<AdmEditProfile setUsers={setUsers}/>}></Route>
         </Route>
         <Route path="/section" element={<Sections products={productData}/>}/>
         <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />

@@ -52,7 +52,7 @@ const ManageUsers = ({users}) => {
                         </thead>
 
                         {filteredItems.map((user) => (
-                            <ManageUserComponent user={user}/>
+                            <ManageUserComponent individualUser={user}/>
                         ))}
             
                     </table>

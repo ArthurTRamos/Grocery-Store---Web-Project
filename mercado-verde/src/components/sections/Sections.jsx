@@ -64,7 +64,11 @@ const Sections = ({products}) => {
 
                 <div className="choose-section">
                     {sections.map(section => (
-                        <button key={section.id} onClick={() => setActiveSection(section.id)}>
+                        <button 
+                            key={section.id} 
+                            onClick={() => setActiveSection(section.id)}
+                            className={activeSection === section.id ? "button-active" : "button-inactive"}
+                        >
                             {section.name}
                         </button>
                     ))
