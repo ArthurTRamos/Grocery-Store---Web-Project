@@ -336,7 +336,7 @@
     "price": 5.80,
     "stock": 150,
     "sold": 25,
-    "image": "./mel.png",
+    "image": "./aguaMineral.webp",
     "description": "Leite UHT integral de longa duração, fonte de cálcio e vitaminas."
   },
   {
@@ -346,7 +346,7 @@
     "price": 9.50,
     "stock": 80,
     "sold": 15,
-    "image": "./mel.png",
+    "image": "./ovosBrancos.webp",
     "description": "Ovos brancos frescos, tipo grande, ideais para suas receitas."
   },
   {
@@ -356,7 +356,7 @@
     "price": 4.99,
     "stock": 100,
     "sold": 30,
-    "image": "./mel.png",
+    "image": "./farinhaTrigo.webp",
     "description": "Farinha de trigo enriquecida com ferro e ácido fólico, perfeita para pães e bolos."
   },
   {
@@ -366,7 +366,7 @@
     "price": 3.75,
     "stock": 200,
     "sold": 40,
-    "image": "./mel.png",
+    "image": "./acucarRefinado.webp",
     "description": "Açúcar refinado de alta pureza, ideal para adoçar suas bebidas e receitas."
   },
   {
@@ -376,7 +376,7 @@
     "price": 7.20,
     "stock": 120,
     "sold": 22,
-    "image": "./mel.png",
+    "image": "./oleoSoja.jpeg",
     "description": "Óleo de soja refinado, ideal para cozinhar e fritar seus alimentos."
   },
   {
@@ -386,7 +386,7 @@
     "price": 2.50,
     "stock": 180,
     "sold": 35,
-    "image": "./mel.png",
+    "image": "./salRefinado.jpeg",
     "description": "Sal refinado iodado, essencial para temperar suas refeições diárias."
   },
   {
@@ -396,7 +396,7 @@
     "price": 4.20,
     "stock": 90,
     "sold": 18,
-    "image": "./mel.png",
+    "image": "./macarraoPenne.png",
     "description": "Massa de sêmola com ovos, tipo espaguete, soltinha e saborosa."
   },
   {
