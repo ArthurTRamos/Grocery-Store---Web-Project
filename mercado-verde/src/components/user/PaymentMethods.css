@@ -22,7 +22,10 @@
 /* Grid container for payment cards */
 .payment-methods-exhibition-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 500px)
+  ); /* Changed from auto-fill to auto-fit and increased min width */
   gap: 20px;
   width: 100%;
 }
