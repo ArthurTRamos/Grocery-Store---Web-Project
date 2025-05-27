@@ -8,7 +8,7 @@
   min-height: 160px; /* Match add button height */
   display: flex; /* Add flex to ensure content fills height */
   flex-direction: column;
-  width: 100%;
+  min-width: fit-content;
 }
 
 .payment-card-info-content {
