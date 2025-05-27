@@ -19,7 +19,6 @@ import CartPage from "./components/cart/CartPage";
 import UserCoupons from "./components/user/UserCoupons";
 import LoginRegister from "./components/LoginRegister";
 import RecipePage from "./components/RecipePage";
-import UserSearch from "./components/search/Search";
 import Logout from "./components/user/Logout";
 import Sections from "./components/sections/Sections";
 
@@ -117,10 +116,6 @@ function App() {
           />
         </Route>
         <Route path="/section" element={<Sections products={productData}/>}/>
-        <Route
-          path="/search"
-          element={<UserSearch productsData={productData} />}
-        />
         <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />
         <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
           <Route

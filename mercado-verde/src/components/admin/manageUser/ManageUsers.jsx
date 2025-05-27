@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMemo } from "react";
 import ManageUserComponent from './component/ManageUserComponent';
 import "./ManageUsers.css";
 
 const ManageUsers = ({users}) => {
+    const[inputData, setInputData] = useState("");
 
+    const setSearchTerm = (e) => {
+        let value = e.target.value;
+        setInputData(value);
+    }
+
+    const filteredItems = useMemo(() => {
+        let filteredData = users.filter( item => {
+            const match = item.name.toLowerCase().includes(inputData.toLowerCase());
+            return match;
+
+        })
+
+        return filteredData;
+
+    }, [inputData, users]);
 
     return(
         <>
             <div className='manageUsers-container'>
                 <div>
                     <h1>Centro de gerência dos Usuários</h1>
+                </div>
+
+                <div className="search-input">
+
+                    <input type="text"
+                    placeholder='Digite o nome do usuário a ser buscado'
+                    onChange={setSearchTerm}
+                    value={inputData}
+                    />
                 </div>
 
                 <div className='div-table-container'>
@@ -25,7 +51,7 @@ const ManageUsers = ({users}) => {
                             </tr>
                         </thead>
 
-                        {users.map((user) => (
+                        {filteredItems.map((user) => (
                             <ManageUserComponent user={user}/>
                         ))}
             
