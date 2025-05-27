@@ -38,3 +38,34 @@
     border-bottom: 1px solid #ddd;
   }
   
+  /* Container do input de busca */
+.search-input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  
+  /* Estilo do input */
+  .search-input input {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid #c8e6c9;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1);
+  }
+  
+  .search-input input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .search-input input::placeholder {
+    color: #95a5a6;
+    font-style: italic;
+  }
