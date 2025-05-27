@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./ManageUserComponent.css";
 import EditProfile from '../EditProfile';
 
-const ManageUserComponent = ({individualUser}) => {
+const ManageUserComponent = ({individualUser, users, setUsers, loggedUser}) => {
 
 
     // const handleEditClick = () => {
@@ -14,9 +14,14 @@ const ManageUserComponent = ({individualUser}) => {
     //     <EditProfile userToBeEdited={userInfos} setUserToBeEdited={setUserInfos} setUsers={setUsers}/>
     // }
 
-    // const handleDeleteClick = (idUser) => {
-
-    // }
+    const handleDeleteClick = () => {
+        if(individualUser.id === loggedUser.id) {
+            alert("Não pode");
+            return;
+        }
+        const filteredUsers = users.filter(userData => (userData.id !== individualUser.id));
+        setUsers(filteredUsers);
+    }
 
     return (
         <>
@@ -43,15 +48,13 @@ const ManageUserComponent = ({individualUser}) => {
                 
                 <td>
                 <Link to="edit" state={{userToBeEdited: individualUser}}>
-                    <button className="icon-button"
-                        // onClick={() => handleEditClick(individualUser)}
-                    >
+                    <button className="icon-button">
                         <CiEdit/>
                     </button>
                 </Link>
 
                 <button className="icon-button"
-                    // onClick={() => handleDeleteClick(individualUser.id)}
+                    onClick={() => handleDeleteClick()}
                 >
                     <FaTrash/>
                 </button>

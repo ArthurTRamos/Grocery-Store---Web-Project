@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import ManageUserComponent from './component/ManageUserComponent';
 import "./ManageUsers.css";
 
-const ManageUsers = ({users}) => {
+const ManageUsers = ({users, setUsers, loggedUser}) => {
     const[inputData, setInputData] = useState("");
 
     const setSearchTerm = (e) => {
@@ -52,7 +52,7 @@ const ManageUsers = ({users}) => {
                         </thead>
 
                         {filteredItems.map((user) => (
-                            <ManageUserComponent individualUser={user}/>
+                            <ManageUserComponent key={user.id} individualUser={user} users={users} setUsers={setUsers} loggedUser={loggedUser}/>
                         ))}
             
                     </table>

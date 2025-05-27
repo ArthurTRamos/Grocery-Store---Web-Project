@@ -113,7 +113,7 @@ function App() {
           <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
           <Route
             path="manageUsers"
-            element={<AdmManageUsers users={users} setUsers={setUsers} />}
+            element={<AdmManageUsers users={users} setUsers={setUsers} loggedUser={loggedUser}/>}
           />
           <Route path="manageUsers/edit" element={<AdmEditProfile setUsers={setUsers}/>}></Route>
         </Route>
