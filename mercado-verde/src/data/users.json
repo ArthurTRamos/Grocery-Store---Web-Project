@@ -1,6 +1,6 @@
 [
   {
-    "admin": true,
+    "admin": false,
     "id": 1,
     "password": "123456#",
     "name": "Joãozinho da Silva Sauro",
@@ -86,7 +86,7 @@
     ]
   },
   {
-    "admin": false,
+    "admin": true,
     "id": 3,
     "password": "admin",
     "name": "Administrador",

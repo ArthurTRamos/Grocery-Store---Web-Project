@@ -1,93 +1,150 @@
+.content-wrap {
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
 .product {
-  font-family: sans-serif;
-  line-height: 1.5;
-  margin: 0;
-  color: #424242;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 100px;
+  gap: 40px;
+  padding-bottom: 40px;
 }
 
 .product_image {
-  margin-left: 5%;
-  flex-basis: 50%;
-  align-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product_image img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .product_description {
-  margin-right: 3%;
-  flex-basis: 50%;
-  border: 1px solid #eeeeee;
-  padding: 10px 20px 20px 20px;
-  border-radius: 8px; /* Rounded corners */
+  flex: 1;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #eee;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  min-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product_description h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product_description h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 15px;
 }
 
 .product_description p {
+  color: #666;
+  line-height: 1.6;
   text-align: justify;
-}
-
-.product img {
-  /* margin-left: 30px; */
-  border-radius: 10px;
-  height: 600px;
-  width: auto;
-}
-
-.add-to-cart-allow {
-  display: block;
-  width: 100%;
-  margin-top: 20px; /* Separa o botão dos fields */
-  padding: 10px 20px;
-  background-color: #006400;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; /* Muda o mouse quando passar por cima */
-  font-size: 1rem;
-}
-
-.delete-product {
-  display: block;
-  width: 100%;
-  margin-top: 20px; /* Separa o botão dos fields */
-  padding: 10px 20px;
-  background-color: #e60a0a;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; /* Muda o mouse quando passar por cima */
-  font-size: 1rem;
-}
-
-.add-to-cart-allow:hover {
-  background-color: #64dc64; /* Cor do botão no hover */
-}
-
-.add-to-cart-deny {
-  display: block;
-  width: 100%;
-  margin-top: 20px; /* Separa o botão dos fields */
-  padding: 10px 20px;
-  background-color: #424242;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; /* Muda o mouse quando passar por cima */
-  font-size: 1rem;
-}
-
-.add-to-cart-deny:hover {
-  background-color: 424242; /* Cor do botão no hover */
 }
 
 .quantity-sold {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-left: 20px; /* Separa o botão dos fields */
+  gap: 20px;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f8f8;
+  border-radius: 6px;
+}
 
+.quantity-sold h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.add-to-cart-allow {
+  width: 100%;
+  padding: 15px;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-to-cart-allow:hover {
+  background-color: #008000;
+  transform: translateY(-1px);
+}
+
+.add-to-cart-deny {
+  width: 100%;
+  padding: 15px;
+  background-color: #ccc;
+  color: #666;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
+.delete-product {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-product:hover {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 968px) {
+  .product {
+    flex-direction: column;
+  }
+
+  .product_image,
+  .product_description {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrap {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .product_description {
+    padding: 20px;
+  }
+
+  .quantity-sold {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }
