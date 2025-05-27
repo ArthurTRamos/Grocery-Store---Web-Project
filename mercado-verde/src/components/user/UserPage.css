@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Added box-sizing for easier padding/width calculations */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/*
+Container for the entire page (sidebar + main content)
+This is the flex container that lays out its direct children horizontally
+*/
+.user-page-container {
+  display: flex;
+  flex-direction: row; /* Arrange children (sidebar and main content) in a row */
+  align-items: stretch; /* Change from flex-start to stretch */
+  min-height: calc(
+    100vh - 200px
+  ); /* Account for header and footer - adjust the value based on their heights */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/*
+Styling for the sidebar
+This is a flex item within .user-page-container
+*/
+.user-page-sidebar {
+  /* The sidebar's internal layout is handled by the nav ul styles */
+  width: 250px;
+  /* flex-basis: 250px; */
+  flex-shrink: 0; /* Prevent the sidebar from shrinking when main content needs space */
+  flex-grow: 0; /* Prevent the sidebar from growing */
+  padding: 1.5rem; /* Adjusted padding */
+  background-color: #fafafa;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1); /* Adjusted shadow for a sidebar */
+  border-right: 1px solid #ddd;
+  height: auto; /* Remove fixed height */
+}
+
+/* Styling for the main content area (where the Outlet renders) */
+/* This is also a flex item within .user-page-container */
+.user-page-main-content {
+  flex: 1;
+  padding: 2rem; /* Add padding inside the main content area */
+  background-color: #fff;
+  min-height: 100%; /* Ensure minimum height matches parent */
+}
+
+/*
+Internal styling for the sidebar navigation (ul)
+This is inside the .user-page-sidebar
+*/
+.user-page-sidebar nav ul {
+  display: flex;
+  flex-direction: column; /* Stack list items vertically */
+  list-style: none;
+  gap: 1.5rem; /* Space between list items */
+}
+
+/* Styling for the navigation links (a) */
+.user-page-sidebar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 10px 15px; /* Keep padding for clickable area */
+  display: block; /* Make the whole padding area clickable */
+  border-radius: 5px; /* Added subtle border-radius for links */
+}
+
+.user-page-sidebar nav ul li a:hover {
+  color: #006400;
+  background-color: #e0ffe0; /* Optional: Add a hover background */
+}
+
+/* Styling for the active navigation link */
+.user-page-sidebar nav ul li a.active-sidebar-link {
+  color: #fff;
+  background-color: #006400;
+  font-weight: bold;
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .user-page-container {
+    flex-direction: column; /* Stack sidebar and main content vertically on small screens */
+    /* Remove min-height here if you want vertical scrolling for the whole page */
+    min-height: auto;
+  }
+
+  .user-page-sidebar {
+    width: 100%; /* Sidebar takes full width */
+    height: auto;
+    flex-direction: row; /* Arrange sidebar items horizontally */
+    justify-content: center; /* Center sidebar items */
+    padding: 1rem; /* Adjust padding */
+    box-shadow: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    position: sticky; /* Can potentially re-add sticky here for a sticky header */
+    top: 0;
+    z-index: 1000;
+  }
+
+  .user-page-sidebar nav ul {
+    flex-direction: row; /* Arrange nav links horizontally */
+    gap: 1rem; /* Adjusted gap */
+  }
+
+  .user-page-main-content {
+    width: 100%; /* Main content takes full width */
+    padding: 1rem; /* Adjust padding */
+  }
+
+  .user-page-sidebar nav ul li a {
+    /* Adjust padding/styles for horizontal links if needed */
+    padding: 8px 15px; /* Example: more padding */
+    text-align: center;
+  }
+}

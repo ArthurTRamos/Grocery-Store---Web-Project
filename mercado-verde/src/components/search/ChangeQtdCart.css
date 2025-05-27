@@ -1,0 +1,140 @@
+/* Container principal dos controles de quantidade */
+.change-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: #f8f9fa;
+    border: 2px solid #c8e6c9;
+    border-radius: 25px;
+    padding: 0.2rem;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+    transition: all 0.3s ease;
+    max-width: 120px;
+    margin: 0 auto;
+  }
+  
+  .change-container:hover {
+    border-color: #4caf50;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15);
+  }
+  
+  /* Estilo dos botões + e - */
+  .change-container button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    user-select: none;
+    line-height: 1;
+  }
+  
+  .change-container button:hover {
+    background: #45a049;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(69, 160, 73, 0.3);
+  }
+  
+  /* Estilo do contador de quantidade */
+  .qtd-items {
+    min-width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2e7d32;
+    background: white;
+    border-radius: 8px;
+    margin: 0 0.3rem;
+    border: 1px solid #e8f5e8;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+  
+  /* Efeito quando o valor muda */
+  .qtd-items.changing {
+    background: #e8f5e8;
+    transform: scale(1.1);
+  }
+  
+  /* Efeito de destaque quando há itens no carrinho */
+  .change-container[data-has-items="true"] {
+    background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
+    border-color: #4caf50;
+  }
+  
+  .change-container[data-has-items="true"] .qtd-items {
+    background: white;
+    color: #2e7d32;
+    font-weight: 700;
+  }
+  
+  .change-container.disabled button {
+    background: #bdbdbd;
+    cursor: not-allowed;
+  }
+  
+  /* Micro-animação no número quando muda */
+  .qtd-items { /* Efeito de loading/disabled */
+    .change-container.disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .qtd-items::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .qtd-items.updated::after {
+    left: 100%;
+  }
+  
+  /* Estilo para acessibilidade */
+  .change-container button:focus-visible {
+    outline: 2px solid #4caf50;
+    outline-offset: 2px;
+  }
+  
+  /* Tooltip style para melhor UX */
+  .change-container button {
+    position: relative;
+  }
+  
+  .change-container button:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2e7d32;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    white-space: nowrap;
+    opacity: 0;
+    animation: tooltipFade 0.3s ease-in-out 0.5s forwards;
+    pointer-events: none;
+  }

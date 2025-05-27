@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.payment-card-info-container {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  min-height: 160px; /* Match add button height */
+  display: flex; /* Add flex to ensure content fills height */
+  flex-direction: column;
+}
+
+.payment-card-info-content {
+  display: flex;
+  gap: 20px;
+  height: 100%; /* Fill container height */
+}
+
+.payment-card-info-big,
+.payment-card-info-small {
+  display: flex;
+  flex-direction: column;
+  gap: 28px; /* Consistent gap between groups */
+  min-width: max-content; /* Ensure container is wide enough for content */
+}
+
+/* Group container for header and paragraph */
+.payment-card-info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Remove gap completely */
+}
+
+.payment-card-info-container h3 {
+  font-size: 1rem;
+  color: #555;
+  font-weight: bold;
+  padding: 0 8px; /* Keep horizontal padding for alignment */
+  text-align: left;
+  white-space: nowrap; /* Prevent text from wrapping */
+  margin-bottom: -2px; /* Add negative margin to bring paragraph closer */
+}
+
+.payment-card-info-container p {
+  font-size: 1.2rem;
+  color: #333;
+  padding: 8px; /* Keep padding for spacing */
+  min-height: 41px;
+  display: flex;
+  align-items: center;
+}
+
+.payment-card-info-delete {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 10px;
+}
+
+.payment-card-info-delete button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  height: 100%;
+  border: none; /* Remove all borders first */
+  border-left: 2px dashed #555; /* Then add only left border */
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s ease;
+  padding: 15px;
+  font-size: 1.4rem; /* Increase icon size */
+}
+
+.payment-card-info-delete button:hover {
+  color: #dc3545;
+  border-left: 2px dashed #dc3545;
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+  .payment-card-info-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; /* Align containers to the top */
+  }
+
+  .payment-card-info-big {
+    flex: 2;
+    margin-right: 20px;
+  }
+
+  .payment-card-info-small {
+    flex: 1;
+    padding-top: 0; /* Remove any top padding */
+  }
+}
