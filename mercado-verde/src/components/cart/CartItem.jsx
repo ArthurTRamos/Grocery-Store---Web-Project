@@ -48,7 +48,7 @@ function CartItem({ cartItemData, changeAmount, removeItem }) {
         </div>
       </div>
       <div className="cart-item-details-right">
-        <p>R$ {cartItemData.price * cartItemData.amount}</p>
+        <p>R$ {(cartItemData.price * cartItemData.amount).toFixed(2)}</p>
         <p>Em estoque: {cartItemData.stock}</p>
       </div>
     </div>

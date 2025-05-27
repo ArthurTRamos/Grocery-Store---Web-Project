@@ -64,7 +64,7 @@ function RecipePage({products}) {
           .split("\n")
           .map((item) => item.trim())
           .filter((item) => item && !item.match(/^(modo|preparo|instruções)/i))
-          .map((item, index) => item.replace(/^\d+\.\s*/, ""))
+          .map((item) => item.replace(/^\d+\.\s*/, ""))
       }
 
       console.log({title, ingredients, instructions})
@@ -124,7 +124,7 @@ function RecipePage({products}) {
 
             Não insira nada após a última instrução de preparação. No título da receita, dê um nome criativo e que se relacione com os alimentos a serem utilizados
             
-            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *)            
+            Seja específico com quantidades e tempos. Não use texto em negrito (não use o símbolo *). Não é necessário incluir todos os ingredientes disponíveis no mercado. Siga o modelo de resposta estritamente.            
             `,
             },
           ],
