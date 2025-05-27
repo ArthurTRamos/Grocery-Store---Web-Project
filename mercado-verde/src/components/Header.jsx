@@ -40,9 +40,6 @@ function Header({ loggedUser, cartItemNumber }) {
               <Link to="/section" state={{sectionData: "todos"}}>Seções</Link>
             </li>
             <li>
-              <Link to="/search">Busca</Link>
-            </li>
-            <li>
               <Link to="/cart">
                 Meu Carrinho{" "}
                 {cartItemNumber > 0 ? "(" + cartItemNumber + ")" : ""}
