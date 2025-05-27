@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react";
-import "./ProductPage.css";
+import { useNavigate, Link } from "react-router-dom";
 import LabeledEditableContainer from "./utility_elements/LabeledEditableContainer";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
+
+import "./ProductPage.css";
 import InputImage from "./utility_elements/input_image";
 
 function ProductPage({loggedUser, productsData, setProductData, setCartData, cartData}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)
+
+  const navigate = useNavigate();
 
   let typeAccount;
   if(loggedUser === undefined) {
@@ -87,7 +91,18 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
         },
       ]);
     }
+  }
 
+  const handleDeleteProduct = () => {
+    console.log(productsData)
+
+    const newCartData = cartData.filter((cartProduct) => cartProduct.id !== product.id)
+    const newProducts = productsData.filter((productData) => productData.id !== product.id)
+
+    console.log(newProducts)
+
+    setProductData(newProducts)
+    setCartData(newCartData)
   }
   
   return (
@@ -190,6 +205,22 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
               >
               Adicionar ao Carrinho
             </button>
+            
+            {typeAccount ? (
+              <div>
+                <Link to="/section" state={{sectionData: "todos"}} className="product-section">
+                <button
+                  type="button"
+                  className="delete-product"
+                  onClick={handleDeleteProduct}
+                  >
+                    Remover Item
+                </button>
+                </Link>
+              </div>
+            ) : (
+              <span></span>
+            )}
           </div>
         </div>
       </main>
