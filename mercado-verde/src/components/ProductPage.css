@@ -30,14 +30,11 @@
   text-align: justify;
 }
 
-/* .product h2 {
-    margin-left: 30px;
-} */
-
 .product img {
   /* margin-left: 30px; */
   border-radius: 10px;
-  width: 80%;
+  height: 600px;
+  width: auto;
 }
 
 .add-to-cart-allow {

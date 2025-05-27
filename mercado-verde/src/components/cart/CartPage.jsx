@@ -122,7 +122,7 @@ function CartPage({
     });
 
     setProductData(updatedProductData);
-    setCartData([]);
+    setCartData([{ price: 0, id: -1, amount: 0 }]); // Clear cart after purchase
     setShowSuccessModal(true);
 
     const selectedCouponUserData = userCoupons.find(
@@ -141,6 +141,7 @@ function CartPage({
     setShowSuccessModal(false);
     setSelectedCoupon(""); // Clear coupon after confirmation
     setSelectedCard(""); // Clear card after confirmation
+    setCartData([]); // Clear cart after confirmation
     navigate("/"); // Navigate after closing the modal
   };
 
@@ -168,6 +169,16 @@ function CartPage({
                 const product = productData.find(
                   (product) => product.id === cartItem.id
                 );
+
+                if (cartItem.id === -1) {
+                  if (!showSuccessModal) {
+                    setCartData((prevCartData) =>
+                      prevCartData.filter((item) => item.id !== -1)
+                    ); // Remove the dummy item used to clear the cart
+                  }
+                  return null; // Skip the dummy item used to clear the cart
+                }
+                
                 return (
                   <CartItem
                     key={cartItem.id}
