@@ -40,7 +40,7 @@
   width: 80%;
 }
 
-.add-to-cart {
+.add-to-cart-allow {
   display: block;
   width: 100%;
   margin-top: 20px; /* Separa o botão dos fields */
@@ -53,8 +53,25 @@
   font-size: 1rem;
 }
 
-.add-to-cart:hover {
+.add-to-cart-allow:hover {
   background-color: #64dc64; /* Cor do botão no hover */
+}
+
+.add-to-cart-deny {
+  display: block;
+  width: 100%;
+  margin-top: 20px; /* Separa o botão dos fields */
+  padding: 10px 20px;
+  background-color: #424242;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /* Muda o mouse quando passar por cima */
+  font-size: 1rem;
+}
+
+.add-to-cart-deny:hover {
+  background-color: 424242; /* Cor do botão no hover */
 }
 
 .quantity-sold {

@@ -162,6 +162,10 @@ body {
 }
 
 .offer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   background: white;
   border-radius: 15px;
   padding: 2rem;

@@ -108,6 +108,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     console.log({ user });
 
     if(user) {
+      console.log("logando legal")
+      console.log(user)
       onSaveLogin(user);
       navigate("/");
     }
@@ -127,6 +129,10 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     inputInfoRegister.id = uuidv4();
 
     onSaveRegister(inputInfoRegister);
+
+    alert("Usuário Cadastrado com sucesso!");
+    console.log("cadastrando e logando")
+    console.log(inputInfoRegister);
     onSaveLogin(inputInfoRegister);
     navigate("/");
   };
@@ -233,7 +239,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     <label htmlFor="confirmar-senha">Número do Celular</label>
                     <input
                       id="confirmar-senha" 
-                      type="text"
+                      type="tel"
                       name="cel"
                       value={inputInfoRegister.cel}
                       onChange={handleInputDataRegister}

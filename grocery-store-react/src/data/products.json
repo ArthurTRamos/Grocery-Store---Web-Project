@@ -76,7 +76,7 @@
     "price": 7.50,
     "stock": 20,
     "sold": 5,
-    "image": "./mel.jpg",
+    "image": "./paoIntegral.jpg",
     "description": "Pão integral macio e fresquinho, ideal para uma alimentação saudável."
   },
   {
@@ -86,7 +86,7 @@
     "price": 6.30,
     "stock": 50,
     "sold": 18,
-    "image": "./mel.jpg",
+    "image": "./macaFuji.jpg",
     "description": "Maçãs Fuji selecionadas, doces e crocantes."
   },
   {
@@ -96,7 +96,7 @@
     "price": 14.90,
     "stock": 25,
     "sold": 12,
-    "image": "./mel.jpg",
+    "image": "./queijoMinas.png",
     "description": "Queijo minas frescal, leve e saboroso, ideal para o café da manhã."
   },
   {
@@ -106,7 +106,7 @@
     "price": 19.80,
     "stock": 40,
     "sold": 22,
-    "image": "./mel.jpg",
+    "image": "./pizzaCalabresa.jpg",
     "description": "Pizza de calabresa com queijo e molho de tomate, pronta para o forno."
   },
   {
@@ -116,7 +116,7 @@
     "price": 11.00,
     "stock": 15,
     "sold": 7,
-    "image": "./mel.jpg",
+    "image": "./boloChocolate.jpg",
     "description": "Bolo úmido de chocolate com recheio cremoso. Perfeito para sobremesas."
   },
   {
@@ -126,7 +126,7 @@
     "price": 9.90,
     "stock": 30,
     "sold": 10,
-    "image": "./mel.jpg",
+    "image": "./sucoLaranja.jpg",
     "description": "Suco 100% natural de laranja, sem adição de açúcar ou conservantes."
   },
   {
@@ -136,7 +136,7 @@
     "price": 7.20,
     "stock": 45,
     "sold": 20,
-    "image": "./mel.jpg",
+    "image": "./ArrozIntegral.jpg",
     "description": "Arroz integral rico em fibras e ideal para dietas saudáveis."
   },
   {
@@ -146,7 +146,7 @@
     "price": 5.50,
     "stock": 60,
     "sold": 30,
-    "image": "./mel.jpg",
+    "image": "./brigadeiroGourmet.jpg",
     "description": "Brigadeiro feito com chocolate belga e leite condensado premium."
   },
   {
@@ -156,7 +156,7 @@
     "price": 15.00,
     "stock": 20,
     "sold": 8,
-    "image": "./mel.jpg",
+    "image": "./sacoCarvao.png",
     "description": "Carvão vegetal de alta qualidade para churrasco."
   },
   {
@@ -166,7 +166,7 @@
     "price": 17.90,
     "stock": 25,
     "sold": 11,
-    "image": "./mel.jpg",
+    "image": "./hamburguerPicanha.jpeg",
     "description": "Hambúrguer artesanal de picanha, pronto para grelhar."
   },
   {
@@ -176,7 +176,7 @@
     "price": 3.80,
     "stock": 80,
     "sold": 34,
-    "image": "./mel.jpg",
+    "image": "./iogurteIntegral.png",
     "description": "Iogurte natural cremoso, sem adição de açúcares."
   },
   {
@@ -186,7 +186,7 @@
     "price": 6.80,
     "stock": 60,
     "sold": 25,
-    "image": "./mel.jpg",
+    "image": "./feijaoCarioca.jpeg",
     "description": "Feijão carioca selecionado, ideal para o dia a dia brasileiro."
   },
   {
@@ -196,7 +196,7 @@
     "price": 5.20,
     "stock": 40,
     "sold": 15,
-    "image": "./mel.jpg",
+    "image": "./croissantPQ.jpg",
     "description": "Croissant crocante recheado com presunto e queijo mussarela."
   },
   {
@@ -206,7 +206,7 @@
     "price": 4.90,
     "stock": 100,
     "sold": 60,
-    "image": "./mel.jpg",
+    "image": "./bananaPrata.jpeg",
     "description": "Banana prata fresca e madura, ótima para lanches e vitaminas."
   },
   {
@@ -216,7 +216,7 @@
     "price": 6.50,
     "stock": 35,
     "sold": 12,
-    "image": "./mel.jpg",
+    "image": "./chaVerde.png",
     "description": "Chá verde gelado com toque de limão, refrescante e saudável."
   },
   {
@@ -226,7 +226,7 @@
     "price": 4.00,
     "stock": 70,
     "sold": 33,
-    "image": "./mel.jpg",
+    "image": "./pacocaRolha.png",
     "description": "Tradicional doce de amendoim em formato de rolha, direto da roça."
   },
   {
@@ -236,7 +236,7 @@
     "price": 9.70,
     "stock": 30,
     "sold": 10,
-    "image": "./mel.jpg",
+    "image": "./manteigaSal.png",
     "description": "Manteiga cremosa com sal, perfeita para passar no pão."
   },
   {
@@ -246,7 +246,7 @@
     "price": 14.90,
     "stock": 20,
     "sold": 9,
-    "image": "./mel.jpg",
+    "image": "./lasanhaBolonhesa.webp",
     "description": "Lasanha de carne com molho bolonhesa, prática e saborosa."
   },
   {
@@ -256,8 +256,78 @@
     "price": 3.50,
     "stock": 100,
     "sold": 45,
-    "image": "./filtroCafe.jpg",
+    "image": "./filtroPapel.jpg",
     "description": "Filtro de papel para coar café, tamanho 103, pacote com 30 unidades."
+  },
+  {
+    "id": 93,
+    "category": "alimentos",
+    "name": "Ovos Brancos Jumbo 10 Unidades",
+    "price": 8.00,
+    "stock": 50,
+    "sold": 20,
+    "image": "./ovosBrancos.webp",
+    "description": "Ovos brancos jumbo, frescos e de alta qualidade, perfeitos para qualquer receita."
+  },
+  {
+    "id": 94,
+    "category": "bebidas",
+    "name": "Água Mineral com Gás 1,5L",
+    "price": 2.50,
+    "stock": 100,
+    "sold": 50,
+    "image": "./aguaMineral.webp",
+    "description": "Água mineral com gás, refrescante e purificada."
+  },
+  {
+    "id": 95,
+    "category": "hortifrutis",
+    "name": "Cenoura Orgânica 1kg",
+    "price": 5.00,
+    "stock": 60,
+    "sold": 30,
+    "image": "./cenouraOrganica.jpg",
+    "description": "Cenouras orgânicas frescas, crocantes e saudáveis."
+  },
+  {
+    "id": 96,
+    "category": "padaria",
+    "name": "Baguete Francesa",
+    "price": 7.50,
+    "stock": 25,
+    "sold": 10,
+    "image": "./bagueteFrancesa.jpeg",
+    "description": "Baguete francesa crocante por fora e macia por dentro, perfeita para sanduíches."
+  },
+  {
+    "id": 97,
+    "category": "alimentos",
+    "name": "Óleo de Soja 900ml",
+    "price": 4.50,
+    "stock": 80,
+    "sold": 35,
+    "image": "./oleoSoja.jpeg",
+    "description": "Óleo de soja refinado, ideal para frituras e preparos diversos."
+  },
+  {
+    "id": 98,
+    "category": "alimentos",
+    "name": "Farinha de Trigo 1kg",
+    "price": 5.20,
+    "stock": 70,
+    "sold": 28,
+    "image": "./farinhaTrigo.webp",
+    "description": "Farinha de trigo fina, ideal para pães, bolos e outras receitas."
+  },
+  {
+    "id": 99,
+    "category": "alimentos",
+    "name": "Macarrão Penne 500g",
+    "price": 6.90,
+    "stock": 60,
+    "sold": 20,
+    "image": "./macarraoPenne.png",
+    "description": "Macarrão penne de alta qualidade, perfeito para molhos cremosos ou ao sugo."
   },
   {
     "id": 93,
