@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CardSelection from "./CardSelection";
 import CartItem from "./CartItem";
 import CouponSelection from "./CouponSelection";
-import CustomAlert from "../utility_elements/customAlert";
+import CustomAlert from "../utility_elements/CustomAlert";
 
 import "./CartPage.css";
 
@@ -262,8 +262,8 @@ function CartPage({
           {showSuccessModal && (
             <CustomAlert
               messageHeader="Compra finalizada com sucesso!"
-              message=""
-              onClose={handleCloseSuccessModal}
+              onConfirm={handleCloseSuccessModal}
+              onConfirmMessage={"Fechar"}
             />
           )}
         </>

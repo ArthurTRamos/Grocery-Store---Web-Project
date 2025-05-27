@@ -119,7 +119,7 @@ function App() {
         </Route>
         <Route path="/section" element={<Sections products={productData}/>}/>
         <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />
-        <Route path="/user" element={<UserPage loggedUser={loggedUser} />}>
+        <Route path="/user" element={<UserPage loggedUser={loggedUser} users={users} setUsers={setUsers}/>}>
           <Route
             index
             element={

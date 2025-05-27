@@ -11,7 +11,9 @@ function EditProfile({ setUsers }) {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const [userToBeEdited, setUserToBeEdited] = useState(location.state?.userToBeEdited);
+  const [userToBeEdited, setUserToBeEdited] = useState(
+    location.state?.userToBeEdited
+  );
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
@@ -57,9 +59,9 @@ function EditProfile({ setUsers }) {
 
   return (
     <div>
-      <div className="user-intro">
+      <div className="manage-user-intro">
         <div className="div-intro-header-logout-container">
-          <div className="user-profile-intro-header">
+          <div className="manage-user-profile-intro-header">
             <img src={honeyImg} alt="Imagem" />
             <div className="user-profile-intro-header-text">
               <h3>Editando perfil de {userToBeEdited.name}</h3>
@@ -67,10 +69,12 @@ function EditProfile({ setUsers }) {
             </div>
           </div>
           <div className="logout-button-container">
-            <button onClick={() => navigate("/manage/manageUsers")}>Voltar</button>
+            <button onClick={() => navigate("/manage/manageUsers")}>
+              Voltar
+            </button>
           </div>
         </div>
-        <div className="user-profile-intro-description">
+        <div className="manage-user-profile-intro-description">
           <LabeledEditableContainer
             displayName={"Nome Completo"}
             field={"name"}
@@ -98,7 +102,7 @@ function EditProfile({ setUsers }) {
           />
         </div>
       </div>
-      <div className="user-intro">
+      <div className="manage-user-intro">
         <h3>Endereço</h3>
         <div className="adress-street-container">
           <LabeledEditableContainer
