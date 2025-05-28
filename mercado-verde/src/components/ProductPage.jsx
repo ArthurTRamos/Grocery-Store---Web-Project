@@ -10,6 +10,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)
+  const [addCartMessage, setAddCartMessage] = useState("Adicionar ao Carrinho")
 
   const navigate = useNavigate();
 
@@ -33,6 +34,17 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
     initialCondition()
 
   }, [], [product])
+
+  useEffect(() => {
+    const showCartAmount = () => {
+      const itemFound = cartData.findIndex((item) => item.id === product.id);
+      const amountText = itemFound === -1 ? "" : ` (${cartData[itemFound].amount})`;
+
+      setAddCartMessage(`Adicionar ao Carrinho${amountText}`)
+    }
+
+    showCartAmount()
+  }, [cartData, product.id])
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
@@ -72,8 +84,12 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
       if(product.stock !== cartData[itemFound].amount) {
         if(product.stock === cartData[itemFound].amount + 1)
           setAllowBuyProduct(true)
-        cartData[itemFound].amount++
-        setCartData(cartData)
+        const newCartData = [...cartData];
+        newCartData[itemFound] = {
+          ...newCartData[itemFound],
+          amount: newCartData[itemFound].amount + 1,
+        };
+        setCartData(newCartData);
       }
       else
         setAllowBuyProduct(true)
@@ -203,7 +219,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
               onClick={handleBuyProduct}
               disabled={allowBuyProduct}
               >
-              Adicionar ao Carrinho
+              {addCartMessage}
             </button>
             
             {typeAccount ? (
