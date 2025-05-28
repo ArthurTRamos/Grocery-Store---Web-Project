@@ -76,23 +76,23 @@ flowchart LR
 
 
 The mock-ups are:
-- [Sign up](images/SignIn.png)
+- [Sign up](Milestone1/images/SignIn.png)
  
-- [Sign in](images/SignUp.png)
+- [Sign in](Milestone1/images/SignUp.png)
 
-- [CRUD Page](images/CRUD.jpeg)
+- [CRUD Page](Milestone1/images/CRUD.jpeg)
 
-- [User Page](images/Profile.png)
+- [User Page](Milestone1/images/Profile.png)
 
-- [Cart Page](images/Cart.png)
+- [Cart Page](Milestone1/images/Cart.png)
 
-- [Section Page](images/Section.jpeg)
+- [Section Page](Milestone1/images/Section.jpeg)
 
-- Product Page: [HTML](html/product-page.html) | [CSS](css/product-page.css)
+- Product Page: [HTML](Milestone1/html/product-page.html) | [CSS](Milestone1/css/product-page.css)
 
-- Landing Page: [HTML](html/pagina-inicial.html) | [CSS](css/pagina-inicial.css)
+- Landing Page: [HTML](Milestone1/html/pagina-inicial.html) | [CSS](Milestone1/css/pagina-inicial.css)
 
-- Add ADM or Product Page: [HTML](html/pagina-de-registro.html) | [CSS](css/pagina-de-registro.css)
+- Add ADM or Product Page: [HTML](Milestone1/html/pagina-de-registro.html) | [CSS](Milestone1/css/pagina-de-registro.css)
 
 Regarding the information we will store on the server, we will need to save both clients' and administrators' personal information, such as name, ID, address, phone number, and email. Additionally, we will store product information, including name, price, number of items sold, items in stock, image, and brand. 
 
