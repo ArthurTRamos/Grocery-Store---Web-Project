@@ -1,43 +1,58 @@
+/* SideBar.css */
+
 .sidebar-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .menu-icon {
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .sidebar-menu {
-    position: absolute;
-    top: 0;
-    left: 40px;
-    width: 150px;
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    display: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 10;
-  }
-  
-  .sidebar-container:hover .sidebar-menu {
-    display: block;
-  }
-  
-  .sidebar-menu nav {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sidebar-menu a {
-    text-decoration: none;
-    color: #333;
-    margin: 5px 0;
-  }
-  
-  .sidebar-menu a:hover {
-    text-decoration: underline;
-  }
-  
+  position: fixed;
+  top: 160px;
+  left: -280px; /* Oculta a sidebar inicialmente */
+  height: 400px;
+  width: 280px;
+  background-color: #2c3e50;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: left 0.3s ease;
+  border-radius: 5px;
+}
+
+.sidebar-container.open {
+  left: 0; /* Mostra a sidebar quando tem a classe 'open' */
+}
+
+.menu-icon {
+  position: fixed;
+  top: 160px;
+  left: 20px;
+  font-size: 24px;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.sidebar-menu {
+  padding: 40px 0;
+  height: 100%;
+}
+
+.sidebar-menu nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-menu nav a {
+  display: block;
+  padding: 18px 30px;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu nav a:hover {
+  background-color: #34495e;
+  border-left-color: #3498db;
+  color: #ffffff;
+  padding-left: 35px;
+}

@@ -4,7 +4,7 @@ import { CiEdit } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 import "./ManageUserComponent.css";
-import EditProfile from '../EditProfile';
+import EditProfile from '../editProfileUser/EditProfile';
 
 const ManageUserComponent = ({individualUser, users, setUsers, loggedUser}) => {
 

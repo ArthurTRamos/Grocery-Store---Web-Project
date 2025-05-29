@@ -1,0 +1,132 @@
+Container for each editable field
+.labeled-editable-container {
+    display: flex;
+    flex-direction: column; /* Stacks label and main content */
+    align-items: flex-start;
+    margin-bottom: 20px; /* Adds space below each field */
+    padding: 10px 0;
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    width: 100%; /* Add this to ensure container takes full width */
+  }
+  
+  /* Styling for the display name (label) */
+  .labeled-editable-container-display-name {
+    font-size: 1rem;
+    color: #555; /* Muted color for the label */
+    margin-bottom: 5px; /* Space between label and value/input area */
+    font-weight: bold;
+  }
+  
+  /* Container for the value/input and the icon/buttons */
+  .labeled-editable-container-main {
+    display: flex;
+    align-items: center; /* Vertically aligns items (value/input and icon/buttons) */
+    justify-content: space-between; /* Pushes the value/input to the left and icon/buttons to the right */
+    flex-grow: 1; /* Allows this section to take up available horizontal space */
+    width: 100%; /* Add this to ensure main container takes full width */
+    min-width: 0; /* Add this to allow proper shrinking */
+    min-height: 41px; /* Add fixed minimum height */
+  }
+  
+  /* Styles for the group in display mode (value + edit button) */
+  .labeled-editable-container-display-group {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows the display group to fill space */
+    gap: 10px; /* Adds space between the span and the button */
+  }
+  
+  /* Styles for the displayed value text */
+  .labeled-editable-container-display-value {
+    font-size: 1.2rem;
+    color: #333;
+    flex-grow: 1;
+    text-align: left;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding: 8px; /* Match input padding */
+    box-sizing: border-box;
+    height: 41px; /* Change min-height to fixed height */
+    display: flex;
+    align-items: center;
+  }
+  
+  .labeled-editable-container-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input and buttons */
+    width: 100%; /* Ensure it takes full width of the parent */
+    box-sizing: border-box;
+    flex-wrap: nowrap; /* Prevent wrapping within the input group */
+    min-width: 0; /* Add this to allow proper shrinking */
+    height: 41px; /* Add fixed height */
+  }
+  
+  .labeled-editable-container-input-group input {
+    flex: 1;
+    min-width: 50px;
+    width: 0;
+    padding: 8px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 41px; /* Keep consistent height */
+  }
+  
+  /* Styling for the input field when it's focused */
+  .labeled-editable-container-input-group input:focus {
+    outline: none; /* Remove the default browser outline */
+    border-color: #006400; /* Change border color */
+  }
+  
+  .edit-button,
+  .save-button,
+  .cancel-button {
+    flex: 0 0 auto;
+    min-width: 35px;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.6rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    color: #555;
+  }
+  
+  .edit-button:hover,
+  .save-button:hover,
+  .cancel-button:hover {
+    color: #000; /* Darker color on hover */
+  }
+  
+  /* Basic responsive adjustment */
+  @media (max-width: 600px) {
+    .labeled-editable-container-main {
+      flex-direction: column; /* Stack input/value and buttons vertically on small screens */
+      align-items: flex-start; /* Align items to the start */
+    }
+  
+    .labeled-editable-container-display-group,
+    .labeled-editable-container-input-group {
+      width: 100%; /* Take full width */
+      margin-bottom: 10px; /* Space between content and buttons */
+      gap: 5px; /* Adjust gap */
+    }
+  
+    .labeled-editable-container-input-group button {
+      /* Adjust button layout in stacked mode if needed */
+      width: auto; /* Let buttons size based on content */
+      font-size: 1rem;
+    }
+  
+    .labeled-editable-container-display-value {
+      flex-grow: 0; /* Don't force value to grow */
+    }
+  }
+  

@@ -10,8 +10,15 @@
 
 } */
 
+.div-centro-gerencia {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .div-table-container {
     margin: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .table-container {

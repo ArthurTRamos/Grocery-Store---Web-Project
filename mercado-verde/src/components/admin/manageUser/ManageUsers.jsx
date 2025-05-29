@@ -5,10 +5,14 @@ import "./ManageUsers.css";
 
 const ManageUsers = ({users, setUsers, loggedUser}) => {
     const[inputData, setInputData] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const ITEMS_PER_PAGE = 15;
 
     const setSearchTerm = (e) => {
         let value = e.target.value;
         setInputData(value);
+        setCurrentPage(1);
     }
 
     const filteredItems = useMemo(() => {
@@ -22,10 +26,32 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
 
     }, [inputData, users]);
 
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    const currentItems = filteredItems.slice(startIndex, endIndex);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+        }
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+        setCurrentPage(currentPage + 1);
+        }
+    }
+
     return(
         <>
             <div className='manageUsers-container'>
-                <div>
+                <div className='div-centro-gerencia'>
                     <h1>Centro de gerência dos Usuários</h1>
                 </div>
 
@@ -37,6 +63,15 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
                     value={inputData}
                     />
                 </div>
+
+                {/* Informações da paginação */}
+                {currentItems.length > 0 && (
+                <div className="pagination-info">
+                    <p>
+                    Mostrando {startIndex + 1}-{Math.min(endIndex, filteredItems.length)} de {filteredItems.length} produtos
+                    </p>
+                </div>
+                )}
 
                 <div className='div-table-container'>
                     <table className='table-container'>
@@ -51,12 +86,45 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
                             </tr>
                         </thead>
 
-                        {filteredItems.map((user) => (
+                        {currentItems.map((user) => (
                             <ManageUserComponent key={user.id} individualUser={user} users={users} setUsers={setUsers} loggedUser={loggedUser}/>
                         ))}
             
                     </table>
                 </div>
+
+                {totalPages > 1 && (
+                <div className="pagination-controls">
+                    <button 
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                    className="pagination-btn"
+                    >
+                    Anterior
+                    </button>
+                    
+                    <div className="pagination-numbers">
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                        key={index + 1}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={currentPage === index + 1 ? "pagination-btn active" : "pagination-btn"}
+                        >
+                        {index + 1}
+                        </button>
+                    ))}
+                    </div>
+                    
+                    <button 
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className="pagination-btn"
+                    >
+                    Próximo
+                    </button>
+                </div>
+                )}
+
             </div>
 
 

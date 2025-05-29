@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-import LabeledEditableContainer from "../../utility_elements/LabeledEditableContainer";
-import honeyImg from "../../../assets/mel.jpg";
+import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
+import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
+import honeyImg from "../../../../assets/mel.jpg";
 
 import "./EditProfile.css";
 
@@ -14,6 +15,29 @@ function EditProfile({ setUsers }) {
   const [userToBeEdited, setUserToBeEdited] = useState(
     location.state?.userToBeEdited
   );
+
+  const handleTypeChange = (typeValue) => {
+
+    setUserToBeEdited((prevUserToBeEdited) => {
+
+      let updatedUser;
+
+      updatedUser = {
+        ...prevUserToBeEdited,
+        admin: typeValue,
+      };
+
+      setUsers((prevUsers) => {
+        return prevUsers.map((user) =>
+          // Find the corresponding user by ID and replace it with the 'updatedUser'
+          user.id === updatedUser.id ? updatedUser : user
+        );
+      });
+      return updatedUser;
+    });
+  }
+
+
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
@@ -75,6 +99,14 @@ function EditProfile({ setUsers }) {
           </div>
         </div>
         <div className="manage-user-profile-intro-description">
+
+          <SelectLabeledEditableContainer
+            displayName={"Tipo de Usuário"}
+            field={"admin"}
+            handleTypeChange={handleTypeChange}
+            initialValue={userToBeEdited.admin}
+          />
+
           <LabeledEditableContainer
             displayName={"Nome Completo"}
             field={"name"}

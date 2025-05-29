@@ -8,7 +8,12 @@ import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
 import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
 import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
 import AdmLayout from "./components/admin/adm_layout";
-import AdmEditProfile from "./components/admin/manageUser/EditProfile";
+
+import AdmEditUserPage from "./components/admin/manageUser/editProfileUser/EditUserPage";
+import AdmEditProfile from "./components/admin/manageUser/editProfileUser/EditProfile";
+import AdmEditPaymentMethods from "./components/admin/manageUser/editProfileUser/EditPaymentMethods";
+import AdmEditUserCoupons from "./components/admin/manageUser/editProfileUser/EditUserCoupons";
+
 
 import ProductPage from "./components/ProductPage";
 import Header from "./components/Header";
@@ -115,7 +120,48 @@ function App() {
             path="manageUsers"
             element={<AdmManageUsers users={users} setUsers={setUsers} loggedUser={loggedUser}/>}
           />
-          <Route path="manageUsers/edit" element={<AdmEditProfile setUsers={setUsers}/>}></Route>
+          <Route path="manageUsers/edit" element={<AdmEditUserPage loggedUser={loggedUser} users={users} setUsers={setUsers}/>}>
+            <Route
+              index
+              element={
+                <AdmEditProfile
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
+                  setUsers={setUsers}
+                />
+              }
+            />
+            <Route
+              index
+              path="profile"
+              element={
+                <AdmEditProfile
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
+                  setUsers={setUsers}
+                />
+              }
+            />
+            <Route
+              path="payment-methods"
+              element={
+                <AdmEditPaymentMethods
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
+                />
+              }
+            />
+            <Route
+              path="coupons"
+              element={
+                <AdmEditUserCoupons
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
+                  coupons={coupons}
+                />
+              }
+            />
+          </Route>
         </Route>
         <Route path="/section" element={<Sections products={productData}/>}/>
         <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />

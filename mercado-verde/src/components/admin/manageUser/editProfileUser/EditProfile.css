@@ -1,16 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; /* Ensure consistent box model */
-}
-
-body {
-  font-family: Arial, sans-serif; /* Set a clean font */
-  background-color: #f9f9f9; /* Light background for the page */
-}
 
 /* Container for the entire user profile section */
-.mange-user-intro {
+.manage-user-intro {
   padding: 20px;
   max-width: 1500px; /* Limit the width for better readability on large screens */
   margin: 20px auto; /* Center the content */
