@@ -98,7 +98,27 @@ Regarding the information we will store on the server, we will need to save both
 
 ## Comments About the Code
 
+No comments about the code.
+
 ## Test Plan
+
+We didn't use testing tools. For the manual tests, we tried:
+
+- Buy a couple of products
+
+- Create a new product
+
+- Create a new user
+
+- Modify a product
+
+- Modify a user
+
+- Register/login
+
+- Generate a recipe
+
+- Delete a product or user
 
 ## Test Results
 
@@ -108,12 +128,18 @@ To use this project, follow the instructions below:
 
 - Clone the repository.
 
-- Go to grocery-store-react by "cd grocery-store-react".
+- Go to grocery-store-react by "cd mercado-verde".
 
-- Give "npm i".
+- Type "npm i".
 
-- Give "npm start".
+- Type "npm run dev".
+
+- Take the url link and put it on your browser search bar.
 
 ## Problems
 
+No problems.
+
 ## Comments
+
+No comments.
