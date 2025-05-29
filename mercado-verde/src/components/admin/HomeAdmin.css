@@ -1,43 +1,65 @@
+/* HomeAdmin.css */
 .admin-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* gap: 40px; */
-    padding: 40px;
-    flex-wrap: wrap; /* Faz o layout se adaptar em telas pequenas */
-    background-color: #f9f9f9;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  min-height: 100vh; /* Garante altura mínima da tela */
+}
+
+.page-container {
+  position: relative; /* Melhor que usar top: 0 */
+  flex: 1; /* Ocupa o espaço restante */
+  padding: 20px; /* Adiciona espaçamento interno */
+  transition: margin-left 0.3s ease;
+  background-color: #f8f9fa; /* Cor de fundo opcional */
+}
+
+/* Estilos para o conteúdo da página */
+.admin-text {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-text h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.admin-text p {
+  color: #555;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.admin-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .page-container {
+    margin-left: 250px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-container {
+    flex-direction: column;
   }
   
-  .admin-text {
-    flex: 1;
-    margin-right: 30px;
-    min-width: 250px;
+  .page-container {
+    margin-left: 0;
+    margin-top: 60px; /* Espaço para sidebar mobile */
   }
-  
-  .admin-text h1 {
-    font-size: 3rem;
-    color: #2e7d32;
-    margin-bottom: 16px;
-  }
-  
-  .admin-text p {
-    font-size: 1.25rem;
-    color: #7f8c8d;
-    margin-bottom: 2rem;
-  }
-  
-  .admin-image {
-    flex: 1;
-    min-width: 250px;
-    text-align: center;
-  }
-  
-  .admin-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+}

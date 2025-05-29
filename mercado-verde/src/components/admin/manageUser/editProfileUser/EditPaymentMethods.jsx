@@ -1,46 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import "./EditPaymentMethods.css";
+import EditPaymentCardInfo from "./EditPaymentCardInfo";
+import EditNewCardForm from "./EditNewCardForm";
 
-import PaymentCardInfo from "./EditPaymentCardInfo";
-import NewCardForm from "./EditNewCardForm"; // Import your new form component
-
-function EditPaymentMethods({ loggedUser, setLoggedUser }) {
+function EditPaymentMethods({ loggedUser, setLoggedUser, setUsers, userToBeEdited, setUserToBeEdited }) {
   const [isAddingCard, setIsAddingCard] = useState(false);
-
   const location = useLocation();
-  const [userToBeEdited, setUserToBeEdited] = useState(
-    location.state?.userToBeEdited
-  );
+
+ 
+  useEffect(() => {
+    const randomUser = location.state?.userToBeEdited;
+    if (randomUser && (!userToBeEdited || userToBeEdited.id !== randomUser.id)) {
+      setUserToBeEdited(randomUser);
+    }
+  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
 
   const handleAddCardButtonClick = () => {
-    setIsAddingCard(true); // When the button is clicked, show the form
+    setIsAddingCard(true);
   };
 
-  // Handler for when the NewCardForm is saved
+
   const handleNewCardSave = (newCardData) => {
-    setLoggedUser((prevData) => ({
-      ...prevData,
-      paymentMethods: [...prevData.paymentMethods, newCardData],
-    }));
-    setIsAddingCard(false); // Hide the form and show the button again
+    if (!userToBeEdited) return;
+
+    const updatedUser = {
+      ...userToBeEdited,
+      paymentMethods: [...(userToBeEdited.paymentMethods || []), newCardData],
+    };
+
+    setUserToBeEdited(updatedUser);
+    setIsAddingCard(false);
+    
+    console.log("usuario atualizado em new cardsave");
+    console.log(updatedUser);
+
+
+    setUsers((prevUsers) => {
+      return prevUsers.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      );
+    });
   };
 
-  // Handler for when the NewCardForm is cancelled
+  
   const handleNewCardCancel = () => {
-    setIsAddingCard(false); // Hide the form and show the button again
+    setIsAddingCard(false);
   };
 
-  // Handler for removing a card
+
   const handleCardRemoval = (cardNumber) => {
-    setLoggedUser((prevData) => ({
-      ...prevData,
-      paymentMethods: prevData.paymentMethods.filter(
+    if (!userToBeEdited) return;
+
+    console.log(cardNumber);
+    
+    const updatedUser = {
+      ...userToBeEdited,
+      paymentMethods: (userToBeEdited.paymentMethods || []).filter(
         (card) => card.cardNumber !== cardNumber
       ),
-    }));
+    };
+
+    setUserToBeEdited(updatedUser);
+    
+    console.log("Usuário atualizado na remoção de card");
+    console.log(updatedUser);
+    console.log("UserToBeEdited");
+    console.log(userToBeEdited);
+
+    setUsers((prevUsers) => {
+      return prevUsers.map((user) => {
+        return user.id === updatedUser.id ? updatedUser : user;
+      });
+    });
   };
+
+
+  if (!userToBeEdited) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <div className="payment-methods-container">
@@ -48,16 +86,15 @@ function EditPaymentMethods({ loggedUser, setLoggedUser }) {
         <h1>Cartões de {userToBeEdited.name}</h1>
       </div>
       <div className="payment-methods-exhibition-container">
-        {userToBeEdited.paymentMethods.map((cardData) => (
-          <PaymentCardInfo
+        {userToBeEdited.paymentMethods?.map((cardData) => (
+          <EditPaymentCardInfo
             key={cardData.cardNumber}
             cardData={cardData}
             removeCard={handleCardRemoval}
           />
         ))}
         {isAddingCard ? (
-          // If isAddingCard is true, show the NewCardForm
-          <NewCardForm
+          <EditNewCardForm
             onSave={handleNewCardSave}
             onCancel={handleNewCardCancel}
           />

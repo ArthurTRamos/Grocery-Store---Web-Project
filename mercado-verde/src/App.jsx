@@ -42,6 +42,8 @@ function App() {
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState("");
+
+  const [randomUser, setRandomUser] = useState("");
   
   useEffect(() => {
     const fetchLocalCoupons = async () => {
@@ -148,6 +150,9 @@ function App() {
                 <AdmEditPaymentMethods
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
+                  setUsers={setUsers}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
                 />
               }
             />
@@ -158,6 +163,9 @@ function App() {
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
                   coupons={coupons}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
+                  setUsers={setUsers}
                 />
               }
             />

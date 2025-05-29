@@ -7,8 +7,6 @@ const AdmLayout = () => {
     return(
         <div className="adm_container">
 
-            <SideBar/>
-
             <div className="AdmContent">
                 <Outlet/>
             </div>

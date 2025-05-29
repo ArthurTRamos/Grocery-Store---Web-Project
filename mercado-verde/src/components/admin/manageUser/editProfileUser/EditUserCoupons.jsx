@@ -1,58 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import "./EditUserCoupons.css";
-
 import CouponInfo from "./EditCouponInfo";
 
-function EditUserCoupons({ loggedUser, setLoggedUser, coupons }) {
-  // State to manage the new coupon number
+function EditUserCoupons({ loggedUser, setLoggedUser, coupons, userToBeEdited, setUserToBeEdited, setUsers }) {
+
   const [newCouponNumber, setNewCouponNumber] = useState("");
-
   const location = useLocation();
-  const [userToBeEdited, setUserToBeEdited] = useState(
-    location.state?.userToBeEdited
-  );
 
-  // Handler for when the NewCoupon is added
+  useEffect(() => {
+    const randomUser = location.state?.userToBeEdited;
+    if (randomUser && (!userToBeEdited || userToBeEdited.id !== randomUser.id)) {
+      setUserToBeEdited(randomUser);
+    }
+  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+
+
   const handleNewCouponAdd = () => {
-    // Check if the coupon number is already in the user's coupons
-    const couponExists = userToBeEdited.coupons.find(
+    
+    if (!newCouponNumber.trim()) {
+      alert("Digite um código de cupom válido!");
+      return;
+    }
+
+    
+    if (!userToBeEdited) {
+      alert("Erro: dados do usuário não encontrados!");
+      return;
+    }
+
+   
+    const userCoupons = userToBeEdited.coupons || [];
+
+    
+    const couponExists = userCoupons.find(
       (coupon) => coupon.couponNumber === newCouponNumber
     );
+    
     if (couponExists) {
       alert("Cupom já adicionado!");
       return;
     }
 
-    // Check if the coupon number is valid
-    const couponData = coupons.find(
+    
+    const couponData = coupons?.find(
       (coupon) => coupon.couponNumber === newCouponNumber
     );
+    
     if (!couponData) {
       alert("Cupom inválido!");
       return;
     }
 
-    // Add the new coupon to the user's coupons
-    // and set it as unused
-    setLoggedUser((prevData) => ({
-      ...prevData,
-      coupons: [
-        ...prevData.coupons,
-        {
-          couponNumber: newCouponNumber,
-          used: false,
-        },
-      ],
-    }));
+    const newUserCoupon = {
+      couponNumber: newCouponNumber,
+      used: false,
+    };
+
+    const updatedUser = {
+      ...userToBeEdited,
+      coupons: [...userCoupons, newUserCoupon],
+    };
+
+    setUserToBeEdited(updatedUser);
+
+ 
+    if (setUsers) {
+      setUsers((prevUsers) => {
+        return prevUsers.map((user) => {
+          return user.id === updatedUser.id ? updatedUser : user;
+        });
+      });
+    }
+
+ 
+    setNewCouponNumber("");
+    
+    alert("Cupom adicionado com sucesso!");
   };
+
+  if (!userToBeEdited) {
+    return <div>Carregando...</div>;
+  }
+
+  
+  const userCoupons = userToBeEdited.coupons || [];
+  const availableCoupons = userCoupons.filter((userCoupon) => !userCoupon.used);
+  const usedCoupons = userCoupons.filter((userCoupon) => userCoupon.used);
 
   return (
     <div className="user-coupons-container">
       <div className="user-coupons-header">
         <h1>Cupons de {userToBeEdited.name}</h1>
       </div>
+      
       <div className="user-coupons-add">
         <h2>Adicionar Novo Cupom</h2>
         <div className="user-coupons-add-actions">
@@ -67,45 +108,51 @@ function EditUserCoupons({ loggedUser, setLoggedUser, coupons }) {
               }
             }}
           />
-          <button
-            onClick={() => {
-              handleNewCouponAdd();
-            }}
-          >
+          <button onClick={handleNewCouponAdd}>
             Adicionar
           </button>
         </div>
       </div>
+      
       <div className="user-coupons-list">
-        <h2>Cupons Disponíveis</h2>
+        <h2>Cupons Disponíveis ({availableCoupons.length})</h2>
         <div className="non-used-coupons-exhibition-container">
-          {userToBeEdited.coupons.map((userCoupon) => {
-            const couponData = coupons.find(
-              (coupon) => coupon.couponNumber === userCoupon.couponNumber
-            );
-            return couponData && !userCoupon.used ? (
-              <CouponInfo
-                key={couponData.couponNumber}
-                couponData={couponData}
-                used={userCoupon.used}
-              />
-            ) : null;
-          })}
+          {availableCoupons.length === 0 ? (
+            <p>Nenhum cupom disponível.</p>
+          ) : (
+            availableCoupons.map((userCoupon) => {
+              const couponData = coupons?.find(
+                (coupon) => coupon.couponNumber === userCoupon.couponNumber
+              );
+              return couponData ? (
+                <CouponInfo
+                  key={couponData.couponNumber}
+                  couponData={couponData}
+                  used={userCoupon.used}
+                />
+              ) : null;
+            })
+          )}
         </div>
-        <h2>Cupons Usados</h2>
+        
+        <h2>Cupons Usados ({usedCoupons.length})</h2>
         <div className="used-coupons-exhibition-container">
-          {userToBeEdited.coupons.map((userCoupon) => {
-            const couponData = coupons.find(
-              (coupon) => coupon.couponNumber === userCoupon.couponNumber
-            );
-            return couponData && userCoupon.used ? (
-              <CouponInfo
-                key={couponData.couponNumber}
-                couponData={couponData}
-                used={userCoupon.used}
-              />
-            ) : null;
-          })}
+          {usedCoupons.length === 0 ? (
+            <p>Nenhum cupom usado.</p>
+          ) : (
+            usedCoupons.map((userCoupon) => {
+              const couponData = coupons?.find(
+                (coupon) => coupon.couponNumber === userCoupon.couponNumber
+              );
+              return couponData ? (
+                <CouponInfo
+                  key={couponData.couponNumber}
+                  couponData={couponData}
+                  used={userCoupon.used}
+                />
+              ) : null;
+            })
+          )}
         </div>
       </div>
     </div>

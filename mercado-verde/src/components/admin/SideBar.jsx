@@ -3,23 +3,13 @@ import { NavLink, Link } from "react-router-dom";
 import "./SideBar.css";
 
 const SideBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeSidebar = () => {
-    setIsOpen(false);
-  };
 
   return (
     <div>
-      {/* Ícone do menu */}
-      <div className="menu-icon" onClick={toggleSidebar}>☰</div>
       
       {/* Menu lateral */}
-      <div className={`sidebar-container ${isOpen ? 'open' : ''}`}>
+      <div className={`sidebar-container`}>
         <div className="sidebar-menu">
           <nav>
             <NavLink
@@ -27,22 +17,17 @@ const SideBar = () => {
               className={({ isActive }) =>
                 isActive ? "active-sidebar-link" : ""
               }
-              onClick={closeSidebar}
             >
               Criar Usuário
             </NavLink>
 
 
-            <Link to="/manage/createProduct"
-            onClick={closeSidebar}
-            >
+            <Link to="/manage/createProduct">
               Criar Produto
             </Link>
 
 
-            <Link to="/manage/manageUsers"
-            onClick={closeSidebar}
-            >
+            <Link to="/manage/manageUsers">
             Gerenciar Usuários
             </Link>
           </nav>

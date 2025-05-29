@@ -52,12 +52,6 @@ const ManageUserComponent = ({individualUser, users, setUsers, loggedUser}) => {
                         <CiEdit/>
                     </button>
                 </Link>
-
-                <button className="icon-button"
-                    onClick={() => handleDeleteClick()}
-                >
-                    <FaTrash/>
-                </button>
                 </td>
             </tbody>
         </>
