@@ -22,7 +22,7 @@ There're some requirements for the system, such as:
 
 - Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   
-- Your functionality: For each food item, the site will pair it with another item in the cart and generate a recipe.
+- Your functionality: the site will take every site's products and it will generate a recipe.
 
 - The system must provide accessibility requirements and provide good usability. The system must be responsive, meaning that it should complete assigned tasks within a reasonable time.
 
@@ -98,9 +98,75 @@ Regarding the information we will store on the server, we will need to save both
 
 ## Comments About the Code
 
+No comments about the code.
+
 ## Test Plan
 
+We didn't use testing tools. For the manual tests, we tried:
+
+- Buy a product
+
+- Create a new product
+
+- Create a new user
+
+- Modify a product
+
+- Modify a user
+
+- Register/login
+
+- Generate a recipe
+
+- Delete a product or user
+
 ## Test Results
+
+### Buy the product "Arroz Integral 1kg": 
+
+We have the followings pages: product before the buy, cart and product after the buy. 
+
+![""](ImagesReadme/AntesCompra.png)
+![""](ImagesReadme/CarrinhoCompra.png)
+![""](ImagesReadme/DepoisCompra.png)
+
+### Create the new product "Bala":
+
+### Modify the image and name of the product "Arroz Integral 1kg":
+
+We have the followings pages: product before the modification, product after the modification and section with the modified product.
+
+![""](ImagesReadme/produtoModificacao.png)
+![""](ImagesReadme/novoProdutoModificacao.png)
+![""](ImagesReadme/ModificacaoSecao.png)
+
+### Modify a user:
+
+### Register/Login:
+
+We have the following pages: register tab, login tab and profile after login.
+
+![""](ImagesReadme/Register.png)
+![""](ImagesReadme/Login.png)
+![""](ImagesReadme/UserPageAfterLogin.png)
+
+### Generate a recipe for "Almoço de Domingo":
+
+We have the following pages: generate recipe, ingredientes and steps.
+
+![""](ImagesReadme/recipe.png)
+![""](ImagesReadme/ingredients.png)
+![""](ImagesReadme/steps.png)
+
+### Delete a product:
+
+We have the following pages: product and sections.
+
+![""](ImagesReadme/produtoModificacao.png)
+![""](ImagesReadme/DepoisDeletar.png)
+
+### Delete a user:
+
 
 ## Build Procedures
 
@@ -108,12 +174,18 @@ To use this project, follow the instructions below:
 
 - Clone the repository.
 
-- Go to grocery-store-react by "cd grocery-store-react".
+- Go to grocery-store-react by "cd mercado-verde".
 
-- Give "npm i".
+- Type "npm i".
 
-- Give "npm start".
+- Type "npm run dev".
+
+- Take the url link and put it on your browser search bar.
 
 ## Problems
 
+No problems.
+
 ## Comments
+
+No comments.

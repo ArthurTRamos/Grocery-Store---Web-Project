@@ -175,7 +175,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Senha</label>
                 <input 
                 id="password" 
                 type="password"
