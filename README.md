@@ -104,7 +104,7 @@ No comments about the code.
 
 We didn't use testing tools. For the manual tests, we tried:
 
-- Buy a couple of products
+- Buy a product
 
 - Create a new product
 
@@ -121,6 +121,52 @@ We didn't use testing tools. For the manual tests, we tried:
 - Delete a product or user
 
 ## Test Results
+
+### Buy the product "Arroz Integral 1kg": 
+
+We have the followings pages: product before the buy, cart and product after the buy. 
+
+![""](ImagesReadme/AntesCompra.png)
+![""](ImagesReadme/CarrinhoCompra.png)
+![""](ImagesReadme/DepoisCompra.png)
+
+### Create the new product "Bala":
+
+### Modify the image and name of the product "Arroz Integral 1kg":
+
+We have the followings pages: product before the modification, product after the modification and section with the modified product.
+
+![""](ImagesReadme/produtoModificacao.png)
+![""](ImagesReadme/novoProdutoModificacao.png)
+![""](ImagesReadme/ModificacaoSecao.png)
+
+### Modify a user:
+
+### Register/Login:
+
+We have the following pages: register tab, login tab and profile after login.
+
+![""](ImagesReadme/Register.png)
+![""](ImagesReadme/Login.png)
+![""](ImagesReadme/UserPageAfterLogin.png)
+
+### Generate a recipe for "Almoço de Domingo":
+
+We have the following pages: generate recipe, ingredientes and steps.
+
+![""](ImagesReadme/recipe.png)
+![""](ImagesReadme/ingredients.png)
+![""](ImagesReadme/steps.png)
+
+### Delete a product:
+
+We have the following pages: product and sections.
+
+![""](ImagesReadme/produtoModificacao.png)
+![""](ImagesReadme/DepoisDeletar.png)
+
+### Delete a user:
+
 
 ## Build Procedures
 
