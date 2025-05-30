@@ -8,21 +8,6 @@ import EditProfile from '../editProfileUser/EditProfile';
 
 const ManageUserComponent = ({individualUser, users, setUsers, loggedUser}) => {
 
-
-    // const handleEditClick = () => {
-    //     <Link to="/edit" state={{userToBeEdited: individualUser}}></Link>
-    //     <EditProfile userToBeEdited={userInfos} setUserToBeEdited={setUserInfos} setUsers={setUsers}/>
-    // }
-
-    const handleDeleteClick = () => {
-        if(individualUser.id === loggedUser.id) {
-            alert("Não pode");
-            return;
-        }
-        const filteredUsers = users.filter(userData => (userData.id !== individualUser.id));
-        setUsers(filteredUsers);
-    }
-
     return (
         <>
             <tbody>

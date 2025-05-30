@@ -2,11 +2,11 @@ import React, {useState, useEffect} from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
-import HomeImage from "../data/homeImage.jpeg";
-import FruitImage from "../data/fruitImage.jpg";
-import MeatImage from "../data/meatImage.jpg";
-import BakeryImage from "../data/breadImage.jpg";
-import GeneralImage from "../data/generalImage.jpeg";
+import HomeImage from "../assets/homeImage.jpeg";
+import FruitImage from "../assets/fruitImage.jpg";
+import MeatImage from "../assets/meatImage.jpg";
+import BakeryImage from "../assets/breadImage.jpg";
+import GeneralImage from "../assets/generalImage.jpeg";
 
 function HomePage({productData}) {
   const [featuredProducts, setFeaturedProducts] = useState([]);

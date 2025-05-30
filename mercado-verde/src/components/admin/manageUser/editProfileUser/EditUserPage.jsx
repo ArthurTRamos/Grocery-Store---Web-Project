@@ -11,6 +11,7 @@ function EditUserPage({ loggedUser, users, setUsers }) {
 
   
   const [showAlert, setShowAlert] = useState(false);
+  const [cantDelete, setCantDelete] = useState(false);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -75,7 +76,8 @@ function EditUserPage({ loggedUser, users, setUsers }) {
                 className="delete-account-button"
                 onClick={() => {
                   if(userToBeEdited.id === loggedUser.id) {
-                    alert("Você não pode deletar a própria conta!");
+                    // alert("Você não pode deletar a própria conta!");
+                    setCantDelete(true);
                     return;
                   }else{
                     setShowAlert(true)
@@ -96,14 +98,21 @@ function EditUserPage({ loggedUser, users, setUsers }) {
         <CustomAlert
           messageHeader="Atenção"
           alertMessage={
-            "Sua conta será excluída permanentemente.\n" +
-            "Todos os seus dados serão perdidos e não poderão ser recuperados.\n\n" +
+            "Essa conta será excluída permanentemente.\n" +
+            "Todos os dados serão perdidos e não poderão ser recuperados.\n\n" +
             "Tem certeza que deseja continuar?"
           }
           onCancel={handleDeleteAccount}
           onCancelMessage="Excluir conta"
           onConfirm={() => setShowAlert(false)}
           onConfirmMessage="Cancelar"
+        />
+      ) : null}
+      {cantDelete ? (
+        <CustomAlert
+          alertMessage="Você não pode deletar a própria conta!"
+          onConfirm={() => setCantDelete(false)}
+          onConfirmMessage="OK"
         />
       ) : null}
     </div>

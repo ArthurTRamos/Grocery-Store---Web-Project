@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import "./UserCoupons.css";
 
 import CouponInfo from "./CouponInfo";
+import CustomAlert from "../utility_elements/CustomAlert";
 
 function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
   // State to manage the new coupon number
   const [newCouponNumber, setNewCouponNumber] = useState("");
+  const [couponAlreadyAdded, setCouponAlreadyAdded] = useState(false);
+  const [couponNotFound, setCouponNotFound] = useState(false);
 
   // Handler for when the NewCoupon is added
   const handleNewCouponAdd = () => {
@@ -15,7 +18,8 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
       (coupon) => coupon.couponNumber === newCouponNumber
     );
     if (couponExists) {
-      alert("Cupom já adicionado!");
+      // alert("Cupom já adicionado!");
+      setCouponAlreadyAdded(true);
       return;
     }
 
@@ -24,7 +28,8 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
       (coupon) => coupon.couponNumber === newCouponNumber
     );
     if (!couponData) {
-      alert("Cupom inválido!");
+      // alert("Cupom inválido!");
+      setCouponNotFound(true);
       return;
     }
 
@@ -44,6 +49,20 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
 
   return (
     <div className="user-coupons-container">
+      {couponAlreadyAdded && (
+        <CustomAlert
+          alertMessage="Cupom já adicionado!"
+          onConfirm={() => setCouponAlreadyAdded(false)}
+          onConfirmMessage="OK"
+        />
+      )}
+      {couponNotFound && (
+        <CustomAlert
+          alertMessage="Cupom inválido!"
+          onConfirm={() => setCouponNotFound(false)}
+          onConfirmMessage="OK"
+        />
+      )}
       <div className="user-coupons-header">
         <h1>Meus Cupons</h1>
       </div>

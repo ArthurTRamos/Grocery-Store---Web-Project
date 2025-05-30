@@ -15,6 +15,10 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
 
+  const [fillAllFields, setFillAllFields] = useState(false);
+  const [invalidInfo, setInvalidInfo] = useState(false);
+  const [sucessfulRegister, setSuccessfulRegister] = useState(false);
+
   const [inputInfoLogin, setInputInfoLogin] = useState({
     email: "",
     password: ""
@@ -96,7 +100,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     e.preventDefault();
 
     if(!inputInfoLogin.email || !inputInfoLogin.password) {
-      alert("Preencha todos os campos");
+      // alert("Preencha todos os campos");
+      setFillAllFields(true);
       return;
     }
 
@@ -114,7 +119,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       navigate("/");
     }
     else {
-      alert("Usuário ou senha inválidos");
+      // alert("Usuário ou senha inválidos");
+      setInvalidInfo(true);
     }
   };
 
@@ -122,7 +128,8 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     e.preventDefault();
 
     if(!inputInfoRegister.name || !inputInfoRegister.email || !inputInfoRegister.password || !inputInfoRegister.cel || !inputInfoRegister.adress.streetName || !inputInfoRegister.adress.streetNumber || !inputInfoRegister.adress.city || !inputInfoRegister.adress.postalCode) {
-      alert("Preencha todos os campos");
+      // alert("Preencha todos os campos");
+      setFillAllFields(true);
       return;
     }
 
@@ -130,15 +137,44 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
 
     onSaveRegister(inputInfoRegister);
 
-    alert("Usuário Cadastrado com sucesso!");
+    // alert("Usuário Cadastrado com sucesso!");
+    setSuccessfulRegister(true);
     console.log("cadastrando e logando")
     console.log(inputInfoRegister);
     onSaveLogin(inputInfoRegister);
-    navigate("/");
   };
+  
+  const handleCloseSuccessfulRegister = () => {
+    setSuccessfulRegister(false);
+    navigate("/");
+  }
 
   return (
     <div className="auth-container">
+      {fillAllFields && (
+        <CustomAlert
+          alertMessage="Preencha todos os campos"
+          onConfirm={() => setFillAllFields(false)}
+          onConfirmMessage="OK"
+          // messageHeader="Campos Obrigatórios"
+        />
+      )}
+      {invalidInfo && (
+        <CustomAlert
+          alertMessage="Usuário ou senha inválidos"
+          onConfirm={() => setInvalidInfo(false)}
+          onConfirmMessage="OK"
+          // messageHeader="Erro de Login"
+        />
+      )}
+      {sucessfulRegister && (
+        <CustomAlert
+          alertMessage="Usuário cadastrado com sucesso!"
+          onConfirm={handleCloseSuccessfulRegister}
+          onConfirmMessage="OK"
+          // messageHeader="Cadastro Completo"
+        />
+      )}
       <div className="auth-form">
         <div className="auth-header">
           <img src={logo} alt="Logo" className="logo" />

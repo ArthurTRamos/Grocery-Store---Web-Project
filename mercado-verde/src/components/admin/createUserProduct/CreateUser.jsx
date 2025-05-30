@@ -6,7 +6,11 @@ import "./CreateUser.css";
 import StateSelection from "../../utility_elements/StateSelection";
 import CountrySelection from "../../utility_elements/CountrySelection";
 
+import CustomAlert from "../../utility_elements/CustomAlert";
+
 const CreateUser = ({users, setUsers}) => {
+  const [userCreated, setUserCreated] = useState(false);
+  const [fillAllFields, setFillAllFields] = useState(false);
 
   const [inputUser, setInputUser] = useState(
 
@@ -95,7 +99,9 @@ const CreateUser = ({users, setUsers}) => {
     e.preventDefault();
     
     if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode) {
-      alert("Preencha todos os campos");
+      // alert("Preencha todos os campos");
+      setFillAllFields(true);
+
       return;
     }
 
@@ -104,7 +110,8 @@ const CreateUser = ({users, setUsers}) => {
     const updateUserData = [...users, inputUser];
     setUsers(updateUserData);
 
-    alert("Adicionou Usuário");
+    // alert("Adicionou Usuário");
+    setUserCreated(true);
     console.log({inputUser});
 
   }
@@ -113,6 +120,20 @@ const CreateUser = ({users, setUsers}) => {
   return (
     <>
       <div class="container">
+        {userCreated && (
+          <CustomAlert
+            alertMessage="Usuário adicionado com sucesso!"
+            onConfirm={() => setUserCreated(false)}
+            onConfirmMessage={"OK"}
+          />
+        )}
+        {fillAllFields && (
+          <CustomAlert
+            alertMessage="Por favor, preencha todos os campos obrigatórios."
+            onConfirm={() => setFillAllFields(false)}
+            onConfirmMessage={"OK"}
+          />
+        )}
         <form id="userForm">
           <div class="form-header">
             <h2>Cadastro de Usuário</h2>

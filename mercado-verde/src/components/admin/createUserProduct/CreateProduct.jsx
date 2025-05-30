@@ -4,8 +4,11 @@ import "./CreateProduct.css";
 import SekInputImage from "../../utility_elements/SekInputImage";
 import CategorySelection from "../../utility_elements/CategorySelection";
 
+import CustomAlert from "../../utility_elements/CustomAlert";
 
 const CreateProduct = ({products, setProducts}) => {
+
+  const [productAdded, setProductAdded] = useState(false);
 
   const[inputProductData, setInputProductData] = useState(
     {
@@ -55,7 +58,8 @@ const CreateProduct = ({products, setProducts}) => {
     const updateProductData = [...products, newProduct];
     setProducts(updateProductData);
 
-    alert("Adicionou Produto");
+    // alert("Adicionou Produto");
+    setProductAdded(true);
     console.log({inputProductData});
 
   }
@@ -64,6 +68,13 @@ const CreateProduct = ({products, setProducts}) => {
   return (
     <>
       <div class="container">
+        {productAdded && (
+          <CustomAlert
+            alertMessage="Produto adicionado com sucesso!"
+            onConfirm={() => setProductAdded(false)}
+            onConfirmMessage={"OK"}
+          />
+        )}
         <form id="userForm">
           <div class="form-header">
             <h2>Cadastro de Produto</h2>

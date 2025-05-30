@@ -5,14 +5,14 @@ import { Navigate, useLocation } from "react-router-dom";
 
 import "./ProductPage.css";
 import InputImage from "./utility_elements/input_image";
+import CustomAlert from "./utility_elements/CustomAlert";
 
 function ProductPage({loggedUser, productsData, setProductData, setCartData, cartData}) {
   const location = useLocation();
   const [product, setProduct] = useState(location.state?.productData);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)
   const [addCartMessage, setAddCartMessage] = useState("Adicionar ao Carrinho")
-
-  const navigate = useNavigate();
+  const [invalidNumber, setInvalidNumber] = useState(false);
 
   let typeAccount;
   if(loggedUser === undefined) {
@@ -33,7 +33,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
 
     initialCondition()
 
-  }, [], [product])
+  }, [product, cartData])
 
   useEffect(() => {
     const showCartAmount = () => {
@@ -52,7 +52,8 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
     if(field === "price" || field === "stock") {
       newValue = parseFloat(newValue);
       if (isNaN(newValue)) {
-        alert("Por favor, insira um número válido.");
+        // alert("Por favor, insira um número válido.");
+        setInvalidNumber(true);
         return;
       }
     }
@@ -124,6 +125,13 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
   return (
     <div>
       <main className="content-wrap">
+        {invalidNumber  && (
+          <CustomAlert
+            alertMessage="Por favor, insira um número válido."
+            onConfirm={() => setInvalidNumber(false)}
+            onConfirmMessage={"OK"}
+          />
+        )}
         <div className="product">
           <div className="product_image">
             <div>

@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
-import honeyImg from "../../assets/mel.jpg";
 
 import "./UserProfile.css";
 
@@ -17,9 +16,9 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
       // Check if the field is one of the address fields and if 'adress' property exists
       if (
         prevLoggedUser.adress &&
-        prevLoggedUser.adress.hasOwnProperty(field)
+        Object.keys(prevLoggedUser.adress).includes(field)
       ) {
-        // If it's an address field, create a NEW address object
+        // If it's an address field, create a new address object
         const updatedAdress = {
           ...prevLoggedUser.adress,
           [field]: newValue,
@@ -55,7 +54,6 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
       <div className="user-intro">
         <div className="div-intro-header-logout-container">
           <div className="user-profile-intro-header">
-            <img src={honeyImg} alt="Imagem" />
             <div className="user-profile-intro-header-text">
               <h3>Seja Bem Vindo, {loggedUser.name}</h3>
               <p>ID: {loggedUser.id}</p>

@@ -29,16 +29,6 @@ body {
   border-bottom: none; /* Separator line below the header */
 }
 
-/* Styling for the user image/avatar */
-.user-profile-intro-header img {
-  width: 100px; /* Size of the image */
-  height: 100px; /* Size of the image */
-  border-radius: 50%; /* Make the image round */
-  margin-right: 20px; /* Space between the image and the welcome text */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
-  border: 3px solid #006400; /* Optional: a border matching your theme color */
-}
-
 .user-profile-intro-header-text {
   display: flex; /* Use flexbox to align image and text horizontally */
   align-items: baseline; /* Vertically align items in the center */
