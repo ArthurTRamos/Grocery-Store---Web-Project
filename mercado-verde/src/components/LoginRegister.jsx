@@ -8,6 +8,7 @@ import "./LoginRegister.css";
 import logo from "../assets/logo.png";
 import StateSelection from "./utility_elements/StateSelection";
 import CountrySelection from "./utility_elements/CountrySelection";
+import CustomAlert from "./utility_elements/CustomAlert";
 
 function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const navigate = useNavigate();
@@ -151,14 +152,14 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
 
   return (
     <div className="auth-container">
-      {fillAllFields && (
+      {fillAllFields ? (
         <CustomAlert
           alertMessage="Preencha todos os campos"
           onConfirm={() => setFillAllFields(false)}
           onConfirmMessage="OK"
           // messageHeader="Campos Obrigatórios"
         />
-      )}
+      ) : null}
       {invalidInfo && (
         <CustomAlert
           alertMessage="Usuário ou senha inválidos"
