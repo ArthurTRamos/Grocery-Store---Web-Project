@@ -142,6 +142,12 @@ We have the followings pages: product before the modification, product after the
 
 ### Modify a user:
 
+We gonna modify the name of user "Joãozinho da Silva Sauro". We the the following pages: users manage center and profile (admin).
+
+![""](ImagesReadme/modificarNome1.png)
+![""](ImagesReadme/modificarNome2.png)
+![""](ImagesReadme/modificarNome3.png)
+
 ### Register/Login:
 
 We have the following pages: register tab, login tab and profile after login.
@@ -166,6 +172,11 @@ We have the following pages: product and sections.
 ![""](ImagesReadme/DepoisDeletar.png)
 
 ### Delete a user:
+
+We gonna delete the user "Joãozinho da Silva Sauro". We have the following pages: profile (admin) and users manage center.
+
+![""](ImagesReadme/perfilExcluir1.png)
+![""](ImagesReadme/perfilExcluir2.png)
 
 
 ## Build Procedures
