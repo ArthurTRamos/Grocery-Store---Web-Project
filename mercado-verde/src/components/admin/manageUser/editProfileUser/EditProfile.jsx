@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
@@ -8,7 +7,8 @@ import honeyImg from "../../../../assets/mel.jpg";
 
 import "./EditProfile.css";
 
-function EditProfile({ loggedUser, setLoggedUser, setUsers, userToBeEdited, setUserToBeEdited }) {
+function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, setLoggedUser }) {
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,7 +50,19 @@ function EditProfile({ loggedUser, setLoggedUser, setUsers, userToBeEdited, setU
       );
     });
 
+    if (loggedUser && 
+        userToBeEdited.id === loggedUser.id && 
+        typeValue === false) {
+      
+      setLoggedUser(updatedUser);
+      
+      alert("Você alterou seu perfil para cliente. Você será redirecionado para a página inicial.");
+      
+      navigate("/");
+      
+    }
   }
+
 
 
 

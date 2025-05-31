@@ -4,7 +4,7 @@ import "./EditPaymentMethods.css";
 import EditPaymentCardInfo from "./EditPaymentCardInfo";
 import EditNewCardForm from "./EditNewCardForm";
 
-function EditPaymentMethods({ loggedUser, setLoggedUser, setUsers, userToBeEdited, setUserToBeEdited }) {
+function EditPaymentMethods({setUsers, userToBeEdited, setUserToBeEdited }) {
   const [isAddingCard, setIsAddingCard] = useState(false);
   const location = useLocation();
 

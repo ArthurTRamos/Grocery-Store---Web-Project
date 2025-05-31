@@ -127,11 +127,11 @@ function App() {
               index
               element={
                 <AdmEditProfile
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
                 />
               }
             />
@@ -140,11 +140,11 @@ function App() {
               path="profile"
               element={
                 <AdmEditProfile
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}
+                  loggedUser={loggedUser}
+                  setLoggedUser={setLoggedUser}
                 />
               }
             />
@@ -152,8 +152,6 @@ function App() {
               path="payment-methods"
               element={
                 <AdmEditPaymentMethods
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}
@@ -164,8 +162,6 @@ function App() {
               path="coupons"
               element={
                 <AdmEditUserCoupons
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   coupons={coupons}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}
