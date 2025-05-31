@@ -114,7 +114,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage productData={productData} setProductData={setProductData} />} />
-        <Route path="/manage" element={<AdmLayout />}>
+        <Route path="/manage" element={<AdmLayout loggedUser={loggedUser} />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
           <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
@@ -130,6 +130,8 @@ function App() {
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
                 />
               }
             />
@@ -141,6 +143,8 @@ function App() {
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
                 />
               }
             />

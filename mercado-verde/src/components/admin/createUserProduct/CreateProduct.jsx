@@ -8,6 +8,8 @@ import CustomAlert from "../../utility_elements/CustomAlert";
 
 const CreateProduct = ({products, setProducts}) => {
 
+  
+
   const [productAdded, setProductAdded] = useState(false);
 
   const[inputProductData, setInputProductData] = useState(

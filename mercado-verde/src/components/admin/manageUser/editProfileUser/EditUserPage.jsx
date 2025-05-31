@@ -19,19 +19,6 @@ function EditUserPage({ loggedUser, users, setUsers }) {
     location.state?.userToBeEdited
   );
 
-  if (!loggedUser) {
-    return <Navigate to="/" />;
-  }
-
-  const handleDeleteAccount = () => {
-    setShowAlert(false);
-    const updatedUsers = users.filter(
-      (user) => user.id !== userToBeEdited.id
-    );
-    setUsers(updatedUsers);
-    navigate("../manageUsers");
-  };
-
   return (
     <div className="user-page-container">
       <div className="user-page-sidebar">

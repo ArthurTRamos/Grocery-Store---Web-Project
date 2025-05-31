@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -8,33 +8,48 @@ import honeyImg from "../../../../assets/mel.jpg";
 
 import "./EditProfile.css";
 
-function EditProfile({ setUsers }) {
+function EditProfile({ loggedUser, setLoggedUser, setUsers, userToBeEdited, setUserToBeEdited }) {
   const navigate = useNavigate();
-
   const location = useLocation();
-  const [userToBeEdited, setUserToBeEdited] = useState(
-    location.state?.userToBeEdited
-  );
+
+
+  useEffect(() => {
+    const userFromState = location.state?.userToBeEdited;
+    if (userFromState && (!userToBeEdited || userToBeEdited.id !== userFromState.id)) {
+      console.log(userFromState);
+      setUserToBeEdited(userFromState);
+    }
+  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+
+  if (!userToBeEdited) {
+    return (
+      <div className="manage-user-intro">
+        <p>Carregando usuário...</p>
+        <button onClick={() => navigate("/manage/manageUsers")}>
+          Voltar
+        </button>
+      </div>
+    );
+  }
+
 
   const handleTypeChange = (typeValue) => {
 
-    setUserToBeEdited((prevUserToBeEdited) => {
+    if (!userToBeEdited) return;
 
-      let updatedUser;
+    const updatedUser = {
+      ...userToBeEdited,
+      admin: typeValue,
+    };
 
-      updatedUser = {
-        ...prevUserToBeEdited,
-        admin: typeValue,
-      };
+    setUserToBeEdited(updatedUser);
 
-      setUsers((prevUsers) => {
-        return prevUsers.map((user) =>
-          // Find the corresponding user by ID and replace it with the 'updatedUser'
-          user.id === updatedUser.id ? updatedUser : user
-        );
-      });
-      return updatedUser;
+    setUsers((prevUsers) => {
+      return prevUsers.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      );
     });
+
   }
 
 
