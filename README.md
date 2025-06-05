@@ -189,6 +189,18 @@ To use this project, follow the instructions below:
 
 - Type "npm i".
 
+- Go to "cd src/data" and create the file "key.json" with the following structure:
+
+```
+[
+    {
+        "key": ""
+    }
+]
+```
+
+- Return to mercado-verde with "cd ../../".
+
 - Type "npm run dev".
 
 - Take the url link and put it on your browser search bar.
