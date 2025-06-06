@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Outlet, NavLink} from "react-router-dom";
 
 import CustomAlert from "../../../utility_elements/CustomAlert";
@@ -7,8 +7,8 @@ import CustomAlert from "../../../utility_elements/CustomAlert";
 import "./EditUserPage.css";
 
 
-function EditUserPage({ loggedUser}) {
-
+function EditUserPage({ loggedUser, users, setUsers}) {
+  const navigate = useNavigate();
   
   const [showAlert, setShowAlert] = useState(false);
   const [cantDelete, setCantDelete] = useState(false);
@@ -17,6 +17,15 @@ function EditUserPage({ loggedUser}) {
   const [userToBeEdited, setUserToBeEdited] = useState(
     location.state?.userToBeEdited
   );
+
+  const handleDeleteAccount = () => {
+    setShowAlert(false);
+    const updatedUsers = users.filter(
+      (user) => user.id !== userToBeEdited.id
+    );
+    setUsers(updatedUsers);
+    navigate("/manage/manageUsers", { replace: true });
+  };
 
   return (
     <div className="user-page-container">

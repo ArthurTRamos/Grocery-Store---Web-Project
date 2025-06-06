@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useIMask } from "react-imask"; // Import the imask hook
 
 import "./LabeledEditableContainer.css";
 
@@ -11,28 +12,62 @@ function LabeledEditableContainer({
   field,
   handleSave,
   initialValue,
-  secret=false
+  secret = false,
+  formatter, // Now accepts an imask config object OR a function
+  verifier = () => true,
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [inputData, setInputData] = useState("");
+  const [inputData, setInputData] = useState(initialValue || "");
+  const [isValid, setIsValid] = useState(true);
 
+  // 1Check if the formatter is an imask config object
+  const isMasked = formatter && typeof formatter === 'object' && 'mask' in formatter;
+
+  // Setup the imask hook to run unconditionally (as required by React Hooks)
+  // It will only be active if `isMasked` is true.
+  const { ref } = useIMask(
+    isMasked ? formatter : {}, // Pass the mask config or an empty object
+    {
+      // `onAccept` is called when the value is changed and is valid according to the mask
+      onAccept: (value) => {
+        // We only let imask control the state for masked inputs
+        if (isMasked) {
+          setInputData(value);
+        }
+      },
+    }
+  );
+
+  // Handle input changes for non-masked inputs
   const handleInputChange = (e) => {
-    setInputData(e.target.value);
+    // This handler is now only for formatters that are functions (like capitalize)
+    // or for inputs with no formatter at all.
+    if (!isMasked) {
+      const value = e.target.value;
+      // If formatter is a function, use it. Otherwise, just set the value.
+      setInputData(typeof formatter === 'function' ? formatter(value) : value);
+    }
   };
 
   const handleEditClick = () => {
     setIsEditing(true);
-    setInputData(initialValue);
+    setInputData(initialValue || "");
+    setIsValid(true);
   };
 
-  const handleSaveClick = (e) => {
-    handleSave(field, inputData);
-    initialValue = inputData;
-    setIsEditing(false);
+  const handleSaveClick = () => {
+    const isVerified = verifier(inputData);
+    setIsValid(isVerified);
+
+    if (isVerified) {
+      handleSave(field, inputData);
+      setIsEditing(false);
+    }
   };
 
-  const handleCancelClick = (e) => {
-    setInputData(initialValue);
+  const handleCancelClick = () => {
+    setInputData(initialValue || "");
+    setIsValid(true);
     setIsEditing(false);
   };
 
@@ -53,11 +88,16 @@ function LabeledEditableContainer({
         {isEditing ? (
           <div className="labeled-editable-container-input-group">
             <input
-              type="text"
+              type={secret ? "password" : "text"}
+              // 4. Conditionally apply the ref for imask to take control
+              ref={isMasked ? ref : null}
+              // The value is always controlled by our React state
               value={inputData}
+              // The onChange handler is now only for non-masked inputs
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               autoFocus
+              className={!isValid ? "invalid-input" : ""}
             />
             <button onClick={handleSaveClick} className="save-button">
               <MdOutlineSave />
@@ -69,7 +109,7 @@ function LabeledEditableContainer({
         ) : (
           <div className="labeled-editable-container-display-group">
             <span className="labeled-editable-container-display-value">
-              {secret ? "*******" : initialValue}
+              {secret ? "********" : initialValue}
             </span>
             <button onClick={handleEditClick} className="edit-button">
               <TbEdit />

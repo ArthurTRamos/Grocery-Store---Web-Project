@@ -2,6 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
+// Import the centralized imask configurations
+import { imaskOptions } from "../utility_elements/Formatters";
+import verifiers from "../utility_elements/Verifiers"; // Assuming path
 
 import "./UserProfile.css";
 
@@ -13,24 +16,20 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
     setLoggedUser((prevLoggedUser) => {
       let updatedUser;
 
-      // Check if the field is one of the address fields and if 'adress' property exists
       if (
         prevLoggedUser.adress &&
         Object.keys(prevLoggedUser.adress).includes(field)
       ) {
-        // If it's an address field, create a new address object
         const updatedAdress = {
           ...prevLoggedUser.adress,
           [field]: newValue,
         };
 
-        // Create a new loggedUser object with the updated address object
         updatedUser = {
           ...prevLoggedUser,
           adress: updatedAdress,
         };
       } else {
-        // If it's not an address field, update normally
         updatedUser = {
           ...prevLoggedUser,
           [field]: newValue,
@@ -39,12 +38,10 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
 
       setUsers((prevUsers) => {
         return prevUsers.map((user) =>
-          // Find the corresponding user by ID and replace it with the 'updatedUser'
           user.id === updatedUser.id ? updatedUser : user
         );
       });
 
-      // Return the 'updatedUser' for the 'loggedUser' state to be updated
       return updatedUser;
     });
   };
@@ -69,18 +66,23 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
             field={"name"}
             handleSave={handleSave}
             initialValue={loggedUser.name}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"Telefone"}
             field={"cel"}
             handleSave={handleSave}
             initialValue={loggedUser.cel}
+            formatter={imaskOptions.phone} // Pass imask config object
+            verifier={verifiers.phone}
           />
           <LabeledEditableContainer
             displayName={"Email"}
             field={"email"}
             handleSave={handleSave}
             initialValue={loggedUser.email}
+            verifier={verifiers.email}
           />
           <LabeledEditableContainer
             displayName={"Senha"}
@@ -99,12 +101,14 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
             field={"streetName"}
             handleSave={handleSave}
             initialValue={loggedUser.adress.streetName}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
           />
           <LabeledEditableContainer
             displayName={"Número"}
             field={"streetNumber"}
             handleSave={handleSave}
             initialValue={loggedUser.adress.streetNumber}
+            verifier={verifiers.isNumeric}
           />
         </div>
         <LabeledEditableContainer
@@ -119,18 +123,24 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
             field={"city"}
             handleSave={handleSave}
             initialValue={loggedUser.adress.city}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"Estado"}
             field={"state"}
             handleSave={handleSave}
             initialValue={loggedUser.adress.state}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"País"}
             field={"country"}
             handleSave={handleSave}
             initialValue={loggedUser.adress.country}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
         </div>
         <LabeledEditableContainer
@@ -138,6 +148,8 @@ function UserProfile({ loggedUser, setLoggedUser, setUsers }) {
           field={"postalCode"}
           handleSave={handleSave}
           initialValue={loggedUser.adress.postalCode}
+          formatter={imaskOptions.postalCode} // Pass imask config object
+          verifier={verifiers.postalCode}
         />
       </div>
     </div>

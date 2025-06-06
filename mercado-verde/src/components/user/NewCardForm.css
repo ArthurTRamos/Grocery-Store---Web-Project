@@ -122,3 +122,24 @@
   border-color: #006400;
 }
 
+/* Style for the input field when it has an error */
+.input-error {
+  border-color: #d9534f !important; /* Red border to highlight the field */
+}
+
+.new-card-form-group .error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 3px;
+  margin-bottom: -8px;
+  
+  /* Force removal of unwanted box styles */
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  
+  /* Ensure proper layout */
+  width: auto;
+  display: block;
+  text-align: left;
+}

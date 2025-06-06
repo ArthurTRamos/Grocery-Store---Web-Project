@@ -4,6 +4,29 @@
   box-sizing: border-box;
 }
 
+.card-selection-container button {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #006400;
+  border-radius: 4px;
+  background-color: #006400;
+  color: #fff;
+  
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-selection-container button:hover {
+  background-color: #008000;
+}
+
+.card-selection-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 100, 0, 0.2);
+}
+
 .card-selection-container {
   background: #fff;
   padding: 20px;

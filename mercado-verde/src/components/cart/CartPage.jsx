@@ -98,7 +98,7 @@ function CartPage({
 
     if (!selectedCard) {
       setCardError(
-        "Por favor, selecione um cartão antes de finalizar a compra!"
+        `Por favor, ${paymentMethods.length > 0 ? "selecione" : "adicione"} um cartão antes de finalizar a compra!`
       );
       return;
     }

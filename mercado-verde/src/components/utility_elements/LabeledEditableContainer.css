@@ -14,6 +14,11 @@
   width: 100%; /* Add this to ensure container takes full width */
 }
 
+.labeled-editable-container-input-group input.invalid-input {
+  border-color: #dc3545; /* Red border for validation error */
+  box-shadow: 0 0 0 1px #dc3545; /* Add a subtle glow */
+}
+
 /* Styling for the display name (label) */
 .labeled-editable-container-display-name {
   font-size: 1rem;

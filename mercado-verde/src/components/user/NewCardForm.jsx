@@ -1,54 +1,74 @@
 import React, { useState } from "react";
+import { useIMask } from "react-imask"; // Import the hook
 import "./NewCardForm.css";
 import { MdOutlineSave } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 
+// Import the centralized imask configurations and the capitalize function
+import { imaskOptions } from "../utility_elements/Formatters";
+import verifiers from "../utility_elements/Verifiers";
+
 function NewCardForm({ onSave, onCancel }) {
-  const [inputInfo, setInputInfo] = useState({
-    cardNumber: "",
-    cardHolderName: "",
-    expirationDate: "",
-    cvv: "",
+  // State for each field
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCvv] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  // Setup imask hooks for each input
+  const { ref: cardNumberRef } = useIMask(imaskOptions.cardNumber, {
+    onAccept: (value) => setCardNumber(value),
+  });
+  const { ref: expDateRef } = useIMask(imaskOptions.expirationDate, {
+    onAccept: (value) => setExpirationDate(value),
+  });
+  const { ref: cvvRef } = useIMask(imaskOptions.cvv, {
+    onAccept: (value) => setCvv(value),
   });
 
-  // Format functions
-  const formatters = {
-    cardNumber: (value) => {
-      const cleaned = value.replace(/\D/g, "");
-      return cleaned
-        .replace(/(\d{4})/g, "$1 ")
-        .trim()
-        .slice(0, 19);
-    },
+  // Handle manual input changes for non-masked fields
+  const handleCardHolderNameChange = (e) => {
+    const formattedValue = imaskOptions.capitalize(e.target.value);
+    setCardHolderName(formattedValue);
+    if (errors.cardHolderName) {
+      setErrors((prev) => ({ ...prev, cardHolderName: null }));
+    }
+  };
 
-    expirationDate: (value) => {
-      const cleaned = value.replace(/\D/g, "");
-      if (cleaned.length >= 2) {
-        return `${cleaned.slice(0, 2)}/${cleaned.slice(2, 4)}`;
+  const validateForm = () => {
+    const newErrors = {};
+    const inputInfo = { cardNumber, cardHolderName, expirationDate, cvv };
+
+    const errorMessages = {
+      cardHolderName: "Nome do titular inválido.",
+      cardNumber: "O número do cartão deve ter 16 dígitos.",
+      expirationDate: "Data de validade inválida.",
+      cvv: "CVV deve ter 3 ou 4 dígitos.",
+    };
+
+    Object.keys(inputInfo).forEach((key) => {
+      let isValid = true;
+      if (key === "cardHolderName") {
+        isValid = verifiers.name(inputInfo[key]);
+      } else if (verifiers[key]) {
+        isValid = verifiers[key](inputInfo[key]);
       }
-      return cleaned;
-    },
+      if (!isValid) {
+        newErrors[key] = errorMessages[key] || "Campo inválido.";
+      }
+    });
 
-    cvv: (value) => value.replace(/\D/g, "").slice(0, 3),
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Handle input changes
-  const handleInputData = (e) => {
-    // Take the name and value from the event target
-    const { name, value } = e.target;
-    // Format the value based on the input name
-    const formattedValue = formatters[name] ? formatters[name](value) : value;
-
-    setInputInfo((prev) => ({
-      ...prev,
-      [name]: formattedValue,
-    }));
-  };
-
-  // Handle form submission
   const handleSave = (e) => {
     e.preventDefault();
-    onSave(inputInfo);
+    if (validateForm()) {
+      onSave({ cardNumber, cardHolderName, expirationDate, cvv });
+    }
   };
 
   return (
@@ -56,15 +76,11 @@ function NewCardForm({ onSave, onCancel }) {
       <div className="new-card-form-header">
         <p>Adicionar Novo Cartão</p>
         <div className="new-card-form-actions">
-          <button type="submit" form="new-card-form">
-            <MdOutlineSave />
-          </button>
-          <button type="button" onClick={onCancel}>
-            <AiOutlineClose />
-          </button>
+          <button type="submit" form="new-card-form"><MdOutlineSave /></button>
+          <button type="button" onClick={onCancel}><AiOutlineClose /></button>
         </div>
       </div>
-      <form id="new-card-form" onSubmit={handleSave} className="new-card-form">
+      <form id="new-card-form" onSubmit={handleSave} className="new-card-form" noValidate>
         <div className="new-card-form-content">
           <div className="new-card-form-left">
             <div className="new-card-form-group">
@@ -73,10 +89,12 @@ function NewCardForm({ onSave, onCancel }) {
                 id="cardHolderName"
                 name="cardHolderName"
                 type="text"
-                value={inputInfo.cardHolderName}
-                onChange={handleInputData}
+                value={cardHolderName}
+                onChange={handleCardHolderNameChange} // Use dedicated handler
+                className={errors.cardHolderName ? "input-error" : ""}
                 required
               />
+              {errors.cardHolderName && <p className="error-message">{errors.cardHolderName}</p>}
             </div>
             <div className="new-card-form-group">
               <label htmlFor="cardNumber">Número do Cartão</label>
@@ -84,10 +102,12 @@ function NewCardForm({ onSave, onCancel }) {
                 id="cardNumber"
                 name="cardNumber"
                 type="text"
-                value={inputInfo.cardNumber}
-                onChange={handleInputData}
+                ref={cardNumberRef} // Use the ref from the hook
+                defaultValue={cardNumber}
+                className={errors.cardNumber ? "input-error" : ""}
                 required
               />
+              {errors.cardNumber && <p className="error-message">{errors.cardNumber}</p>}
             </div>
           </div>
           <div className="new-card-form-right">
@@ -97,11 +117,13 @@ function NewCardForm({ onSave, onCancel }) {
                 id="expirationDate"
                 name="expirationDate"
                 type="text"
-                value={inputInfo.expirationDate}
-                onChange={handleInputData}
+                ref={expDateRef} // Use the ref from the hook
+                defaultValue={expirationDate}
                 placeholder="MM/AA"
+                className={errors.expirationDate ? "input-error" : ""}
                 required
               />
+              {errors.expirationDate && <p className="error-message">{errors.expirationDate}</p>}
             </div>
             <div className="new-card-form-group">
               <label htmlFor="cvv">CVV</label>
@@ -109,10 +131,12 @@ function NewCardForm({ onSave, onCancel }) {
                 id="cvv"
                 name="cvv"
                 type="text"
-                value={inputInfo.cvv}
-                onChange={handleInputData}
+                ref={cvvRef} // Use the ref from the hook
+                defaultValue={cvv}
+                className={errors.cvv ? "input-error" : ""}
                 required
               />
+              {errors.cvv && <p className="error-message">{errors.cvv}</p>}
             </div>
           </div>
         </div>
