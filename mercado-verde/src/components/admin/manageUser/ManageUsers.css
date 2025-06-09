@@ -1,5 +1,6 @@
 .manageUsers-container {
     margin-bottom: 40px;
+    flex: 1;
 }
 
 /* .table-container {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet, Navigate } from "react-router-dom";
+import SideBar from './SideBar';
 
 const AdmLayout = ({loggedUser}) => {
 
@@ -11,12 +12,9 @@ const AdmLayout = ({loggedUser}) => {
 
     return(
         <div className="adm_container">
-
             <div className="AdmContent">
                 <Outlet/>
             </div>
-
-
         </div>
     )
 }

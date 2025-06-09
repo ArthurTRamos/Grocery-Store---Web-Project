@@ -7,7 +7,6 @@ const HomeAdmin = () => {
   return (
     <div className="admin-container">
       <SideBar/>
-
       <div className="page-container">
         <div className="admin-text">
             <h1>Página do Administrador</h1>

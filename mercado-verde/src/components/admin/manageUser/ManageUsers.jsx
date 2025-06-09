@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMemo } from "react";
 import ManageUserComponent from './component/ManageUserComponent';
 import "./ManageUsers.css";
+import SideBar from '../SideBar';
 
 const ManageUsers = ({users, setUsers, loggedUser}) => {
     const[inputData, setInputData] = useState("");
@@ -50,86 +51,86 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
 
     return(
         <>
-            <div className='manageUsers-container'>
-                <div className='div-centro-gerencia'>
-                    <h1>Centro de gerência dos Usuários</h1>
-                </div>
+            <div className="admin-container">
 
-                <div className="search-input">
+                <SideBar/>
 
-                    <input type="text"
-                    placeholder='Digite o nome do usuário a ser buscado'
-                    onChange={setSearchTerm}
-                    value={inputData}
-                    />
-                </div>
-
-                {/* Informações da paginação */}
-                {currentItems.length > 0 && (
-                <div className="pagination-info">
-                    <p>
-                    Mostrando {startIndex + 1}-{Math.min(endIndex, filteredItems.length)} de {filteredItems.length} produtos
-                    </p>
-                </div>
-                )}
-
-                <div className='div-table-container'>
-                    <table className='table-container'>
-                        <thead>
-                            <tr>
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Telefone</th>
-                            <th></th>{/* buttons */}
-                            </tr>
-                        </thead>
-
-                        {currentItems.map((user) => (
-                            <ManageUserComponent key={user.id} individualUser={user}/>
-                        ))}
-            
-                    </table>
-                </div>
-
-                {totalPages > 1 && (
-                <div className="pagination-controls">
-                    <button 
-                    onClick={handlePreviousPage}
-                    disabled={currentPage === 1}
-                    className="pagination-btn"
-                    >
-                    Anterior
-                    </button>
-                    
-                    <div className="pagination-numbers">
-                    {Array.from({ length: totalPages }, (_, index) => (
-                        <button
-                        key={index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={currentPage === index + 1 ? "pagination-btn active" : "pagination-btn"}
-                        >
-                        {index + 1}
-                        </button>
-                    ))}
+                <div className='manageUsers-container'>
+                    <div className='div-centro-gerencia'>
+                        <h1>Centro de gerência dos Usuários</h1>
                     </div>
-                    
-                    <button 
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className="pagination-btn"
-                    >
-                    Próximo
-                    </button>
+
+                    <div className="search-input">
+
+                        <input type="text"
+                        placeholder='Digite o nome do usuário a ser buscado'
+                        onChange={setSearchTerm}
+                        value={inputData}
+                        />
+                    </div>
+
+                    {/* Informações da paginação */}
+                    {currentItems.length > 0 && (
+                    <div className="pagination-info">
+                        <p>
+                        Mostrando {startIndex + 1}-{Math.min(endIndex, filteredItems.length)} de {filteredItems.length} produtos
+                        </p>
+                    </div>
+                    )}
+
+                    <div className='div-table-container'>
+                        <table className='table-container'>
+                            <thead>
+                                <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th></th>{/* buttons */}
+                                </tr>
+                            </thead>
+
+                            {currentItems.map((user) => (
+                                <ManageUserComponent key={user.id} individualUser={user}/>
+                            ))}
+                
+                        </table>
+                    </div>
+
+                    {totalPages > 1 && (
+                    <div className="pagination-controls">
+                        <button 
+                        onClick={handlePreviousPage}
+                        disabled={currentPage === 1}
+                        className="pagination-btn"
+                        >
+                        Anterior
+                        </button>
+                        
+                        <div className="pagination-numbers">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? "pagination-btn active" : "pagination-btn"}
+                            >
+                            {index + 1}
+                            </button>
+                        ))}
+                        </div>
+                        
+                        <button 
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className="pagination-btn"
+                        >
+                        Próximo
+                        </button>
+                    </div>
+                    )}
                 </div>
-                )}
-
             </div>
-
-
-
-
         </>
     )
 }
