@@ -109,7 +109,7 @@ function LabeledEditableContainer({
         ) : (
           <div className="labeled-editable-container-display-group">
             <span className="labeled-editable-container-display-value">
-              {secret ? "********" : initialValue}
+              {secret ? "********" : String(initialValue)}
             </span>
             <button onClick={handleEditClick} className="edit-button">
               <TbEdit />

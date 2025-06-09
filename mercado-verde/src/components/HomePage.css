@@ -164,7 +164,7 @@ body {
 .offer-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   background: white;
   border-radius: 15px;
@@ -176,7 +176,8 @@ body {
 
 .offer-card img {
   width: 100%;
-  height: auto;
+  height: 400px;
+  object-fit: contain;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }

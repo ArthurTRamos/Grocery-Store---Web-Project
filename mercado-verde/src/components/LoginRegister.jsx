@@ -19,6 +19,11 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const [fillAllFields, setFillAllFields] = useState(false);
   const [invalidInfo, setInvalidInfo] = useState(false);
   const [sucessfulRegister, setSuccessfulRegister] = useState(false);
+  const [fixPhoneNumber, setFixPhoneNumber] = useState(false);
+  const [fixHouseNumber, setFixHouseNumber] = useState(false);
+  const [fixCEPNumber, setFixCEPNumber] = useState(false);
+
+  const [equalEmail, setEqualEmail] = useState(false);
 
   const [inputInfoLogin, setInputInfoLogin] = useState({
     email: "",
@@ -56,8 +61,16 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
 
   const handleInputDataRegister = (e) => {
     const { name, value } = e.target;
-
-    if(name === "apartmentNumber" || name === "city" || name === "country" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
+  
+    if (
+      name === "apartmentNumber" ||
+      name === "city" ||
+      name === "country" ||
+      name === "postalCode" ||
+      name === "state" ||
+      name === "streetName" ||
+      name === "streetNumber"
+    ) {
       setInputInfoRegister((prev) => ({
         ...prev,
         adress: {
@@ -72,6 +85,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       }));
     }
   };
+  
 
   const handleStateChange = (newState) => {
     setSelectedState(newState);
@@ -101,7 +115,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     e.preventDefault();
 
     if(!inputInfoLogin.email || !inputInfoLogin.password) {
-      // alert("Preencha todos os campos");
       setFillAllFields(true);
       return;
     }
@@ -120,7 +133,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       navigate("/");
     }
     else {
-      // alert("Usuário ou senha inválidos");
       setInvalidInfo(true);
     }
   };
@@ -134,7 +146,30 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       return;
     }
 
+    const onlyNumbersRegex = /^\d*$/;
+    if(!onlyNumbersRegex.test(inputInfoRegister.cel)) {
+      setFixPhoneNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputInfoRegister.adress.streetNumber)) {
+      setFixHouseNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputInfoRegister.adress.postalCode)) {
+      setFixCEPNumber(true);
+      return;
+    }
+
+    if(users.filter((user) => user.email === inputInfoRegister.email).length > 0) {
+      setEqualEmail(true);
+      return;
+    }
+
     inputInfoRegister.id = uuidv4();
+
+    console.log(inputInfoRegister)
 
     onSaveRegister(inputInfoRegister);
 
@@ -157,7 +192,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
           alertMessage="Preencha todos os campos"
           onConfirm={() => setFillAllFields(false)}
           onConfirmMessage="OK"
-          // messageHeader="Campos Obrigatórios"
         />
       ) : null}
       {invalidInfo && (
@@ -165,7 +199,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
           alertMessage="Usuário ou senha inválidos"
           onConfirm={() => setInvalidInfo(false)}
           onConfirmMessage="OK"
-          // messageHeader="Erro de Login"
         />
       )}
       {sucessfulRegister && (
@@ -173,9 +206,37 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
           alertMessage="Usuário cadastrado com sucesso!"
           onConfirm={handleCloseSuccessfulRegister}
           onConfirmMessage="OK"
-          // messageHeader="Cadastro Completo"
         />
       )}
+      {fixPhoneNumber ? (
+        <CustomAlert
+          alertMessage="O telefone somente pode conter números"
+          onConfirm={() => setFixPhoneNumber(false)}
+          onConfirmMessage="OK"
+        />
+      ) : null}
+      {equalEmail ? (
+        <CustomAlert
+          alertMessage="Email já em uso"
+          onConfirm={() => setEqualEmail(false)}
+          onConfirmMessage="OK"
+        />
+      ) : null}
+      {fixHouseNumber ? (
+        <CustomAlert
+          alertMessage="O número da casa somente pode conter números"
+          onConfirm={() => setFixHouseNumber(false)}
+          onConfirmMessage="OK"
+        />
+      ) : null}
+      {fixCEPNumber ? (
+        <CustomAlert
+          alertMessage="O CEP somente pode conter números"
+          onConfirm={() => setFixCEPNumber(false)}
+          onConfirmMessage="OK"
+        />
+      ) : null}
+
       <div className="auth-form">
         <div className="auth-header">
           <img src={logo} alt="Logo" className="logo" />
@@ -280,6 +341,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                       name="cel"
                       value={inputInfoRegister.cel}
                       onChange={handleInputDataRegister}
+                      pattern="[0-9]+"
                       required
                     />
                   </div>
@@ -359,7 +421,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
                     <input 
                     id="cep"
                     type="text" 
-                    placeholder="00000-000" 
+                    placeholder="00000000" 
                     name="postalCode"
                     value={inputInfoRegister.adress.postalCode}
                     onChange={handleInputDataRegister}

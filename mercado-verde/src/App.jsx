@@ -105,7 +105,7 @@ function App() {
     setUsers(updatedUserData);
 
     console.log("Adicionando user no app.jsx");
-    console.log({ users });x
+    console.log({ users });
   };
   
   return (

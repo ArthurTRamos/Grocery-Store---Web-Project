@@ -9,6 +9,8 @@ function UserPage({ loggedUser, users, setUsers }) {
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
+  console.log(loggedUser);
+
   if (!loggedUser) {
     return <Navigate to="/" />;
   }
