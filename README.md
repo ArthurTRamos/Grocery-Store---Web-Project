@@ -124,7 +124,7 @@ We didn't use testing tools. For the manual tests, we tried:
 
 ### Buy the product "Arroz Integral 1kg": 
 
-We have the followings pages: product before the buy, cart and product after the buy. 
+We have the following pages: product before the buy, cart and product after the buy. 
 
 <img src="ImagesReadme/AntesCompra.png" width="700" height=auto/>
 <img src="ImagesReadme/CarrinhoCompra.png" width="700", height=auto/>
@@ -132,9 +132,15 @@ We have the followings pages: product before the buy, cart and product after the
 
 ### Create the new product "Bala":
 
+We have the following pages: create product and individual product (after creation).
+
+<img src="ImagesReadme/criacaoProdut1.png" width="700" height=auto/>
+<img src="ImagesReadme/criacaoProdut2.png" width="700" height=auto/>
+
+
 ### Modify the image and name of the product "Arroz Integral 1kg":
 
-We have the followings pages: product before the modification, product after the modification and section with the modified product.
+We have the following pages: product before the modification, product after the modification and section with the modified product.
 
 <img src="ImagesReadme/produtoModificacao.png" width="700" height=auto/>
 <img src="ImagesReadme/novoProdutoModificacao.png" width="700" height=auto/>
