@@ -126,9 +126,9 @@ We didn't use testing tools. For the manual tests, we tried:
 
 We have the followings pages: product before the buy, cart and product after the buy. 
 
-![""](ImagesReadme/AntesCompra.png)
-![""](ImagesReadme/CarrinhoCompra.png)
-![""](ImagesReadme/DepoisCompra.png)
+<img src="ImagesReadme/AntesCompra.png" width="700" height=auto/>
+<img src="ImagesReadme/CarrinhoCompra.png" width="700", height=auto/>
+<img src="ImagesReadme/DepoisCompra.png" width="700" height=auto/>
 
 ### Create the new product "Bala":
 
@@ -136,48 +136,47 @@ We have the followings pages: product before the buy, cart and product after the
 
 We have the followings pages: product before the modification, product after the modification and section with the modified product.
 
-![""](ImagesReadme/produtoModificacao.png)
-![""](ImagesReadme/novoProdutoModificacao.png)
-![""](ImagesReadme/ModificacaoSecao.png)
+<img src="ImagesReadme/produtoModificacao.png" width="700" height=auto/>
+<img src="ImagesReadme/novoProdutoModificacao.png" width="700" height=auto/>
+<img src="ImagesReadme/ModificacaoSecao.png" width="700" height=auto/>
 
 ### Modify a user:
 
 We gonna modify the name of user "Joãozinho da Silva Sauro". We the the following pages: users manage center and profile (admin).
 
-![""](ImagesReadme/modificarNome1.png)
-![""](ImagesReadme/modificarNome2.png)
-![""](ImagesReadme/modificarNome3.png)
+<img src="ImagesReadme/modificarNome1.png" width="700" height=auto/>
+<img src="ImagesReadme/modificarNome2.png" width="700" height=auto/>
+<img src="ImagesReadme/modificarNome3.png" width="700" height=auto/>
 
 ### Register/Login:
 
 We have the following pages: register tab, login tab and profile after login.
 
-![""](ImagesReadme/Register.png)
-![""](ImagesReadme/Login.png)
-![""](ImagesReadme/UserPageAfterLogin.png)
+<img src="ImagesReadme/Register.png" width="600" height=auto/>
+<img src="ImagesReadme/Login.png" width="600" height=auto/>
+<img src="ImagesReadme/UserPageAfterLogin.png" width="600" height=auto/>
 
 ### Generate a recipe for "Almoço de Domingo":
 
 We have the following pages: generate recipe, ingredientes and steps.
 
-![""](ImagesReadme/recipe.png)
-![""](ImagesReadme/ingredients.png)
-![""](ImagesReadme/steps.png)
+<img src="ImagesReadme/recipe.png" width="700" height=auto/>
+<img src="ImagesReadme/ingredients.png" width="700" height=auto/>
+<img src="ImagesReadme/steps.png" width="700" height=auto/>
 
 ### Delete a product:
 
 We have the following pages: product and sections.
 
-![""](ImagesReadme/produtoModificacao.png)
-![""](ImagesReadme/DepoisDeletar.png)
+<img src="ImagesReadme/produtoModificacao.png" width="700" height=auto/>
+<img src="ImagesReadme/DepoisDeletar.png" width="700" height=auto/>
 
 ### Delete a user:
 
 We gonna delete the user "Joãozinho da Silva Sauro". We have the following pages: profile (admin) and users manage center.
 
-![""](ImagesReadme/perfilExcluir1.png)
-![""](ImagesReadme/perfilExcluir2.png)
-
+<img src="ImagesReadme/perfilExcluir1.png" width="700" height=auto/>
+<img src="ImagesReadme/perfilExcluir2.png" width="700" height=auto/>
 
 ## Build Procedures
 
@@ -185,11 +184,23 @@ To use this project, follow the instructions below:
 
 - Clone the repository.
 
-- Go to grocery-store-react by "cd mercado-verde".
+```
+git clone https://github.com/ArthurTRamos/Grocery-Store---Web-Project.git
+```
 
-- Type "npm i".
+- Go to grocery-store-react by
 
-- Go to "cd src/data" and create the file "key.json" with the following structure:
+```
+cd mercado-verde
+```
+
+- Type
+
+```
+npm install
+```
+
+- Go to ```cd src/data``` and create the file ```key.json``` with the following structure:
 
 ```
 [
@@ -199,9 +210,17 @@ To use this project, follow the instructions below:
 ]
 ```
 
-- Return to mercado-verde with "cd ../../".
+- Return to mercado-verde with
 
-- Type "npm run dev".
+```
+cd ../../
+```
+
+- Type
+
+```
+npm run dev
+```
 
 - Take the url link and put it on your browser search bar.
 
@@ -211,4 +230,4 @@ No problems.
 
 ## Comments
 
-No comments.
+If you want to use the recipe funcionality, you have to go to <a href="https://openrouter.ai/">this website</a>, create an account and create a key. After this, insert the key on the ```key.json```.
