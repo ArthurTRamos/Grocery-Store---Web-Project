@@ -51,8 +51,12 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
 
     if(field === "price" || field === "stock") {
       newValue = parseFloat(newValue);
-      if (isNaN(newValue)) {
-        // alert("Por favor, insira um número válido.");
+      if(isNaN(newValue)) {
+        setInvalidNumber(true);
+        return;
+      }
+
+      if(newValue < 0) {
         setInvalidNumber(true);
         return;
       }
