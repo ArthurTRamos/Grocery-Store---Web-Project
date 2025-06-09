@@ -6,8 +6,6 @@ import CouponInfo from "./EditCouponInfo";
 import CustomAlert from "../../../utility_elements/CustomAlert";
 
 function EditUserCoupons({
-  loggedUser,
-  setLoggedUser,
   coupons,
   userToBeEdited,
   setUserToBeEdited,

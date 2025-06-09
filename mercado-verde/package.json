@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "imask": "^7.6.1",
     "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+    "react-imask": "^7.6.1",
     "react-router-dom": "^7.6.1",
     "react-tabs": "^6.1.0",
     "uuid": "^11.1.0"

@@ -87,7 +87,7 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
                         </thead>
 
                         {currentItems.map((user) => (
-                            <ManageUserComponent key={user.id} individualUser={user} users={users} setUsers={setUsers} loggedUser={loggedUser}/>
+                            <ManageUserComponent key={user.id} individualUser={user}/>
                         ))}
             
                     </table>

@@ -1,27 +1,22 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Outlet, NavLink, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, NavLink} from "react-router-dom";
 
 import CustomAlert from "../../../utility_elements/CustomAlert";
 
 import "./EditUserPage.css";
 
 
-function EditUserPage({ loggedUser, users, setUsers }) {
-
+function EditUserPage({ loggedUser, users, setUsers}) {
+  const navigate = useNavigate();
   
   const [showAlert, setShowAlert] = useState(false);
   const [cantDelete, setCantDelete] = useState(false);
-  const navigate = useNavigate();
 
   const location = useLocation();
   const [userToBeEdited, setUserToBeEdited] = useState(
     location.state?.userToBeEdited
   );
-
-  if (!loggedUser) {
-    return <Navigate to="/" />;
-  }
 
   const handleDeleteAccount = () => {
     setShowAlert(false);
@@ -29,7 +24,7 @@ function EditUserPage({ loggedUser, users, setUsers }) {
       (user) => user.id !== userToBeEdited.id
     );
     setUsers(updatedUsers);
-    navigate("../manageUsers");
+    navigate("/manage/manageUsers", { replace: true });
   };
 
   return (
@@ -76,7 +71,6 @@ function EditUserPage({ loggedUser, users, setUsers }) {
                 className="delete-account-button"
                 onClick={() => {
                   if(userToBeEdited.id === loggedUser.id) {
-                    // alert("Você não pode deletar a própria conta!");
                     setCantDelete(true);
                     return;
                   }else{

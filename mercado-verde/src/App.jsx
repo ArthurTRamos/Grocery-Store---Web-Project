@@ -114,7 +114,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage productData={productData} setProductData={setProductData} />} />
-        <Route path="/manage" element={<AdmLayout />}>
+        <Route path="/manage" element={<AdmLayout loggedUser={loggedUser} />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
           <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
@@ -127,9 +127,11 @@ function App() {
               index
               element={
                 <AdmEditProfile
+                  setUsers={setUsers}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
-                  setUsers={setUsers}
                 />
               }
             />
@@ -138,9 +140,11 @@ function App() {
               path="profile"
               element={
                 <AdmEditProfile
+                  setUsers={setUsers}
+                  userToBeEdited={randomUser}
+                  setUserToBeEdited={setRandomUser}
                   loggedUser={loggedUser}
                   setLoggedUser={setLoggedUser}
-                  setUsers={setUsers}
                 />
               }
             />
@@ -148,8 +152,6 @@ function App() {
               path="payment-methods"
               element={
                 <AdmEditPaymentMethods
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   setUsers={setUsers}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}
@@ -160,8 +162,6 @@ function App() {
               path="coupons"
               element={
                 <AdmEditUserCoupons
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
                   coupons={coupons}
                   userToBeEdited={randomUser}
                   setUserToBeEdited={setRandomUser}

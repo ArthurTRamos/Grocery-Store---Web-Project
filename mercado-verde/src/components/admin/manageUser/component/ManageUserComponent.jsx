@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./ManageUserComponent.css";
 import EditProfile from '../editProfileUser/EditProfile';
 
-const ManageUserComponent = ({individualUser, users, setUsers, loggedUser}) => {
+const ManageUserComponent = ({individualUser}) => {
 
     return (
         <>

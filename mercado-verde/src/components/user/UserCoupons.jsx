@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-
+import { useIMask } from "react-imask"; // Import the hook
 import "./UserCoupons.css";
 
 import CouponInfo from "./CouponInfo";
 import CustomAlert from "../utility_elements/CustomAlert";
+// Import the centralized imask configurations
+import { imaskOptions } from "../utility_elements/Formatters";
 
 function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
   // State to manage the new coupon number
   const [newCouponNumber, setNewCouponNumber] = useState("");
   const [couponAlreadyAdded, setCouponAlreadyAdded] = useState(false);
   const [couponNotFound, setCouponNotFound] = useState(false);
+
+  // Setup imask hook for the coupon input
+  const { ref: couponRef } = useIMask(imaskOptions.coupon, {
+    onAccept: (value) => setNewCouponNumber(value),
+  });
 
   // Handler for when the NewCoupon is added
   const handleNewCouponAdd = () => {
@@ -18,7 +25,6 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
       (coupon) => coupon.couponNumber === newCouponNumber
     );
     if (couponExists) {
-      // alert("Cupom já adicionado!");
       setCouponAlreadyAdded(true);
       return;
     }
@@ -28,13 +34,11 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
       (coupon) => coupon.couponNumber === newCouponNumber
     );
     if (!couponData) {
-      // alert("Cupom inválido!");
       setCouponNotFound(true);
       return;
     }
 
     // Add the new coupon to the user's coupons
-    // and set it as unused
     setLoggedUser((prevData) => ({
       ...prevData,
       coupons: [
@@ -45,6 +49,8 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
         },
       ],
     }));
+    // Clear input field after adding
+    setNewCouponNumber(""); 
   };
 
   return (
@@ -72,8 +78,8 @@ function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
           <input
             type="text"
             placeholder="Digite o código do cupom"
+            ref={couponRef} // Use the ref from the hook
             value={newCouponNumber}
-            onChange={(e) => setNewCouponNumber(e.target.value.toUpperCase())}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 handleNewCouponAdd();

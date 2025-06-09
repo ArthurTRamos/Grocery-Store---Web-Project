@@ -1,8 +1,13 @@
 import React from 'react';
-import SideBar from './SideBar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from "react-router-dom";
 
-const AdmLayout = () => {
+const AdmLayout = ({loggedUser}) => {
+
+    console.log(loggedUser);
+    
+    if (!loggedUser || loggedUser.admin === false) {
+        return <Navigate to="/" />;
+    }
 
     return(
         <div className="adm_container">
