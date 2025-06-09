@@ -5,12 +5,16 @@ import SekInputImage from "../../utility_elements/SekInputImage";
 import CategorySelection from "../../utility_elements/CategorySelection";
 
 import CustomAlert from "../../utility_elements/CustomAlert";
+import CustomError from "../../utility_elements/CustomError";
 
 const CreateProduct = ({products, setProducts}) => {
 
   
 
   const [productAdded, setProductAdded] = useState(false);
+  const [productMissField, setProductMissField] = useState(false);
+  const [productInvalidField, setProductInvalidField] = useState(false);
+
 
   const[inputProductData, setInputProductData] = useState(
     {
@@ -57,6 +61,16 @@ const CreateProduct = ({products, setProducts}) => {
       sold: Number(inputProductData.sold) || 0,
     };
 
+    if(newProduct.name === "" || newProduct.category === "") {
+      setProductMissField(true);
+      return;
+    }
+
+    if(newProduct.price <= 0 || newProduct.stock < 0 || newProduct.sold < 0) {
+      setProductInvalidField(true);
+      return;
+    }
+
     const updateProductData = [...products, newProduct];
     setProducts(updateProductData);
 
@@ -75,6 +89,22 @@ const CreateProduct = ({products, setProducts}) => {
             alertMessage="Produto adicionado com sucesso!"
             onConfirm={() => setProductAdded(false)}
             onConfirmMessage={"OK"}
+          />
+        )}
+        {productMissField && (
+          <CustomError
+            messageHeader="Produto com campos faltantes!"
+            alertMessage="Todos os campos, exceto imagem e descrição, precisam estar preenchidos!"
+            onError={() => setProductMissField(false)}
+            onErrorMessage={"Voltar!"}
+          />
+        )}
+        {productInvalidField && (
+          <CustomError
+            messageHeader="Produto com campos inválidos!"
+            alertMessage="Campos numéricos negativos, ou preço zerado não são permitidos!"
+            onError={() => setProductInvalidField(false)}
+            onErrorMessage={"Voltar!"}
           />
         )}
         <form id="userForm">
