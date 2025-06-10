@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./CreateCoupon.css";
 import SideBar from "../SideBar";
 import CustomAlert from "../../utility_elements/CustomAlert";
+import { useIMask } from "react-imask";
 
 const AdmCreateCoupon = ({ coupons, setCoupons }) => {
   const [couponAdded, setCouponAdded] = useState(false);
@@ -12,21 +13,16 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
   const [inputCouponData, setInputCouponData] = useState({
     id: -1,
     couponNumber: "",
-    discount: 0,
-    type: "percent", // Valor padrão
+    discount: "", // Use an empty string for the initial unmasked value
+    type: "percent",
   });
 
-  const handleInputDataChange = (e) => {
-    const { name, value } = e.target;
-
-    let formattedValue = value;
-    if (name === "couponNumber") {
-      formattedValue = value.toUpperCase().trim().replace(" ", "");
-    }
-
-    if (name === "discount") {
-      formattedValue = value.replace(/[^0-9.]/g, "").replace(",", ".");
-    }
+  // UNIFIED CHANGE HANDLER
+  const handleInputChange = (name, value) => {
+    const formattedValue =
+      name === "couponNumber"
+        ? value.toUpperCase().trim().replace(" ", "")
+        : value;
 
     setInputCouponData((prev) => ({
       ...prev,
@@ -34,12 +30,32 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
     }));
   };
 
+  const maskOptions = {
+    mask: Number,
+    scale: 2,
+    signed: false,
+    thousandsSeparator: ",",
+    padFractionalZeros: true,
+    normalizeZeros: true,
+    radix: ".",
+    mapToRadix: [","],
+    min: 0,
+  };
+
+  // Use the new handler in the iMask hook
+  const { ref } = useIMask(maskOptions, {
+    onAccept: (unmaskedValue) => handleInputChange("discount", unmaskedValue),
+  });
+
   const handleCouponCreation = (e) => {
     e.preventDefault();
+
+    console.log("Input Coupon Data:", inputCouponData);
 
     const newCoupon = {
       ...inputCouponData,
       id: uuidv4(),
+      // The conversion is still correct and necessary
       discount: Number(inputCouponData.discount) || 0,
     };
 
@@ -62,13 +78,11 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
     setCoupons(updatedCoupons);
 
     setCouponAdded(true);
-    console.log({ newCoupon });
 
-    // Limpar formulário
     setInputCouponData({
       id: -1,
       couponNumber: "",
-      discount: 0,
+      discount: "", // Reset to empty string
       type: "percent",
     });
   };
@@ -77,7 +91,6 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
     <>
       <div className="admin-container">
         <SideBar />
-
         <div className="interior-container">
           {couponAdded && (
             <CustomAlert
@@ -86,6 +99,7 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
               onConfirmMessage={"OK"}
             />
           )}
+
           {couponMissField && (
             <CustomAlert
               messageHeader="Cupom com campos faltantes!"
@@ -94,10 +108,11 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
               onConfirmMessage={"Voltar!"}
             />
           )}
+
           {couponInvalidField && (
             <CustomAlert
               messageHeader="Cupom com campo inválido!"
-              alertMessage="O valor do desconto não pode ser zero ou negativo, nem maior que cem caso seja porcentagem."
+              alertMessage="O valor do desconto deve ser um número positivo e, se for porcentagem, não pode ser maior que 100%!"
               onConfirm={() => setCouponInvalidField(false)}
               onConfirmMessage={"Voltar!"}
             />
@@ -110,7 +125,6 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
 
             <div className="form-section">
               <h3>Dados do Cupom</h3>
-
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="couponNumber">Código do Cupom</label>
@@ -121,7 +135,10 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
                     name="couponNumber"
                     placeholder="Digite o código do cupom (ex: NATAL20)"
                     value={inputCouponData.couponNumber}
-                    onChange={handleInputDataChange}
+                    // Use the new handler
+                    onChange={(e) =>
+                      handleInputChange(e.target.name, e.target.value)
+                    }
                     required
                   />
                 </div>
@@ -130,15 +147,15 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="discount">Valor do Desconto</label>
+                  {/* THIS IS THE FULLY CORRECTED INPUT */}
                   <input
                     type="text"
-                    inputMode="decimal" // Melhora a experiência em teclados de celular
+                    inputMode="decimal"
                     className="input_sek"
                     id="discount"
                     name="discount"
                     placeholder="Digite o valor do desconto"
-                    value={inputCouponData.discount}
-                    onChange={handleInputDataChange}
+                    ref={ref}
                     required
                   />
                 </div>
@@ -149,7 +166,10 @@ const AdmCreateCoupon = ({ coupons, setCoupons }) => {
                     name="type"
                     className="input_sek"
                     value={inputCouponData.type}
-                    onChange={handleInputDataChange}
+                    // Use the new handler
+                    onChange={(e) =>
+                      handleInputChange(e.target.name, e.target.value)
+                    }
                   >
                     <option value="percent">Porcentagem (%)</option>
                     <option value="money">Valor Fixo (R$)</option>
