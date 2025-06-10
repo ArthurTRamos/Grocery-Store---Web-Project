@@ -6,7 +6,7 @@
     "price": 12.5,
     "stock": 50,
     "sold": 0,
-    "image": "/images/mel.jpg",
+    "image": "https://www.cerealistaexpress.com.br/media/tmp/webp/catalog/product/cache/1/image/420x545/9df78eab33525d08d6e5fb8d27136e95/m/e/mel-organico-500.webp",
     "description": "Mel orgânico puro e cru de flores silvestres. Perfeito para chá, torradas ou como um adoçante natural."
   },
   {
@@ -16,7 +16,7 @@
     "price": 8.75,
     "stock": 15,
     "sold": 0,
-    "image": "/images/paoArtesenal.jpg",
+    "image": "https://amopaocaseiro.com.br/wp-content/uploads/2020/01/pao-caseiro-para-iniciantes_02.jpg",
     "description": "Pão de fermentação natural recém-assado com uma crosta crocante e interior macio."
   },
   {
@@ -26,7 +26,7 @@
     "price": 25.0,
     "stock": 30,
     "sold": 0,
-    "image": "/images/chaSortido.jpg",
+    "image": "https://cdn.awsli.com.br/2500x2500/321/321767/produto/9968606/c11a7d16da.jpg",
     "description": "Uma seleção de 20 saquinhos de chá premium, incluindo infusões verdes, pretas e de ervas."
   },
   {
@@ -36,7 +36,7 @@
     "price": 9.99,
     "stock": 25,
     "sold": 0,
-    "image": "/images/geleiaMorango.jpg",
+    "image": "https://static.itdg.com.br/images/360-240/8f1b5c5950373356f1a3002316226624/309148-original.jpg",
     "description": "Geleia doce e picante feita com morangos frescos e de origem local."
   },
   {
@@ -46,7 +46,7 @@
     "price": 45.0,
     "stock": 10,
     "sold": 0,
-    "image": "/images/tabuaCorte.jpg",
+    "image": "https://m.media-amazon.com/images/I/715Ge57BLuL.jpg",
     "description": "Bela e durável tábua de corte feita de madeira de oliveira natural. Cada peça é única."
   },
   {
@@ -56,7 +56,7 @@
     "price": 15.0,
     "stock": 40,
     "sold": 0,
-    "image": "/images/azeitePimenta.jpg",
+    "image": "https://tb1304.vtexassets.com/arquivos/ids/205226/Pimenta-Gallo-com-Azeite-50ML.jpg?v=638658862103170000",
     "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
   },
   {
@@ -66,7 +66,7 @@
     "price": 18.25,
     "stock": 35,
     "sold": 0,
-    "image": "/images/cafeGourmet.jpg",
+    "image": "https://images.tcdn.com.br/img/img_prod/1017192/cafe_gourmet_em_graos_reserva_gourmet_cereja_4_pacotes_57_7_d8561600c56feca813c3401798b6045b.jpg",
     "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
   },
   {
@@ -76,7 +76,7 @@
     "price": 7.5,
     "stock": 20,
     "sold": 5,
-    "image": "/images/paoIntegral.jpg",
+    "image": "https://jadoces.com.br/wp-content/uploads/2022/08/Pao_Integral.jpg.webp",
     "description": "Pão integral macio e fresquinho, ideal para uma alimentação saudável."
   },
   {
@@ -86,7 +86,7 @@
     "price": 6.3,
     "stock": 50,
     "sold": 18,
-    "image": "/images/macaFuji.jpg",
+    "image": "https://ibassets.com.br/ib.item.image.large/l-04367d3abeaa4aec99a8f15a21983fd4.jpeg",
     "description": "Maçãs Fuji selecionadas, doces e crocantes."
   },
   {
@@ -96,7 +96,7 @@
     "price": 14.9,
     "stock": 25,
     "sold": 12,
-    "image": "/images/queijoMinas.png",
+    "image": "https://mambodelivery.vtexassets.com/arquivos/ids/194789/queijo-minas-frescal-polenghi-400g.jpg?v=638237430306770000",
     "description": "Queijo minas frescal, leve e saboroso, ideal para o café da manhã."
   },
   {
@@ -106,7 +106,7 @@
     "price": 19.8,
     "stock": 40,
     "sold": 22,
-    "image": "/images/pizzaCalabresa.jpg",
+    "image": "https://www.sadia.com.br/assets/images/_/products/8dd4fd389a2977e0234603d56f3d2946d9ab1ca1.webp",
     "description": "Pizza de calabresa com queijo e molho de tomate, pronta para o forno."
   },
   {
@@ -116,7 +116,7 @@
     "price": 11.0,
     "stock": 15,
     "sold": 7,
-    "image": "/images/boloChocolate.jpg",
+    "image": "https://patipiva.com.br/cdn/shop/files/3000_-_Bolo_Chocolate.jpg?v=1739282169",
     "description": "Bolo úmido de chocolate com recheio cremoso. Perfeito para sobremesas."
   },
   {
@@ -126,7 +126,7 @@
     "price": 9.9,
     "stock": 30,
     "sold": 10,
-    "image": "/images/sucoLaranja.jpg",
+    "image": "https://www.google.com/imgres?q=Suco%20Natural%20de%20Laranja%201L&imgurl=https%3A%2F%2Fwww.natone.com.br%2Fwp-content%2Fuploads%2F2024%2F09%2FSUCO_DE_LARANJA_INTEGRAL_900ML_AMBIENTE_-_NATURAL_ONE-01.webp&imgrefurl=https%3A%2F%2Fwww.natone.com.br%2Fsucos-naturais%2Fsuco-de-laranja-ambiente-natural-one&docid=4fuwsQdgbgc5LM&tbnid=8tWhjjtOdsof3M&vet=12ahUKEwj1nrWUq-eNAxVmp5UCHYVcD2oQM3oECEsQAA..i&w=1000&h=1000&hcb=2&ved=2ahUKEwj1nrWUq-eNAxVmp5UCHYVcD2oQM3oECEsQAA",
     "description": "Suco 100% natural de laranja, sem adição de açúcar ou conservantes."
   },
   {
@@ -136,7 +136,7 @@
     "price": 7.2,
     "stock": 45,
     "sold": 20,
-    "image": "/images/ArrozIntegral.jpg",
+    "image": "https://mambodelivery.vtexassets.com/arquivos/ids/156831/arroz-integral-camil-1kg.jpg?v=637883097114770000",
     "description": "Arroz integral rico em fibras e ideal para dietas saudáveis."
   },
   {
@@ -146,7 +146,7 @@
     "price": 5.5,
     "stock": 60,
     "sold": 30,
-    "image": "/images/brigadeiroGourmet.jpg",
+    "image": "https://www.lemebrigadeiros.com.br/wp-content/uploads/2023/09/DSC02667-1.jpg",
     "description": "Brigadeiro feito com chocolate belga e leite condensado premium."
   },
   {
@@ -156,7 +156,7 @@
     "price": 15.0,
     "stock": 20,
     "sold": 8,
-    "image": "/images/sacoCarvao.png",
+    "image": "https://ibassets.com.br/ib.item.image.large/l-c139b8c4a12f4a0f86fb43760346460f.png",
     "description": "Carvão vegetal de alta qualidade para churrasco."
   },
   {
@@ -166,7 +166,7 @@
     "price": 17.9,
     "stock": 25,
     "sold": 11,
-    "image": "/images/hamburguerPicanha.jpeg",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZYeaSlrIkSJyomxXMbCILyvZmxSrlIAwgg&s",
     "description": "Hambúrguer artesanal de picanha, pronto para grelhar."
   },
   {
@@ -176,7 +176,7 @@
     "price": 3.8,
     "stock": 80,
     "sold": 34,
-    "image": "/images/iogurteIntegral.png",
+    "image": "https://www.clubeextra.com.br/img/uploads/1/551/33149551.png",
     "description": "Iogurte natural cremoso, sem adição de açúcares."
   },
   {
@@ -186,7 +186,7 @@
     "price": 6.8,
     "stock": 60,
     "sold": 25,
-    "image": "/images/feijaoCarioca.jpeg",
+    "image": "https://carrefourbrfood.vtexassets.com/arquivos/ids/194917/466506_1.jpg?v=637272434027000000",
     "description": "Feijão carioca selecionado, ideal para o dia a dia brasileiro."
   },
   {
@@ -196,7 +196,7 @@
     "price": 5.2,
     "stock": 40,
     "sold": 15,
-    "image": "/images/croissantPQ.jpg",
+    "image": "https://swiftbr.vteximg.com.br/arquivos/ids/202757-768-768/618457-croissant-presunto-e-queijo_1.jpg?v=638678098450330000",
     "description": "Croissant crocante recheado com presunto e queijo mussarela."
   },
   {
@@ -376,7 +376,7 @@
     "price": 4.3,
     "stock": 100,
     "sold": 22,
-    "image": "/images/Creme de Leite UHT Leve 200g.webp",
+    "image": "https://lojasantoantonio.vtexassets.com/arquivos/ids/238199/11794-Creme-de-Leite-Leve-200g-ITALAC.jpg?v=638803373017730000",
     "description": "Creme de leite UHT com 17% de gordura, ideal para receitas doces e salgadas, mais leveza e sabor."
   },
   {
@@ -386,7 +386,7 @@
     "price": 6.2,
     "stock": 120,
     "sold": 30,
-    "image": "/images/Leite Condensado Semidesnatado 395g.jpg",
+    "image": "https://www.itambe.com.br/portal/Images/Produto/itbeleitecondcartsemidesn395gv0308511mkpimg01af01flat_full.png",
     "description": "Leite condensado semidesnatado, consistência cremosa, essencial para brigadeiros, pudins e outras delícias."
   },
   {
@@ -396,7 +396,7 @@
     "price": 3.9,
     "stock": 75,
     "sold": 18,
-    "image": "/images/Fermento em Pó Químico 100g.webp",
+    "image": "https://superpao.vtexassets.com/arquivos/ids/429982/Fermento-Em-Po-Quimico-Royal-Pote-100G.jpg?v=638481805608830000",
     "description": "Fermento químico em pó para bolos e massas, garante crescimento e leveza."
   },
   {
@@ -406,7 +406,7 @@
     "price": 5.1,
     "stock": 50,
     "sold": 8,
-    "image": "/images/Essência de Baunilha 30ml.webp",
+    "image": "https://lojasantoantonio.vtexassets.com/arquivos/ids/158042/20378-Essencia-de-Baunilha-30ml-DR-OETKER.jpg?v=637254334808030000",
     "description": "Aroma artificial de baunilha, perfeito para adicionar um toque especial em bolos, tortas e cremes."
   },
   {
@@ -416,7 +416,7 @@
     "price": 6.8,
     "stock": 80,
     "sold": 25,
-    "image": "/images/Queijo Parmesão Ralado Pacote 50g.webp",
+    "image": "https://mercantilnovaera.vtexassets.com/arquivos/ids/204472/Queijo-Parmesao-Ralado-VIGOR-Pacote-50g.jpg?v=638115498185400000",
     "description": "Queijo parmesão ralado de sabor intenso, ideal para finalizar massas e gratinados."
   },
   {
@@ -426,7 +426,7 @@
     "price": 3.5,
     "stock": 95,
     "sold": 19,
-    "image": "/images/Milho Verde em Conserva Drenado Lata 200g.jpg",
+    "image": "https://naturalterra.vtexassets.com/arquivos/ids/163980/Milho-Verde-Em-Conserva-Bonduelle-Lata-200G.jpg?v=638671093811200000",
     "description": "Grãos de milho verde em conserva, cozidos no vapor e prontos para consumo."
   },
   {
@@ -436,7 +436,7 @@
     "price": 4.5,
     "stock": 70,
     "sold": 12,
-    "image": "/images/Páprica Doce em Pó 50g.webp",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQhRZ54kJZzwVJVMkn5FfaPv7zmLBpEpgQ7w&s",
     "description": "Páprica doce em pó, ideal para dar cor e sabor suave a pratos diversos."
   },
   {
@@ -446,7 +446,7 @@
     "price": 12.9,
     "stock": 40,
     "sold": 8,
-    "image": "/images/Palmito Pupunha em Conserva Tolete 300g.jpg",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSHUP0MpGHsJFc3P1a-2t-Lv9X9hfzEFisZg&s",
     "description": "Palmito pupunha em toletes, macio e saboroso, pronto para saladas e recheios."
   },
   {
@@ -456,7 +456,7 @@
     "price": 9.8,
     "stock": 50,
     "sold": 15,
-    "image": "/images/Presunto Cozido Fatiado 200g.png",
+    "image": "https://cdn.shopify.com/s/files/1/0587/8487/4575/files/e3e6b3ae-c251-4ebc-9344-c768c878b58b_b133b9ac-6438-4519-9170-0dcc36bf9e8e.png?v=1743081830",
     "description": "Presunto cozido de primeira qualidade, fatiado fininho, perfeito para lanches e tábuas de frios."
   },
   {
@@ -466,7 +466,7 @@
     "price": 11.5,
     "stock": 45,
     "sold": 10,
-    "image": "/images/Linguiça Calabresa Defumada Grossa 300g.png",
+    "image": "https://s3-sa-east-1.amazonaws.com/superimg/img.produtos/6455175/645/img_1200_1.png",
     "description": "Linguiça calabresa defumada, ideal para feijoadas, pizzas e petiscos saborosos."
   },
   {
@@ -476,7 +476,7 @@
     "price": 18.75,
     "stock": 60,
     "sold": 20,
-    "image": "/images/Queijo Mussarela Fatiado Peça 500g.webp",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkbydpwP2gam0IW4BUhsC1sl9xHmJQMwjIqw&s",
     "description": "Queijo mussarela de alta qualidade, fatiado, ótimo para sanduíches, pizzas e gratinados."
   },
   {
@@ -486,7 +486,7 @@
     "price": 15.9,
     "stock": 80,
     "sold": 25,
-    "image": "/images/Leite em Pó Integral Instantâneo Lata 400g.jpg",
+    "image": "https://www.itambe.com.br/portal/Images/Produto/itambenutrilplata400gintegralinstmkpimg01af01flat_full.png",
     "description": "Leite em pó integral instantâneo, enriquecido com vitaminas, para preparo rápido e nutritivo."
   },
   {
@@ -496,7 +496,7 @@
     "price": 10.5,
     "stock": 35,
     "sold": 9,
-    "image": "/images/Manteiga Extra sem Sal Pote 200g.jpg",
+    "image": "https://zonasul.vtexassets.com/arquivos/ids/3084802/VF4qT-qqCUAAAAAAAAOiyg.jpg?v=638005923141930000",
     "description": "Manteiga extra cremosa sem sal, perfeita para quem busca o puro sabor da manteiga."
   },
   {
@@ -506,7 +506,7 @@
     "price": 7.8,
     "stock": 90,
     "sold": 30,
-    "image": "/images/Margarina Cremosa com Sal Pote 500g.jpg",
+    "image": "https://www.clubeextra.com.br/img/uploads/1/606/27254606.jpg",
     "description": "Margarina cremosa com sal, ideal para passar no pão e usar em receitas culinárias."
   },
   {
@@ -516,7 +516,7 @@
     "price": 6.9,
     "stock": 75,
     "sold": 22,
-    "image": "/images/Requeijão Cremoso Tradicional Copo 200g.png",
+    "image": "https://www.itambe.com.br/portal/Images/Produto/requeijoplasticotrad_full.png",
     "description": "Requeijão cremoso tradicional, perfeito para pães, torradas e lanches."
   },
   {
@@ -526,7 +526,7 @@
     "price": 8.5,
     "stock": 100,
     "sold": 28,
-    "image": "/images/Maionese Tradicional Pote 500g.webp",
+    "image": "https://a-static.mlcdn.com.br/1500x1500/maionese-hellmanns-tradicional-500g/magazineluiza/225537600/b8280180df0f20dc605167acef5a97af.jpg",
     "description": "Maionese tradicional cremosa e saborosa, ideal para sanduíches, saladas e molhos."
   },
   {
@@ -536,7 +536,7 @@
     "price": 6.7,
     "stock": 110,
     "sold": 32,
-    "image": "/images/Ketchup Tradicional Frasco 380g.jpg",
+    "image": "https://mercantilnovaera.vtexassets.com/arquivos/ids/207662/Ketchup-Tradicional-HELLMANN-S-Squeeze-380g.jpg?v=638215927196370000",
     "description": "Ketchup tradicional feito com tomates selecionados, perfeito para lanches e petiscos."
   },
   {
@@ -546,7 +546,7 @@
     "price": 9.3,
     "stock": 65,
     "sold": 14,
-    "image": "/images/Óleo de Girassol Refinado 900ml.webp",
+    "image": "https://mercantilnovaera.vtexassets.com/arquivos/ids/192201/Oleo-de-Girassol-Refinado-Sinha-Garrafa-900ml.jpg?v=637741586566900000",
     "description": "Óleo de girassol refinado, leve e saudável para preparar suas refeições."
   },
   {
@@ -556,7 +556,7 @@
     "price": 28.5,
     "stock": 50,
     "sold": 11,
-    "image": "/images/Azeite de Oliva Extra Virgem Clássico 500ml.webp",
+    "image": "https://a-static.mlcdn.com.br/1500x1500/azeite-de-oliva-gallo-classico-extravirgem-500ml/magazineluiza/225388400/2969f6cda896ab041274810cf82242c8.jpg",
     "description": "Azeite de oliva extra virgem de acidez baixa, sabor frutado, ideal para saladas e finalizações."
   },
   {
@@ -566,7 +566,7 @@
     "price": 3.2,
     "stock": 130,
     "sold": 35,
-    "image": "/images/Vinagre de Álcool Branco 750ml.png",
+    "image": "https://temperonapanela.com.br/wp-content/uploads/18938-MOCKUP-VINAGRE-DE-ALCOOL-BRANCO-750-ML_B04.jpg",
     "description": "Vinagre de álcool claro, ideal para temperar saladas, conservas e limpeza."
   },
   {
@@ -576,7 +576,7 @@
     "price": 5.8,
     "stock": 60,
     "sold": 9,
-    "image": "/images/Vinagre de Vinho Tinto Encorpado 500ml.png",
+    "image": "https://t76496.vtexassets.com/arquivos/ids/155453/vinagremesatinto.jpg?v=637539033193830000",
     "description": "Vinagre de vinho tinto de sabor marcante, perfeito para molhos e marinadas."
   }
 ]
