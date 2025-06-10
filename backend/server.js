@@ -1,61 +1,64 @@
-import express from 'express';
-import http from 'http';
-import ObjectModel from "./models.js";
-import connectDB from './connectDB.js';
+import express from "express";
+import http from "http";
+// Importar modelos
+import Coupon from "./Models/Coupon.js";
+import Product from "./Models/Product.js";
+import User from "./Models/User.js";
+
+// Importar função de conexão com o banco de dados
+import connectDB from "./connectDB.js";
 
 const app = express();
 const port = 3000;
-
 
 connectDB();
 
 app.use(express.json());
 
-
-app.get('/posts', async (req, res) => {
+// Coupon Routes
+app.get("/coupon", async (req, res) => {
   try {
-    const posts = await ObjectModel.find();
+    const posts = await Coupon.find();
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-
-app.get('/posts/:id', async (req, res) => {
+app.get("/coupon/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const post = await ObjectModel.findById(id);
+    const post = await Coupon.findById(id);
 
     if (post) {
       res.status(200).json(post);
     } else {
-      res.status(404).json({ error: 'Post not found' });
+      res.status(404).json({ error: "Post not found" });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-
-app.post("/posts", async (req, res) => {
+app.post("/coupon", async (req, res) => {
   try {
-    const newObject = new ObjectModel(req.body);
-    const savedProject = await newObject.save();
+    // const newObject = new Coupon(req.body);
+    const newObject = req.body.map((item) => new Coupon(item));
+    const savedProject = await Coupon.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-app.put('/posts/:id', async (req, res) => {
+app.put("/coupon/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
 
-    const updatedPost = await ObjectModel.findByIdAndUpdate(id, updatedData, {
+    const updatedPost = await Coupon.findByIdAndUpdate(id, updatedData, {
       new: true,
-      runValidators: true
+      runValidators: true,
     });
 
     if (updatedPost) {
@@ -68,63 +71,160 @@ app.put('/posts/:id', async (req, res) => {
   }
 });
 
-
-app.delete('/posts/:id', async (req, res) => {
-
+app.delete("/coupon/:id", async (req, res) => {
   try {
-
-    const deleted = await ObjectModel.findByIdAndDelete(req.params.id);
-    if(deleted) {
+    const deleted = await Coupon.findByIdAndDelete(req.params.id);
+    if (deleted) {
       res.status(200).json({ message: "Post deleted", deleted });
-    }else {
+    } else {
       res.status(404).json({ error: "Post not found" });
     }
-  }catch(error) {
-    res.status(400).json({message: error.message})
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Product Routes
+app.get("/product", async (req, res) => {
+  try {
+    const posts = await Product.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get("/product/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const post = await Product.findById(id);
+
+    if (post) {
+      res.status(200).json(post);
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.post("/product", async (req, res) => {
+  try {
+    const newObject = req.body.map((item) => new Product(item));
+    const savedProject = await Product.insertMany(newObject);
+    res.status(201).json(savedProject);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.put("/product/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+
+    const updatedPost = await Product.findByIdAndUpdate(id, updatedData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (updatedPost) {
+      res.status(200).json(updatedPost);
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.delete("/product/:id", async (req, res) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+    if (deleted) {
+      res.status(200).json({ message: "Post deleted", deleted });
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// User Routes
+app.get("/user", async (req, res) => {
+  try {
+    const posts = await User.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get("/user/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const post = await User.findById(id);
+
+    if (post) {
+      res.status(200).json(post);
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.post("/user", async (req, res) => {
+  try {
+    const newObject = new User(req.body);
+    const savedProject = await newObject.save();
+    res.status(201).json(savedProject);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.put("/user/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+
+    const updatedPost = await User.findByIdAndUpdate(id, updatedData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (updatedPost) {
+      res.status(200).json(updatedPost);
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.delete("/user/:id", async (req, res) => {
+  try {
+    const deleted = await User.findByIdAndDelete(req.params.id);
+    if (deleted) {
+      res.status(200).json({ message: "Post deleted", deleted });
+    } else {
+      res.status(404).json({ error: "Post not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
-})
-
-// exemplos usados no testes
-// {
-//     "id": 4,
-//     "title": "Amanha",
-//     "content": "Amanha tem tenis",
-//     "author": "Papa"
-//  }
-//  {
-//     "id": 5,
-//     "title": "Vida",
-//     "content": "A vida é bela",
-//     "author": "CR7"
-//  }
-//  {
-//     "id": 6,
-//     "title": "Música",
-//     "content": "Here, there and Everywhere",
-//     "author": "Meu pai"
-//  }
-// {
-//     "id": 1,
-//     "title": 'aleluia',
-//     "content": 'O fluminense é grande',
-//     "author": 'Eu mesmo',
-//   }
-//   {
-//     "id": 2,
-//     "title": 'Tenis',
-//     "content": 'Tenis é dahora',
-//     "author": 'Ele',
-//   },
-//   {
-//     "id": 3,
-//     "title": 'Sexta',
-//     "content": 'O dia de hoje é sexta',
-//     "author": 'Nós',
-//   }
+});
