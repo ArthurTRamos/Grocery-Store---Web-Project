@@ -1,5 +1,7 @@
 import express from "express";
 import http from "http";
+import cors from "cors";
+
 // Importar modelos
 import Coupon from "./Models/Coupon.js";
 import Product from "./Models/Product.js";
@@ -10,6 +12,13 @@ import connectDB from "./connectDB.js";
 
 const app = express();
 const port = 3000;
+
+const corsOptions = {
+  origin: "http://localhost:5173", // Substitua pela URL do seu front-end
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 connectDB();
 
@@ -42,7 +51,6 @@ app.get("/coupon/:id", async (req, res) => {
 
 app.post("/coupon", async (req, res) => {
   try {
-    // const newObject = new Coupon(req.body);
     const newObject = req.body.map((item) => new Coupon(item));
     const savedProject = await Coupon.insertMany(newObject);
     res.status(201).json(savedProject);
@@ -183,8 +191,8 @@ app.get("/user/:id", async (req, res) => {
 
 app.post("/user", async (req, res) => {
   try {
-    const newObject = new User(req.body);
-    const savedProject = await newObject.save();
+    const newObject = req.body.map((item) => new User(item));
+    const savedProject = await User.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {
     res.status(400).json({ message: error.message });
