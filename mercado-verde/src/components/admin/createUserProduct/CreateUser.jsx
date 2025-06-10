@@ -14,6 +14,12 @@ const CreateUser = ({users, setUsers}) => {
   const [userCreated, setUserCreated] = useState(false);
   const [fillAllFields, setFillAllFields] = useState(false);
 
+  const [fixPhoneNumber, setFixPhoneNumber] = useState(false);
+  const [fixHouseNumber, setFixHouseNumber] = useState(false);
+  const [fixCEPNumber, setFixCEPNumber] = useState(false);
+
+  const [equalEmail, setEqualEmail] = useState(false);
+
   const [inputUser, setInputUser] = useState(
 
     {
@@ -107,6 +113,27 @@ const CreateUser = ({users, setUsers}) => {
       return;
     }
 
+    const onlyNumbersRegex = /^\d*$/;
+    if(!onlyNumbersRegex.test(inputUser.cel)) {
+      setFixPhoneNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputUser.adress.streetNumber)) {
+      setFixHouseNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputUser.adress.postalCode)) {
+      setFixCEPNumber(true);
+      return;
+    }
+
+    if(users.filter((user) => user.email === inputUser.email).length > 0) {
+      setEqualEmail(true);
+      return;
+    }
+
     inputUser.id = uuidv4();
 
     const updateUserData = [...users, inputUser];
@@ -141,6 +168,41 @@ const CreateUser = ({users, setUsers}) => {
               onErrorMessage={"Voltar"}
             />
           )}
+
+          {fixPhoneNumber ? (
+            <CustomAlert
+              alertMessage="O telefone somente pode conter números"
+              onConfirm={() => setFixPhoneNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {equalEmail ? (
+            <CustomAlert
+              alertMessage="Email já em uso"
+              onConfirm={() => setEqualEmail(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {fixHouseNumber ? (
+            <CustomAlert
+              alertMessage="O número da casa somente pode conter números"
+              onConfirm={() => setFixHouseNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {fixCEPNumber ? (
+            <CustomAlert
+              alertMessage="O CEP somente pode conter números"
+              onConfirm={() => setFixCEPNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+
+
+
+
+
+
           <form id="userForm">
             <div className="form-header">
               <h2>Cadastro de Usuário</h2>
