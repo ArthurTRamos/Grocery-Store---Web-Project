@@ -49,7 +49,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    if(field === "price" || field === "stock") {
+    if(field === "price" || field === "stock" || field === "sold") {
       newValue = parseFloat(newValue);
       if(isNaN(newValue)) {
         setInvalidNumber(true);
@@ -208,9 +208,24 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
             </div>
 
             <div className="quantity-sold">
+
+
               <div>
-                <h3>Quantidade Vendida: {product.sold}</h3>
+
+                {typeAccount ? (
+                  <LabeledEditableContainer
+                    displayName={"Quantidade Vendida"}
+                    field={"sold"}
+                    handleSave={handleSave}
+                    initialValue={product.sold}
+                  />
+                ) : (
+                  <h3>Quantidade Vendida: {product.sold}</h3>
+                )}
+
               </div>
+
+
               <div>
                 {typeAccount ? (
                   <LabeledEditableContainer
@@ -223,6 +238,8 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
                   <h3>Quantidade em Estoque: {product.stock}</h3>
                 )}
               </div>
+
+
             </div>
             
             <button 

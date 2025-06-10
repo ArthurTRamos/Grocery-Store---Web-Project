@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
+import { imaskOptions } from "../../../utility_elements/Formatters";
+import verifiers from "../../../utility_elements/Verifiers"; // Assuming path
+
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
 import honeyImg from "../../../../assets/mel.jpg";
@@ -139,18 +142,23 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             field={"name"}
             handleSave={handleSave}
             initialValue={userToBeEdited.name}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"Telefone"}
             field={"cel"}
             handleSave={handleSave}
             initialValue={userToBeEdited.cel}
+            formatter={imaskOptions.phone} // Pass imask config object
+            verifier={verifiers.phone}
           />
           <LabeledEditableContainer
             displayName={"Email"}
             field={"email"}
             handleSave={handleSave}
             initialValue={userToBeEdited.email}
+            verifier={verifiers.email}
           />
           <LabeledEditableContainer
             displayName={"Senha"}
@@ -169,12 +177,14 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             field={"streetName"}
             handleSave={handleSave}
             initialValue={userToBeEdited.adress.streetName}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
           />
           <LabeledEditableContainer
             displayName={"Número"}
             field={"streetNumber"}
             handleSave={handleSave}
             initialValue={userToBeEdited.adress.streetNumber}
+            verifier={verifiers.isNumeric}
           />
         </div>
         <LabeledEditableContainer
@@ -189,18 +199,24 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             field={"city"}
             handleSave={handleSave}
             initialValue={userToBeEdited.adress.city}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"Estado"}
             field={"state"}
             handleSave={handleSave}
             initialValue={userToBeEdited.adress.state}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
           <LabeledEditableContainer
             displayName={"País"}
             field={"country"}
             handleSave={handleSave}
             initialValue={userToBeEdited.adress.country}
+            formatter={imaskOptions.capitalize} // Pass capitalize function
+            verifier={verifiers.name}
           />
         </div>
         <LabeledEditableContainer
@@ -208,6 +224,8 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
           field={"postalCode"}
           handleSave={handleSave}
           initialValue={userToBeEdited.adress.postalCode}
+          formatter={imaskOptions.postalCode} // Pass imask config object
+          verifier={verifiers.postalCode}
         />
       </div>
     </div>

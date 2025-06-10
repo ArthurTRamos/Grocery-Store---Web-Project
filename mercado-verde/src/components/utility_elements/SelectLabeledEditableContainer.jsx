@@ -74,7 +74,7 @@ function SelectLabeledEditableContainer({
         ) : (
           <div className="labeled-editable-container-display-group">
             <span className="labeled-editable-container-display-value">
-              {getDisplayText(inputData)}
+              {getDisplayText(initialValue)}
             </span>
             <button onClick={handleEditClick} className="edit-button">
               <TbEdit />

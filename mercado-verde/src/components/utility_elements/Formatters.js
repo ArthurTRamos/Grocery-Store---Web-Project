@@ -18,7 +18,7 @@ export const imaskOptions = {
       YY: {
         mask: IMask.MaskedRange,
         from: new Date().getFullYear().toString().slice(2), // Current year
-        to: (new Date().getFullYear() + 10).toString().slice(2), // 10 years from now
+        to: (new Date().getFullYear() + 40).toString().slice(2), // 10 years from now
       },
     },
   },

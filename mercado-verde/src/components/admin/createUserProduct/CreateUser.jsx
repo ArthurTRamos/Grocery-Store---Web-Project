@@ -6,12 +6,19 @@ import "./CreateUser.css";
 import StateSelection from "../../utility_elements/StateSelection";
 import CountrySelection from "../../utility_elements/CountrySelection";
 import CustomAlert from "../../utility_elements/CustomAlert";
+import CustomError from "../../utility_elements/CustomError";
 
 import SideBar from "../SideBar";
 
 const CreateUser = ({users, setUsers}) => {
   const [userCreated, setUserCreated] = useState(false);
   const [fillAllFields, setFillAllFields] = useState(false);
+
+  const [fixPhoneNumber, setFixPhoneNumber] = useState(false);
+  const [fixHouseNumber, setFixHouseNumber] = useState(false);
+  const [fixCEPNumber, setFixCEPNumber] = useState(false);
+
+  const [equalEmail, setEqualEmail] = useState(false);
 
   const [inputUser, setInputUser] = useState(
 
@@ -99,10 +106,31 @@ const CreateUser = ({users, setUsers}) => {
 
     e.preventDefault();
     
-    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode) {
+    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode || !inputUser.adress.country || !inputUser.adress.state) {
       // alert("Preencha todos os campos");
       setFillAllFields(true);
 
+      return;
+    }
+
+    const onlyNumbersRegex = /^\d*$/;
+    if(!onlyNumbersRegex.test(inputUser.cel)) {
+      setFixPhoneNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputUser.adress.streetNumber)) {
+      setFixHouseNumber(true);
+      return;
+    }
+
+    if(!onlyNumbersRegex.test(inputUser.adress.postalCode)) {
+      setFixCEPNumber(true);
+      return;
+    }
+
+    if(users.filter((user) => user.email === inputUser.email).length > 0) {
+      setEqualEmail(true);
       return;
     }
 
@@ -134,12 +162,47 @@ const CreateUser = ({users, setUsers}) => {
             />
           )}
           {fillAllFields && (
-            <CustomAlert
+            <CustomError
               alertMessage="Por favor, preencha todos os campos obrigatórios."
-              onConfirm={() => setFillAllFields(false)}
-              onConfirmMessage={"OK"}
+              onError={() => setFillAllFields(false)}
+              onErrorMessage={"Voltar"}
             />
           )}
+
+          {fixPhoneNumber ? (
+            <CustomAlert
+              alertMessage="O telefone somente pode conter números"
+              onConfirm={() => setFixPhoneNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {equalEmail ? (
+            <CustomAlert
+              alertMessage="Email já em uso"
+              onConfirm={() => setEqualEmail(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {fixHouseNumber ? (
+            <CustomAlert
+              alertMessage="O número da casa somente pode conter números"
+              onConfirm={() => setFixHouseNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+          {fixCEPNumber ? (
+            <CustomAlert
+              alertMessage="O CEP somente pode conter números"
+              onConfirm={() => setFixCEPNumber(false)}
+              onConfirmMessage="OK"
+            />
+          ) : null}
+
+
+
+
+
+
           <form id="userForm">
             <div className="form-header">
               <h2>Cadastro de Usuário</h2>
@@ -292,9 +355,9 @@ const CreateUser = ({users, setUsers}) => {
                   </div>
 
                   <div className="form-group">
-                  <CountrySelection 
-                    // value={selectedCountry} 
-                    onChange={handleCountryChange}
+                    <CountrySelection 
+                      value={inputUser.adress.country} 
+                      onChange={handleCountryChange}
                     />
                   </div>
 

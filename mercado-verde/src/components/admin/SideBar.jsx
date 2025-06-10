@@ -3,11 +3,8 @@ import { NavLink, Link } from "react-router-dom";
 import "./SideBar.css";
 
 const SideBar = () => {
-
-
   return (
     <div>
-      
       {/* Menu lateral */}
       <div className={`sidebar-container`}>
         <div className="sidebar-menu">
@@ -21,15 +18,32 @@ const SideBar = () => {
               Criar Usuário
             </NavLink>
 
-
-            <Link to="/manage/createProduct">
+            <NavLink
+              to="/manage/createProduct"
+              className={({ isActive }) =>
+                isActive ? "active-sidebar-link" : ""
+              }
+            >
               Criar Produto
-            </Link>
+            </NavLink>
 
+            <NavLink
+              to="/manage/createCoupon"
+              className={({ isActive }) =>
+                isActive ? "active-sidebar-link" : ""
+              }
+            >
+              Criar Cupom
+            </NavLink>
 
-            <Link to="/manage/manageUsers">
-            Gerenciar Usuários
-            </Link>
+            <NavLink
+              to="/manage/manageUsers"
+              className={({ isActive }) =>
+                isActive ? "active-sidebar-link" : ""
+              }
+            >
+              Gerenciar Usuários
+            </NavLink>
           </nav>
         </div>
       </div>
