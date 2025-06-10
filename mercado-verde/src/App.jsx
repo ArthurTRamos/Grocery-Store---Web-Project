@@ -6,6 +6,7 @@ import HomePage from "./components/HomePage";
 import AdmHomeAdmin from "./components/admin/HomeAdmin";
 import AdmCreateUser from "./components/admin/createUserProduct/CreateUser";
 import AdmCreateProduct from "./components/admin/createUserProduct/CreateProduct";
+import AdmCreateCoupon from "./components/admin/createUserProduct/CreateCoupon";
 import AdmManageUsers from "./components/admin/manageUser/ManageUsers";
 import AdmLayout from "./components/admin/adm_layout";
 
@@ -118,6 +119,7 @@ function App() {
           <Route index element={<AdmHomeAdmin />} />
           <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
           <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
+          <Route path="createCoupon" element={<AdmCreateCoupon coupons={coupons} setCoupons={setCoupons}/>} />
           <Route
             path="manageUsers"
             element={<AdmManageUsers users={users} setUsers={setUsers} loggedUser={loggedUser}/>}
