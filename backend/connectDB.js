@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let uri = "mongodb+srv://Riquey:Riquey@cluster0.g42lsub.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+let uri = "mongodb+srv://henriquedrago:Yvb5N5vI3FyMMSOo@mercado-verde.9jc6rf2.mongodb.net/?retryWrites=true&w=majority&appName=Mercado-Verde";
 
 const connectDB = async () => {
   try {
