@@ -6,7 +6,7 @@
     "price": 12.5,
     "stock": 50,
     "sold": 0,
-    "image": "/images/mel.jpg",
+    "image": "https://www.cerealistaexpress.com.br/media/tmp/webp/catalog/product/cache/1/image/420x545/9df78eab33525d08d6e5fb8d27136e95/m/e/mel-organico-500.webp",
     "description": "Mel orgânico puro e cru de flores silvestres. Perfeito para chá, torradas ou como um adoçante natural."
   },
   {
@@ -16,7 +16,7 @@
     "price": 8.75,
     "stock": 15,
     "sold": 0,
-    "image": "/images/paoArtesenal.jpg",
+    "image": "https://amopaocaseiro.com.br/wp-content/uploads/2020/01/pao-caseiro-para-iniciantes_02.jpg",
     "description": "Pão de fermentação natural recém-assado com uma crosta crocante e interior macio."
   },
   {
@@ -26,7 +26,7 @@
     "price": 25.0,
     "stock": 30,
     "sold": 0,
-    "image": "/images/chaSortido.jpg",
+    "image": "https://cdn.awsli.com.br/2500x2500/321/321767/produto/9968606/c11a7d16da.jpg",
     "description": "Uma seleção de 20 saquinhos de chá premium, incluindo infusões verdes, pretas e de ervas."
   },
   {
@@ -36,7 +36,7 @@
     "price": 9.99,
     "stock": 25,
     "sold": 0,
-    "image": "/images/geleiaMorango.jpg",
+    "image": "https://static.itdg.com.br/images/360-240/8f1b5c5950373356f1a3002316226624/309148-original.jpg",
     "description": "Geleia doce e picante feita com morangos frescos e de origem local."
   },
   {
@@ -46,7 +46,7 @@
     "price": 45.0,
     "stock": 10,
     "sold": 0,
-    "image": "/images/tabuaCorte.jpg",
+    "image": "https://m.media-amazon.com/images/I/715Ge57BLuL.jpg",
     "description": "Bela e durável tábua de corte feita de madeira de oliveira natural. Cada peça é única."
   },
   {
@@ -56,7 +56,7 @@
     "price": 15.0,
     "stock": 40,
     "sold": 0,
-    "image": "/images/azeitePimenta.jpg",
+    "image": "https://tb1304.vtexassets.com/arquivos/ids/205226/Pimenta-Gallo-com-Azeite-50ML.jpg?v=638658862103170000",
     "description": "Azeite de pimenta artesanal com um toque picante, perfeito para macarrão, dumplings ou pizza."
   },
   {
@@ -66,7 +66,7 @@
     "price": 18.25,
     "stock": 35,
     "sold": 0,
-    "image": "/images/cafeGourmet.jpg",
+    "image": "https://images.tcdn.com.br/img/img_prod/1017192/cafe_gourmet_em_graos_reserva_gourmet_cereja_4_pacotes_57_7_d8561600c56feca813c3401798b6045b.jpg",
     "description": "Grãos Arábica de torra média, de origem ética com notas de chocolate e caramelo."
   },
   {
@@ -76,7 +76,7 @@
     "price": 7.5,
     "stock": 20,
     "sold": 5,
-    "image": "/images/paoIntegral.jpg",
+    "image": "https://jadoces.com.br/wp-content/uploads/2022/08/Pao_Integral.jpg.webp",
     "description": "Pão integral macio e fresquinho, ideal para uma alimentação saudável."
   },
   {
@@ -86,7 +86,7 @@
     "price": 6.3,
     "stock": 50,
     "sold": 18,
-    "image": "/images/macaFuji.jpg",
+    "image": "https://ibassets.com.br/ib.item.image.large/l-04367d3abeaa4aec99a8f15a21983fd4.jpeg",
     "description": "Maçãs Fuji selecionadas, doces e crocantes."
   },
   {
@@ -96,7 +96,7 @@
     "price": 14.9,
     "stock": 25,
     "sold": 12,
-    "image": "/images/queijoMinas.png",
+    "image": "https://mambodelivery.vtexassets.com/arquivos/ids/194789/queijo-minas-frescal-polenghi-400g.jpg?v=638237430306770000",
     "description": "Queijo minas frescal, leve e saboroso, ideal para o café da manhã."
   },
   {
@@ -106,7 +106,7 @@
     "price": 19.8,
     "stock": 40,
     "sold": 22,
-    "image": "/images/pizzaCalabresa.jpg",
+    "image": "https://www.sadia.com.br/assets/images/_/products/8dd4fd389a2977e0234603d56f3d2946d9ab1ca1.webp",
     "description": "Pizza de calabresa com queijo e molho de tomate, pronta para o forno."
   },
   {
@@ -116,7 +116,7 @@
     "price": 11.0,
     "stock": 15,
     "sold": 7,
-    "image": "/images/boloChocolate.jpg",
+    "image": "https://patipiva.com.br/cdn/shop/files/3000_-_Bolo_Chocolate.jpg?v=1739282169",
     "description": "Bolo úmido de chocolate com recheio cremoso. Perfeito para sobremesas."
   },
   {
@@ -126,7 +126,7 @@
     "price": 9.9,
     "stock": 30,
     "sold": 10,
-    "image": "/images/sucoLaranja.jpg",
+    "image": "https://www.google.com/imgres?q=Suco%20Natural%20de%20Laranja%201L&imgurl=https%3A%2F%2Fwww.natone.com.br%2Fwp-content%2Fuploads%2F2024%2F09%2FSUCO_DE_LARANJA_INTEGRAL_900ML_AMBIENTE_-_NATURAL_ONE-01.webp&imgrefurl=https%3A%2F%2Fwww.natone.com.br%2Fsucos-naturais%2Fsuco-de-laranja-ambiente-natural-one&docid=4fuwsQdgbgc5LM&tbnid=8tWhjjtOdsof3M&vet=12ahUKEwj1nrWUq-eNAxVmp5UCHYVcD2oQM3oECEsQAA..i&w=1000&h=1000&hcb=2&ved=2ahUKEwj1nrWUq-eNAxVmp5UCHYVcD2oQM3oECEsQAA",
     "description": "Suco 100% natural de laranja, sem adição de açúcar ou conservantes."
   },
   {
@@ -136,7 +136,7 @@
     "price": 7.2,
     "stock": 45,
     "sold": 20,
-    "image": "/images/ArrozIntegral.jpg",
+    "image": "https://mambodelivery.vtexassets.com/arquivos/ids/156831/arroz-integral-camil-1kg.jpg?v=637883097114770000",
     "description": "Arroz integral rico em fibras e ideal para dietas saudáveis."
   },
   {
@@ -146,7 +146,7 @@
     "price": 5.5,
     "stock": 60,
     "sold": 30,
-    "image": "/images/brigadeiroGourmet.jpg",
+    "image": "https://www.lemebrigadeiros.com.br/wp-content/uploads/2023/09/DSC02667-1.jpg",
     "description": "Brigadeiro feito com chocolate belga e leite condensado premium."
   },
   {
@@ -156,7 +156,7 @@
     "price": 15.0,
     "stock": 20,
     "sold": 8,
-    "image": "/images/sacoCarvao.png",
+    "image": "https://ibassets.com.br/ib.item.image.large/l-c139b8c4a12f4a0f86fb43760346460f.png",
     "description": "Carvão vegetal de alta qualidade para churrasco."
   },
   {
@@ -166,7 +166,7 @@
     "price": 17.9,
     "stock": 25,
     "sold": 11,
-    "image": "/images/hamburguerPicanha.jpeg",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXZYeaSlrIkSJyomxXMbCILyvZmxSrlIAwgg&s",
     "description": "Hambúrguer artesanal de picanha, pronto para grelhar."
   },
   {
@@ -176,7 +176,7 @@
     "price": 3.8,
     "stock": 80,
     "sold": 34,
-    "image": "/images/iogurteIntegral.png",
+    "image": "https://www.clubeextra.com.br/img/uploads/1/551/33149551.png",
     "description": "Iogurte natural cremoso, sem adição de açúcares."
   },
   {
@@ -186,7 +186,7 @@
     "price": 6.8,
     "stock": 60,
     "sold": 25,
-    "image": "/images/feijaoCarioca.jpeg",
+    "image": "https://carrefourbrfood.vtexassets.com/arquivos/ids/194917/466506_1.jpg?v=637272434027000000",
     "description": "Feijão carioca selecionado, ideal para o dia a dia brasileiro."
   },
   {
@@ -196,7 +196,7 @@
     "price": 5.2,
     "stock": 40,
     "sold": 15,
-    "image": "/images/croissantPQ.jpg",
+    "image": "https://swiftbr.vteximg.com.br/arquivos/ids/202757-768-768/618457-croissant-presunto-e-queijo_1.jpg?v=638678098450330000",
     "description": "Croissant crocante recheado com presunto e queijo mussarela."
   },
   {
