@@ -6,6 +6,7 @@ import "./CreateUser.css";
 import StateSelection from "../../utility_elements/StateSelection";
 import CountrySelection from "../../utility_elements/CountrySelection";
 import CustomAlert from "../../utility_elements/CustomAlert";
+import CustomError from "../../utility_elements/CustomError";
 
 import SideBar from "../SideBar";
 
@@ -99,7 +100,7 @@ const CreateUser = ({users, setUsers}) => {
 
     e.preventDefault();
     
-    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode) {
+    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode || !inputUser.adress.country || !inputUser.adress.state) {
       // alert("Preencha todos os campos");
       setFillAllFields(true);
 
@@ -134,10 +135,10 @@ const CreateUser = ({users, setUsers}) => {
             />
           )}
           {fillAllFields && (
-            <CustomAlert
+            <CustomError
               alertMessage="Por favor, preencha todos os campos obrigatórios."
-              onConfirm={() => setFillAllFields(false)}
-              onConfirmMessage={"OK"}
+              onError={() => setFillAllFields(false)}
+              onErrorMessage={"Voltar"}
             />
           )}
           <form id="userForm">
@@ -292,9 +293,9 @@ const CreateUser = ({users, setUsers}) => {
                   </div>
 
                   <div className="form-group">
-                  <CountrySelection 
-                    // value={selectedCountry} 
-                    onChange={handleCountryChange}
+                    <CountrySelection 
+                      value={inputUser.adress.country} 
+                      onChange={handleCountryChange}
                     />
                   </div>
 

@@ -14,10 +14,10 @@ function CountrySelection({value, onChange}) {
       <label htmlFor="pais">País</label>
       <select 
         id="pais" 
-        defaultValue="Brasil"
         value={value}
-        onChange={onChange}
-        >
+        onChange={handleChange}
+      >
+        <option value="">Selecione...</option>
         <option value="Brasil">Brasil</option>
         <option value="Argentina">Argentina</option>
         <option value="Chile">Chile</option>
