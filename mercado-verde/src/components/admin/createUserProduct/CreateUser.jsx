@@ -107,7 +107,6 @@ const CreateUser = ({users, setUsers}) => {
     e.preventDefault();
     
     if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode || !inputUser.adress.country || !inputUser.adress.state) {
-      // alert("Preencha todos os campos");
       setFillAllFields(true);
 
       return;
@@ -197,11 +196,6 @@ const CreateUser = ({users, setUsers}) => {
               onConfirmMessage="OK"
             />
           ) : null}
-
-
-
-
-
 
           <form id="userForm">
             <div className="form-header">
