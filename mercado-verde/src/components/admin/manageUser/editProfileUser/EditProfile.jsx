@@ -10,9 +10,6 @@ import verifiers from "../../../../services/Verifiers";
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
 
-// Imagem usada no perfil
-// import honeyImg from "../../../../assets/mel.jpg";
-
 // Estilos CSS do componente
 import "./EditProfile.css";
 
@@ -123,7 +120,6 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
       <div className="manage-user-intro">
         <div className="div-intro-header-logout-container">
           <div className="manage-user-profile-intro-header">
-            {/* <img src={honeyImg} alt="Imagem" /> */}
             <div className="user-profile-intro-header-text">
               <h3>Editando perfil de {userToBeEdited.name}</h3>
               <p>ID: {userToBeEdited.id}</p>
