@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { GetProducts, CreateProduct, UpdateCoupon } from "./services/Fetchs";
+
 import HomePage from "./components/HomePage";
 
 import AdmHomeAdmin from "./components/admin/HomeAdmin";
@@ -14,7 +16,6 @@ import AdmEditUserPage from "./components/admin/manageUser/editProfileUser/EditU
 import AdmEditProfile from "./components/admin/manageUser/editProfileUser/EditProfile";
 import AdmEditPaymentMethods from "./components/admin/manageUser/editProfileUser/EditPaymentMethods";
 import AdmEditUserCoupons from "./components/admin/manageUser/editProfileUser/EditUserCoupons";
-
 
 import ProductPage from "./components/ProductPage";
 import Header from "./components/Header";
@@ -45,7 +46,7 @@ function App() {
   const [loggedUser, setLoggedUser] = useState("");
 
   const [randomUser, setRandomUser] = useState("");
-  
+
   useEffect(() => {
     const fetchLocalCoupons = async () => {
       try {
@@ -88,14 +89,14 @@ function App() {
   useEffect(() => {
     const orderProductsByName = () => {
       productData.sort((a, b) => {
-        if(a.name < b.name) return -1;
-        if(a.name > b.name) return 1;
-        return 0; 
-      })
-    }
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
+      });
+    };
 
-    orderProductsByName()
-}, [productData])
+    orderProductsByName();
+  }, [productData]);
 
   const handleRegisterUser = (newUser) => {
     const updatedUserData = [...users, newUser];
@@ -108,23 +109,62 @@ function App() {
     console.log("Adicionando user no app.jsx");
     console.log({ users });
   };
-  
+
   return (
     <div className="App">
       <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
 
       <Routes>
-        <Route path="/" element={<HomePage productData={productData} setProductData={setProductData} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              productData={productData}
+              setProductData={setProductData}
+            />
+          }
+        />
         <Route path="/manage" element={<AdmLayout loggedUser={loggedUser} />}>
           <Route index element={<AdmHomeAdmin />} />
-          <Route path="createUser" element={<AdmCreateUser users={users} setUsers={setUsers}/>} />
-          <Route path="createProduct" element={<AdmCreateProduct products={productData} setProducts={setProductData}/>} />
-          <Route path="createCoupon" element={<AdmCreateCoupon coupons={coupons} setCoupons={setCoupons}/>} />
+          <Route
+            path="createUser"
+            element={<AdmCreateUser users={users} setUsers={setUsers} />}
+          />
+          <Route
+            path="createProduct"
+            element={
+              <AdmCreateProduct
+                products={productData}
+                setProducts={setProductData}
+              />
+            }
+          />
+          <Route
+            path="createCoupon"
+            element={
+              <AdmCreateCoupon coupons={coupons} setCoupons={setCoupons} />
+            }
+          />
           <Route
             path="manageUsers"
-            element={<AdmManageUsers users={users} setUsers={setUsers} loggedUser={loggedUser}/>}
+            element={
+              <AdmManageUsers
+                users={users}
+                setUsers={setUsers}
+                loggedUser={loggedUser}
+              />
+            }
           />
-          <Route path="manageUsers/edit" element={<AdmEditUserPage loggedUser={loggedUser} users={users} setUsers={setUsers}/>}>
+          <Route
+            path="manageUsers/edit"
+            element={
+              <AdmEditUserPage
+                loggedUser={loggedUser}
+                users={users}
+                setUsers={setUsers}
+              />
+            }
+          >
             <Route
               index
               element={
@@ -173,9 +213,29 @@ function App() {
             />
           </Route>
         </Route>
-        <Route path="/section" element={<Sections products={productData}/>}/>
-        <Route path="/product" element={<ProductPage loggedUser={loggedUser} productsData={productData} setProductData={setProductData} setCartData={setCartData} cartData={cartData}/>} />
-        <Route path="/user" element={<UserPage loggedUser={loggedUser} users={users} setUsers={setUsers}/>}>
+        <Route path="/section" element={<Sections products={productData} />} />
+        <Route
+          path="/product"
+          element={
+            <ProductPage
+              loggedUser={loggedUser}
+              productsData={productData}
+              setProductData={setProductData}
+              setCartData={setCartData}
+              cartData={cartData}
+            />
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <UserPage
+              loggedUser={loggedUser}
+              users={users}
+              setUsers={setUsers}
+            />
+          }
+        >
           <Route
             index
             element={
@@ -245,10 +305,7 @@ function App() {
           path="/logout"
           element={<Logout setLoggedUser={setLoggedUser} />}
         />
-        <Route 
-          path="/recipe" 
-          element={<RecipePage products={productData}/>} 
-        />
+        <Route path="/recipe" element={<RecipePage products={productData} />} />
 
         <Route path="*" element={<HomePage />} />
       </Routes>
