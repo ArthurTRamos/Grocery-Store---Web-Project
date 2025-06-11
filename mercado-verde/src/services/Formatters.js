@@ -36,6 +36,18 @@ export const imaskOptions = {
     prepare: (str) => str.toUpperCase(), // Force to uppercase
   },
 
+  price: {
+    mask: Number,
+    scale: 2, // 2 decimal places
+    signed: false, // No negative numbers
+    thousandsSeparator: ',', // Thousands separator
+    padFractionalZeros: true, // Pad with zeros to scale
+    normalizeZeros: true, // Remove leading zeros
+    radix: '.', // Decimal separator
+    mapToRadix: [','], // Map comma input to a dot
+    min: 0, // Minimum value
+  },
+
   capitalize: (value) => {
     if (!value) return '';
     return value

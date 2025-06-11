@@ -5,7 +5,7 @@ import "./UserCoupons.css";
 import CouponInfo from "./CouponInfo";
 import CustomAlert from "../utility_elements/CustomAlert";
 // Import the centralized imask configurations
-import { imaskOptions } from "../utility_elements/Formatters";
+import { imaskOptions } from "../../services/Formatters";
 
 function UserCoupons({ loggedUser, setLoggedUser, coupons }) {
   // State to manage the new coupon number

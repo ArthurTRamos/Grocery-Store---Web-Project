@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
 // Importa formatações para campos com máscaras (ex: telefone, CEP)
-import { imaskOptions } from "../../../utility_elements/Formatters";
+import { imaskOptions } from "../../../../services/Formatters";
 // Importa funções para verificar/validar dados
-import verifiers from "../../../utility_elements/Verifiers";
+import verifiers from "../../../../services/Verifiers";
 
 // Componentes reutilizáveis de campos editáveis
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
 
 // Imagem usada no perfil
-import honeyImg from "../../../../assets/mel.jpg";
+// import honeyImg from "../../../../assets/mel.jpg";
 
 // Estilos CSS do componente
 import "./EditProfile.css";
@@ -84,6 +84,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
       // Verifica se o campo pertence ao endereço
       if (
         prevUserToBeEdited.adress &&
+        // eslint-disable-next-line no-prototype-builtins
         prevUserToBeEdited.adress.hasOwnProperty(field)
       ) {
         // Cria novo objeto de endereço com o campo atualizado
@@ -122,7 +123,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
       <div className="manage-user-intro">
         <div className="div-intro-header-logout-container">
           <div className="manage-user-profile-intro-header">
-            <img src={honeyImg} alt="Imagem" />
+            {/* <img src={honeyImg} alt="Imagem" /> */}
             <div className="user-profile-intro-header-text">
               <h3>Editando perfil de {userToBeEdited.name}</h3>
               <p>ID: {userToBeEdited.id}</p>

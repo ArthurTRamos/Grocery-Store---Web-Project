@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import LabeledEditableContainer from "../utility_elements/LabeledEditableContainer";
-// Import the centralized imask configurations
-import { imaskOptions } from "../utility_elements/Formatters";
-import verifiers from "../utility_elements/Verifiers"; // Assuming path
+import { imaskOptions } from "../../services/Formatters";
+import verifiers from "../../services/Verifiers";
 
 import "./UserProfile.css";
 

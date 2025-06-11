@@ -5,9 +5,10 @@ function CustomAlert({
   alertMessage = "",
   onCancel = null,
   onCancelMessage = "",
-  onConfirm,
-  onConfirmMessage,
+  onConfirm = "OK",
+  onConfirmMessage = "Confirmar?",
   messageHeader = "",
+  error = false,
 }) {
   return (
     <div className="custom-alert">
@@ -16,11 +17,11 @@ function CustomAlert({
         <p>{alertMessage}</p>
         <div className="alert-buttons">
           {onCancelMessage && (
-            <button className="cancel-button" onClick={onCancel}>
+            <button className={error ? "confirm-button" : "cancel-button"} onClick={onCancel}>
               {onCancelMessage}
             </button>
           )}
-          <button className="confirm-button" onClick={onConfirm}>
+          <button className={error ? "cancel-button" : "confirm-button"} onClick={onConfirm}>
             {onConfirmMessage}
           </button>
         </div>

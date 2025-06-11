@@ -5,8 +5,8 @@ import { MdOutlineSave } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 
 // Import the centralized imask configurations and the capitalize function
-import { imaskOptions } from "../utility_elements/Formatters";
-import verifiers from "../utility_elements/Verifiers";
+import { imaskOptions } from "../../services/Formatters";
+import verifiers from "../../services/Verifiers";
 
 function NewCardForm({ onSave, onCancel }) {
   // State for each field

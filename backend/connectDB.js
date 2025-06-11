@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-let uri = "mongodb+srv://henriquedrago:Yvb5N5vI3FyMMSOo@mercado-verde.9jc6rf2.mongodb.net/?retryWrites=true&w=majority&appName=Mercado-Verde";
+const userName = "henriquedrago";
+const password = "Yvb5N5vI3FyMMSOo";
+let uri = `mongodb+srv://${userName}:${password}@mercado-verde.9jc6rf2.mongodb.net/?retryWrites=true&w=majority&appName=Mercado-Verde`;
 
 const connectDB = async () => {
   try {
