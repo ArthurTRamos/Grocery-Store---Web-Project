@@ -11,6 +11,7 @@ import GeneralImage from "../assets/generalImage.jpeg";
 function HomePage({productData}) {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [twoRandomProducts, setTwoRandomProducts] = useState([]);
+  
 
   const nonZeroProducts = (products) => {
     return products.filter((product) => product.stock !== 0);

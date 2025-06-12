@@ -14,7 +14,6 @@ function CouponSelection({ onCouponSelect, coupons, userCoupons }) {
     <div className="coupon-selection-container">
       <h3>Adicionar Cupom</h3>
       <div className="coupon-controls">
-        {" "}
         {/* Wrapper for dropdown and button */}
         <select
           className="coupon-dropdown"
@@ -39,9 +38,7 @@ function CouponSelection({ onCouponSelect, coupons, userCoupons }) {
                   return null;
                 }
 
-                // If the coupon is not used AND its details are found, render the option.
-                // NOTE: <option> tags cannot contain other elements like <p>.
-                // The text content has been combined into a single valid string.
+                // If the coupon is not used and its details are found, render the option.
                 return (
                   <option
                     className="coupon-option"

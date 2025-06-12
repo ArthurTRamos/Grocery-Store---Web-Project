@@ -33,7 +33,7 @@ import Sections from "./components/sections/Sections";
 import "./App.css";
 
 import localCouponsData from "./data/coupons.json";
-import localProductsData from "./data/products.json";
+import localProductsData from "./data/backendProducts.json";
 import localUsersData from "./data/users.json";
 
 function App() {
@@ -44,6 +44,8 @@ function App() {
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState("");
+
+  const loggedUserId = "" // Pra testes enquanto Arthur n fizer a parte dele
 
   const [randomUser, setRandomUser] = useState("");
 
@@ -230,9 +232,7 @@ function App() {
           path="/user"
           element={
             <UserPage
-              loggedUser={loggedUser}
-              users={users}
-              setUsers={setUsers}
+              loggedUser={loggedUserId}
             />
           }
         >
@@ -240,13 +240,11 @@ function App() {
             index
             element={
               <UserProfile
-                loggedUser={loggedUser}
-                setLoggedUser={setLoggedUser}
-                setUsers={setUsers}
+                loggedUser={loggedUserId}
               />
             }
           />
-          <Route
+          {/* <Route
             index
             path="profile"
             element={
@@ -256,13 +254,12 @@ function App() {
                 setUsers={setUsers}
               />
             }
-          />
+          /> */}
           <Route
             path="payment-methods"
             element={
               <PaymentMethods
-                loggedUser={loggedUser}
-                setLoggedUser={setLoggedUser}
+                loggedUser={loggedUserId}
               />
             }
           />
@@ -270,9 +267,7 @@ function App() {
             path="coupons"
             element={
               <UserCoupons
-                loggedUser={loggedUser}
-                setLoggedUser={setLoggedUser}
-                coupons={coupons}
+                loggedUser={loggedUserId}
               />
             }
           />
@@ -282,12 +277,8 @@ function App() {
           element={
             <CartPage
               cartData={cartData}
-              paymentMethods={loggedUser.paymentMethods}
-              userCoupons={loggedUser.coupons}
-              coupons={coupons}
-              productData={productData}
               setCartData={setCartData}
-              setProductData={setProductData}
+              loggedUser={loggedUserId}
             />
           }
         />

@@ -4,7 +4,11 @@ import SideBar from "../SideBar";
 import CustomAlert from "../../utility_elements/CustomAlert";
 import { useIMask } from "react-imask";
 import { imaskOptions } from "../../../services/Formatters.js";
-import { CreateCoupon, GetCoupons, DeleteCoupon } from "../../../services/Fetchs.js";
+import {
+  CreateCoupon,
+  GetCoupons,
+  DeleteCoupon,
+} from "../../../services/Fetchs.js";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 
@@ -13,7 +17,7 @@ const AdmCreateCoupon = () => {
   const [coupons, setCoupons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // === FORM STATE ===
   const [couponAdded, setCouponAdded] = useState(false);
   const [couponMissField, setCouponMissField] = useState(false);
@@ -30,7 +34,6 @@ const AdmCreateCoupon = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 20;
 
-
   // === DATA FETCHING ===
   useEffect(() => {
     const fetchCoupons = async () => {
@@ -40,7 +43,7 @@ const AdmCreateCoupon = () => {
         setCoupons(data || []);
         setError(null);
       } catch (err) {
-        setError("Failed to fetch coupons.");
+        setError("Falha ao carregar cupoms.");
         console.error(err);
       } finally {
         setIsLoading(false);
@@ -86,12 +89,14 @@ const AdmCreateCoupon = () => {
     try {
       const createdCoupon = await CreateCoupon([newCoupon]);
       if (createdCoupon && createdCoupon.length > 0) {
-        setCoupons(prevCoupons => [...prevCoupons, createdCoupon[0]]);
+        setCoupons((prevCoupons) => [...prevCoupons, createdCoupon[0]]);
         setCouponAdded(true);
         setInputCouponData({ couponNumber: "", discount: "", type: "percent" });
         setValue("");
       } else {
-        throw new Error("Failed to create coupon or received an empty response.");
+        throw new Error(
+          "Failed to create coupon or received an empty response."
+        );
       }
     } catch (error) {
       console.error("API Error creating coupon:", error);
@@ -108,7 +113,7 @@ const AdmCreateCoupon = () => {
       setApiError(true);
     }
   };
-  
+
   // === FILTERING AND PAGINATION LOGIC ===
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -119,7 +124,7 @@ const AdmCreateCoupon = () => {
     if (!searchTerm) {
       return coupons;
     }
-    return coupons.filter(coupon =>
+    return coupons.filter((coupon) =>
       coupon.couponNumber.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [coupons, searchTerm]);
@@ -145,17 +150,46 @@ const AdmCreateCoupon = () => {
     }
   };
 
-
   return (
     <>
       <div className="admin-container">
         <SideBar />
         <div className="interior-container">
           {/* --- ALERTS --- */}
-          {couponAdded && <CustomAlert alertMessage="Cupom adicionado com sucesso!" onConfirm={() => setCouponAdded(false)} onConfirmMessage={"OK"} />}
-          {couponMissField && <CustomAlert messageHeader="Cupom com campos faltantes!" alertMessage="Todos os campos precisam estar preenchidos!" onConfirm={() => setCouponMissField(false)} onConfirmMessage={"Voltar!"} error={true} />}
-          {couponInvalidField && <CustomAlert messageHeader="Cupom com campo inválido!" alertMessage="O valor do desconto deve ser um número positivo e, se for porcentagem, não pode ser maior que 100%!" onConfirm={() => setCouponInvalidField(false)} onConfirmMessage={"Voltar!"} error={true} />}
-          {apiError && <CustomAlert messageHeader="Erro de Comunicação" alertMessage="Ocorreu um erro na comunicação com o servidor. Tente novamente mais tarde." onConfirm={() => setApiError(false)} onConfirmMessage={"Ok"} error={true} />}
+          {couponAdded && (
+            <CustomAlert
+              alertMessage="Cupom adicionado com sucesso!"
+              onConfirm={() => setCouponAdded(false)}
+              onConfirmMessage={"OK"}
+            />
+          )}
+          {couponMissField && (
+            <CustomAlert
+              messageHeader="Cupom com campos faltantes!"
+              alertMessage="Todos os campos precisam estar preenchidos!"
+              onConfirm={() => setCouponMissField(false)}
+              onConfirmMessage={"Voltar!"}
+              error={true}
+            />
+          )}
+          {couponInvalidField && (
+            <CustomAlert
+              messageHeader="Cupom com campo inválido!"
+              alertMessage="O valor do desconto deve ser um número positivo e, se for porcentagem, não pode ser maior que 100%!"
+              onConfirm={() => setCouponInvalidField(false)}
+              onConfirmMessage={"Voltar!"}
+              error={true}
+            />
+          )}
+          {apiError && (
+            <CustomAlert
+              messageHeader="Erro de Comunicação"
+              alertMessage="Ocorreu um erro na comunicação com o servidor. Tente novamente mais tarde."
+              onConfirm={() => setApiError(false)}
+              onConfirmMessage={"Ok"}
+              error={true}
+            />
+          )}
 
           {/* --- CREATE FORM --- */}
           <form id="couponForm" onSubmit={handleCouponCreation}>
@@ -168,17 +202,45 @@ const AdmCreateCoupon = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="couponNumber">Código do Cupom</label>
-                  <input className="input_sek" type="text" id="couponNumber" name="couponNumber" placeholder="Ex: NATAL20" value={inputCouponData.couponNumber} onChange={(e) => handleInputChange(e.target.name, e.target.value)} required />
+                  <input
+                    className="input_sek"
+                    type="text"
+                    id="couponNumber"
+                    name="couponNumber"
+                    placeholder="Ex: NATAL20"
+                    value={inputCouponData.couponNumber}
+                    onChange={(e) =>
+                      handleInputChange(e.target.name, e.target.value)
+                    }
+                    required
+                  />
                 </div>
               </div>
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="discount">Valor do Desconto</label>
-                  <input className="input_sek" type="text" inputMode="decimal" id="discount" name="discount" placeholder="Digite o valor" ref={ref} required />
+                  <input
+                    className="input_sek"
+                    type="text"
+                    inputMode="decimal"
+                    id="discount"
+                    name="discount"
+                    placeholder="Digite o valor"
+                    ref={ref}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="type">Tipo de Desconto</label>
-                  <select className="input_sek" id="type" name="type" value={inputCouponData.type} onChange={(e) => handleInputChange(e.target.name, e.target.value)}>
+                  <select
+                    className="input_sek"
+                    id="type"
+                    name="type"
+                    value={inputCouponData.type}
+                    onChange={(e) =>
+                      handleInputChange(e.target.name, e.target.value)
+                    }
+                  >
                     <option value="percent">Porcentagem (%)</option>
                     <option value="money">Valor Fixo (R$)</option>
                   </select>
@@ -186,26 +248,36 @@ const AdmCreateCoupon = () => {
               </div>
             </div>
             <div className="btn-container">
-              <button type="submit" className="btn"><span>Criar Cupom</span></button>
+              <button type="submit" className="btn">
+                <span>Criar Cupom</span>
+              </button>
             </div>
           </form>
 
           {/* --- COUPONS TABLE --- */}
           <div className="manage-coupons-container">
-             <h2>Cupons Existentes</h2>
+            <h2>Cupons Existentes</h2>
             <div className="search-input">
-              <input type="text" placeholder="Digite o código do cupom para buscar" onChange={handleSearchChange} value={searchTerm} />
+              <input
+                type="text"
+                placeholder="Digite o código do cupom para buscar"
+                onChange={handleSearchChange}
+                value={searchTerm}
+              />
             </div>
 
-            {isLoading && <p className="loading-message">Carregando cupons...</p>}
+            {isLoading && (
+              <p className="loading-message">Carregando cupons...</p>
+            )}
             {error && <p className="error-message">{error}</p>}
-            
+
             {!isLoading && !error && (
               <>
                 <div className="pagination-info">
                   <p>
                     Mostrando {currentCoupons.length > 0 ? startIndex + 1 : 0}-
-                    {Math.min(endIndex, filteredCoupons.length)} de {filteredCoupons.length} cupons
+                    {Math.min(endIndex, filteredCoupons.length)} de{" "}
+                    {filteredCoupons.length} cupons
                   </p>
                 </div>
 
@@ -224,10 +296,21 @@ const AdmCreateCoupon = () => {
                         currentCoupons.map((coupon) => (
                           <tr key={coupon["_id"]}>
                             <td>{coupon.couponNumber}</td>
-                            <td>{coupon.type === 'percent' ? `${coupon.discount}%` : `R$ ${coupon.discount}`}</td>
-                            <td>{coupon.type === 'percent' ? 'Porcentagem' : 'Valor Fixo'}</td>
                             <td>
-                              <button onClick={() => handleDelete(coupon["_id"])} className="btn-delete">
+                              {coupon.type === "percent"
+                                ? `${coupon.discount}%`
+                                : `R$ ${coupon.discount}`}
+                            </td>
+                            <td>
+                              {coupon.type === "percent"
+                                ? "Porcentagem"
+                                : "Valor Fixo"}
+                            </td>
+                            <td>
+                              <button
+                                onClick={() => handleDelete(coupon["_id"])}
+                                className="btn-delete"
+                              >
                                 <FaRegTrashAlt />
                               </button>
                             </td>
@@ -235,7 +318,9 @@ const AdmCreateCoupon = () => {
                         ))
                       ) : (
                         <tr>
-                          <td colSpan="4" className="loading-message">Nenhum cupom encontrado.</td>
+                          <td colSpan="4" className="loading-message">
+                            Nenhum cupom encontrado.
+                          </td>
                         </tr>
                       )}
                     </tbody>
@@ -244,17 +329,33 @@ const AdmCreateCoupon = () => {
 
                 {totalPages > 1 && (
                   <div className="pagination-controls">
-                    <button onClick={handlePreviousPage} disabled={currentPage === 1} className="pagination-btn">
+                    <button
+                      onClick={handlePreviousPage}
+                      disabled={currentPage === 1}
+                      className="pagination-btn"
+                    >
                       Anterior
                     </button>
                     <div className="pagination-numbers">
                       {Array.from({ length: totalPages }, (_, index) => (
-                        <button key={index + 1} onClick={() => handlePageChange(index + 1)} className={currentPage === index + 1 ? "pagination-btn active" : "pagination-btn"}>
+                        <button
+                          key={index + 1}
+                          onClick={() => handlePageChange(index + 1)}
+                          className={
+                            currentPage === index + 1
+                              ? "pagination-btn active"
+                              : "pagination-btn"
+                          }
+                        >
                           {index + 1}
                         </button>
                       ))}
                     </div>
-                    <button onClick={handleNextPage} disabled={currentPage === totalPages} className="pagination-btn">
+                    <button
+                      onClick={handleNextPage}
+                      disabled={currentPage === totalPages}
+                      className="pagination-btn"
+                    >
                       Próximo
                     </button>
                   </div>

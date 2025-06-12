@@ -40,7 +40,7 @@ function LabeledEditableContainer({
 
   // Handle input changes for non-masked inputs
   const handleInputChange = (e) => {
-    // This handler is now only for formatters that are functions (like capitalize)
+    // This handler is only for formatters that are functions (like capitalize)
     // or for inputs with no formatter at all.
     if (!isMasked) {
       const value = e.target.value;
@@ -55,12 +55,12 @@ function LabeledEditableContainer({
     setIsValid(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     const isVerified = verifier(inputData);
     setIsValid(isVerified);
 
     if (isVerified) {
-      handleSave(field, inputData);
+      await handleSave(field, inputData);
       setIsEditing(false);
     }
   };
@@ -89,7 +89,7 @@ function LabeledEditableContainer({
           <div className="labeled-editable-container-input-group">
             <input
               type={secret ? "password" : "text"}
-              // 4. Conditionally apply the ref for imask to take control
+              // Conditionally apply the ref for imask to take control
               ref={isMasked ? ref : null}
               // The value is always controlled by our React state
               value={inputData}

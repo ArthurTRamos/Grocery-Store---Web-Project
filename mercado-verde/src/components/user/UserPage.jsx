@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Outlet, NavLink, useNavigate, Navigate } from "react-router-dom";
+import { DeleteUser } from "../../services/Fetchs";
 
 import CustomAlert from "../utility_elements/CustomAlert";
 
 import "./UserPage.css";
 
-function UserPage({ loggedUser, users, setUsers }) {
+function UserPage({ loggedUser }) {
   const [showAlert, setShowAlert] = useState(false);
+  const [showFail, setShowFail] = useState(false);
   const navigate = useNavigate();
 
   console.log(loggedUser);
@@ -15,13 +17,15 @@ function UserPage({ loggedUser, users, setUsers }) {
     return <Navigate to="/" />;
   }
 
-  const handleDeleteAccount = () => {
+  const handleDeleteAccount = async () => {
     setShowAlert(false);
-    const updatedUsers = users.filter(
-      (user) => user.id !== loggedUser.id
-    );
-    setUsers(updatedUsers);
-    navigate("/logout");
+    try {
+      await DeleteUser(loggedUser);
+      navigate("/logout");
+    } catch (error) {
+      console.error("Erro ao excluir a conta:", error);
+      setShowFail(true);
+    }
   };
 
   return (
@@ -86,6 +90,18 @@ function UserPage({ loggedUser, users, setUsers }) {
           onCancelMessage="Excluir conta"
           onConfirm={() => setShowAlert(false)}
           onConfirmMessage="Cancelar"
+        />
+      ) : null}
+      {showFail ? (
+        <CustomAlert
+          messageHeader="Atenção"
+          alertMessage={
+            "Erro ao excluir a conta.\n" +
+            "Por favor, tente novamente mais tarde."
+          }
+          onConfirm={() => setShowFail(false)}
+          onConfirmMessage="Ok"
+          error={true}
         />
       ) : null}
     </div>

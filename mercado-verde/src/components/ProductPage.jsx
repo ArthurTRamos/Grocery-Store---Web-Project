@@ -83,6 +83,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
   };
 
   const handleBuyProduct = () => {
+    console.log(cartData);
     const itemFound = cartData.findIndex((item) => item.id === product.id)
     
     if(itemFound !== -1) {

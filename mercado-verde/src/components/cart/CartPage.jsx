@@ -6,17 +6,21 @@ import CartItem from "./CartItem";
 import CouponSelection from "./CouponSelection";
 import CustomAlert from "../utility_elements/CustomAlert";
 
+import {
+  GetProducts,
+  GetCoupons,
+  GetUserById,
+  UpdateProduct,
+  UpdateUser,
+} from "../../services/Fetchs";
+
 import "./CartPage.css";
 
-function CartPage({
-  cartData,
-  paymentMethods,
-  userCoupons,
-  coupons,
-  productData,
-  setCartData,
-  setProductData,
-}) {
+function CartPage({ cartData, setCartData, loggedUser }) {
+  const [productData, setProductData] = useState([]);
+  const [coupons, setCoupons] = useState([]);
+  const [userCoupons, setUserCoupons] = useState([]);
+  const [paymentMethods, setPaymentMethods] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
@@ -28,8 +32,50 @@ function CartPage({
   const [avaliableBuy, setAvaliableBuy] = useState(true);
   //alert
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  //api
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [apiError, setApiError] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        // Fetch all required data concurrently for better performance
+        const productPromise = GetProducts();
+        const couponPromise = GetCoupons();
+        const userPromise = loggedUser
+          ? GetUserById(loggedUser)
+          : Promise.resolve(null);
+
+        const [products, allCoupons, userData] = await Promise.all([
+          productPromise,
+          couponPromise,
+          userPromise,
+        ]);
+
+        setProductData(products);
+        setCoupons(allCoupons);
+
+        if (userData) {
+          setUserCoupons(userData.coupons);
+          setPaymentMethods(userData.paymentMethods);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(
+          "Falha ao carregar os dados do carrinho. Tente novamente mais tarde."
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [loggedUser]);
 
   useEffect(() => {
     const calculateSubtotalDiscount = () => {
@@ -37,7 +83,7 @@ function CartPage({
       let subtotalValue = 0;
       cartData.forEach((cartItem) => {
         const product = productData.find(
-          (product) => product.id === cartItem.id
+          (product) => product["_id"] === cartItem.id
         );
         if (product) {
           subtotalValue += product.price * cartItem.amount;
@@ -73,7 +119,7 @@ function CartPage({
       let isAvailable = true;
       cartData.forEach((cartItem) => {
         const product = productData.find(
-          (product) => product.id === cartItem.id
+          (product) => product["_id"] === cartItem.id
         );
         if (product && product.stock < cartItem.amount) {
           isAvailable = false;
@@ -87,7 +133,7 @@ function CartPage({
     setEmptyCartError("");
   }, [cartData, coupons, productData, selectedCoupon, userCoupons]);
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     if (!subtotal) {
       setEmptyCartError(
         "Por favor, adicione ao menos um item antes de finalizar a compra!"
@@ -98,50 +144,84 @@ function CartPage({
 
     if (!selectedCard) {
       setCardError(
-        `Por favor, ${paymentMethods.length > 0 ? "selecione" : "adicione"} um cartão antes de finalizar a compra!`
+        `Por favor, ${
+          paymentMethods.length > 0 ? "selecione" : "adicione"
+        } um cartão antes de finalizar a compra!`
       );
       return;
     }
     setCardError(""); // Clear error when card is selected
+
+    try {
+      const products = await GetProducts();
+      setProductData(products);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
+    const checkStockAvailability = () => {
+      let isAvailable = true;
+      cartData.forEach((cartItem) => {
+        const product = productData.find(
+          (product) => product["_id"] === cartItem.id
+        );
+        if (product && product.stock < cartItem.amount) {
+          isAvailable = false;
+        }
+      });
+      setAvaliableBuy(isAvailable);
+    };
+
+    checkStockAvailability();
 
     if (!avaliableBuy) {
       setEmptyCartError("Alguns produtos não possuem estoque suficiente!");
       return;
     }
 
-    const updatedProductData = productData.map((product) => {
-      const cartItem = cartData.find((item) => item.id === product.id);
-      if (cartItem) {
-        return {
-          ...product,
-          stock: product.stock - cartItem.amount,
-          sold: product.sold + cartItem.amount,
-        };
+    try {
+      // Update product stock and sold count
+      for (const cartItem of cartData) {
+        const product = productData.find((p) => p["_id"] === cartItem.id);
+        if (product) {
+          const updatedProduct = {
+            stock: product.stock - cartItem.amount,
+            sold: product.sold + cartItem.amount,
+          };
+          await UpdateProduct(product["_id"], updatedProduct);
+        }
       }
-      return product;
-    });
 
-    setProductData(updatedProductData);
-    setCartData([{ price: 0, id: -1, amount: 0 }]); // Clear cart after purchase
-    setShowSuccessModal(true);
+      const userData = await GetUserById(loggedUser);
+      const updatedUserData = { ...userData };
 
-    const selectedCouponUserData = userCoupons.find(
-      (coupon) => coupon.couponNumber === selectedCoupon
-    );
+      // Mark coupon as used
+      if (selectedCoupon) {
+        const couponIndex = updatedUserData.coupons.findIndex(
+          (c) => c.couponNumber === selectedCoupon
+        );
+        if (couponIndex !== -1) {
+          updatedUserData.coupons[couponIndex].used = true;
+        }
+      }
 
-    if (selectedCouponUserData) {
-      selectedCouponUserData.used = true;
+      await UpdateUser(loggedUser, updatedUserData);
+
+      // Use a dummy item to reset the cart
+      // This is to avoid the re-rendering of the UI with an empty cart
+      setCartData([{ id: -1, amount: 0 }]);
+      setShowSuccessModal(true);
+      setSelectedCoupon("");
+      setSelectedCard("");
+    } catch (error) {
+      console.error("Error finishing purchase:", error);
+      setApiError(true);
     }
-
-    setSelectedCoupon("");
-    setSelectedCard("");
   };
 
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
-    setSelectedCoupon(""); // Clear coupon after confirmation
-    setSelectedCard(""); // Clear card after confirmation
-    setCartData([]); // Clear cart after confirmation
+    setCartData([]);
     navigate("/"); // Navigate after closing the modal
   };
 
@@ -159,112 +239,118 @@ function CartPage({
     <div className="cart-page-container">
       {cartData && cartData.length > 0 ? (
         <>
-          <div className="cart-page-left-container">
-            {" "}
-            <div className="left-header">
-              <h1>Itens do Carrinho</h1>
-            </div>
-            <div className="cart-items-list">
-              {cartData.map((cartItem) => {
-                const product = productData.find(
-                  (product) => product.id === cartItem.id
-                );
-
-                if (cartItem.id === -1) {
-                  if (!showSuccessModal) {
-                    setCartData((prevCartData) =>
-                      prevCartData.filter((item) => item.id !== -1)
-                    ); // Remove the dummy item used to clear the cart
-                  }
-                  return null; // Skip the dummy item used to clear the cart
-                }
-                
-                return (
-                  <CartItem
-                    key={cartItem.id}
-                    cartItemData={{
-                      ...product,
-                      amount: cartItem.amount,
-                    }}
-                    changeAmount={(id, newAmount) => {
-                      // prev = previous state of the cartData
-                      setCartData((prev) =>
-                        // Iterates through the previous state and compared id
-                        // If the id matches, it updates the amount
-                        prev.map((item) =>
-                          // ...item = other properties of the item
-                          // amount: newAmount = replaces the amount property
-                          // else it keeps the item unchanged
-                          item.id === id ? { ...item, amount: newAmount } : item
-                        )
-                      );
-                    }}
-                    removeItem={(id) => {
-                      // filter only lets through itens with an id different from the one passed
-                      setCartData((prev) =>
-                        prev.filter((item) => item.id !== id)
-                      );
-                    }}
-                  />
-                );
-              })}
-            </div>{" "}
-          </div>
-          <div className="cart-page-right-container">
-            <div className="cart-summary">
-              <h3>Resumo do pedido</h3>
-              <div className="cart-summary-subtotal">
-                <p>Subtotal</p>
-                <p>R$ {subtotal.toFixed(2)}</p>
-              </div>
-              <div className="cart-summary-discount">
-                <p>Desconto</p>
-                <p>R$ {discount.toFixed(2)}</p>
-              </div>
-              <div className="cart-summary-total">
-                <p>Total</p>
-                <p>R$ {total.toFixed(2)}</p>
-              </div>
-            </div>
-            {paymentMethods ? (
-              <CardSelection
-                paymentMethods={paymentMethods}
-                onCardSelect={(card) => {
-                  setSelectedCard(card);
-                  setCardError(""); // Clear error when card is selected
-                }}
-                cardError={cardError}
-              />
-            ) : null}
-
-            {userCoupons ? (
-              <CouponSelection
-                userCoupons={userCoupons}
-                coupons={coupons}
-                onCouponSelect={setSelectedCoupon}
-              />
-            ) : null}
-            {userCoupons && paymentMethods ? (
-              <div className="cart-page-button">
-                <button onClick={handleFinish}>Finalizar Compra</button>
-                {emptyCartError && (
-                  <p className="empty-cart-error">{emptyCartError}</p>
-                )}
-              </div>
-            ) : (
-              <div className="cart-page-button">
-                <button onClick={handleAuthRedirect}>
-                  Entre ou Cadastre-se para Finalizar a Compra
-                </button>
-              </div>
-            )}
-          </div>
           {showSuccessModal && (
             <CustomAlert
               messageHeader="Compra finalizada com sucesso!"
               onConfirm={handleCloseSuccessModal}
               onConfirmMessage={"Fechar"}
             />
+          )}
+          {apiError && (
+            <CustomAlert
+              messageHeader="Erro de Comunicação"
+              alertMessage="Ocorreu um erro na comunicação com o servidor. Tente novamente mais tarde."
+              onConfirm={() => setApiError(false)}
+              onConfirmMessage={"Ok"}
+              error={true}
+            />
+          )}
+          {isLoading && <p className="loading-message">Carregando Perfil...</p>}
+          {error && <p className="error-message">{error}</p>}
+          {!isLoading && !error && (
+            <>
+              <div className="cart-page-left-container">
+                {" "}
+                <div className="left-header">
+                  <h1>Itens do Carrinho</h1>
+                </div>
+                <div className="cart-items-list">
+                  {cartData.map((cartItem) => {
+                    if (cartItem.id === -1) {
+                      return null;
+                    }
+
+                    const product = productData.find(
+                      (product) => product["_id"] === cartItem.id
+                    );
+
+                    return (
+                      <CartItem
+                        key={cartItem.id}
+                        cartItemData={{
+                          ...product,
+                          amount: cartItem.amount,
+                        }}
+                        changeAmount={(id, newAmount) => {
+                          setCartData((prev) =>
+                            prev.map((item) =>
+                              item.id === id
+                                ? { ...item, amount: newAmount }
+                                : item
+                            )
+                          );
+                        }}
+                        removeItem={(id) => {
+                          setCartData((prev) =>
+                            prev.filter((item) => item.id !== id)
+                          );
+                        }}
+                      />
+                    );
+                  })}
+                </div>{" "}
+              </div>
+              <div className="cart-page-right-container">
+                <div className="cart-summary">
+                  <h3>Resumo do pedido</h3>
+                  <div className="cart-summary-subtotal">
+                    <p>Subtotal</p>
+                    <p>R$ {subtotal.toFixed(2)}</p>
+                  </div>
+                  <div className="cart-summary-discount">
+                    <p>Desconto</p>
+                    <p>R$ {discount.toFixed(2)}</p>
+                  </div>
+                  <div className="cart-summary-total">
+                    <p>Total</p>
+                    <p>R$ {total.toFixed(2)}</p>
+                  </div>
+                </div>
+                {loggedUser ? (
+                  <>
+                    <CardSelection
+                      paymentMethods={paymentMethods}
+                      onCardSelect={(card) => {
+                        setSelectedCard(card);
+                        setCardError(""); // Clear error when card is selected
+                      }}
+                      cardError={cardError}
+                    />
+
+                    <CouponSelection
+                      userCoupons={userCoupons}
+                      coupons={coupons}
+                      onCouponSelect={setSelectedCoupon}
+                    />
+                  </>
+                ) : null}
+
+                {loggedUser ? (
+                  <div className="cart-page-button">
+                    <button onClick={handleFinish}>Finalizar Compra</button>
+                    {emptyCartError && (
+                      <p className="empty-cart-error">{emptyCartError}</p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="cart-page-button">
+                    <button onClick={handleAuthRedirect}>
+                      Entre ou Cadastre-se para Finalizar a Compra
+                    </button>
+                  </div>
+                )}
+              </div>{" "}
+            </>
           )}
         </>
       ) : (

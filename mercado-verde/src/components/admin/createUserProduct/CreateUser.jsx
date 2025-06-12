@@ -201,10 +201,7 @@ const CreateUser = ({users, setUsers}) => {
             />
           ) : null}
 
-<<<<<<< HEAD
-=======
           {/* Formulário de criação de usuário */}
->>>>>>> 00683c294394a62033a28804ef65d152ebbe6ef7
           <form id="userForm">
             <div className="form-header">
               <h2>Cadastro de Usuário</h2>

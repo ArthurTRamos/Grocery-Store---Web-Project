@@ -81,8 +81,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
       // Verifica se o campo pertence ao endereço
       if (
         prevUserToBeEdited.adress &&
-        // eslint-disable-next-line no-prototype-builtins
-        prevUserToBeEdited.adress.hasOwnProperty(field)
+        Object.keys(prevUserToBeEdited.adress).includes(field)
       ) {
         // Cria novo objeto de endereço com o campo atualizado
         const updatedAdress = {
