@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Logout({ setLoggedUser }) {
+function Logout({ setLoggedUserId }) {
   const navigate = useNavigate();
 
   useEffect(() => {
     navigate("/", { replace: true });
-    setLoggedUser("");
-  }, [setLoggedUser, navigate]);
+    setLoggedUserId("");
+  }, [setLoggedUserId, navigate]);
 
   return null;
 }

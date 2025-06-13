@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { GetProducts, CreateProduct, UpdateCoupon } from "./services/Fetchs";
+import { GetProducts, CreateProduct, UpdateCoupon, GetUserById} from "./services/Fetchs";
 
 import HomePage from "./components/HomePage";
 
@@ -36,17 +36,15 @@ import localCouponsData from "./data/coupons.json";
 import localProductsData from "./data/backendProducts.json";
 import localUsersData from "./data/users.json";
 
+
 function App() {
   // Carrinho de compras
   const [cartData, setCartData] = useState([]);
-
   const [productData, setProductData] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState("");
-
-  const loggedUserId = "" // Pra testes enquanto Arthur n fizer a parte dele
-
+  const [loggedUserId, setLoggedUserId] = useState("");
   const [randomUser, setRandomUser] = useState("");
 
   useEffect(() => {
@@ -114,7 +112,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header loggedUser={loggedUser} cartItemNumber={cartData.length} />
+      <Header loggedUserId={loggedUserId} cartItemNumber={cartData.length} />
 
       <Routes>
         <Route
@@ -286,15 +284,13 @@ function App() {
           path="/auth"
           element={
             <LoginRegister
-              users={users}
-              onSaveRegister={handleRegisterUser}
-              onSaveLogin={setLoggedUser}
+              setLoggedUserId={setLoggedUserId}
             />
           }
         />
         <Route
           path="/logout"
-          element={<Logout setLoggedUser={setLoggedUser} />}
+          element={<Logout setLoggedUserId={setLoggedUserId} />}
         />
         <Route path="/recipe" element={<RecipePage products={productData} />} />
 

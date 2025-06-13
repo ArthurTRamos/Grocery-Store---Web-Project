@@ -205,7 +205,9 @@ app.get("/user/:id", async (req, res) => {
 
 app.post("/user", async (req, res) => {
   try {
+    console.log("aaaa\n\n\n\n\n")
     const newObject = req.body.map((item) => new User(item));
+    console.log(newObject);
     const savedProject = await User.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {

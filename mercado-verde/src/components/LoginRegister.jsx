@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { v4 as uuidv4 } from 'uuid';
@@ -9,9 +9,12 @@ import logo from "../assets/logo.png";
 import StateSelection from "./utility_elements/StateSelection";
 import CountrySelection from "./utility_elements/CountrySelection";
 import CustomAlert from "./utility_elements/CustomAlert";
+import {GetUsers, CreateUser} from "../services/Fetchs.js";
 
-function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
+function LoginRegister({setLoggedUserId}) {
   const navigate = useNavigate();
+  
+  const [users, setUsers] = useState([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [selectedState, setSelectedState] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -22,7 +25,6 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
   const [fixPhoneNumber, setFixPhoneNumber] = useState(false);
   const [fixHouseNumber, setFixHouseNumber] = useState(false);
   const [fixCEPNumber, setFixCEPNumber] = useState(false);
-
   const [equalEmail, setEqualEmail] = useState(false);
 
   const [inputInfoLogin, setInputInfoLogin] = useState({
@@ -32,23 +34,27 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
 
   const [inputInfoRegister, setInputInfoRegister] = useState({
     admin:false,
+    name: "",
+    email: "",
+    password: "",
+    cel: "",
     adress:{
-      apartmentNumber: "",
-      city: "",
-      country: "",
-      postalCode: "",
-      state: "",
       streetName: "",
       streetNumber: "",
+      apartmentNumber: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      country: "",
     },
-    cel: "",
-    coupons: [],
-    email: "",
-    id: -1,
-    name: "",
-    password: "",
-    paymentMethods: []
+    paymentMethods: [],
+    coupons: []
   });
+
+  const fetchUsersData = async() => {
+    const data = await GetUsers();
+    setUsers(data);
+  }
 
   const handleInputDataLogin = (e) => {
     const { name, value } = e.target;
@@ -124,12 +130,9 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       user["password"] === inputInfoLogin.password
     );
 
-    console.log({ user });
-
     if(user) {
-      console.log("logando legal")
-      console.log(user)
-      onSaveLogin(user);
+      console.log(user);
+      setLoggedUserId(user._id);
       navigate("/");
     }
     else {
@@ -137,7 +140,7 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     }
   };
 
-  const handleSaveRegister = (e) => {
+  const handleSaveRegister = async (e) => {
     e.preventDefault();
 
     if(!inputInfoRegister.name || !inputInfoRegister.email || !inputInfoRegister.password || !inputInfoRegister.cel || !inputInfoRegister.adress.streetName || !inputInfoRegister.adress.streetNumber || !inputInfoRegister.adress.city || !inputInfoRegister.adress.postalCode) {
@@ -167,16 +170,15 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
       return;
     }
 
-    inputInfoRegister.id = uuidv4();
-
-    console.log(inputInfoRegister)
-
-    onSaveRegister(inputInfoRegister);
-
-    // alert("Usuário Cadastrado com sucesso!");
-    setSuccessfulRegister(true);
-    console.log("cadastrando e logando")
     console.log(inputInfoRegister);
+
+    const newUser = await CreateUser([inputInfoRegister]);
+
+    console.log(newUser);
+
+    setSuccessfulRegister(true);
+    
+    setLoggedUserId(newUser._id);
     onSaveLogin(inputInfoRegister);
   };
   
@@ -184,6 +186,10 @@ function LoginRegister({ users, onSaveRegister, onSaveLogin }) {
     setSuccessfulRegister(false);
     navigate("/");
   }
+
+  useEffect(() => {
+    fetchUsersData();
+  }, [])
 
   return (
     <div className="auth-container">

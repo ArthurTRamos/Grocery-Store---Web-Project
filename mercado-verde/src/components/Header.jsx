@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 import logo from "../assets/logo.png";
 
-function Header({ loggedUser, cartItemNumber }) {
-  let userHeader =
-    loggedUser ? (
-      <li>
-        <Link to="/user">Bem Vindo, {loggedUser.name}</Link>
-      </li>
-    ) : (
-      <li>
-        <Link to="/auth">Entrar / Cadastro</Link>
-      </li>
-    );
+import {GetUserById} from "../services/Fetchs.js"
+
+function Header({ loggedUserId, cartItemNumber }) {
+  const [loggedUser, setLoggedUser] = useState("");
+
+  console.log(loggedUserId);
 
   let admin =
     loggedUser && loggedUser.admin ? (
@@ -22,6 +17,22 @@ function Header({ loggedUser, cartItemNumber }) {
         <Link to="/manage">Gerenciar</Link>
       </li>
     ) : null;
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      console.log("aaaaaaaaaaaaaaaaa")
+      console.log(loggedUserId);
+      if(loggedUserId == "") {
+        setLoggedUser("");
+      }
+      const data = await GetUserById(loggedUserId);
+      console.log(data);
+      setLoggedUser(data);
+    };
+
+    fetchUser();
+  }, [loggedUserId]);
 
   return (
     <div>
@@ -45,7 +56,15 @@ function Header({ loggedUser, cartItemNumber }) {
                 {cartItemNumber > 0 ? "(" + cartItemNumber + ")" : ""}
               </Link>
             </li>
-            {userHeader}
+            {loggedUser ? (
+              <li>
+                <Link to="/user">Bem Vindo, {loggedUser.name}</Link>
+              </li>
+            ) : (
+              <li>
+                <Link to="/auth">Entrar / Cadastro</Link>
+              </li>
+            )}
           </ul>
         </nav>
       </header>

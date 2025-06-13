@@ -20,7 +20,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025. All Rights Reserved.</p>
+          <p>&copy; 2025. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>

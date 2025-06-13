@@ -299,6 +299,7 @@ const GetUserById = async (id) => {
  */
 const CreateUser = async (userData) => {
   try {
+    console.log(userData)
     const response = await fetch(`${URL_BASE}user`, {
       method: "POST",
       headers: {

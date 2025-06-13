@@ -7,9 +7,11 @@ import "./RecipePage.css"
 import RecipeDisplay from "./RecipeDisplay"
 
 import localAPIKey from  "../data/key.json"
+import {GetProducts} from "../services/Fetchs.js"
 
 // Gera uma receita com base na ocasião selecionada e nos produtos disponíveis
-function RecipePage({products}) {
+function RecipePage() {
+  const [products, setProducts] = useState([])
   const [occasion, setOccasion] = useState("")
   const [recipe, setRecipe] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -18,6 +20,11 @@ function RecipePage({products}) {
   const [apiKey, setApiKey] = useState("")
 
   const options = ["Almoço de Domingo", "Jantar Romântico", "Aniversário", "Comida Rápida", "Lanche da Tarde"]
+
+  const fetchProducts = async() => {
+    const data = await GetProducts()
+    setProducts(data)
+  }
 
   // Obtém os nomes e quantiades dos produtos disponíveis
   useEffect(() => {
@@ -33,6 +40,8 @@ function RecipePage({products}) {
       const data = await Promise.resolve(localAPIKey)
       setApiKey(data[0]["key"])
     }
+
+    fetchProducts()
 
     getKeyAPI()
   }, [])
@@ -136,6 +145,8 @@ function RecipePage({products}) {
       if (data.choices && data.choices[0] && data.choices[0].message) {
         const recipeText = data.choices[0].message.content
         console.log("Resposta da API:", recipeText)
+
+        console.log(recipeText)
 
         const parsedRecipe = parseRecipeFromText(recipeText)
 
