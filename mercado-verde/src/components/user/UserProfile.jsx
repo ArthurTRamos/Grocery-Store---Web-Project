@@ -171,14 +171,14 @@ function UserProfile({ loggedUser }) {
                 formatter={imaskOptions.capitalize} // Pass capitalize function
                 verifier={verifiers.name}
               />
-              <LabeledEditableContainer
+              {/* <LabeledEditableContainer
                 displayName={"País"}
                 field={"country"}
                 handleSave={handleSave}
                 initialValue={loggedUserData.adress.country}
                 formatter={imaskOptions.capitalize} // Pass capitalize function
                 verifier={verifiers.name}
-              />
+              /> */}
             </div>
             <LabeledEditableContainer
               displayName={"CEP"}

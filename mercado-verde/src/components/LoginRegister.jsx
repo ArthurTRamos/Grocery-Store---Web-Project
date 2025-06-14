@@ -170,16 +170,17 @@ function LoginRegister({setLoggedUserId}) {
       return;
     }
 
-    console.log(inputInfoRegister);
+    // console.log(inputInfoRegister);
 
     const newUser = await CreateUser([inputInfoRegister]);
 
-    console.log(newUser);
+    // console.log(newUser);
 
     setSuccessfulRegister(true);
+
+    // console.log("novo id", newUser[0]["_id"]);
     
-    setLoggedUserId(newUser._id);
-    onSaveLogin(inputInfoRegister);
+    setLoggedUserId(newUser[0]["_id"]);
   };
   
   const handleCloseSuccessfulRegister = () => {
