@@ -25,6 +25,7 @@ function Header({ loggedUserId, cartItemNumber }) {
       console.log(loggedUserId);
       if(loggedUserId == "") {
         setLoggedUser("");
+        return;
       }
       const data = await GetUserById(loggedUserId);
       console.log(data);
