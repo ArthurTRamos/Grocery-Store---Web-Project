@@ -1,46 +1,83 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "./EditPaymentMethods.css";
 import EditPaymentCardInfo from "./EditPaymentCardInfo";
 import EditNewCardForm from "./EditNewCardForm";
 
-function EditPaymentMethods({setUsers, userToBeEdited, setUserToBeEdited }) {
-  const [isAddingCard, setIsAddingCard] = useState(false);
-  const location = useLocation();
+import { GetUserById, UpdateUser } from "../../../../services/Fetchs";
 
- 
+function EditPaymentMethods() {
+  const [isAddingCard, setIsAddingCard] = useState(false);
+
+  const[userEdit, setUserEdit] = useState("");
+
+  const { id } = useParams();
+
+  // useEffect(() => {
+  //   const randomUser = location.state?.userToBeEdited;
+  //   if (randomUser && (!userToBeEdited || userToBeEdited.id !== randomUser.id)) {
+  //     setUserToBeEdited(randomUser);
+  //   }
+  // }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+
+
+
   useEffect(() => {
-    const randomUser = location.state?.userToBeEdited;
-    if (randomUser && (!userToBeEdited || userToBeEdited.id !== randomUser.id)) {
-      setUserToBeEdited(randomUser);
+
+    // if (!id) {
+    //   console.warn("ID não encontrado. Redirecionando...");
+    //   // navigate("/usuarios"); // ou exibir mensagem
+    //   return;
+    // }
+
+    const fetchUserInfos = async() => {
+      try {
+        console.log(id);
+
+        const userInfos = await GetUserById(id);
+        setUserEdit(userInfos);
+
+      }catch(error){
+        console.log(error);
+      }
     }
-  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+
+    fetchUserInfos();
+
+    // const userFromState = location.state?.userToBeEdited;
+    
+  }, [id]);
+
+
+
+
 
   const handleAddCardButtonClick = () => {
     setIsAddingCard(true);
   };
 
 
-  const handleNewCardSave = (newCardData) => {
-    if (!userToBeEdited) return;
+  const handleNewCardSave = async (newCardData) => {
+    if (!userEdit) return;
 
     const updatedUser = {
-      ...userToBeEdited,
-      paymentMethods: [...(userToBeEdited.paymentMethods || []), newCardData],
+      ...userEdit,
+      paymentMethods: [...(userEdit.paymentMethods || []), newCardData],
     };
 
-    setUserToBeEdited(updatedUser);
+    setUserEdit(updatedUser);
     setIsAddingCard(false);
     
     console.log("usuario atualizado em new cardsave");
     console.log(updatedUser);
 
 
-    setUsers((prevUsers) => {
-      return prevUsers.map((user) =>
-        user.id === updatedUser.id ? updatedUser : user
-      );
-    });
+    try{
+      await UpdateUser(id, updatedUser);
+      console.log("atualizou");
+    }catch(error) {
+      console.log(error);
+    }
   };
 
   
@@ -49,44 +86,46 @@ function EditPaymentMethods({setUsers, userToBeEdited, setUserToBeEdited }) {
   };
 
 
-  const handleCardRemoval = (cardNumber) => {
-    if (!userToBeEdited) return;
+  const handleCardRemoval = async (cardNumber) => {
+    if (!userEdit) return;
 
     console.log(cardNumber);
     
     const updatedUser = {
-      ...userToBeEdited,
-      paymentMethods: (userToBeEdited.paymentMethods || []).filter(
+      ...userEdit,
+      paymentMethods: (userEdit.paymentMethods || []).filter(
         (card) => card.cardNumber !== cardNumber
       ),
     };
 
-    setUserToBeEdited(updatedUser);
+    setUserEdit(updatedUser);
     
     console.log("Usuário atualizado na remoção de card");
     console.log(updatedUser);
-    console.log("UserToBeEdited");
-    console.log(userToBeEdited);
 
-    setUsers((prevUsers) => {
-      return prevUsers.map((user) => {
-        return user.id === updatedUser.id ? updatedUser : user;
-      });
-    });
+    try{
+      await UpdateUser(id, updatedUser);
+      console.log("atualizou");
+    }catch(error) {
+      console.log(error);
+    }
+
+
+
   };
 
 
-  if (!userToBeEdited) {
+  if (!userEdit) {
     return <div>Carregando...</div>;
   }
 
   return (
     <div className="payment-methods-container">
       <div className="payment-methods-header">
-        <h1>Cartões de {userToBeEdited.name}</h1>
+        <h1>Cartões de {userEdit.name}</h1>
       </div>
       <div className="payment-methods-exhibition-container">
-        {userToBeEdited.paymentMethods?.map((cardData) => (
+        {userEdit.paymentMethods?.map((cardData) => (
           <EditPaymentCardInfo
             key={cardData.cardNumber}
             cardData={cardData}

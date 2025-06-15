@@ -1,43 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./EditUserCoupons.css";
 import CouponInfo from "./EditCouponInfo";
 
 import CustomAlert from "../../../utility_elements/CustomAlert";
 
-function EditUserCoupons({
-  coupons,
-  userToBeEdited,
-  setUserToBeEdited,
-  setUsers,
-}) {
+import { GetUserById, UpdateUser, GetCoupons } from "../../../../services/Fetchs";
+
+function EditUserCoupons() {
   const [newCouponNumber, setNewCouponNumber] = useState("");
   const [couponAlreadyAdded, setCouponAlreadyAdded] = useState(false);
   const [couponNotFound, setCouponNotFound] = useState(false);
-  const location = useLocation();
+
+  const [userEdit, setUserEdit] = useState("");
+  const [coupons, setCoupons] = useState([]);
+
+  const { id } = useParams();
+  
 
   useEffect(() => {
-    const randomUser = location.state?.userToBeEdited;
-    if (
-      randomUser &&
-      (!userToBeEdited || userToBeEdited.id !== randomUser.id)
-    ) {
-      setUserToBeEdited(randomUser);
+    if (!id) {
+      console.warn("ID não encontrado. Redirecionando...");
+      // navigate("/usuarios"); // ou exibir mensagem
+      return;
     }
-  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+    const fetchUserInfos = async() => {
+      try {
 
-  const handleNewCouponAdd = () => {
+        console.log(id);
+
+        const userInfos = await GetUserById(id);
+        setUserEdit(userInfos);
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+    const fetchCouponsInfos = async() => {
+      try {
+
+        const couponsInfos = await GetCoupons();
+        setCoupons(couponsInfos);
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+    fetchUserInfos();
+    fetchCouponsInfos();
+  }, [id]);
+
+
+
+
+  const handleNewCouponAdd = async () => {
     if (!newCouponNumber.trim()) {
       alert("Digite um código de cupom válido!");
       return;
     }
 
-    if (!userToBeEdited) {
+    if (!userEdit) {
       alert("Erro: dados do usuário não encontrados!");
       return;
     }
 
-    const userCoupons = userToBeEdited.coupons || [];
+    const userCoupons = userEdit.coupons || [];
 
     const couponExists = userCoupons.find(
       (coupon) => coupon.couponNumber === newCouponNumber
@@ -65,28 +92,27 @@ function EditUserCoupons({
     };
 
     const updatedUser = {
-      ...userToBeEdited,
+      ...userEdit,
       coupons: [...userCoupons, newUserCoupon],
     };
 
-    setUserToBeEdited(updatedUser);
+    setUserEdit(updatedUser);
 
-    if (setUsers) {
-      setUsers((prevUsers) => {
-        return prevUsers.map((user) => {
-          return user.id === updatedUser.id ? updatedUser : user;
-        });
-      });
+    try{
+      await UpdateUser(id, updatedUser);
+      console.log("atualizou");
+    }catch(error) {
+      console.log(error);
     }
 
     setNewCouponNumber("");
   };
 
-  if (!userToBeEdited) {
+  if (!userEdit) {
     return <div>Carregando...</div>;
   }
 
-  const userCoupons = userToBeEdited.coupons || [];
+  const userCoupons = userEdit.coupons || [];
   const availableCoupons = userCoupons.filter((userCoupon) => !userCoupon.used);
   const usedCoupons = userCoupons.filter((userCoupon) => userCoupon.used);
 
@@ -107,7 +133,7 @@ function EditUserCoupons({
         />
       )}
       <div className="user-coupons-header">
-        <h1>Cupons de {userToBeEdited.name}</h1>
+        <h1>Cupons de {userEdit.name}</h1>
       </div>
 
       <div className="user-coupons-add">

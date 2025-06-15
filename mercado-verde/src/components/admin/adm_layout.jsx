@@ -23,9 +23,6 @@ const AdmLayout = ({loggedUserId}) => {
     
         fetchUserData();
       }, [loggedUserId]);
-
-    console.log(loggedUserInfo);
-    console.log("Quedo que");
     
     if (!loggedUserId || loggedUserInfo.admin === false) {
         return <Navigate to="/" />;

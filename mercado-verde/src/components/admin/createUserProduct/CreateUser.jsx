@@ -151,7 +151,7 @@ const CreateUser = () => {
 
     try {
 
-      await FetchCreateUser(inputUser);
+      await FetchCreateUser([inputUser]);
       // Exibe mensagem de sucesso
       setUserCreated(true);
       console.log({inputUser});

@@ -32,7 +32,7 @@ const ManageUserComponent = ({individualUser}) => {
                 </td>
                 
                 <td>
-                <Link to="edit" state={{userToBeEdited: individualUser}}>
+                <Link to={`edit/profile/${individualUser._id}`}>
                     <button className="icon-button">
                         <CiEdit/>
                     </button>

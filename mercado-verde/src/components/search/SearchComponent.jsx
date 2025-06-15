@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 
 const SearchComponent = ({product}) => {
 
+    console.log(product._id);
+
     return(
         <>
-            <Link to="/product" state={{productData: product}} className="product-link">
+            <Link to="/product" state={{ID: product._id}} className="product-link">
                 <div className="product-container">
 
                     <p>{product.name}</p>

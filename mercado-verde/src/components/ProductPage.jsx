@@ -12,6 +12,9 @@ import {GetProductById, UpdateProduct, GetUserById, DeleteProduct} from "../serv
 function ProductPage({loggedUserId, setCartData, cartData}) {
   const location = useLocation();
 
+  console.log(location.state?.ID);
+  // PRINTANDO PARA MOSTRAR QUE O ID CHEGOU AO PRODUCTPAGE
+
   const [product, setProduct] = useState([]);
   const [productID, setProductID] = useState(location.state?.ID);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)

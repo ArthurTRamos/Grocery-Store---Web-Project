@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { GetProducts, CreateProduct, UpdateCoupon, GetUserById} from "./services/Fetchs";
+import { GetProducts, FetchCreateProduct, UpdateCoupon, GetUserById} from "./services/Fetchs";
 
 import HomePage from "./components/HomePage";
 
@@ -45,7 +45,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [loggedUser, setLoggedUser] = useState("");
   const [loggedUserId, setLoggedUserId] = useState("");
-  const [randomUser, setRandomUser] = useState("");
 
   useEffect(() => {
     const fetchLocalCoupons = async () => {
@@ -128,7 +127,7 @@ function App() {
           <Route index element={<AdmHomeAdmin />} />
           <Route
             path="createUser"
-            element={<AdmCreateUser users={users} setUsers={setUsers} />}
+            element={<AdmCreateUser/>}
           />
           <Route
             path="createProduct"
@@ -148,20 +147,14 @@ function App() {
           <Route
             path="manageUsers"
             element={
-              <AdmManageUsers
-                users={users}
-                setUsers={setUsers}
-                loggedUser={loggedUser}
-              />
+              <AdmManageUsers/>
             }
           />
           <Route
             path="manageUsers/edit"
             element={
               <AdmEditUserPage
-                loggedUser={loggedUser}
-                users={users}
-                setUsers={setUsers}
+                loggedUserId={loggedUserId}
               />
             }
           >
@@ -169,46 +162,29 @@ function App() {
               index
               element={
                 <AdmEditProfile
-                  setUsers={setUsers}
-                  userToBeEdited={randomUser}
-                  setUserToBeEdited={setRandomUser}
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
+                  loggedUserId={loggedUserId}
                 />
               }
             />
             <Route
               index
-              path="profile"
+              path="profile/:id"
               element={
                 <AdmEditProfile
-                  setUsers={setUsers}
-                  userToBeEdited={randomUser}
-                  setUserToBeEdited={setRandomUser}
-                  loggedUser={loggedUser}
-                  setLoggedUser={setLoggedUser}
+                  loggedUserId={loggedUserId}
                 />
               }
             />
             <Route
-              path="payment-methods"
+              path="payment-methods/:id"
               element={
-                <AdmEditPaymentMethods
-                  setUsers={setUsers}
-                  userToBeEdited={randomUser}
-                  setUserToBeEdited={setRandomUser}
-                />
+                <AdmEditPaymentMethods/>
               }
             />
             <Route
-              path="coupons"
+              path="coupons/:id"
               element={
-                <AdmEditUserCoupons
-                  coupons={coupons}
-                  userToBeEdited={randomUser}
-                  setUserToBeEdited={setRandomUser}
-                  setUsers={setUsers}
-                />
+                <AdmEditUserCoupons/>
               }
             />
           </Route>
