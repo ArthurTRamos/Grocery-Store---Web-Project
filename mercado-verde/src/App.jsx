@@ -218,9 +218,7 @@ function App() {
           path="/product"
           element={
             <ProductPage
-              loggedUser={loggedUser}
-              productsData={productData}
-              setProductData={setProductData}
+              loggedUserId={loggedUserId}
               setCartData={setCartData}
               cartData={cartData}
             />

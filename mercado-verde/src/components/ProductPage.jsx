@@ -7,19 +7,48 @@ import "./ProductPage.css";
 import InputImage from "./utility_elements/input_image";
 import CustomAlert from "./utility_elements/CustomAlert";
 
-function ProductPage({loggedUser, productsData, setProductData, setCartData, cartData}) {
+import {GetProductById, UpdateProduct, GetUserById, DeleteProduct} from "../services/Fetchs.js";
+
+function ProductPage({loggedUserId, setCartData, cartData}) {
   const location = useLocation();
-  const [product, setProduct] = useState(location.state?.productData);
+
+  const [product, setProduct] = useState([]);
+  const [productID, setProductID] = useState(location.state?.ID);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)
   const [addCartMessage, setAddCartMessage] = useState("Adicionar ao Carrinho")
   const [invalidNumber, setInvalidNumber] = useState(false);
+  const [typeAccount, setTypeAccount] = useState(false);
 
-  let typeAccount;
-  if(loggedUser === undefined) {
-    typeAccount = false;
-  } else {
-    typeAccount = loggedUser.admin;
+  const fetchProdutcData = async () => {
+    const data = await GetProductById(productID);
+    setProduct(data);
   }
+
+  const updateProductData = async () => {
+    const data = UpdateProduct(productID, product);
+    setProduct(data);
+  }
+
+  const deleteProductData = async () => {
+    const data = await DeleteProduct(productID);
+
+    const newCartData = cartData.filter((cartProduct) => cartProduct.id !== productID);
+    setCartData(newCartData);
+  }
+
+  const getUserById = async () => {
+    const data = GetUserById(loggedUserId);
+
+    if(data["admin"] === false)
+      setTypeAccount(false);
+    else
+      setTypeAccount(true);
+  }
+
+  useEffect(() => {
+    fetchProdutcData();
+    getUserById();
+  }, []);
 
   useEffect(() => {
     const initialCondition = () => {
@@ -44,7 +73,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
     }
 
     showCartAmount()
-  }, [cartData, product.id])
+  }, [cartData, productID])
 
   const handleSave = (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
@@ -68,23 +97,13 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
       [field]: newValue,
     };
 
-    const updatedProductsData = productsData.map((prod) => {
-      if (prod.id === product.id) {
-        return updatedProduct;
-      } else {
-        return prod;
-      }
-    });
-
-    console.log(updatedProductsData)
-
-    setProduct(updatedProduct);
-    setProductData(updatedProductsData);
+    setProduct(updateProductData);
+    updateProductData();
   };
 
   const handleBuyProduct = () => {
     console.log(cartData);
-    const itemFound = cartData.findIndex((item) => item.id === product.id)
+    const itemFound = cartData.findIndex((item) => item.id === productID)
     
     if(itemFound !== -1) {
       if(product.stock !== cartData[itemFound].amount) {
@@ -99,34 +118,19 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
       }
       else
         setAllowBuyProduct(true)
-
-      console.log(allowBuyProduct)
-      console.log(product.stock)
     }
     
     else {
       setCartData((prevCartData) => [
         ...prevCartData,
         {
-          id: product.id,
+          id: productID,
           amount: 1,
         },
       ]);
     }
   }
 
-  const handleDeleteProduct = () => {
-    console.log(productsData)
-
-    const newCartData = cartData.filter((cartProduct) => cartProduct.id !== product.id)
-    const newProducts = productsData.filter((productData) => productData.id !== product.id)
-
-    console.log(newProducts)
-
-    setProductData(newProducts)
-    setCartData(newCartData)
-  }
-  
   return (
     <div>
       <main className="content-wrap">
@@ -258,7 +262,7 @@ function ProductPage({loggedUser, productsData, setProductData, setCartData, car
                 <button
                   type="button"
                   className="delete-product"
-                  onClick={handleDeleteProduct}
+                  onClick={deleteProductData}
                   >
                     Remover Item
                 </button>
