@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import SearchComponent from '../search/SearchComponent';
 import { useLocation } from "react-router-dom";
 import "./Sections.css";
+
+import { GetProducts } from '../../services/Fetchs';
 
 const Sections = ({products}) => {
 
@@ -11,6 +13,7 @@ const Sections = ({products}) => {
     const [activeSection, setActiveSection] = useState(location.state?.sectionData);
     const[inputData, setInputData] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
+    const [productsVector, setProductsVector] = useState([]);
 
     const ITEMS_PER_PAGE = 16;
 
@@ -31,12 +34,27 @@ const Sections = ({products}) => {
         setInputData(value);
         setCurrentPage(1);
     }
+    
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const data = await GetProducts();
+                setProductsVector(data);
+            } catch (err) {
+                console.error("Error fetching users:", err);
+            }
+        };
+        
+        fetchUsers();
+    }, []);
+    
+    
     // todos,alimentos,padaria,hortifrutis,bebidas,doces,laticinios,congelados,outros
-
     const sections_products = activeSection === "todos"
-    ? products 
-    : products.filter(product => product.category === activeSection);
-
+    ? productsVector 
+    : productsVector.filter(product => product.category === activeSection);
+    
+    
     const filteredItems = useMemo(() => {
         let filteredData = sections_products.filter( item => {
             const match = item.name.toLowerCase().includes(inputData.toLowerCase());
@@ -47,6 +65,7 @@ const Sections = ({products}) => {
         return filteredData;
 
     }, [inputData, sections_products]);
+
 
 
 

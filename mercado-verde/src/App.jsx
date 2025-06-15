@@ -124,7 +124,7 @@ function App() {
             />
           }
         />
-        <Route path="/manage" element={<AdmLayout loggedUser={loggedUser} />}>
+        <Route path="/manage" element={<AdmLayout loggedUserId={loggedUserId} />}>
           <Route index element={<AdmHomeAdmin />} />
           <Route
             path="createUser"

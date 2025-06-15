@@ -3,15 +3,17 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import "./CreateUser.css";
+
 import StateSelection from "../../utility_elements/StateSelection";
 import CountrySelection from "../../utility_elements/CountrySelection";
 import CustomAlert from "../../utility_elements/CustomAlert";
 import CustomError from "../../utility_elements/CustomError";
-
 import SideBar from "../SideBar";
 
+import { FetchCreateUser, GetUsers } from "../../../services/Fetchs";
+
 // Componente principal para criação de novos usuários
-const CreateUser = ({users, setUsers}) => {
+const CreateUser = () => {
   // Estados de controle para mensagens de erro/sucesso
   const [userCreated, setUserCreated] = useState(false);
   const [fillAllFields, setFillAllFields] = useState(false);
@@ -20,10 +22,11 @@ const CreateUser = ({users, setUsers}) => {
   const [fixCEPNumber, setFixCEPNumber] = useState(false);
   const [equalEmail, setEqualEmail] = useState(false);
 
+  const[usersVector, setUsersVector] = useState([]);
+
   // Estado que armazena os dados do novo usuário
   const [inputUser, setInputUser] = useState({
     admin: false,
-    id: -1,
     password: "",
     name: "",
     cel: "",
@@ -101,7 +104,7 @@ const CreateUser = ({users, setUsers}) => {
   };
 
   // Validações e criação final do usuário
-  const handleUserCreation = (e) => {
+  const handleUserCreation = async (e) => {
     e.preventDefault();
     
     // Verifica se todos os campos obrigatórios foram preenchidos
@@ -130,22 +133,37 @@ const CreateUser = ({users, setUsers}) => {
       return;
     }
 
+    try{
+      const users = await GetUsers();
+      setUsersVector(users);
+    }catch(error) {
+      console.log(error);
+    }
+
     // Verifica se o e-mail já está em uso
-    if(users.filter((user) => user.email === inputUser.email).length > 0) {
+    if(usersVector.filter((user) => user.email === inputUser.email).length > 0) {
       setEqualEmail(true);
       return;
     }
 
     // Gera um UUID para o novo usuário
-    inputUser.id = uuidv4();
+    // inputUser.id = uuidv4();
+
+    try {
+
+      await FetchCreateUser(inputUser);
+      // Exibe mensagem de sucesso
+      setUserCreated(true);
+      console.log({inputUser});
+
+    }catch(error) {
+      console.log(error);
+    }
 
     // Atualiza a lista de usuários com o novo usuário criado
-    const updateUserData = [...users, inputUser];
-    setUsers(updateUserData);
+    // const updateUserData = [...users, inputUser];
+    // setUsers(updateUserData);
 
-    // Exibe mensagem de sucesso
-    setUserCreated(true);
-    console.log({inputUser});
   };
 
   return (

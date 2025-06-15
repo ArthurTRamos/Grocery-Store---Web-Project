@@ -1,12 +1,33 @@
 import React from 'react';
 import { Outlet, Navigate } from "react-router-dom";
-import SideBar from './SideBar';
+import { useEffect, useState } from 'react';
 
-const AdmLayout = ({loggedUser}) => {
+import { GetUserById } from '../../services/Fetchs';
 
-    console.log(loggedUser);
+const AdmLayout = ({loggedUserId}) => {
+
+    const [loggedUserInfo, setLoggedUserInfo] = useState("");
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+          try {
+            // setIsLoading(true);
+            const data = await GetUserById(loggedUserId);
+            setLoggedUserInfo(data || null);
+            // setError(null);
+          } catch (err) {
+            // setError("Falha ao carregar dados do usuário.");
+            console.error(err);
+          }
+        };
     
-    if (!loggedUser || loggedUser.admin === false) {
+        fetchUserData();
+      }, [loggedUserId]);
+
+    console.log(loggedUserInfo);
+    console.log("Quedo que");
+    
+    if (!loggedUserId || loggedUserInfo.admin === false) {
         return <Navigate to="/" />;
     }
 

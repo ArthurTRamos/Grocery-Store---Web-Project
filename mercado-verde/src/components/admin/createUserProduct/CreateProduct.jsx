@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import "./CreateProduct.css";
 import "./CreateUser.css";
 import SekInputImage from "../../utility_elements/SekInputImage";
@@ -8,6 +7,8 @@ import SideBar from "../SideBar";
 
 import CustomAlert from "../../utility_elements/CustomAlert";
 import CustomError from "../../utility_elements/CustomError";
+
+import { FetchCreateProduct } from "../../../services/Fetchs";
 
 const CreateProduct = ({products, setProducts}) => {
 
@@ -20,7 +21,6 @@ const CreateProduct = ({products, setProducts}) => {
 
   const[inputProductData, setInputProductData] = useState(
     {
-      id: -1,
       category: "",
       name: "",
       price: 0,
@@ -42,19 +42,19 @@ const CreateProduct = ({products, setProducts}) => {
     }));
   }
 
-  const handleInputImage = (field, url) => {
+  const handleInputImage = (e) => {
 
     setInputProductData((prev) => ({
       ...prev,
-      [field]: url,
+      image: e.target.value,
 
     }));
   }
 
-  const handleProductCreation = (e) => {
+  const handleProductCreation = async (e) => {
 
     e.preventDefault();
-    inputProductData.id = uuidv4();
+    // inputProductData.id = uuidv4();
 
     const newProduct = {
       ...inputProductData,
@@ -73,12 +73,32 @@ const CreateProduct = ({products, setProducts}) => {
       return;
     }
 
-    const updateProductData = [...products, newProduct];
-    setProducts(updateProductData);
 
-    // alert("Adicionou Produto");
-    setProductAdded(true);
-    console.log({inputProductData});
+    // const updateProductData = [...products, newProduct];
+    // setProducts(updateProductData);
+
+    try {
+      await FetchCreateProduct(newProduct);
+      // alert("Adicionou Produto");
+      setProductAdded(true);
+      console.log(newProduct);
+
+      setInputProductData({
+        category: "",
+        name: "",
+        price: 0,
+        stock: 0, 
+        sold: 0,
+        image: "",
+        description: ""
+      });
+
+
+    }catch(error) {
+      console.log(error);
+    }
+
+
 
   }
 
@@ -209,7 +229,16 @@ const CreateProduct = ({products, setProducts}) => {
 
               <div className="form-row">
                 <div className="form-group">
-                  <SekInputImage onChangeInputImage ={handleInputImage}/>
+                  <label htmlFor="imagem">URL do produto</label>
+                  <input
+                    type="text"
+                    className="input_sek"
+                    id="imagem"
+                    name="image"
+                    placeholder="Cole a URL da imagem do produto"
+                    value={inputProductData.image}
+                    onChange={handleInputImage}
+                  />
                 </div>
               </div>
             </div>

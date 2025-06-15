@@ -48,7 +48,7 @@ const GetProductById = async (id) => {
  * @param {Array<Object>} productData - An array of product objects to create.
  * @returns {Promise<Array>} A promise that resolves to an array of the created products.
  */
-const CreateProduct = async (productData) => {
+const FetchCreateProduct = async (productData) => {
   console.log("Creating product with data:", productData);
   try {
     const response = await fetch(`${URL_BASE}product`, {
@@ -56,7 +56,7 @@ const CreateProduct = async (productData) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(productData),
+      body: JSON.stringify([productData]),
     });
 
     if (!response.ok) {
@@ -297,7 +297,7 @@ const GetUserById = async (id) => {
  * @param {Array<Object>} userData - An array of user objects to create.
  * @returns {Promise<Array>} A promise that resolves to an array of the created users.
  */
-const CreateUser = async (userData) => {
+const FetchCreateUser = async (userData) => {
   try {
     console.log(userData)
     const response = await fetch(`${URL_BASE}user`, {
@@ -378,7 +378,7 @@ const DeleteUser = async (id) => {
 export {
   GetProducts,
   GetProductById,
-  CreateProduct,
+  FetchCreateProduct,
   UpdateProduct,
   DeleteProduct,
   GetCoupons,
@@ -388,7 +388,7 @@ export {
   DeleteCoupon,
   GetUsers,
   GetUserById,
-  CreateUser,
+  FetchCreateUser,
   UpdateUser,
   DeleteUser,
 };

@@ -12,7 +12,7 @@ const ManageUserComponent = ({individualUser}) => {
         <>
             <tbody>
             <td>
-                <div>{individualUser.id}</div>
+                <div>{individualUser._id}</div>
                 </td>
 
                 <td>
