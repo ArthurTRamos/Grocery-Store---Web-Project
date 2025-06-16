@@ -1,31 +1,60 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Outlet, NavLink} from "react-router-dom";
-
-import CustomAlert from "../../../utility_elements/CustomAlert";
 
 import "./EditUserPage.css";
 
+import CustomAlert from "../../../utility_elements/CustomAlert";
+import { GetUserById, DeleteUser } from "../../../../services/Fetchs";
 
-function EditUserPage({ loggedUser, users, setUsers}) {
+
+
+function EditUserPage({loggedUserId}) {
   const navigate = useNavigate();
+
+  const { id } = useParams();
   
   const [showAlert, setShowAlert] = useState(false);
   const [cantDelete, setCantDelete] = useState(false);
 
-  const location = useLocation();
-  const [userToBeEdited, setUserToBeEdited] = useState(
-    location.state?.userToBeEdited
-  );
+  const [userEdit, setUserEdit] = useState();
 
-  const handleDeleteAccount = () => {
+  useEffect(() => {
+
+
+    if (!id) {
+      console.warn("ID não encontrado. Redirecionando...");
+      // navigate("/usuarios"); // ou exibir mensagem
+      return;
+    }
+
+    const fetchUserInfos = async() => {
+      try {
+
+        const userInfos = await GetUserById(id);
+        setUserEdit(userInfos);
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+    fetchUserInfos();
+    
+  }, [id]);
+
+  const handleDeleteAccount = async () => {
     setShowAlert(false);
-    const updatedUsers = users.filter(
-      (user) => user.id !== userToBeEdited.id
-    );
-    setUsers(updatedUsers);
+
+    try{
+      await DeleteUser(id);
+    }catch(error) {
+      console.log(error);
+    }
+
     navigate("/manage/manageUsers", { replace: true });
   };
+
 
   return (
     <div className="user-page-container">
@@ -34,34 +63,31 @@ function EditUserPage({ loggedUser, users, setUsers}) {
           <ul>
             <li>
               <NavLink
-                to="profile"
+                to={`profile/${id}`}
                 end
                 className={({ isActive }) =>
                   isActive ? "active-sidebar-link" : ""
                 }
-                state={{userToBeEdited: userToBeEdited}}
               >
                 Perfil
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="payment-methods"
+                to={`payment-methods/${id}`}
                 className={({ isActive }) =>
                   isActive ? "active-sidebar-link" : ""
                 }
-                state={{userToBeEdited: userToBeEdited}}
               >
                 Métodos de Pagamento
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="coupons"
+                to={`coupons/${id}`}
                 className={({ isActive }) =>
                   isActive ? "active-sidebar-link" : ""
                 }
-                state={{userToBeEdited: userToBeEdited}}
               >
                 Cupons
               </NavLink>
@@ -70,7 +96,7 @@ function EditUserPage({ loggedUser, users, setUsers}) {
               <button
                 className="delete-account-button"
                 onClick={() => {
-                  if(userToBeEdited.id === loggedUser.id) {
+                  if(id === loggedUserId) {
                     setCantDelete(true);
                     return;
                   }else{

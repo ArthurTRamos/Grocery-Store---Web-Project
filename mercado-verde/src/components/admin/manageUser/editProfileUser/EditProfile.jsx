@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useNavigate, useLocation, Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 
 // Importa formatações para campos com máscaras (ex: telefone, CEP)
 import { imaskOptions } from "../../../../services/Formatters";
@@ -13,23 +13,46 @@ import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabe
 // Estilos CSS do componente
 import "./EditProfile.css";
 
+import { GetUserById, UpdateUser } from "../../../../services/Fetchs";
+
 // Componente principal de edição de perfil
-function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, setLoggedUser }) {
+function EditProfile({loggedUserId}) {
 
   const navigate = useNavigate();
-  const location = useLocation();
+
+  const[userEdit, setUserEdit] = useState("");
 
   // Ao carregar ou alterar a rota, atualiza o usuário a ser editado se necessário
+  const { id } = useParams();
+
   useEffect(() => {
-    const userFromState = location.state?.userToBeEdited;
-    if (userFromState && (!userToBeEdited || userToBeEdited.id !== userFromState.id)) {
-      console.log(userFromState);
-      setUserToBeEdited(userFromState);
+
+
+    if (!id) {
+      console.warn("ID não encontrado. Redirecionando...");
+      // navigate("/usuarios"); // ou exibir mensagem
+      return;
     }
-  }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
+
+    const fetchUserInfos = async() => {
+      try {
+        console.log("fecth de user de EDITPROFILE");
+        const userInfos = await GetUserById(id);
+        setUserEdit(userInfos);
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+
+    fetchUserInfos();
+    
+  }, [id]);
+
+
 
   // Se nenhum usuário foi carregado ainda, mostra uma mensagem e botão de voltar
-  if (!userToBeEdited) {
+  if (!userEdit) {
     return (
       <div className="manage-user-intro">
         <p>Carregando usuário...</p>
@@ -41,30 +64,25 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
   }
 
   // Função para alterar o tipo de usuário (admin/cliente)
-  const handleTypeChange = (typeValue) => {
-    if (!userToBeEdited) return;
+  const handleTypeChange = async(typeValue) => {
+    if (!userEdit) return;
 
     const updatedUser = {
-      ...userToBeEdited,
+      ...userEdit,
       admin: typeValue,
     };
 
-    setUserToBeEdited(updatedUser);
+    setUserEdit(updatedUser);
 
-    // Atualiza a lista geral de usuários
-    setUsers((prevUsers) => {
-      return prevUsers.map((user) =>
-        user.id === updatedUser.id ? updatedUser : user
-      );
-    });
+    try{
+      await UpdateUser(id, updatedUser);
+      console.log("atualizou");
+    }catch(error) {
+      console.log(error);
+    }
 
     // Se o usuário editado é o próprio usuário logado e virou cliente, atualiza o estado e redireciona
-    if (loggedUser && 
-        userToBeEdited.id === loggedUser.id && 
-        typeValue === false) {
-      
-      setLoggedUser(updatedUser);
-      
+    if (userEdit.id === loggedUserId && typeValue === false) {
       alert("Você alterou seu perfil para cliente. Você será redirecionado para a página inicial.");
       
       navigate("/");
@@ -72,45 +90,40 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
   }
 
   // Função genérica para salvar mudanças em campos (inclusive campos do endereço)
-  const handleSave = (field, newValue) => {
+  const handleSave = async (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    setUserToBeEdited((prevUserToBeEdited) => {
-      let updatedUser;
+    // Primeiro, criamos updatedUser fora do setUserEdit
+    let updatedUser;
 
-      // Verifica se o campo pertence ao endereço
-      if (
-        prevUserToBeEdited.adress &&
-        Object.keys(prevUserToBeEdited.adress).includes(field)
-      ) {
-        // Cria novo objeto de endereço com o campo atualizado
+    setUserEdit((prevUserEdit) => {
+      if (prevUserEdit.adress && Object.keys(prevUserEdit.adress).includes(field)) {
         const updatedAdress = {
-          ...prevUserToBeEdited.adress,
+          ...prevUserEdit.adress,
           [field]: newValue,
         };
 
-        // Atualiza o objeto do usuário com novo endereço
         updatedUser = {
-          ...prevUserToBeEdited,
+          ...prevUserEdit,
           adress: updatedAdress,
         };
       } else {
-        // Campo fora do endereço — atualiza diretamente
         updatedUser = {
-          ...prevUserToBeEdited,
+          ...prevUserEdit,
           [field]: newValue,
         };
       }
 
-      // Atualiza o usuário na lista geral de usuários
-      setUsers((prevUsers) => {
-        return prevUsers.map((user) =>
-          user.id === updatedUser.id ? updatedUser : user
-        );
-      });
-
       return updatedUser;
     });
+
+    
+    try {
+      await UpdateUser(id, updatedUser);
+      console.log("atualizou");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -120,8 +133,8 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
         <div className="div-intro-header-logout-container">
           <div className="manage-user-profile-intro-header">
             <div className="user-profile-intro-header-text">
-              <h3>Editando perfil de {userToBeEdited.name}</h3>
-              <p>ID: {userToBeEdited.id}</p>
+              <h3>Editando perfil de {userEdit.name}</h3>
+              <p>ID: {userEdit.id}</p>
             </div>
           </div>
           <div className="logout-button-container">
@@ -137,14 +150,14 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Tipo de Usuário"}
             field={"admin"}
             handleTypeChange={handleTypeChange}
-            initialValue={userToBeEdited.admin}
+            initialValue={userEdit.admin}
           />
 
           <LabeledEditableContainer
             displayName={"Nome Completo"}
             field={"name"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.name}
+            initialValue={userEdit.name}
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
@@ -152,7 +165,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Telefone"}
             field={"cel"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.cel}
+            initialValue={userEdit.cel}
             formatter={imaskOptions.phone}
             verifier={verifiers.phone}
           />
@@ -160,14 +173,14 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Email"}
             field={"email"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.email}
+            initialValue={userEdit.email}
             verifier={verifiers.email}
           />
           <LabeledEditableContainer
             displayName={"Senha"}
             field={"password"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.password}
+            initialValue={userEdit.password}
             secret={true}
           />
         </div>
@@ -183,14 +196,14 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Rua"}
             field={"streetName"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.adress.streetName}
+            initialValue={userEdit.adress.streetName}
             formatter={imaskOptions.capitalize}
           />
           <LabeledEditableContainer
             displayName={"Número"}
             field={"streetNumber"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.adress.streetNumber}
+            initialValue={userEdit.adress.streetNumber}
             verifier={verifiers.isNumeric}
           />
         </div>
@@ -200,7 +213,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
           displayName={"Complemento"}
           field={"apartmentNumber"}
           handleSave={handleSave}
-          initialValue={userToBeEdited.adress.apartmentNumber}
+          initialValue={userEdit.adress.apartmentNumber}
         />
 
         {/* Cidade, estado, país */}
@@ -209,7 +222,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Cidade"}
             field={"city"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.adress.city}
+            initialValue={userEdit.adress.city}
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
@@ -217,7 +230,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"Estado"}
             field={"state"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.adress.state}
+            initialValue={userEdit.adress.state}
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
@@ -225,7 +238,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
             displayName={"País"}
             field={"country"}
             handleSave={handleSave}
-            initialValue={userToBeEdited.adress.country}
+            initialValue={userEdit.adress.country}
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
@@ -236,7 +249,7 @@ function EditProfile({ setUsers, userToBeEdited, setUserToBeEdited, loggedUser, 
           displayName={"CEP"}
           field={"postalCode"}
           handleSave={handleSave}
-          initialValue={userToBeEdited.adress.postalCode}
+          initialValue={userEdit.adress.postalCode}
           formatter={imaskOptions.postalCode}
           verifier={verifiers.postalCode}
         />

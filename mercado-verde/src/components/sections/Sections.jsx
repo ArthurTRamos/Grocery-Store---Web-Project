@@ -33,10 +33,11 @@ const Sections = ({products}) => {
         let value = e.target.value;
         setInputData(value);
         setCurrentPage(1);
+        console.log(currentItems[1]);
     }
     
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchProducts = async () => {
             try {
                 const data = await GetProducts();
                 setProductsVector(data);
@@ -45,7 +46,7 @@ const Sections = ({products}) => {
             }
         };
         
-        fetchUsers();
+        fetchProducts();
     }, []);
     
     

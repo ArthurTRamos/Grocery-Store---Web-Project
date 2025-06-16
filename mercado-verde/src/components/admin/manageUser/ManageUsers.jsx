@@ -8,7 +8,7 @@ import SideBar from '../SideBar';
 
 import { GetUsers } from '../../../services/Fetchs';
 
-const ManageUsers = ({users, setUsers, loggedUser}) => {
+const ManageUsers = () => {
     const[inputData, setInputData] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [filteredItems, setFilteredItems] = useState([]);
@@ -34,17 +34,6 @@ const ManageUsers = ({users, setUsers, loggedUser}) => {
 
         fetchUsers();
     }, []);
-
-    // const filteredItems = useMemo(() => {
-        // let filteredData = users.filter( item => {
-        //     const match = item.name.toLowerCase().includes(inputData.toLowerCase());
-        //     return match;
-
-        // })
-
-    //     return filteredData;
-
-    // }, [inputData, users]);
 
     const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
