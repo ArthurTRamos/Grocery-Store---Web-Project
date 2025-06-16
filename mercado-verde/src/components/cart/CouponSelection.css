@@ -26,9 +26,9 @@
 }
 
 .coupon-dropdown {
-  flex-grow: 1; /* Allow dropdown to fill available space */
-  width: auto; /* Override any fixed width to work within flexbox */
-  padding: 12px;
+  flex-grow: 1;
+  width: auto;
+  padding-left: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
@@ -36,6 +36,7 @@
   background-color: #fff;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  align-items: center;
 }
 
 .coupon-dropdown:focus {

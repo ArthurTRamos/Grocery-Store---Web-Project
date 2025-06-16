@@ -28,7 +28,7 @@
 .card-dropdown {
   flex-grow: 1;
   width: auto;
-  padding: 12px;
+  padding-left: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
@@ -36,6 +36,7 @@
   background-color: #fff;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  align-items: center;
 }
 
 .card-dropdown:focus {

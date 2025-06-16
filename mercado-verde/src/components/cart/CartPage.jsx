@@ -40,6 +40,7 @@ function CartPage({ cartData, setCartData, loggedUser }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Cart Data:", cartData);
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
@@ -279,6 +280,7 @@ function CartPage({ cartData, setCartData, loggedUser }) {
                         key={cartItem.id}
                         cartItemData={{
                           ...product,
+                          id: cartItem.id,
                           amount: cartItem.amount,
                         }}
                         changeAmount={(id, newAmount) => {

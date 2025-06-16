@@ -234,14 +234,14 @@ function EditProfile({loggedUserId}) {
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
-          <LabeledEditableContainer
+          {/* <LabeledEditableContainer
             displayName={"País"}
             field={"country"}
             handleSave={handleSave}
             initialValue={userEdit.adress.country}
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
-          />
+          /> */}
         </div>
 
         {/* CEP */}
