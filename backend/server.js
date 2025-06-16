@@ -2,29 +2,37 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 
-// Importar modelos
+// Import database models for different entities
 import Coupon from "./Models/Coupon.js";
 import Product from "./Models/Product.js";
 import User from "./Models/User.js";
 
-// Importar função de conexão com o banco de dados
+// Import database connection function
 import connectDB from "./connectDB.js";
 
 const app = express();
 const port = 3000;
 
+// CORS configuration to allow requests from React frontend
 const corsOptions = {
-  origin: "http://localhost:5173", // Substitua pela URL do seu front-end
+  origin: "http://localhost:5173", // Frontend URL (Vite default port)
   optionsSuccessStatus: 200,
 };
 
+// Apply CORS middleware
 app.use(cors(corsOptions));
 
+// Establish database connection
 connectDB();
 
+// Enable JSON parsing with 50MB limit for large image uploads
 app.use(express.json({ limit: '50mb' }));
 
-// Coupon Routes
+// ================================
+// COUPON ROUTES - CRUD Operations
+// ================================
+
+// GET all coupons
 app.get("/coupon", async (req, res) => {
   try {
     const posts = await Coupon.find();
@@ -34,6 +42,7 @@ app.get("/coupon", async (req, res) => {
   }
 });
 
+// GET single coupon by ID
 app.get("/coupon/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -49,9 +58,12 @@ app.get("/coupon/:id", async (req, res) => {
   }
 });
 
+// POST create new coupon(s) - accepts array of coupons
 app.post("/coupon", async (req, res) => {
   try {
+    // Convert each item in array to Coupon model instance
     const newObject = req.body.map((item) => new Coupon(item));
+    // Insert multiple coupons at once
     const savedProject = await Coupon.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {
@@ -59,14 +71,16 @@ app.post("/coupon", async (req, res) => {
   }
 });
 
+// PUT update existing coupon by ID
 app.put("/coupon/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
 
+    // Find and update coupon, return updated document
     const updatedPost = await Coupon.findByIdAndUpdate(id, updatedData, {
-      new: true,
-      runValidators: true,
+      new: true, // Return updated document
+      runValidators: true, // Run schema validation
     });
 
     if (updatedPost) {
@@ -79,6 +93,7 @@ app.put("/coupon/:id", async (req, res) => {
   }
 });
 
+// DELETE coupon by ID
 app.delete("/coupon/:id", async (req, res) => {
   try {
     const deleted = await Coupon.findByIdAndDelete(req.params.id);
@@ -92,9 +107,11 @@ app.delete("/coupon/:id", async (req, res) => {
   }
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ================================
+// PRODUCT ROUTES - CRUD Operations
+// ================================
 
-// Product Routes
+// GET all products
 app.get("/product", async (req, res) => {
   try {
     const posts = await Product.find();
@@ -104,6 +121,7 @@ app.get("/product", async (req, res) => {
   }
 });
 
+// GET single product by ID
 app.get("/product/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -119,9 +137,12 @@ app.get("/product/:id", async (req, res) => {
   }
 });
 
+// POST create new product(s) - accepts array of products
 app.post("/product", async (req, res) => {
   try {
+    // Convert each item in array to Product model instance
     const newObject = req.body.map((item) => new Product(item));
+    // Insert multiple products at once
     const savedProject = await Product.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {
@@ -129,14 +150,16 @@ app.post("/product", async (req, res) => {
   }
 });
 
+// PUT update existing product by ID
 app.put("/product/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
 
+    // Find and update product, return updated document
     const updatedPost = await Product.findByIdAndUpdate(id, updatedData, {
-      new: true,
-      runValidators: true,
+      new: true, // Return updated document
+      runValidators: true, // Run schema validation
     });
 
     if (updatedPost) {
@@ -149,6 +172,7 @@ app.put("/product/:id", async (req, res) => {
   }
 });
 
+// DELETE product by ID
 app.delete("/product/:id", async (req, res) => {
   try {
     const deleted = await Product.findByIdAndDelete(req.params.id);
@@ -162,23 +186,11 @@ app.delete("/product/:id", async (req, res) => {
   }
 });
 
-// Uncomment the following lines if you want to delete all products at once
-// app.delete("/product/", async (req, res) => {
-//   try {
-//     const deleted = await Product.deleteMany({});
-//     if (deleted) {
-//       res.status(200).json({ message: "Products deleted", deleted });
-//     } else {
-//       res.status(404).json({ error: "Products not found" });
-//     }
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// });
+// ================================
+// USER ROUTES - CRUD Operations
+// ================================
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// User Routes
+// GET all users
 app.get("/user", async (req, res) => {
   try {
     const posts = await User.find();
@@ -188,6 +200,7 @@ app.get("/user", async (req, res) => {
   }
 });
 
+// GET single user by ID
 app.get("/user/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -203,11 +216,14 @@ app.get("/user/:id", async (req, res) => {
   }
 });
 
+// POST create new user(s) - accepts array of users (registration endpoint)
 app.post("/user", async (req, res) => {
   try {
-    console.log("aaaa\n\n\n\n\n")
+    console.log("Creating new user(s)"); // Debug log for user creation
+    // Convert each item in array to User model instance
     const newObject = req.body.map((item) => new User(item));
-    console.log(newObject);
+    console.log(newObject); // Debug log to see user data
+    // Insert multiple users at once
     const savedProject = await User.insertMany(newObject);
     res.status(201).json(savedProject);
   } catch (error) {
@@ -215,14 +231,16 @@ app.post("/user", async (req, res) => {
   }
 });
 
+// PUT update existing user by ID
 app.put("/user/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
 
+    // Find and update user, return updated document
     const updatedPost = await User.findByIdAndUpdate(id, updatedData, {
-      new: true,
-      runValidators: true,
+      new: true, // Return updated document
+      runValidators: true, // Run schema validation
     });
 
     if (updatedPost) {
@@ -235,6 +253,7 @@ app.put("/user/:id", async (req, res) => {
   }
 });
 
+// DELETE user by ID
 app.delete("/user/:id", async (req, res) => {
   try {
     const deleted = await User.findByIdAndDelete(req.params.id);
@@ -248,6 +267,7 @@ app.delete("/user/:id", async (req, res) => {
   }
 });
 
+// Create HTTP server and start listening on specified port
 const server = http.createServer(app);
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
