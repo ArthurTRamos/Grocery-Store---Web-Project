@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { GetProducts, CreateProduct, UpdateCoupon, GetUserById} from "./services/Fetchs";
+import { GetProducts, FetchCreateProduct, UpdateCoupon, GetUserById} from "./services/Fetchs";
 
 import HomePage from "./components/HomePage";
 

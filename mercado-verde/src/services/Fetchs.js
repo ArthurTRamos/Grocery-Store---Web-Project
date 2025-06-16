@@ -279,6 +279,7 @@ const GetUsers = async () => {
  */
 const GetUserById = async (id) => {
   try {
+    console.log(id);
     const response = await fetch(`${URL_BASE}user/${id}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

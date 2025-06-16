@@ -11,42 +11,50 @@ import {GetProductById, UpdateProduct, GetUserById, DeleteProduct} from "../serv
 
 function ProductPage({loggedUserId, setCartData, cartData}) {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const [product, setProduct] = useState([]);
-  const [productID, setProductID] = useState(location.state?.ID);
+  const [product, setProduct] = useState(location.state?.productData);
   const [allowBuyProduct, setAllowBuyProduct] = useState(true)
   const [addCartMessage, setAddCartMessage] = useState("Adicionar ao Carrinho")
   const [invalidNumber, setInvalidNumber] = useState(false);
   const [typeAccount, setTypeAccount] = useState(false);
 
-  const fetchProdutcData = async () => {
+  /*const fetchProdutcData = async () => {
     const data = await GetProductById(productID);
-    setProduct(data);
-  }
+    console.log(data)
 
-  const updateProductData = async () => {
-    const data = UpdateProduct(productID, product);
     setProduct(data);
+  }*/
+
+  const updateProductData = async (updatedProduct) => {
+    const data = await UpdateProduct(product["_id"], updatedProduct);
   }
 
   const deleteProductData = async () => {
-    const data = await DeleteProduct(productID);
+    const data = await DeleteProduct(product["_id"]);
 
-    const newCartData = cartData.filter((cartProduct) => cartProduct.id !== productID);
+    const newCartData = cartData.filter((cartProduct) => cartProduct.id !== product["_id"]);
     setCartData(newCartData);
+    navigate("/section");
   }
 
   const getUserById = async () => {
-    const data = GetUserById(loggedUserId);
-
-    if(data["admin"] === false)
+    if(loggedUserId === "") {
       setTypeAccount(false);
-    else
-      setTypeAccount(true);
+    } else {
+      const data = await GetUserById(loggedUserId);
+
+      console.log(data);
+
+      if(data["admin"] === false)
+        setTypeAccount(false);
+      else
+        setTypeAccount(true);
+    }
   }
+  
 
   useEffect(() => {
-    fetchProdutcData();
     getUserById();
   }, []);
 
@@ -66,16 +74,17 @@ function ProductPage({loggedUserId, setCartData, cartData}) {
 
   useEffect(() => {
     const showCartAmount = () => {
-      const itemFound = cartData.findIndex((item) => item.id === product.id);
+      console.log(product["_id"]);
+      const itemFound = cartData.findIndex((item) => item.id === product["_id"]);
       const amountText = itemFound === -1 ? "" : ` (${cartData[itemFound].amount})`;
 
       setAddCartMessage(`Adicionar ao Carrinho${amountText}`)
     }
 
     showCartAmount()
-  }, [cartData, productID])
+  }, [cartData])
 
-  const handleSave = (field, newValue) => {
+  const handleSave = async (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
     if(field === "price" || field === "stock" || field === "sold") {
@@ -97,13 +106,15 @@ function ProductPage({loggedUserId, setCartData, cartData}) {
       [field]: newValue,
     };
 
-    setProduct(updateProductData);
-    updateProductData();
+    console.log(updatedProduct);
+
+    setProduct(updatedProduct);
+    await updateProductData(updatedProduct);
   };
 
   const handleBuyProduct = () => {
     console.log(cartData);
-    const itemFound = cartData.findIndex((item) => item.id === productID)
+    const itemFound = cartData.findIndex((item) => item.id === product["_id"])
     
     if(itemFound !== -1) {
       if(product.stock !== cartData[itemFound].amount) {
@@ -124,7 +135,7 @@ function ProductPage({loggedUserId, setCartData, cartData}) {
       setCartData((prevCartData) => [
         ...prevCartData,
         {
-          id: productID,
+          id: product["_id"],
           amount: 1,
         },
       ]);

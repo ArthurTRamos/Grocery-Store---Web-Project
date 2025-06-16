@@ -9,7 +9,7 @@ import logo from "../assets/logo.png";
 import StateSelection from "./utility_elements/StateSelection";
 import CountrySelection from "./utility_elements/CountrySelection";
 import CustomAlert from "./utility_elements/CustomAlert";
-import {GetUsers, CreateUser} from "../services/Fetchs.js";
+import {GetUsers, FetchCreateUser} from "../services/Fetchs.js";
 
 function LoginRegister({setLoggedUserId}) {
   const navigate = useNavigate();
@@ -172,7 +172,7 @@ function LoginRegister({setLoggedUserId}) {
 
     // console.log(inputInfoRegister);
 
-    const newUser = await CreateUser([inputInfoRegister]);
+    const newUser = await FetchCreateUser([inputInfoRegister]);
 
     // console.log(newUser);
 
