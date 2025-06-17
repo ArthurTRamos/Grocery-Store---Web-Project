@@ -1,61 +1,60 @@
 import React, { useState } from "react";
 
+// Importing styles
 import "./CreateProduct.css";
 import "./CreateUser.css";
 
+// Importing components
 import CategorySelection from "../../utility_elements/CategorySelection";
 import SideBar from "../SideBar";
 import CustomAlert from "../../utility_elements/CustomAlert";
 import CustomError from "../../utility_elements/CustomError";
 
+// Service to send the product to the backend
 import { FetchCreateProduct } from "../../../services/Fetchs";
 
 
 const CreateProduct = () => {
 
-  
-
+  // State to handle success and error alerts
   const [productAdded, setProductAdded] = useState(false);
   const [productMissField, setProductMissField] = useState(false);
   const [productInvalidField, setProductInvalidField] = useState(false);
 
-
-  const[inputProductData, setInputProductData] = useState(
-    {
-      category: "",
-      name: "",
-      price: 0,
-      stock: 0, 
-      sold: 0,
-      image: "",
-      description: ""
-    }
-  );
+  // State to manage input fields of the product
+  const[inputProductData, setInputProductData] = useState({
+    category: "",
+    name: "",
+    price: 0,
+    stock: 0, 
+    sold: 0,
+    image: "",
+    description: ""
+  });
   
+  // Handles generic input changes
   const handleInputDataChange = (e) => {
-  
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
     setInputProductData((prev) => ({
       ...prev,
       [name]: value,
-
     }));
   }
 
+  // Handles image URL input separately (can be simplified)
   const handleInputImage = (e) => {
-
     setInputProductData((prev) => ({
       ...prev,
       image: e.target.value,
-
     }));
   }
 
+  // Handles the product creation on form submission
   const handleProductCreation = async (e) => {
-
     e.preventDefault();
 
+    // Normalize numeric values
     const newProduct = {
       ...inputProductData,
       price: Number(inputProductData.price) || 0,
@@ -63,21 +62,25 @@ const CreateProduct = () => {
       sold: Number(inputProductData.sold) || 0,
     };
 
+    // Validate required fields
     if(newProduct.name === "" || newProduct.category === "") {
       setProductMissField(true);
       return;
     }
 
+    // Validate numeric constraints
     if(newProduct.price <= 0 || newProduct.stock < 0 || newProduct.sold < 0) {
       setProductInvalidField(true);
       return;
     }
 
+    // Try to send product to the backend
     try {
       await FetchCreateProduct(newProduct);
-      setProductAdded(true);
-      console.log(newProduct);
+      setProductAdded(true); // Show success alert
+      console.log(newProduct); // Debug log
 
+      // Reset form
       setInputProductData({
         category: "",
         name: "",
@@ -88,10 +91,9 @@ const CreateProduct = () => {
         description: ""
       });
 
-    }catch(error) {
-      console.log(error);
+    } catch (error) {
+      console.log(error); // Handle possible error
     }
-    
   }
 
 
@@ -99,9 +101,10 @@ const CreateProduct = () => {
     <>
       <div className="admin-container">
 
-        <SideBar/>
+        <SideBar/> {/* Sidebar menu */}
 
         <div className="interior-container">
+          {/* Alert: Product added successfully */}
           {productAdded && (
             <CustomAlert
               alertMessage="Produto adicionado com sucesso!"
@@ -109,6 +112,7 @@ const CreateProduct = () => {
               onConfirmMessage={"OK"}
             />
           )}
+          {/* Alert: Missing required fields */}
           {productMissField && (
             <CustomError
               messageHeader="Produto com campos faltantes!"
@@ -117,6 +121,7 @@ const CreateProduct = () => {
               onErrorMessage={"Voltar!"}
             />
           )}
+          {/* Alert: Invalid numeric fields */}
           {productInvalidField && (
             <CustomError
               messageHeader="Produto com campos inválidos!"
@@ -125,6 +130,8 @@ const CreateProduct = () => {
               onErrorMessage={"Voltar!"}
             />
           )}
+
+          {/* Form for product creation */}
           <form id="userForm">
             <div className="form-header">
               <h2>Cadastro de Produto</h2>
@@ -134,10 +141,12 @@ const CreateProduct = () => {
             <div className="form-section">
               <h3>Dados do Produto</h3>
 
+              {/* Category selection dropdown */}
               <div className="form-row">
                 <CategorySelection value={inputProductData.category} onChangeCategory={handleInputDataChange}/>
               </div>
 
+              {/* Name and Price */}
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="nome_produto">Nome do Produto</label>
@@ -170,6 +179,7 @@ const CreateProduct = () => {
                 </div>
               </div>
 
+              {/* Stock and Sold */}
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="qtd_estoque">Quantidade em estoque</label>
@@ -204,6 +214,7 @@ const CreateProduct = () => {
                 </div>
               </div>
 
+              {/* Product Description */}
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="descricao">Descrição do produto</label>
@@ -219,6 +230,7 @@ const CreateProduct = () => {
                 </div>
               </div>
 
+              {/* Image URL input */}
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="imagem">URL do produto</label>
@@ -235,10 +247,11 @@ const CreateProduct = () => {
               </div>
             </div>
 
+            {/* Submit button */}
             <div className="btn-container">
-                <button type="submit" className="btn" onClick={handleProductCreation}>
-                    <span>Criar Produto</span>
-                </button>
+              <button type="submit" className="btn" onClick={handleProductCreation}>
+                <span>Criar Produto</span>
+              </button>
             </div>
           </form>
         </div>

@@ -1,16 +1,16 @@
-
-
+/* Main container styling */
 .interior-container {
     flex: 1;
-    max-width: 1000px;
-    margin: 20px auto;
+    max-width: 1000px;              /* Maximum width of the form */
+    margin: 20px auto;              /* Centered with vertical margin */
     background-color: white;
-    border-radius: 10px;
+    border-radius: 10px;            /* Rounded corners */
     padding: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid #2e933c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-top: 5px solid #2e933c;  /* Green top border */
 }
 
+/* Form header section */
 .form-header {
     margin-bottom: 25px;
     text-align: center;
@@ -23,6 +23,7 @@
     margin-bottom: 10px;
 }
 
+/* Decorative green line below the header */
 .form-header:after {
     content: '';
     display: block;
@@ -32,20 +33,23 @@
     margin: 15px auto 0;
 }
 
+/* Section block in the form */
 .form-section {
     margin-bottom: 30px;
 }
 
+/* Title of each form section */
 .form-section h3 {
     font-size: 20px;
     margin-bottom: 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #a3b18a;
+    border-bottom: 1px solid #a3b18a; /* Light green underline */
     color: #1b512a;
     display: flex;
     align-items: center;
 }
 
+/* Layout for input rows */
 .form-row {
     display: flex;
     flex-wrap: wrap;
@@ -53,6 +57,7 @@
     margin-bottom: 20px;
 }
 
+/* Specific row style, possibly for CEP (zip code) input */
 .form-row-cep {
     display: flex;
     max-width: 250px;
@@ -62,23 +67,25 @@
     margin-bottom: 10px;
 }
 
+/* Optional subtitle or description in the header */
 .form-header p {
     color: #557153;
     margin-top: 10px;
 }
 
-/* Estilo para os campos de formulário com ícones */
+/* Form group wrapper for input fields */
 .form-group {
-    flex: 1 1 300px;
+    flex: 1 1 300px;                /* Flexible with minimum width */
     position: relative;
 }
 
+/* Smaller input group variant (e.g., for quantity fields) */
 .form-group-3 {
     flex: 1 1 100px;
     position: relative;
 }
 
-
+/* Labels for inputs */
 .form-group label, .form-group-cep label {
     display: block;
     margin-bottom: 6px;
@@ -86,10 +93,7 @@
     color: #344e41;
 }
 
-
-/* Estilos adicionais para o tema verde */
-
-
+/* Common styles for inputs and select dropdowns */
 .input_sek, .select_sek {
     width: 100%;
     padding-left: 12px;
@@ -97,27 +101,28 @@
     border: 1px solid #a3b18a;
     font-size: 16px;
     transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: #e9f5e9;
+    background-color: #e9f5e9;     /* Light green background */
 }
 
+/* Input and select style when focused */
 .input_sek:focus, .select_sek:focus {
     outline: none;
-    border-color: #2e933c;
+    border-color: #2e933c;         /* Green border */
     box-shadow: 0 0 0 3px rgba(46, 147, 60, 0.3);
     background-color: white;
 }
 
+/* Custom arrow icon for the select dropdown */
 .select_sek {
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23344e41%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=..."); /* Custom SVG arrow */
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px;
     padding-right: 30px;
 }
 
-
-
+/* Button styling */
 .btn {
     background-color: #2e933c;
     color: white;
@@ -133,22 +138,26 @@
     overflow: hidden;
 }
 
+/* Center button horizontally */
 .btn-container {
     text-align: center;
     margin-top: 30px;
 }
 
+/* Button hover effect */
 .btn:hover {
     background-color: #207227;
-    transform: translateY(-2px);
+    transform: translateY(-2px);    /* Slight lift */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Button pressed effect */
 .btn:active {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Ripple effect on button click */
 .btn:after {
     content: "";
     position: absolute;
@@ -165,13 +174,14 @@
     transition: transform 0.5s, opacity 1s;
 }
 
+/* Ripple effect active state */
 .btn:active:after {
     transform: scale(0, 0);
     opacity: 0.3;
     transition: 0s;
 }
 
-/* Responsividade para mobile */
+/* Mobile responsive styles */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -179,15 +189,15 @@
     }
     
     .form-row {
-        flex-direction: column;
+        flex-direction: column;    /* Stack inputs vertically */
         gap: 15px;
     }
     
     .form-group {
-        flex: 1 1 100%;
+        flex: 1 1 100%;            /* Full width for inputs */
     }
     
     .btn {
-        width: 100%;
+        width: 100%;              /* Full-width button on mobile */
     }
 }

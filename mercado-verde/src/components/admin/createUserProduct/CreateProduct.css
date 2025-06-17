@@ -1,3 +1,4 @@
+/* Custom styled textarea with light green background and smooth focus effect */
 .textarea_sek {
     width: 100%;
     padding: 12px;
@@ -7,10 +8,10 @@
     resize: vertical;
     min-height: 100px;
     border: 1px solid #a3b18a;
-    font-size: 16px;
     background-color: #e9f5e9;
 }
 
+/* Focus style for textarea: white background and green glow */
 .textarea_sek:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(46, 147, 60, 0.3);
@@ -18,6 +19,7 @@
     border-color: #2e933c;
 }
 
+/* Green primary button style */
 .btn {
     background-color: #2e933c;
     color: white;
@@ -33,22 +35,26 @@
     overflow: hidden;
 }
 
+/* Center alignment for the button */
 .btn-container {
     text-align: center;
     margin-top: 30px;
 }
 
+/* Hover effect: darker green background, elevated effect */
 .btn:hover {
     background-color: #207227;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Active (pressed) effect: slight downward movement */
 .btn:active {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Ripple effect when clicking the button */
 .btn:after {
     content: "";
     position: absolute;
@@ -65,6 +71,7 @@
     transition: transform 0.5s, opacity 1s;
 }
 
+/* Trigger ripple on active state */
 .btn:active:after {
     transform: scale(0, 0);
     opacity: 0.3;

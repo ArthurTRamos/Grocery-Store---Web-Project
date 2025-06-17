@@ -9,10 +9,9 @@ import SideBar from "../SideBar";
 
 import { FetchCreateUser, GetUsers } from "../../../services/Fetchs";
 
-
-// Componente principal para criação de novos usuários
+// Main component for creating new users
 const CreateUser = () => {
-  // Estados de controle para mensagens de erro/sucesso
+  // State for success and error messages
   const [userCreated, setUserCreated] = useState(false);
   const [fillAllFields, setFillAllFields] = useState(false);
   const [fixPhoneNumber, setFixPhoneNumber] = useState(false);
@@ -20,9 +19,9 @@ const CreateUser = () => {
   const [fixCEPNumber, setFixCEPNumber] = useState(false);
   const [equalEmail, setEqualEmail] = useState(false);
 
-  const[usersVector, setUsersVector] = useState([]);
+  const [usersVector, setUsersVector] = useState([]);
 
-  // Estado que armazena os dados do novo usuário
+  // State holding the new user's input data
   const [inputUser, setInputUser] = useState({
     admin: false,
     password: "",
@@ -42,12 +41,12 @@ const CreateUser = () => {
     coupons: []
   });
 
-  // Função para atualizar o estado do usuário conforme os campos do formulário são preenchidos
+  // Function to update inputUser as form fields are changed
   const handleInputData = (e) => {
     const { name, value } = e.target;
 
-    // Campos de endereço são tratados separadamente
-    if(name === "apartmentNumber" || name === "city" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
+    // Separate treatment for address fields
+    if (name === "apartmentNumber" || name === "city" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
       setInputUser((prev) => ({
         ...prev,
         adress: {
@@ -63,7 +62,7 @@ const CreateUser = () => {
     }
   };
 
-  // Atualiza o campo "estado" do endereço
+  // Handles updating only the "state" field in the address
   const handleStateChange = (newState) => {
     setInputUser((prev) => ({
       ...prev,
@@ -74,13 +73,12 @@ const CreateUser = () => {
     }));
   };
 
-  // Altera o tipo do usuário (admin ou cliente)
+  // Changes user type (admin or customer)
   const handleTypeChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value);
+    const { value } = e.target;
 
     let bool_variable = false;
-    if(value === "admin") {
+    if (value === "admin") {
       bool_variable = true;
     }
 
@@ -90,57 +88,56 @@ const CreateUser = () => {
     }));
   };
 
-  // Validações e criação final do usuário
+  // Handles validation and final user creation
   const handleUserCreation = async (e) => {
     e.preventDefault();
     
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if(!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode || !inputUser.adress.country || !inputUser.adress.state) {
+    // Checks if all required fields are filled
+    if (!inputUser.name || !inputUser.email || !inputUser.password || !inputUser.cel || !inputUser.adress.streetName || !inputUser.adress.streetNumber || !inputUser.adress.city || !inputUser.adress.postalCode || !inputUser.adress.country || !inputUser.adress.state) {
       setFillAllFields(true);
       return;
     }
 
     const onlyNumbersRegex = /^\d*$/;
 
-    // Verifica se o telefone contém apenas números
-    if(!onlyNumbersRegex.test(inputUser.cel)) {
+    // Checks if phone number is valid (only digits)
+    if (!onlyNumbersRegex.test(inputUser.cel)) {
       setFixPhoneNumber(true);
       return;
     }
 
-    // Verifica se o número da casa contém apenas números
-    if(!onlyNumbersRegex.test(inputUser.adress.streetNumber)) {
+    // Checks if house number contains only digits
+    if (!onlyNumbersRegex.test(inputUser.adress.streetNumber)) {
       setFixHouseNumber(true);
       return;
     }
 
-    // Verifica se o CEP contém apenas números
-    if(!onlyNumbersRegex.test(inputUser.adress.postalCode)) {
+    // Checks if postal code (CEP) contains only digits
+    if (!onlyNumbersRegex.test(inputUser.adress.postalCode)) {
       setFixCEPNumber(true);
       return;
     }
 
-    try{
+    // Tries to get existing users to check email uniqueness
+    try {
       const users = await GetUsers();
       setUsersVector(users);
-    }catch(error) {
+    } catch (error) {
       console.log(error);
     }
 
-    // Verifica se o e-mail já está em uso
-    if(usersVector.filter((user) => user.email === inputUser.email).length > 0) {
+    // Checks if the email is already in use
+    if (usersVector.filter((user) => user.email === inputUser.email).length > 0) {
       setEqualEmail(true);
       return;
     }
 
+    // Attempts to create user with provided data
     try {
-
       await FetchCreateUser([inputUser]);
-      // Exibe mensagem de sucesso
-      setUserCreated(true);
-      console.log({inputUser});
-
-    }catch(error) {
+      setUserCreated(true);  // show success alert
+      console.log({ inputUser });
+    } catch (error) {
       console.log(error);
     }
   };
@@ -149,12 +146,12 @@ const CreateUser = () => {
     <>
       <div className="admin-container">
 
-        {/* Barra lateral */}
-        <SideBar/>
+        {/* Sidebar */}
+        <SideBar />
 
         <div className="interior-container">
 
-          {/* Alertas de sucesso ou erro */}
+          {/* Success and error messages */}
           {userCreated && (
             <CustomAlert
               alertMessage="Usuário adicionado com sucesso!"
@@ -169,36 +166,36 @@ const CreateUser = () => {
               onErrorMessage={"Voltar"}
             />
           )}
-          {fixPhoneNumber ? (
+          {fixPhoneNumber && (
             <CustomAlert
               alertMessage="O telefone somente pode conter números"
               onConfirm={() => setFixPhoneNumber(false)}
               onConfirmMessage="OK"
             />
-          ) : null}
-          {equalEmail ? (
+          )}
+          {equalEmail && (
             <CustomAlert
               alertMessage="Email já em uso"
               onConfirm={() => setEqualEmail(false)}
               onConfirmMessage="OK"
             />
-          ) : null}
-          {fixHouseNumber ? (
+          )}
+          {fixHouseNumber && (
             <CustomAlert
               alertMessage="O número da casa somente pode conter números"
               onConfirm={() => setFixHouseNumber(false)}
               onConfirmMessage="OK"
             />
-          ) : null}
-          {fixCEPNumber ? (
+          )}
+          {fixCEPNumber && (
             <CustomAlert
               alertMessage="O CEP somente pode conter números"
               onConfirm={() => setFixCEPNumber(false)}
               onConfirmMessage="OK"
             />
-          ) : null}
+          )}
 
-          {/* Formulário de criação de usuário */}
+          {/* User creation form */}
           <form id="userForm">
             <div className="form-header">
               <h2>Cadastro de Usuário</h2>
@@ -208,7 +205,7 @@ const CreateUser = () => {
               </p>
             </div>
 
-            {/* Dados pessoais */}
+            {/* Personal Information Section */}
             <div className="form-section">
               <h3>Dados Pessoais</h3>
 
@@ -244,7 +241,7 @@ const CreateUser = () => {
                 </div>
 
                 <div className="form-group">
-                  <label for="email">E-mail</label>
+                  <label htmlFor="email">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -327,7 +324,6 @@ const CreateUser = () => {
                       onChange={handleInputData}
                     />
                   </div>
-
                   <div className="form-group"></div>
                 </div>
 
@@ -372,7 +368,7 @@ const CreateUser = () => {
               </div>
             </div>
 
-            {/* Botão para criar usuário */}
+            {/* Submit Button */}
             <div className="btn-container">
               <button type="submit" className="btn" onClick={handleUserCreation}>
                 <span>Criar usuário</span>
