@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import "./EditUserCoupons.css";
+
 import CouponInfo from "./EditCouponInfo";
 
 import CustomAlert from "../../../utility_elements/CustomAlert";
@@ -21,7 +23,6 @@ function EditUserCoupons() {
   useEffect(() => {
     if (!id) {
       console.warn("ID não encontrado. Redirecionando...");
-      // navigate("/usuarios"); // ou exibir mensagem
       return;
     }
     const fetchUserInfos = async() => {
@@ -71,7 +72,6 @@ function EditUserCoupons() {
     );
 
     if (couponExists) {
-      // alert("Cupom já adicionado!");
       setCouponAlreadyAdded(true);
       return;
     }
@@ -81,7 +81,6 @@ function EditUserCoupons() {
     );
 
     if (!couponData) {
-      // alert("Cupom inválido!");
       setCouponNotFound(true);
       return;
     }

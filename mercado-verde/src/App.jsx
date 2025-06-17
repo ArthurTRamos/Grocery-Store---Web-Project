@@ -32,58 +32,13 @@ import Sections from "./components/sections/Sections";
 
 import "./App.css";
 
-import localCouponsData from "./data/coupons.json";
-import localProductsData from "./data/backendProducts.json";
-import localUsersData from "./data/users.json";
-
 
 function App() {
   // Carrinho de compras
   const [cartData, setCartData] = useState([]);
   const [productData, setProductData] = useState([]);
-  const [coupons, setCoupons] = useState([]);
   const [users, setUsers] = useState([]);
-  const [loggedUser, setLoggedUser] = useState("");
   const [loggedUserId, setLoggedUserId] = useState("");
-
-  useEffect(() => {
-    const fetchLocalCoupons = async () => {
-      try {
-        const data = await Promise.resolve(localCouponsData);
-        setCoupons(data);
-      } catch (error) {
-        console.error("Failed to load local coupons data:", error);
-        setCoupons([]);
-      }
-    };
-
-    const fetchLocalProducts = async () => {
-      try {
-        const data = await Promise.resolve(localProductsData);
-        setProductData(data);
-      } catch (error) {
-        console.error("Failed to load local products data:", error);
-        // Set a default empty array or handle error state if loading fails
-        setProductData([]);
-      }
-    };
-
-    const fetchLocalUsers = async () => {
-      try {
-        const data = await Promise.resolve(localUsersData);
-        setUsers(data);
-      } catch (error) {
-        console.error("Failed to load local users data:", error);
-        // Set a default empty array or handle error state if loading fails
-        setUsers([]);
-      }
-    };
-
-    fetchLocalProducts();
-    fetchLocalCoupons();
-    fetchLocalUsers();
-
-  }, []);
 
   useEffect(() => {
     const orderProductsByName = () => {
@@ -132,16 +87,13 @@ function App() {
           <Route
             path="createProduct"
             element={
-              <AdmCreateProduct
-                products={productData}
-                setProducts={setProductData}
-              />
+              <AdmCreateProduct/>
             }
           />
           <Route
             path="createCoupon"
             element={
-              <AdmCreateCoupon coupons={coupons} setCoupons={setCoupons} />
+              <AdmCreateCoupon/>
             }
           />
           <Route
@@ -189,7 +141,7 @@ function App() {
             />
           </Route>
         </Route>
-        <Route path="/section" element={<Sections products={productData} />} />
+        <Route path="/section" element={<Sections/>} />
         <Route
           path="/product"
           element={

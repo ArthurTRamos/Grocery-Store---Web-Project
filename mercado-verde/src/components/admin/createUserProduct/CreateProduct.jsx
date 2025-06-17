@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+
 import "./CreateProduct.css";
 import "./CreateUser.css";
-import SekInputImage from "../../utility_elements/SekInputImage";
+
 import CategorySelection from "../../utility_elements/CategorySelection";
 import SideBar from "../SideBar";
-
 import CustomAlert from "../../utility_elements/CustomAlert";
 import CustomError from "../../utility_elements/CustomError";
 
 import { FetchCreateProduct } from "../../../services/Fetchs";
 
-const CreateProduct = ({products, setProducts}) => {
+
+const CreateProduct = () => {
 
   
 
@@ -54,7 +55,6 @@ const CreateProduct = ({products, setProducts}) => {
   const handleProductCreation = async (e) => {
 
     e.preventDefault();
-    // inputProductData.id = uuidv4();
 
     const newProduct = {
       ...inputProductData,
@@ -73,13 +73,8 @@ const CreateProduct = ({products, setProducts}) => {
       return;
     }
 
-
-    // const updateProductData = [...products, newProduct];
-    // setProducts(updateProductData);
-
     try {
       await FetchCreateProduct(newProduct);
-      // alert("Adicionou Produto");
       setProductAdded(true);
       console.log(newProduct);
 
@@ -93,13 +88,10 @@ const CreateProduct = ({products, setProducts}) => {
         description: ""
       });
 
-
     }catch(error) {
       console.log(error);
     }
-
-
-
+    
   }
 
 

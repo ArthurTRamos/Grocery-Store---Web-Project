@@ -1,6 +1,8 @@
 import React from 'react';
-import AdmImg from "../../assets/adminImage.webp";
+
 import './HomeAdmin.css'; // Importa o CSS
+
+import AdmImg from "../../assets/adminImage.webp";
 import SideBar from './SideBar';
 
 const HomeAdmin = () => {

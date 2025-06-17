@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaTrash } from "react-icons/fa";
-import { CiEdit } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
+import { CiEdit } from "react-icons/ci";
+
 import "./ManageUserComponent.css";
-import EditProfile from '../editProfileUser/EditProfile';
 
 const ManageUserComponent = ({individualUser}) => {
 

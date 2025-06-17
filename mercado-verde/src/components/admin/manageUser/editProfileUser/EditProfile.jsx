@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+// Estilos CSS do componente
+import "./EditProfile.css";
 
 // Importa formatações para campos com máscaras (ex: telefone, CEP)
 import { imaskOptions } from "../../../../services/Formatters";
@@ -10,8 +13,6 @@ import verifiers from "../../../../services/Verifiers";
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
 
-// Estilos CSS do componente
-import "./EditProfile.css";
 
 import { GetUserById, UpdateUser } from "../../../../services/Fetchs";
 
@@ -30,7 +31,6 @@ function EditProfile({loggedUserId}) {
 
     if (!id) {
       console.warn("ID não encontrado. Redirecionando...");
-      // navigate("/usuarios"); // ou exibir mensagem
       return;
     }
 
@@ -216,7 +216,7 @@ function EditProfile({loggedUserId}) {
           initialValue={userEdit.adress.apartmentNumber}
         />
 
-        {/* Cidade, estado, país */}
+        {/* Cidade, estado*/}
         <div className="adress-city-state-country">
           <LabeledEditableContainer
             displayName={"Cidade"}
@@ -234,14 +234,6 @@ function EditProfile({loggedUserId}) {
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
-          {/* <LabeledEditableContainer
-            displayName={"País"}
-            field={"country"}
-            handleSave={handleSave}
-            initialValue={userEdit.adress.country}
-            formatter={imaskOptions.capitalize}
-            verifier={verifiers.name}
-          /> */}
         </div>
 
         {/* CEP */}

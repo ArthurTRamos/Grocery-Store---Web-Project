@@ -13,22 +13,7 @@ function EditPaymentMethods() {
 
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   const randomUser = location.state?.userToBeEdited;
-  //   if (randomUser && (!userToBeEdited || userToBeEdited.id !== randomUser.id)) {
-  //     setUserToBeEdited(randomUser);
-  //   }
-  // }, [location.state?.userToBeEdited, setUserToBeEdited, userToBeEdited]);
-
-
-
   useEffect(() => {
-
-    // if (!id) {
-    //   console.warn("ID não encontrado. Redirecionando...");
-    //   // navigate("/usuarios"); // ou exibir mensagem
-    //   return;
-    // }
 
     const fetchUserInfos = async() => {
       try {
@@ -43,13 +28,8 @@ function EditPaymentMethods() {
     }
 
     fetchUserInfos();
-
-    // const userFromState = location.state?.userToBeEdited;
     
   }, [id]);
-
-
-
 
 
   const handleAddCardButtonClick = () => {
@@ -109,8 +89,6 @@ function EditPaymentMethods() {
     }catch(error) {
       console.log(error);
     }
-
-
 
   };
 

@@ -5,6 +5,7 @@ import { Outlet, NavLink} from "react-router-dom";
 import "./EditUserPage.css";
 
 import CustomAlert from "../../../utility_elements/CustomAlert";
+
 import { GetUserById, DeleteUser } from "../../../../services/Fetchs";
 
 
@@ -24,7 +25,6 @@ function EditUserPage({loggedUserId}) {
 
     if (!id) {
       console.warn("ID não encontrado. Redirecionando...");
-      // navigate("/usuarios"); // ou exibir mensagem
       return;
     }
 

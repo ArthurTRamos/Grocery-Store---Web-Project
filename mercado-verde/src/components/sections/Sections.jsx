@@ -1,13 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
-import { useEffect, useMemo } from "react";
-import SearchComponent from '../search/SearchComponent';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from "react-router-dom";
+
 import "./Sections.css";
+
+import SearchComponent from '../search/SearchComponent';
 
 import { GetProducts } from '../../services/Fetchs';
 
-const Sections = ({products}) => {
+const Sections = () => {
 
     const location = useLocation();
     const [activeSection, setActiveSection] = useState(location.state?.sectionData);

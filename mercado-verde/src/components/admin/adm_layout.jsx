@@ -11,12 +11,9 @@ const AdmLayout = ({loggedUserId}) => {
     useEffect(() => {
         const fetchUserData = async () => {
           try {
-            // setIsLoading(true);
             const data = await GetUserById(loggedUserId);
             setLoggedUserInfo(data || null);
-            // setError(null);
           } catch (err) {
-            // setError("Falha ao carregar dados do usuário.");
             console.error(err);
           }
         };

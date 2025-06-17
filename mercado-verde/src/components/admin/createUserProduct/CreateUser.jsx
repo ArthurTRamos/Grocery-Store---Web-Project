@@ -1,16 +1,14 @@
-import React from "react";
-import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { React, useState } from "react";
 
 import "./CreateUser.css";
 
 import StateSelection from "../../utility_elements/StateSelection";
-import CountrySelection from "../../utility_elements/CountrySelection";
 import CustomAlert from "../../utility_elements/CustomAlert";
 import CustomError from "../../utility_elements/CustomError";
 import SideBar from "../SideBar";
 
 import { FetchCreateUser, GetUsers } from "../../../services/Fetchs";
+
 
 // Componente principal para criação de novos usuários
 const CreateUser = () => {
@@ -34,7 +32,7 @@ const CreateUser = () => {
     adress: {
       apartmentNumber: "",
       city: "",
-      country: "",
+      country: "Brasil",
       postalCode: "",
       state: "",
       streetName: "",
@@ -49,7 +47,7 @@ const CreateUser = () => {
     const { name, value } = e.target;
 
     // Campos de endereço são tratados separadamente
-    if(name === "apartmentNumber" || name === "city" || name === "country" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
+    if(name === "apartmentNumber" || name === "city" || name === "postalCode" || name === "state" || name === "streetName" || name === "streetNumber") {
       setInputUser((prev) => ({
         ...prev,
         adress: {
@@ -72,17 +70,6 @@ const CreateUser = () => {
       adress: {
         ...prev.adress,
         state: newState,
-      }
-    }));
-  };
-
-  // Atualiza o campo "país" do endereço
-  const handleCountryChange = (newCountry) => {
-    setInputUser((prev) => ({
-      ...prev,
-      adress: {
-        ...prev.adress,
-        country: newCountry,
       }
     }));
   };
@@ -146,9 +133,6 @@ const CreateUser = () => {
       return;
     }
 
-    // Gera um UUID para o novo usuário
-    // inputUser.id = uuidv4();
-
     try {
 
       await FetchCreateUser([inputUser]);
@@ -159,11 +143,6 @@ const CreateUser = () => {
     }catch(error) {
       console.log(error);
     }
-
-    // Atualiza a lista de usuários com o novo usuário criado
-    // const updateUserData = [...users, inputUser];
-    // setUsers(updateUserData);
-
   };
 
   return (
@@ -370,13 +349,6 @@ const CreateUser = () => {
                     <StateSelection 
                       value={inputUser.adress.state} 
                       onChange={handleStateChange}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <CountrySelection 
-                      value={inputUser.adress.country} 
-                      onChange={handleCountryChange}
                     />
                   </div>
 
