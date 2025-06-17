@@ -124,7 +124,9 @@ We didn't use testing tools. For the manual tests, we tried:
 
 ### Buy the product "Arroz Integral 1kg": 
 
-We have the following pages: product before the buy, cart and product after the buy. 
+We have the following pages: product before the buy, cart and product after the buy.
+
+Initially, there were 20 products sold and 45 in stock. After purchasing all the stock, the quantity sold was 65 and the quantity in stock was 0.
 
 <img src="ImagesReadme/AntesCompra.png" width="700" height=auto/>
 <img src="ImagesReadme/CarrinhoCompra.png" width="700", height=auto/>
@@ -157,6 +159,8 @@ We gonna modify the name of user "Joãozinho da Silva Sauro". We the the followi
 ### Register/Login:
 
 We have the following pages: register tab, login tab and profile after login.
+
+We created a user called "Arthur Ramos".
 
 <img src="ImagesReadme/Register.png" width="600" height=auto/>
 <img src="ImagesReadme/Login.png" width="600" height=auto/>

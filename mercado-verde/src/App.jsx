@@ -72,10 +72,7 @@ function App() {
         <Route
           path="/"
           element={
-            <HomePage
-              productData={productData}
-              setProductData={setProductData}
-            />
+            <HomePage/>
           }
         />
         <Route path="/manage" element={<AdmLayout loggedUserId={loggedUserId} />}>

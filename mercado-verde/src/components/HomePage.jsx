@@ -8,13 +8,24 @@ import MeatImage from "../assets/meatImage.jpg";
 import BakeryImage from "../assets/breadImage.jpg";
 import GeneralImage from "../assets/generalImage.jpeg";
 
-function HomePage({ productData }) {
+import {GetProducts} from "../services/Fetchs.js"
+
+function HomePage() {
+  const [productData, setProductData] = useState([]);
   // State to store all featured products with stock greater than 0
   const [featuredProducts, setFeaturedProducts] = useState([]);
   // State to store two random products for the "Offers" section
   const [twoRandomProducts, setTwoRandomProducts] = useState([]);
 
-  // Filters products to exclude those with zero stock
+  useState(() => {
+    const fetchProductsData = async () => {
+      const data = await GetProducts();
+      setProductData(data);
+    }
+
+    fetchProductsData();
+  }, [])
+
   const nonZeroProducts = (products) => {
     return products.filter((product) => product.stock !== 0);
   };
