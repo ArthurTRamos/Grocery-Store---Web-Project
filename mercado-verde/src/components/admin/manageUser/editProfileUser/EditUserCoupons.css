@@ -1,9 +1,11 @@
+/* Reset default margin and padding, and set box-sizing to border-box for easier sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Container for the coupons page - max width and vertical layout */
 .user-coupons-container {
   max-width: 1400px;
   margin: 0;
@@ -14,12 +16,14 @@
   align-items: flex-start; /* Align children to the left */
 }
 
+/* Header title styling */
 .user-coupons-header h1 {
   font-size: 2rem;
   color: #333;
   font-weight: bold;
 }
 
+/* Section for adding new coupons - white background with padding and slight shadow */
 .user-coupons-add {
   width: fit-content;
   min-width: 300px;
@@ -33,31 +37,36 @@
   gap: 15px;
 }
 
+/* Title inside the add coupon section */
 .user-coupons-add h2 {
   font-size: 1.4rem;
   color: #333;
   font-weight: bold;
 }
 
+/* Container for input and button in add coupon section */
 .user-coupons-add-actions {
   display: flex;
   gap: 10px;
 }
 
+/* Styling for input fields inside the add coupon section */
 .user-coupons-add-actions input {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 300px; /* Prevent input from getting too wide */
 }
 
+/* Input focus state: remove default outline and add green border */
 .user-coupons-add-actions input:focus {
   outline: none;
   border-color: #006400;
 }
 
+/* Button style inside the add coupon section */
 .user-coupons-add-actions button {
   padding: 12px 24px;
   background-color: #006400;
@@ -71,56 +80,66 @@
   transition: background-color 0.2s ease;
 }
 
+/* Button hover effect: lighter green */
 .user-coupons-add-actions button:hover {
   background-color: #008000;
 }
 
+/* Container for the list of coupons - vertical layout */
 .user-coupons-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%; /* Make sure list takes full width */
+  width: 100%; /* Make sure it uses full available width */
 }
 
+/* Titles inside the coupons list */
 .user-coupons-list h2 {
   font-size: 1.4rem;
   color: #333;
   font-weight: bold;
   margin-top: 10px;
-  text-align: left; /* Explicitly align text to the left */
+  text-align: left; /* Align text to the left */
 }
 
+/* Container for showing non-used and used coupons in a responsive grid */
 .non-used-coupons-exhibition-container,
 .used-coupons-exhibition-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible columns */
   gap: 20px;
   padding: 10px 0;
 }
 
-/* Responsive design */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
+  /* Reduce padding for smaller screens */
   .user-coupons-container {
     padding: 15px;
   }
 
+  /* Smaller font size for header */
   .user-coupons-header h1 {
     font-size: 1.5rem;
   }
 
+  /* Less padding on add coupon section */
   .user-coupons-add {
     padding: 15px;
   }
 
+  /* Inputs take full width on small screens */
   .user-coupons-add input {
     max-width: 100%;
   }
 
+  /* Buttons take full width on small screens */
   .user-coupons-add button {
     width: 100%;
   }
 
+  /* Make coupons grid single column on small screens */
   .non-used-coupons-exhibition-container,
   .used-coupons-exhibition-container {
     grid-template-columns: 1fr;

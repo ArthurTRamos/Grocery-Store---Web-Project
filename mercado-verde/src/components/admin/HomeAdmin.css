@@ -1,65 +1,71 @@
-/* HomeAdmin.css */
+/* Container that holds the entire admin layout with flexbox and full viewport height */
 .admin-container {
   display: flex;
-  min-height: 100vh; /* Garante altura mínima da tela */
+  min-height: 100vh; /* Ensures minimum height fills the screen */
 }
 
+/* Main page content area that fills remaining space beside sidebar */
 .page-container {
-  position: relative; /* Melhor que usar top: 0 */
-  flex: 1; /* Ocupa o espaço restante */
-  padding: 20px; /* Adiciona espaçamento interno */
-  transition: margin-left 0.3s ease;
-  background-color: #f8f9fa; /* Cor de fundo opcional */
+  position: relative; /* Preferred over top: 0 for layout stability */
+  flex: 1; /* Takes up remaining horizontal space */
+  padding: 20px; /* Inner spacing for content */
+  transition: margin-left 0.3s ease; /* Smooth transition for margin changes */
+  background-color: #f8f9fa; /* Light background color */
 }
 
-/* Estilos para o conteúdo da página */
+/* Container for text content inside the admin page */
 .admin-text {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* Space below text block */
 }
 
+/* Main heading style */
 .admin-text h1 {
   color: #2c3e50;
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Space below heading */
 }
 
+/* Paragraph styling for description or info text */
 .admin-text p {
   color: #555;
   font-size: 1.5rem;
   line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 800px; /* Limits line length for readability */
+  margin: 0 auto; /* Center horizontally */
 }
 
+/* Container to center the image horizontally and vertically */
 .admin-image {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Styles applied to the admin image */
 .admin-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 100%; /* Responsive width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-/* Responsividade */
+/* Responsive styles for tablets and below */
 @media (max-width: 768px) {
   .page-container {
-    margin-left: 250px;
-    padding: 15px;
+    margin-left: 250px; /* Space for sidebar */
+    padding: 15px; /* Slightly reduced padding */
   }
 }
 
+/* Responsive styles for mobile screens */
 @media (max-width: 576px) {
   .admin-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack sidebar and content vertically */
   }
   
   .page-container {
-    margin-left: 0;
-    margin-top: 60px; /* Espaço para sidebar mobile */
+    margin-left: 0; /* Remove left margin */
+    margin-top: 60px; /* Space for mobile sidebar/header */
   }
 }

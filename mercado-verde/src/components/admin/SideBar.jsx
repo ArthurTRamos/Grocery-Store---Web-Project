@@ -1,14 +1,15 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./SideBar.css";
 
 const SideBar = () => {
   return (
     <div>
-      {/* Menu lateral */}
+      {/* Sidebar container */}
       <div className={`sidebar-container`}>
         <div className="sidebar-menu">
           <nav>
+            {/* Link to create a new user */}
             <NavLink
               to="/manage/createUser"
               className={({ isActive }) =>
@@ -18,6 +19,7 @@ const SideBar = () => {
               Criar Usuário
             </NavLink>
 
+            {/* Link to create a new product */}
             <NavLink
               to="/manage/createProduct"
               className={({ isActive }) =>
@@ -27,6 +29,7 @@ const SideBar = () => {
               Criar Produto
             </NavLink>
 
+            {/* Link to create a new coupon */}
             <NavLink
               to="/manage/createCoupon"
               className={({ isActive }) =>
@@ -36,6 +39,7 @@ const SideBar = () => {
               Criar Cupom
             </NavLink>
 
+            {/* Link to manage existing users */}
             <NavLink
               to="/manage/manageUsers"
               className={({ isActive }) =>

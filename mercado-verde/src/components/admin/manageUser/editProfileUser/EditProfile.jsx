@@ -1,70 +1,62 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-// Estilos CSS do componente
+// Component CSS styles
 import "./EditProfile.css";
 
-// Importa formatações para campos com máscaras (ex: telefone, CEP)
+// Import input masks for fields (e.g., phone, postal code)
 import { imaskOptions } from "../../../../services/Formatters";
-// Importa funções para verificar/validar dados
+// Import data validation functions
 import verifiers from "../../../../services/Verifiers";
 
-// Componentes reutilizáveis de campos editáveis
+// Reusable editable field components
 import LabeledEditableContainer from "../../../utility_elements/LabeledEditableContainer";
 import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabeledEditableContainer";
 
-
 import { GetUserById, UpdateUser } from "../../../../services/Fetchs";
 
-// Componente principal de edição de perfil
-function EditProfile({loggedUserId}) {
-
+// Main profile editing component
+function EditProfile({ loggedUserId }) {
   const navigate = useNavigate();
 
-  const[userEdit, setUserEdit] = useState("");
+  // State to hold the user data being edited
+  const [userEdit, setUserEdit] = useState("");
 
-  // Ao carregar ou alterar a rota, atualiza o usuário a ser editado se necessário
+  // Get user ID from route parameters
   const { id } = useParams();
 
+  // Fetch user data when component mounts or when ID changes
   useEffect(() => {
-
-
     if (!id) {
       console.warn("ID não encontrado. Redirecionando...");
       return;
     }
 
-    const fetchUserInfos = async() => {
+    const fetchUserInfos = async () => {
       try {
-        console.log("fecth de user de EDITPROFILE");
+        console.log("fetch de usuário em EditProfile");
         const userInfos = await GetUserById(id);
         setUserEdit(userInfos);
-
-      }catch(error){
+      } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     fetchUserInfos();
-    
   }, [id]);
 
-
-
-  // Se nenhum usuário foi carregado ainda, mostra uma mensagem e botão de voltar
+  // Show loading message while user data is not yet loaded
   if (!userEdit) {
     return (
       <div className="manage-user-intro">
         <p>Carregando usuário...</p>
-        <button onClick={() => navigate("/manage/manageUsers")}>
-          Voltar
-        </button>
+        <button onClick={() => navigate("/manage/manageUsers")}>Voltar</button>
       </div>
     );
   }
 
-  // Função para alterar o tipo de usuário (admin/cliente)
-  const handleTypeChange = async(typeValue) => {
+  // Handler to change user type (admin/client)
+  const handleTypeChange = async (typeValue) => {
     if (!userEdit) return;
 
     const updatedUser = {
@@ -74,28 +66,29 @@ function EditProfile({loggedUserId}) {
 
     setUserEdit(updatedUser);
 
-    try{
+    try {
       await UpdateUser(id, updatedUser);
-      console.log("atualizou");
-    }catch(error) {
+      console.log("Usuário atualizado com sucesso");
+    } catch (error) {
       console.log(error);
     }
 
-    // Se o usuário editado é o próprio usuário logado e virou cliente, atualiza o estado e redireciona
+    // If the logged-in user changed their own profile type to client, redirect to homepage
     if (userEdit.id === loggedUserId && typeValue === false) {
-      alert("Você alterou seu perfil para cliente. Você será redirecionado para a página inicial.");
-      
+      alert(
+        "Você alterou seu perfil para cliente. Você será redirecionado para a página inicial."
+      );
       navigate("/");
     }
-  }
+  };
 
-  // Função genérica para salvar mudanças em campos (inclusive campos do endereço)
+  // Generic handler to save changes to any field, including address fields
   const handleSave = async (field, newValue) => {
     console.log(`Saving ${field}: ${newValue}`);
 
-    // Primeiro, criamos updatedUser fora do setUserEdit
     let updatedUser;
 
+    // Update state and prepare updated user object for API
     setUserEdit((prevUserEdit) => {
       if (prevUserEdit.adress && Object.keys(prevUserEdit.adress).includes(field)) {
         const updatedAdress = {
@@ -117,10 +110,9 @@ function EditProfile({loggedUserId}) {
       return updatedUser;
     });
 
-    
     try {
       await UpdateUser(id, updatedUser);
-      console.log("atualizou");
+      console.log("Usuário atualizado com sucesso");
     } catch (error) {
       console.log(error);
     }
@@ -128,7 +120,7 @@ function EditProfile({loggedUserId}) {
 
   return (
     <div>
-      {/* Seção superior com imagem, nome do usuário e botão de voltar */}
+      {/* Top section with user info and back button */}
       <div className="manage-user-intro">
         <div className="div-intro-header-logout-container">
           <div className="manage-user-profile-intro-header">
@@ -138,13 +130,11 @@ function EditProfile({loggedUserId}) {
             </div>
           </div>
           <div className="logout-button-container">
-            <button onClick={() => navigate("/manage/manageUsers")}>
-              Voltar
-            </button>
+            <button onClick={() => navigate("/manage/manageUsers")}>Voltar</button>
           </div>
         </div>
 
-        {/* Campos para editar informações do usuário */}
+        {/* Editable user information fields */}
         <div className="manage-user-profile-intro-description">
           <SelectLabeledEditableContainer
             displayName={"Tipo de Usuário"}
@@ -186,11 +176,11 @@ function EditProfile({loggedUserId}) {
         </div>
       </div>
 
-      {/* Seção para editar o endereço do usuário */}
+      {/* Section to edit user address */}
       <div className="manage-user-intro">
         <h3>Endereço</h3>
 
-        {/* Rua e número */}
+        {/* Street name and number */}
         <div className="adress-street-container">
           <LabeledEditableContainer
             displayName={"Rua"}
@@ -208,7 +198,7 @@ function EditProfile({loggedUserId}) {
           />
         </div>
 
-        {/* Complemento */}
+        {/* Apartment or complement */}
         <LabeledEditableContainer
           displayName={"Complemento"}
           field={"apartmentNumber"}
@@ -216,7 +206,7 @@ function EditProfile({loggedUserId}) {
           initialValue={userEdit.adress.apartmentNumber}
         />
 
-        {/* Cidade, estado*/}
+        {/* City and state */}
         <div className="adress-city-state-country">
           <LabeledEditableContainer
             displayName={"Cidade"}
@@ -236,7 +226,7 @@ function EditProfile({loggedUserId}) {
           />
         </div>
 
-        {/* CEP */}
+        {/* Postal code */}
         <LabeledEditableContainer
           displayName={"CEP"}
           field={"postalCode"}
