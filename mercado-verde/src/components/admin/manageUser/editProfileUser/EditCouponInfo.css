@@ -1,9 +1,11 @@
+/* Reset default margin, padding, and set box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Container for both used and non-used coupons */
 .coupon-info-container-non-used,
 .coupon-info-container-used {
   width: 100%;
@@ -19,15 +21,18 @@
   justify-content: space-between;
 }
 
+/* Specific styling for used coupons */
 .coupon-info-container-used {
   opacity: 0.7;
   background-color: #f5f5f5;
 }
 
+/* Header section of the coupon container */
 .coupon-info-header {
   margin-bottom: 15px;
 }
 
+/* Title styling within the header */
 .coupon-info-header h2 {
   font-size: 1.4rem;
   color: #333;
@@ -35,17 +40,20 @@
   text-align: center;
 }
 
+/* Section for detailed coupon information */
 .coupon-info-details {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* Paragraph styles inside the details section */
 .coupon-info-details p {
   font-size: 1.1rem;
   color: #555;
 }
 
+/* Label indicating the coupon has been used */
 .used-coupon-info-label {
   position: absolute;
   top: 10px;

@@ -1,3 +1,4 @@
+/* Container for payment card information box */
 .payment-card-info-container {
   width: 100%;
   padding: 20px;
@@ -6,47 +7,51 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   min-height: 160px; /* Match add button height */
-  display: flex; /* Add flex to ensure content fills height */
+  display: flex; /* Use flexbox for layout */
   flex-direction: column;
   min-width: fit-content;
 }
 
+/* Wrapper for content inside the payment card info container */
 .payment-card-info-content {
   display: flex;
   gap: 20px;
-  height: 100%; /* Fill container height */
+  height: 100%; /* Fill full container height */
   width: 100%;
 }
 
+/* Larger section inside the content, vertical layout */
 .payment-card-info-big,
 .payment-card-info-small {
   display: flex;
   flex-direction: column;
-  gap: 28px; /* Consistent gap between groups */
-  min-width: max-content; /* Ensure container is wide enough for content */
+  gap: 28px; /* Space between groups */
+  min-width: max-content; /* Ensure wide enough for content */
 }
 
-/* Group container for header and paragraph */
+/* Group container for header and paragraph inside info sections */
 .payment-card-info-group {
   display: flex;
   flex-direction: column;
-  gap: 0; /* Remove gap completely */
+  gap: 0; /* No gap between header and paragraph */
 }
 
+/* Styling for headings inside the container */
 .payment-card-info-container h3 {
   font-size: 1rem;
   color: #555;
   font-weight: bold;
-  padding: 0 8px; /* Keep horizontal padding for alignment */
+  padding: 0 8px; /* Horizontal padding for alignment */
   text-align: left;
-  white-space: nowrap; /* Prevent text from wrapping */
-  margin-bottom: -2px; /* Add negative margin to bring paragraph closer */
+  white-space: nowrap; /* Prevent heading from wrapping */
+  margin-bottom: -2px; /* Pull paragraph closer to heading */
 }
 
+/* Paragraph styling inside the larger info section */
 .payment-card-info-container .payment-card-info-big p {
   font-size: 1.2rem;
   color: #333;
-  padding: 8px; /* Keep padding for spacing */
+  padding: 8px;
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
@@ -56,15 +61,17 @@
   max-width: 270px;
 }
 
+/* Paragraph styling inside the smaller info section */
 .payment-card-info-container .payment-card-info-small p {
   font-size: 1.2rem;
   color: #333;
-  padding: 8px; /* Keep padding for spacing */
+  padding: 8px;
   min-height: 41px;
   display: flex;
   align-items: center;
 }
 
+/* Container for the delete button area */
 .payment-card-info-delete {
   display: flex;
   align-items: center;
@@ -72,32 +79,34 @@
   padding-left: 10px;
 }
 
+/* Styling the delete button */
 .payment-card-info-delete button {
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   height: 100%;
-  border: none; /* Remove all borders first */
-  border-left: 2px dashed #555; /* Then add only left border */
+  border: none; /* Remove default border */
+  border-left: 2px dashed #555; /* Left dashed border */
   cursor: pointer;
   color: #555;
   transition: color 0.2s ease;
   padding: 15px;
-  font-size: 1.4rem; /* Increase icon size */
+  font-size: 1.4rem; /* Icon size */
 }
 
+/* Hover effect for delete button */
 .payment-card-info-delete button:hover {
   color: #dc3545;
   border-left: 2px dashed #dc3545;
 }
 
-/* Responsive design */
+/* Responsive styles for wider screens */
 @media (min-width: 768px) {
   .payment-card-info-content {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start; /* Align containers to the top */
+    align-items: flex-start; /* Align child containers to top */
   }
 
   .payment-card-info-big {
@@ -107,6 +116,6 @@
 
   .payment-card-info-small {
     flex: 1;
-    padding-top: 0; /* Remove any top padding */
+    padding-top: 0; /* Remove top padding */
   }
 }

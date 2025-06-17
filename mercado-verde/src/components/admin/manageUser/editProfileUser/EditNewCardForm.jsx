@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-
 import "./EditNewCardForm.css";
-
 import { MdOutlineSave } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 
+// Component for adding a new credit card with formatted inputs and save/cancel actions
 function EditNewCardForm({ onSave, onCancel }) {
+  // State to store form inputs
   const [inputInfo, setInputInfo] = useState({
     cardNumber: "",
     cardHolderName: "",
@@ -13,32 +13,31 @@ function EditNewCardForm({ onSave, onCancel }) {
     cvv: "",
   });
 
-  // Format functions
+  // Formatters for specific inputs to format values as user types
   const formatters = {
     cardNumber: (value) => {
-      const cleaned = value.replace(/\D/g, "");
+      const cleaned = value.replace(/\D/g, ""); // Remove non-digits
       return cleaned
-        .replace(/(\d{4})/g, "$1 ")
+        .replace(/(\d{4})/g, "$1 ") // Add space every 4 digits
         .trim()
-        .slice(0, 19);
+        .slice(0, 19); // Max length for card number formatting
     },
 
     expirationDate: (value) => {
-      const cleaned = value.replace(/\D/g, "");
+      const cleaned = value.replace(/\D/g, ""); // Remove non-digits
       if (cleaned.length >= 2) {
+        // Format as MM/YY
         return `${cleaned.slice(0, 2)}/${cleaned.slice(2, 4)}`;
       }
       return cleaned;
     },
 
-    cvv: (value) => value.replace(/\D/g, "").slice(0, 3),
+    cvv: (value) => value.replace(/\D/g, "").slice(0, 3), // Only allow max 3 digits
   };
 
-  // Handle input changes
+  // Handler for input changes applying formatting based on input name
   const handleInputData = (e) => {
-    // Take the name and value from the event target
     const { name, value } = e.target;
-    // Format the value based on the input name
     const formattedValue = formatters[name] ? formatters[name](value) : value;
 
     setInputInfo((prev) => ({
@@ -47,7 +46,7 @@ function EditNewCardForm({ onSave, onCancel }) {
     }));
   };
 
-  // Handle form submission
+  // Submit handler that calls onSave prop with current input data
   const handleSave = (e) => {
     e.preventDefault();
     onSave(inputInfo);
@@ -55,6 +54,7 @@ function EditNewCardForm({ onSave, onCancel }) {
 
   return (
     <div className="new-card-form-container">
+      {/* Header with title and action buttons */}
       <div className="new-card-form-header">
         <p>Adicionar Novo Cartão</p>
         <div className="new-card-form-actions">
@@ -66,8 +66,11 @@ function EditNewCardForm({ onSave, onCancel }) {
           </button>
         </div>
       </div>
+
+      {/* Form with controlled inputs */}
       <form id="new-card-form" onSubmit={handleSave} className="new-card-form">
         <div className="new-card-form-content">
+          {/* Left side inputs: cardholder name and card number */}
           <div className="new-card-form-left">
             <div className="new-card-form-group">
               <label htmlFor="cardHolderName">Nome do Titular</label>
@@ -92,6 +95,8 @@ function EditNewCardForm({ onSave, onCancel }) {
               />
             </div>
           </div>
+
+          {/* Right side inputs: expiration date and CVV */}
           <div className="new-card-form-right">
             <div className="new-card-form-group">
               <label htmlFor="expirationDate">Validade</label>

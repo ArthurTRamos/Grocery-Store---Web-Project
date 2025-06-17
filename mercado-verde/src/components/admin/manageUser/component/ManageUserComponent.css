@@ -1,3 +1,4 @@
+/* Base style for all icon buttons */
 .icon-button {
     background-color: transparent;
     border: none;
@@ -10,33 +11,36 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-  }
+}
   
-  .icon-button svg {
+/* Styling for SVG icons inside the button */
+.icon-button svg {
     width: 28px;
     height: 28px;
     color: #333;
-  }
+}
   
-  /* Efeito ao passar o mouse */
-  .icon-button:hover {
+/* Hover effect for default icon buttons */
+.icon-button:hover {
     background-color: #e0e0e0;
-  }
+}
   
-  /* Estilos específicos para ações */
-  .icon-button.edit {
+/* Style for edit action button */
+.icon-button.edit {
     color: #007bff;
-  }
+}
   
-  .icon-button.edit:hover {
+/* Hover effect for edit action button */
+.icon-button.edit:hover {
     background-color: #cce5ff;
-  }
+}
   
-  .icon-button.delete {
+/* Style for delete action button */
+.icon-button.delete {
     color: #dc3545;
-  }
+}
   
-  .icon-button.delete:hover {
+/* Hover effect for delete action button */
+.icon-button.delete:hover {
     background-color: #f8d7da;
-  }
-  
+}

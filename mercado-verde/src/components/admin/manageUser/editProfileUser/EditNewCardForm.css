@@ -1,9 +1,11 @@
+/* Reset default spacing and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Container for the new card form */
 .new-card-form-container {
   width: 100%;
   padding: 20px;
@@ -16,6 +18,7 @@
   flex-direction: column;
 }
 
+/* Header section of the form with title and actions */
 .new-card-form-header {
   display: flex;
   justify-content: space-between;
@@ -24,6 +27,7 @@
   margin-bottom: 0px;
 }
 
+/* Title text inside the form header */
 .new-card-form-header p {
   font-size: 1.2rem;
   color: #555;
@@ -33,6 +37,7 @@
   height: 100%;
 }
 
+/* Container for header action buttons */
 .new-card-form-actions {
   display: flex;
   gap: 10px;
@@ -40,6 +45,7 @@
   height: 100%;
 }
 
+/* Styling for action buttons */
 .new-card-form-actions button {
   display: flex;
   align-items: center;
@@ -55,10 +61,12 @@
   width: auto;
 }
 
+/* Hover effect for action buttons */
 .new-card-form-actions button:hover {
   color: #006400;
 }
 
+/* Main form layout */
 .new-card-form {
   display: flex;
   flex-direction: column;
@@ -66,30 +74,33 @@
   height: 100%;
 }
 
+/* Horizontal layout for form content */
 .new-card-form-content {
   display: flex;
   gap: 20px;
   width: 100%;
 }
 
-.new-card-form-left,
-.new-card-form-right {
+/* Left section of the form */
+.new-card-form-left {
+  flex: 2;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.new-card-form-left {
-  flex: 2;
-  min-width: 0;
-}
-
+/* Right section of the form */
 .new-card-form-right {
   flex: 1;
   min-width: 150px;
   max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
+/* Form group container for label and input */
 .new-card-form-group {
   position: relative;
   display: flex;
@@ -98,6 +109,7 @@
   width: 100%;
 }
 
+/* Label styling inside a form group */
 .new-card-form-group label {
   font-size: 1rem;
   color: #555;
@@ -107,6 +119,7 @@
   white-space: nowrap;
 }
 
+/* Input styling inside a form group */
 .new-card-form-group input {
   font-size: 1.2rem;
   padding: 8px;
@@ -117,8 +130,8 @@
   box-sizing: border-box;
 }
 
+/* Focus effect on input fields */
 .new-card-form-group input:focus {
   outline: none;
   border-color: #006400;
 }
-
