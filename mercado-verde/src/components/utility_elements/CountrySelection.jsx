@@ -1,23 +1,37 @@
 import React from "react";
-
 import "./CountrySelection.css"; // Import the CSS file for styling
 
-function CountrySelection({value, onChange}) {
+/**
+ * CountrySelection Component
+ * Props:
+ * - value: selected country value (string)
+ * - onChange: function to update selected country
+ */
+function CountrySelection({ value, onChange }) {
+  
+  // Handle change in select input and call parent onChange handler
   const handleChange = (e) => {
     if (onChange) {
-      onChange(e.target.value);
+      onChange(e.target.value); // Send selected value to parent component
     }
   };
 
   return (
+    // Container for the label and select dropdown
     <div className="form-group">
+      {/* Label for the country select dropdown */}
       <label htmlFor="pais">País</label>
+
+      {/* Select dropdown with country options */}
       <select 
-        id="pais" 
-        value={value}
-        onChange={handleChange}
+        id="pais"               // Link label to select
+        value={value}           // Current selected value
+        onChange={handleChange} // Handle selection change
       >
+        {/* Default empty option */}
         <option value="">Selecione...</option>
+
+        {/* Country options */}
         <option value="Brasil">Brasil</option>
         <option value="Argentina">Argentina</option>
         <option value="Chile">Chile</option>

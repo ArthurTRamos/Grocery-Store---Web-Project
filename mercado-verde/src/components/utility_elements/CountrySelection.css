@@ -1,16 +1,19 @@
+/* Apply consistent box-sizing and remove default margin and padding */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Container for state selection input or dropdown */
 .state-select-container {
-  margin-bottom: 16px;
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 0;
+  margin-bottom: 16px; /* spacing below element */
+  flex: 1;             /* flexible sizing inside flex layouts */
+  min-width: 200px;    /* prevents shrinking too much on small screens */
+  margin-bottom: 0;    /* overrides the earlier margin-bottom (possibly a cleanup needed) */
 }
 
+/* Styling the label element inside the state container */
 .state-select-container label {
   display: block;
   font-size: 14px;
@@ -18,6 +21,7 @@
   margin-bottom: 6px;
 }
 
+/* Common styling for both input and select elements inside the container */
 .state-select-container input,
 .state-select-container select {
   width: 100%;
@@ -26,9 +30,10 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease; /* smooth effect on focus */
 }
 
+/* Highlight inputs and selects on focus */
 .state-select-container input:focus,
 .state-select-container select:focus {
   outline: none;
@@ -36,6 +41,7 @@
   box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
 }
 
+/* Placeholder text color for inputs */
 .state-select-container input::placeholder {
   color: #aaa;
 }

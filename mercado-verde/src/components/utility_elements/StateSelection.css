@@ -1,41 +1,47 @@
+/* Reset box sizing and remove default margin and padding for all elements */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Container for the state select input */
 .state-select-container {
-  margin-bottom: 16px;
-  flex: 1;
-  min-width: 200px;
-  margin-bottom: 0;
+  margin-bottom: 16px; /* space below the container */
+  flex: 1;             /* allow flexible width in flex layouts */
+  min-width: 200px;    /* minimum width */
+  margin-bottom: 0;    /* override previous margin-bottom (likely a mistake, redundant) */
 }
 
+/* Style for the label inside the container */
 .state-select-container label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 6px;
+  display: block;       /* label on its own line */
+  font-size: 14px;      /* font size */
+  font-weight: 500;     /* medium font weight */
+  margin-bottom: 6px;   /* space below the label */
 }
 
+/* Styles for input and select elements inside the container */
 .state-select-container input,
 .state-select-container select {
-  width: 100%;
-  height: 40px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s ease;
+  width: 100%;          /* full width of the container */
+  height: 40px;         /* fixed height */
+  padding: 8px 12px;    /* inner spacing */
+  border: 1px solid #ccc;  /* light gray border */
+  border-radius: 4px;      /* rounded corners */
+  font-size: 14px;          /* font size */
+  transition: border-color 0.2s ease; /* smooth border color transition on focus */
 }
 
+/* Styles applied when input or select elements are focused */
 .state-select-container input:focus,
 .state-select-container select:focus {
-  outline: none;
-  border-color: #15803d;
-  box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+  outline: none; /* remove default focus outline */
+  border-color: #15803d; /* dark green border on focus */
+  box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2); /* subtle green glow around */
 }
 
+/* Placeholder text color for input elements */
 .state-select-container input::placeholder {
-  color: #aaa;
+  color: #aaa; /* light gray placeholder text */
 }
