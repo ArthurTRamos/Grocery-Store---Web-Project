@@ -1,17 +1,19 @@
+/* Overlay covering the entire viewport, centering the alert and dimming the background */
 .custom-alert {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: flex;                 /* center content horizontally/vertically */
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  z-index: 1000;                 /* sits on top of other elements */
   animation: fadeIn 0.2s ease-out;
 }
 
+/* The white alert box inside the overlay */
 .custom-alert .alert-content {
   background-color: white;
   padding: 25px;
@@ -21,9 +23,10 @@
   width: 90%;
   text-align: center;
   animation: slideIn 0.3s ease-out;
-  white-space: pre-wrap;
+  white-space: pre-wrap;        /* preserve line breaks in alert text */
 }
 
+/* Paragraph styling inside the alert box */
 .custom-alert .alert-content p {
   font-size: 1.1rem;
   color: #333;
@@ -31,6 +34,7 @@
   line-height: 1.4;
 }
 
+/* Base styling for both confirm and cancel buttons */
 .custom-alert .alert-content .confirm-button,
 .custom-alert .alert-content .cancel-button {
   padding: 12px 30px;
@@ -42,34 +46,40 @@
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
-  white-space: nowrap;
+  white-space: nowrap;          /* prevent button text from wrapping */
 }
 
+/* Confirm button (e.g., “OK” or “Yes”) */
 .custom-alert .alert-content .confirm-button {
   background-color: #006400;
 }
 
+/* Cancel button (e.g., “Cancel” or “No”) */
 .custom-alert .alert-content .cancel-button {
   background-color: red;
 }
 
+/* Hover effect for confirm button */
 .custom-alert .alert-content .confirm-button:hover {
   background-color: #008000;
   transform: translateY(-1px);
 }
 
+/* Hover effect for cancel button */
 .custom-alert .alert-content .cancel-button:hover {
   background-color: rgb(181, 0, 0);
   transform: translateY(-1px);
 }
 
+/* Container to horizontally arrange the alert buttons */
 .custom-alert .alert-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 20px;                    /* space between buttons */
   margin-top: 20px;
 }
 
+/* Fade-in animation for the overlay */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -79,6 +89,7 @@
   }
 }
 
+/* Slide-in animation for the alert box */
 @keyframes slideIn {
   from {
     transform: translateY(-30px);
@@ -90,7 +101,7 @@
   }
 }
 
-/* Responsive adjustments */
+/* Responsive tweaks for smaller screens */
 @media (max-width: 768px) {
   .custom-alert .alert-content {
     width: 95%;
