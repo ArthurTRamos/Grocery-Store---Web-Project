@@ -1,57 +1,57 @@
 import React, { useState } from "react";
-
 import "./SelectLabeledEditableContainer.css";
 
+// Import icons for the buttons
 import { TbEdit } from "react-icons/tb";
 import { TbEditOff } from "react-icons/tb";
 import { MdOutlineSave } from "react-icons/md";
 
 /**
- * SelectLabeledEditableContainer component
- * 
- * Props:
- * - displayName: label text for the field
- * - field: field name (not used here but could be useful)
- * - handleTypeChange: function to call when saving a new value (boolean)
- * - initialValue: initial boolean value (true = Admin, false = Client)
+ * A reusable component that displays a labeled value and allows in-place editing
+ * via a dropdown select input.
  */
-function SelectLabeledEditableContainer({
-  displayName,
-  field,
-  handleTypeChange,
-  initialValue,
+function SelectEditableContainer({
+  displayName,  // The label text to display for the field.
+  field,        // An identifier for the field, passed to handleSave.
+  handleSave,   // The function to call when saving the new value.
+  initialValue, // The starting value to display.
+  options = [],   // The list of options for the dropdown. Ex: [{ value: 'a', label: 'Option A' }]
 }) {
-  // State to track if the component is in edit mode or display mode
+  // State to toggle between display mode and edit mode.
   const [isEditing, setIsEditing] = useState(false);
+  // State to hold the current value of the select input during editing.
+  const [inputData, setInputData] = useState(initialValue || "");
 
-  // State to hold the current value of the select input (boolean)
-  const [inputData, setInputData] = useState(initialValue);
-
-  // Handle changes in the select input and convert string "true"/"false" to boolean
-  const handleInputChange = (e) => {
-    const value = e.target.value === "true";
-    setInputData(value);
+  // Find the corresponding label for a given value from the options list.
+  const getLabelForValue = (value) => {
+    const selectedOption = options.find(option => option.value === value);
+    return selectedOption ? selectedOption.label : value;
   };
 
-  // Enable editing mode and reset inputData to initialValue
+  // Handles changes from the select input.
+  const handleInputChange = (e) => {
+    setInputData(e.target.value);
+  };
+
+  // Switch to editing mode.
   const handleEditClick = () => {
     setIsEditing(true);
-    setInputData(initialValue);
+    setInputData(initialValue || ""); // Reset input to initial value on edit start.
   };
 
-  // Save the selected value by calling the parent's handler and exit edit mode
-  const handleSaveClick = () => {
-    handleTypeChange(inputData);
-    setIsEditing(false);
+  // Handle the save action.
+  const handleSaveClick = async () => {
+    await handleSave(field, inputData); // Call the parent's save function.
+    setIsEditing(false); // Exit editing mode.
   };
 
-  // Cancel editing, revert changes, and exit edit mode
+  // Cancel the edit and revert any changes.
   const handleCancelClick = () => {
-    setInputData(initialValue);
+    setInputData(initialValue || ""); // Revert to the original value.
     setIsEditing(false);
   };
 
-  // Handle keyboard shortcuts: Enter saves, Escape cancels
+  // Add keyboard shortcuts for better user experience.
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSaveClick();
@@ -60,48 +60,41 @@ function SelectLabeledEditableContainer({
     }
   };
 
-  // Convert boolean value to a user-friendly display string
-  const getDisplayText = (value) => {
-    return value === true ? "Administrador" : "Cliente";
-  };
-
   return (
     <div className="labeled-editable-container">
-      {/* Display the label for the input */}
       <div className="labeled-editable-container-display-name">
         {displayName}
       </div>
-
-      {/* Main content: switches between display mode and edit mode */}
       <div className="labeled-editable-container-main">
         {isEditing ? (
-          // Edit mode: show a select input with save and cancel buttons
+          // -- EDITING VIEW --
           <div className="labeled-editable-container-input-group">
             <select
-              value={inputData.toString()} // convert boolean to string for select
-              onKeyDown={handleKeyDown}
+              value={inputData}
               onChange={handleInputChange}
-              autoFocus
+              onKeyDown={handleKeyDown}
+              autoFocus // Automatically focus the select input when it appears.
             >
-              <option value="false">Cliente</option>
-              <option value="true">Administrador</option>
+              {/* Map over the options prop to create the dropdown list */}
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
-
-            {/* Save button */}
             <button onClick={handleSaveClick} className="save-button">
               <MdOutlineSave />
             </button>
-
-            {/* Cancel button */}
             <button onClick={handleCancelClick} className="cancel-button">
               <TbEditOff />
             </button>
           </div>
         ) : (
-          // Display mode: show the current value text and an edit button
+          // -- DISPLAY VIEW --
           <div className="labeled-editable-container-display-group">
             <span className="labeled-editable-container-display-value">
-              {getDisplayText(initialValue)}
+              {/* Display the human-readable label for the initialValue */}
+              {getLabelForValue(initialValue)}
             </span>
             <button onClick={handleEditClick} className="edit-button">
               <TbEdit />
@@ -113,4 +106,4 @@ function SelectLabeledEditableContainer({
   );
 }
 
-export default SelectLabeledEditableContainer;
+export default SelectEditableContainer;

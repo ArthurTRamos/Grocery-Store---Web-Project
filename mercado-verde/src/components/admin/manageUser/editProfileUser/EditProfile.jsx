@@ -15,6 +15,44 @@ import SelectLabeledEditableContainer from "../../../utility_elements/SelectLabe
 
 import { GetUserById, UpdateUser } from "../../../../services/Fetchs";
 
+// Options for the User Type dropdown
+const userTypeOptions = [
+  { value: "true", label: "Administrador" },
+  { value: "false", label: "Cliente" },
+];
+
+// Options for the State dropdown
+const stateOptions = [
+  { value: "", label: "Selecione..." },
+  { value: "AC", label: "Acre" },
+  { value: "AL", label: "Alagoas" },
+  { value: "AP", label: "Amapá" },
+  { value: "AM", label: "Amazonas" },
+  { value: "BA", label: "Bahia" },
+  { value: "CE", label: "Ceará" },
+  { value: "DF", label: "Distrito Federal" },
+  { value: "ES", label: "Espírito Santo" },
+  { value: "GO", label: "Goiás" },
+  { value: "MA", label: "Maranhão" },
+  { value: "MT", label: "Mato Grosso" },
+  { value: "MS", label: "Mato Grosso do Sul" },
+  { value: "MG", label: "Minas Gerais" },
+  { value: "PA", label: "Pará" },
+  { value: "PB", label: "Paraíba" },
+  { value: "PR", label: "Paraná" },
+  { value: "PE", label: "Pernambuco" },
+  { value: "PI", label: "Piauí" },
+  { value: "RJ", label: "Rio de Janeiro" },
+  { value: "RN", label: "Rio Grande do Norte" },
+  { value: "RS", label: "Rio Grande do Sul" },
+  { value: "RO", label: "Rondônia" },
+  { value: "RR", label: "Roraima" },
+  { value: "SC", label: "Santa Catarina" },
+  { value: "SP", label: "São Paulo" },
+  { value: "SE", label: "Sergipe" },
+  { value: "TO", label: "Tocantins" },
+];
+
 // Main profile editing component
 function EditProfile({ loggedUserId }) {
   const navigate = useNavigate();
@@ -90,7 +128,10 @@ function EditProfile({ loggedUserId }) {
 
     // Update state and prepare updated user object for API
     setUserEdit((prevUserEdit) => {
-      if (prevUserEdit.adress && Object.keys(prevUserEdit.adress).includes(field)) {
+      if (
+        prevUserEdit.adress &&
+        Object.keys(prevUserEdit.adress).includes(field)
+      ) {
         const updatedAdress = {
           ...prevUserEdit.adress,
           [field]: newValue,
@@ -130,7 +171,9 @@ function EditProfile({ loggedUserId }) {
             </div>
           </div>
           <div className="logout-button-container">
-            <button onClick={() => navigate("/manage/manageUsers")}>Voltar</button>
+            <button onClick={() => navigate("/manage/manageUsers")}>
+              Voltar
+            </button>
           </div>
         </div>
 
@@ -139,8 +182,13 @@ function EditProfile({ loggedUserId }) {
           <SelectLabeledEditableContainer
             displayName={"Tipo de Usuário"}
             field={"admin"}
-            handleTypeChange={handleTypeChange}
-            initialValue={userEdit.admin}
+            // Inline function to adapt the new component to the old save handler
+            handleSave={(field, newValue) => {
+              const booleanValue = newValue === "true";
+              handleTypeChange(booleanValue); // Call the original function
+            }}
+            initialValue={String(userEdit.admin)} // Convert initial boolean to string
+            options={userTypeOptions}
           />
 
           <LabeledEditableContainer
@@ -216,13 +264,12 @@ function EditProfile({ loggedUserId }) {
             formatter={imaskOptions.capitalize}
             verifier={verifiers.name}
           />
-          <LabeledEditableContainer
+          <SelectLabeledEditableContainer
             displayName={"Estado"}
             field={"state"}
             handleSave={handleSave}
             initialValue={userEdit.adress.state}
-            formatter={imaskOptions.capitalize}
-            verifier={verifiers.name}
+            options={stateOptions}
           />
         </div>
 

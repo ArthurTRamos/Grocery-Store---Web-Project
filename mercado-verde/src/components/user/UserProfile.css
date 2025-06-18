@@ -117,21 +117,21 @@ body {
 
 /* Specific widths for Cidade (1/2), Estado (1/4), País (1/4) - these are flex items */
 /* They inherit margin-bottom, border-bottom, padding-bottom from .adress-container .labeled-editable-container */
-.adress-city-state-country .labeled-editable-container:nth-child(1) {
+.adress-city-state-country > *:nth-child(1) {
   /* Cidade */
   flex-basis: 50%; /* Take 50% of the available space */
   flex-grow: 1;
   min-width: 150px; /* Optional: Ensure minimum width */
 }
 
-.adress-city-state-country .labeled-editable-container:nth-child(2) {
+.adress-city-state-country > *:nth-child(2) {
   /* Estado */
   flex-basis: calc(25% - 20px); /* Take 25% minus the gap */
   flex-grow: 1;
   min-width: 100px; /* Optional: Ensure minimum width */
 }
 
-.adress-city-state-country .labeled-editable-container:nth-child(3) {
+.adress-city-state-country > *:nth-child(3) {
   /* País */
   flex-basis: calc(25% - 20px); /* Take 25% minus the gap */
   flex-grow: 1;
@@ -165,8 +165,8 @@ body {
     gap: 10px; /* Reduce gap when stacked */
   }
 
-  .adress-street-container .labeled-editable-container,
-  .adress-city-state-country .labeled-editable-container {
+  .adress-street-container > *,
+  .adress-city-state-country > * {
     flex-basis: auto !important; /* Reset flex-basis */
     width: 100%; /* Take full width when stacked */
   }
