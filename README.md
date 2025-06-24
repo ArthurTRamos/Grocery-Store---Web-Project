@@ -232,7 +232,9 @@ cd ../../
 npm run dev
 ```
 
-- Take the url link and put it on your browser search bar.
+- Open another terminal and go to ```cd backend```. Type ```npm i``` and ```npm start```.
+
+- Came back to the first terminal, take the url link and put it on your browser search bar.
 
 ## Problems
 
