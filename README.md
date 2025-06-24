@@ -236,6 +236,11 @@ npm run dev
 
 - Come back to the first terminal, take the url link and put it on your browser search bar.
 
+## Accounts
+
+If you want to test the website, use the following account for admin:
+- admin@yahoo.br (email) / admin (password)
+
 ## Problems
 
 No problems.
