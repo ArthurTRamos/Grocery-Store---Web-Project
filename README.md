@@ -234,7 +234,7 @@ npm run dev
 
 - Open another terminal and go to ```cd backend```. Type ```npm i``` and ```npm start```.
 
-- Came back to the first terminal, take the url link and put it on your browser search bar.
+- Come back to the first terminal, take the url link and put it on your browser search bar.
 
 ## Problems
 
