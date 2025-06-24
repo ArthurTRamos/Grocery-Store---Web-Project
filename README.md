@@ -210,7 +210,7 @@ cd mercado-verde
 npm install
 ```
 
-- Go to ```cd src/data``` and create the file ```key.json``` with the following structure:
+- Go to ```cd src```, create the folder ```data``` and create the file ```key.json``` inside of it with the following structure:
 
 ```
 [
