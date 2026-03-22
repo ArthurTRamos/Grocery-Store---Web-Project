@@ -1,44 +1,34 @@
-# Grocery Store - Web Project
+# 🛒 Mercado Verde — Online Grocery Store
 
-Group 17:
+A full-stack e-commerce web application for an online grocery store, built with **React**, **Node.js**, and **MongoDB**. The platform supports two user roles (customers and administrators), a shopping cart system, and an AI-powered recipe generator based on cart items.
 
-- Arthur Trottmann Ramos - 14681052
-- Henrique Drago - 14675441
-- Henrique Yukio Sekido - 14614564
+> **Academic Project** · Web Development Course · Group 17  
+> University of São Paulo (USP) — ICMC
 
-## Requirements
+---
 
-There're some requirements for the system, such as:
+## 👥 Team
 
-- The system must have 2 types of users: Clients and Administrators. Administrators are responsible for registering/managing administrators, customers, and products/services provided. The application already comes with an account admin with password admin. Customers are users who access the system to buy products/services.
-  
-- The admin record includes, at least: name, id, phone, email.
-  
-- Each customer's record includes, at least: name, id, address, phone, email
-  
-- Product/services records include, at least: name, id, photo, description, price, quantity (in stock), and quantity sold.
-  
-- Selling Products (or services): Products are selected, their quantity chosen, and are included in a cart. Products are purchased using a credit card number (any number is accepted by the system). The quantity of product sold is subtracted from the quantity in stock and added to the quantity sold. Carts are emptied only on payment or by customers.
+| Name | USP ID |
+|---|---|
+| Arthur Trottmann Ramos | 14681052 |
+| Henrique Drago | 14675441 |
+| Henrique Yukio Sekido | 14614564 |
 
-- Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
-  
-- Your functionality: the site will take every site's products and it will generate a recipe.
+---
 
-- The system must provide accessibility requirements and provide good usability. The system must be responsive, meaning that it should complete assigned tasks within a reasonable time.
+## ✨ Features
 
-## Project Description
+- **Customer accounts** — register, log in, manage profile and payment info
+- **Admin dashboard** — full CRUD for products, customers, and administrators
+- **Shopping cart** — add products, adjust quantities, and checkout with a credit card number
+- **Stock management** — stock quantity decrements and sold quantity increments on purchase
+- **AI Recipe Generator** — generates a recipe based on the products currently in the cart (powered by OpenRouter LLM API)
+- **Responsive UI** — accessible and usable across different screen sizes
 
-This project implements a web page (front-end and back-end) for a grocery store. The site has the following functionalities:
+---
 
-- Add an item and its quantity to the cart
-
-- Purchase items
-
-- Create an account as a customer or an admin
-
-- Edit items
-
-- Generate a recipe based on items in the cart
+## 🗺️ Application Architecture
 
 ```mermaid
 flowchart LR
@@ -70,181 +60,199 @@ flowchart LR
   Home <--> Cart
   Home <--> |if logged in| UserPage
   Home <--> |if not logged in| LogIn
-  
 ```
 
+---
 
+## 🛠️ Tech Stack
 
-The mock-ups are:
-- [Sign up](Milestone1/images/SignIn.png)
- 
-- [Sign in](Milestone1/images/SignUp.png)
+| Layer | Technology |
+|---|---|
+| Frontend | React |
+| Backend | Node.js / Express |
+| Database | MongoDB |
+| AI Integration | OpenRouter API |
 
-- [CRUD Page](Milestone1/images/CRUD.jpeg)
+---
 
-- [User Page](Milestone1/images/Profile.png)
+## 🚀 Getting Started
 
-- [Cart Page](Milestone1/images/Cart.png)
+### Prerequisites
 
-- [Section Page](Milestone1/images/Section.jpeg)
+- Node.js and npm installed
+- MongoDB running locally or a connection string
+- An [OpenRouter](https://openrouter.ai/) API key (required for the recipe feature)
 
-- Product Page: [HTML](Milestone1/html/product-page.html) | [CSS](Milestone1/css/product-page.css)
+### Installation
 
-- Landing Page: [HTML](Milestone1/html/pagina-inicial.html) | [CSS](Milestone1/css/pagina-inicial.css)
+1. **Clone the repository**
 
-- Add ADM or Product Page: [HTML](Milestone1/html/pagina-de-registro.html) | [CSS](Milestone1/css/pagina-de-registro.css)
-
-Regarding the information we will store on the server, we will need to save both clients' and administrators' personal information, such as name, ID, address, phone number, and email. Additionally, we will store product information, including name, price, number of items sold, items in stock, image, and brand. 
-
-## Comments About the Code
-
-No comments about the code.
-
-## Test Plan
-
-We didn't use testing tools. For the manual tests, we tried:
-
-- Buy a product
-
-- Create a new product
-
-- Create a new user
-
-- Modify a product
-
-- Modify a user
-
-- Register/login
-
-- Generate a recipe
-
-- Delete a product or user
-
-## Test Results
-
-### Buy the product "Arroz Integral 1kg": 
-
-We have the following pages: product before the buy, cart and product after the buy.
-
-Initially, there were 20 products sold and 45 in stock. After purchasing all the stock, the quantity sold was 65 and the quantity in stock was 0.
-
-<img src="ImagesReadme/AntesCompra.png" width="700" height=auto/>
-<img src="ImagesReadme/CarrinhoCompra.png" width="700", height=auto/>
-<img src="ImagesReadme/DepoisCompra.png" width="700" height=auto/>
-
-### Create the new product "Bala":
-
-We have the following pages: create product and individual product (after creation).
-
-<img src="ImagesReadme/criacaoProdut1.png" width="700" height=auto/>
-<img src="ImagesReadme/criacaoProdut2.png" width="700" height=auto/>
-
-
-### Modify the image and name of the product "Arroz Integral 1kg":
-
-We have the following pages: product before the modification, product after the modification and section with the modified product.
-
-<img src="ImagesReadme/produtoModificacao.png" width="700" height=auto/>
-<img src="ImagesReadme/novoProdutoModificacao.png" width="700" height=auto/>
-<img src="ImagesReadme/ModificacaoSecao.png" width="700" height=auto/>
-
-### Modify a user:
-
-We gonna modify the name of user "Joãozinho da Silva Sauro". We the the following pages: users manage center and profile (admin).
-
-<img src="ImagesReadme/modificarNome1.png" width="700" height=auto/>
-<img src="ImagesReadme/modificarNome2.png" width="700" height=auto/>
-<img src="ImagesReadme/modificarNome3.png" width="700" height=auto/>
-
-### Register/Login:
-
-We have the following pages: register tab, login tab and profile after login.
-
-We created a user called "Arthur Ramos".
-
-<img src="ImagesReadme/Register.png" width="600" height=auto/>
-<img src="ImagesReadme/Login.png" width="600" height=auto/>
-<img src="ImagesReadme/UserPageAfterLogin.png" width="600" height=auto/>
-
-### Generate a recipe for "Almoço de Domingo":
-
-We have the following pages: generate recipe, ingredientes and steps.
-
-<img src="ImagesReadme/recipe.png" width="700" height=auto/>
-<img src="ImagesReadme/ingredients.png" width="700" height=auto/>
-<img src="ImagesReadme/steps.png" width="700" height=auto/>
-
-### Delete a product:
-
-We have the following pages: product and sections.
-
-<img src="ImagesReadme/produtoModificacao.png" width="700" height=auto/>
-<img src="ImagesReadme/DepoisDeletar.png" width="700" height=auto/>
-
-### Delete a user:
-
-We gonna delete the user "Joãozinho da Silva Sauro". We have the following pages: profile (admin) and users manage center.
-
-<img src="ImagesReadme/perfilExcluir1.png" width="700" height=auto/>
-<img src="ImagesReadme/perfilExcluir2.png" width="700" height=auto/>
-
-## Build Procedures
-
-To use this project, follow the instructions below:
-
-- Clone the repository.
-
-```
+```bash
 git clone https://github.com/ArthurTRamos/Grocery-Store---Web-Project.git
+cd Grocery-Store---Web-Project
 ```
 
-- Go to grocery-store-react by
+2. **Install frontend dependencies**
 
-```
+```bash
 cd mercado-verde
-```
-
-- Type
-
-```
 npm install
 ```
 
-- Go to ```cd src```, create the folder ```data``` and create the file ```key.json``` inside of it with the following structure:
+3. **Set up the API key**
 
-```
+Inside `mercado-verde/src/`, create a folder named `data` and add a file called `key.json` with the following structure:
+
+```json
 [
-    {
-        "key": ""
-    }
+  {
+    "key": "YOUR_OPENROUTER_API_KEY"
+  }
 ]
 ```
 
-- Return to mercado-verde with
+> Leave the `"key"` field empty (`""`) if you don't want to use the recipe feature.
 
-```
+4. **Start the frontend**
+
+```bash
 cd ../../
-```
-
-- Type
-
-```
 npm run dev
 ```
 
-- Open another terminal and go to ```cd backend```. Type ```npm i``` and ```npm start```.
+5. **Start the backend** (in a separate terminal)
 
-- Come back to the first terminal, take the url link and put it on your browser search bar.
+```bash
+cd backend
+npm i
+npm start
+```
 
-## Accounts
+6. Open the URL shown in the frontend terminal in your browser.
 
-If you want to test the website, use the following account for admin:
-- admin@yahoo.br (email) / admin (password)
+---
 
-## Problems
+## 🔐 Default Admin Account
 
-No problems.
+Use the following credentials to access the admin dashboard:
 
-## Comments
+| Field | Value |
+|---|---|
+| Email | `admin@yahoo.br` |
+| Password | `admin` |
 
-If you want to use the recipe funcionality, you have to go to <a href="https://openrouter.ai/">this website</a>, create an account and create a key. After this, insert the key on the ```key.json```.
+---
+
+## 📋 Data Model
+
+**Administrators:** name, ID, phone, email
+
+**Customers:** name, ID, address, phone, email
+
+**Products/Services:** name, ID, photo, description, price, stock quantity, quantity sold
+
+---
+
+## 🧪 Test Coverage (Manual)
+
+All core flows were tested manually:
+
+| Scenario | Result |
+|---|---|
+| Buy a product | ✅ Stock decremented, sold count incremented |
+| Create a new product | ✅ Product visible in catalogue |
+| Edit a product (name, image) | ✅ Changes reflected site-wide |
+| Create a new user | ✅ Account accessible after registration |
+| Edit a user | ✅ Profile updated correctly |
+| Register / Login | ✅ Authentication working |
+| Generate a recipe | ✅ Recipe created from cart items |
+| Delete a product | ✅ Removed from catalogue |
+| Delete a user | ✅ Removed from admin panel |
+
+### Sample Test Screenshots
+
+<details>
+<summary>📦 Buy a product — "Arroz Integral 1kg"</summary>
+
+Before purchase (20 sold / 45 in stock), then after purchasing all stock (65 sold / 0 in stock).
+
+<img src="ImagesReadme/AntesCompra.png" width="700"/>
+<img src="ImagesReadme/CarrinhoCompra.png" width="700"/>
+<img src="ImagesReadme/DepoisCompra.png" width="700"/>
+</details>
+
+<details>
+<summary>➕ Create a new product — "Bala"</summary>
+
+<img src="ImagesReadme/criacaoProdut1.png" width="700"/>
+<img src="ImagesReadme/criacaoProdut2.png" width="700"/>
+</details>
+
+<details>
+<summary>✏️ Edit a product — "Arroz Integral 1kg"</summary>
+
+<img src="ImagesReadme/produtoModificacao.png" width="700"/>
+<img src="ImagesReadme/novoProdutoModificacao.png" width="700"/>
+<img src="ImagesReadme/ModificacaoSecao.png" width="700"/>
+</details>
+
+<details>
+<summary>👤 Edit a user — "Joãozinho da Silva Sauro"</summary>
+
+<img src="ImagesReadme/modificarNome1.png" width="700"/>
+<img src="ImagesReadme/modificarNome2.png" width="700"/>
+<img src="ImagesReadme/modificarNome3.png" width="700"/>
+</details>
+
+<details>
+<summary>🔑 Register and Login — "Arthur Ramos"</summary>
+
+<img src="ImagesReadme/Register.png" width="600"/>
+<img src="ImagesReadme/Login.png" width="600"/>
+<img src="ImagesReadme/UserPageAfterLogin.png" width="600"/>
+</details>
+
+<details>
+<summary>🍽️ Generate a recipe — "Almoço de Domingo"</summary>
+
+<img src="ImagesReadme/recipe.png" width="700"/>
+<img src="ImagesReadme/ingredients.png" width="700"/>
+<img src="ImagesReadme/steps.png" width="700"/>
+</details>
+
+<details>
+<summary>🗑️ Delete a product</summary>
+
+<img src="ImagesReadme/produtoModificacao.png" width="700"/>
+<img src="ImagesReadme/DepoisDeletar.png" width="700"/>
+</details>
+
+<details>
+<summary>🗑️ Delete a user — "Joãozinho da Silva Sauro"</summary>
+
+<img src="ImagesReadme/perfilExcluir1.png" width="700"/>
+<img src="ImagesReadme/perfilExcluir2.png" width="700"/>
+</details>
+
+---
+
+## 📐 UI Mockups (Milestone 1)
+
+| Screen | Link |
+|---|---|
+| Sign Up | [View](Milestone1/images/SignIn.png) |
+| Sign In | [View](Milestone1/images/SignUp.png) |
+| CRUD Page | [View](Milestone1/images/CRUD.jpeg) |
+| User Profile | [View](Milestone1/images/Profile.png) |
+| Cart | [View](Milestone1/images/Cart.png) |
+| Section Page | [View](Milestone1/images/Section.jpeg) |
+| Product Page | [HTML](Milestone1/html/product-page.html) · [CSS](Milestone1/css/product-page.css) |
+| Landing Page | [HTML](Milestone1/html/pagina-inicial.html) · [CSS](Milestone1/css/pagina-inicial.css) |
+| Add Admin/Product | [HTML](Milestone1/html/pagina-de-registro.html) · [CSS](Milestone1/css/pagina-de-registro.css) |
+
+---
+
+## ⚠️ Notes
+
+- The **recipe generation** feature requires a valid [OpenRouter](https://openrouter.ai/) API key. Create a free account, generate a key, and paste it into `key.json` as described in the setup steps.
+- The system accepts any credit card number for checkout (no real payment processing).
